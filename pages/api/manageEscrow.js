@@ -15,42 +15,42 @@ const manageEscrow = async (req, res) => {
         const data = req.body
         const recaptchaResponse = data.recaptchaResponse
         const recaptchaValid = verifyRecaptcha(recaptchaResponse)
-        if (!recaptchaValid) res.json({success: false})
+        if (!recaptchaValid) return res.json({success: false})
         const token = data.token
         const messageBoardData = getDataFromToken(token)
         if (!messageBoardData)
-            res.json({success: false, alertMessage: 'Invalid token'})
+            return res.json({success: false, alertMessage: 'Invalid token'})
         const messageBoardId = messageBoardData.messageBoardId
         const user = messageBoardData.user
         const buttonAction = data.buttonAction
         if (user === 'buyer') {
             const buttonActions = ['releaseEscrow', 'openDispute']
             if (!buttonActions.includes(buttonAction))
-                res.json({success: false})
+                return res.json({success: false})
         } else {
             if (buttonAction !== 'refundEscrow')
-                res.json({success: false})
+                return res.json({success: false})
         }
         await connectToDb()
         const messageBoardData2 = await MessageBoard.findById(messageBoardId)
         if (!messageBoardData2)
-            res.json({success: false, alertMessage: 'Message board not found'})
+            return res.json({success: false, alertMessage: 'Message board not found'})
         const buyerEmailAddress = messageBoardData2.buyerEmailAddress
         const sellerEmailAddress = messageBoardData2.sellerEmailAddress
         const notes = messageBoardData2.listingDetails.notes
         const escrow = await Escrow.find({messageBoardId: messageBoardId})
         if (!escrow)
-            res.json({success: false, alertMessage: 'Escrow not found'})
+            return res.json({success: false, alertMessage: 'Escrow not found'})
         const escrowId = escrow._id
         const escrowReleased = escrow.escrowReleased
         const escrowRefunded = escrow.escrowRefunded
         const disputeOpened = escrow.disputeOpened
         if (user === 'buyer') {
             if (escrowRefunded)
-                res.json({success: false})
+                return res.json({success: false})
         } else {
             if (escrowReleased)
-                res.json({success: false})
+                return res.json({success: false})
         }
         const listingDetails = messageBoardData2.listingDetails
         const transactionQuantity = listingDetails.transactionQuantity
@@ -70,12 +70,12 @@ const manageEscrow = async (req, res) => {
                 )
                 if (result.json && result.json.code) {
                     const errorMessage = result.json.error.details[0].message
-                    res.json({success: false, reason: errorMessage})
+                    return res.json({success: false, reason: errorMessage})
                 } else if (!result) {
-                    res.json({success: false})
+                    return res.json({success: false})
                 } else transactionId = result.transaction_id
             } catch (error) {
-                res.json({success: false})
+                return res.json({success: false})
             }
             await Escrow.updateOne({_id: escrowId}, {
                 $set: {
@@ -115,12 +115,12 @@ const manageEscrow = async (req, res) => {
                 )
                 if (result.json && result.json.code) {
                     const errorMessage = result.json.error.details[0].message
-                    res.json({success: false, reason: errorMessage})
+                    return res.json({success: false, reason: errorMessage})
                 } else if (!result) {
-                    res.json({success: false})
+                    return res.json({success: false})
                 } else transactionId = result.transaction_id
             } catch (error) {
-                res.json({success: false})
+                return res.json({success: false})
             }
             await Escrow.updateOne({_id: escrowId}, {
                 $set: {
@@ -147,7 +147,7 @@ const manageEscrow = async (req, res) => {
             await sendEmail(sellerEmailAddress, subjectBuyer, messageBuyer)
         } else {
             if (disputeOpened)
-                res.json({success: false})
+                return res.json({success: false})
             await Escrow.updateOne({_id: escrowId}, {
                 $set: {
                     disputeOpened: true,
@@ -156,9 +156,9 @@ const manageEscrow = async (req, res) => {
             })
             await Dispute.create({escrowId: escrowId})
         }
-        res.json({success: true, timestamp: timestamp})
+        return res.json({success: true, timestamp: timestamp})
     } else
-        res.json({success: false})
+        return res.json({success: false})
 }
 
 export default manageEscrow

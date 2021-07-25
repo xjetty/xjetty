@@ -10,7 +10,7 @@ const getListingData = async (req, res) => {
         const recaptchaResponse = data.recaptchaResponse
         const code = data.code.toUpperCase()
         const recaptchaVerified = await verifyRecaptcha(recaptchaResponse)
-        if (!recaptchaVerified) res.json({success: false})
+        if (!recaptchaVerified) return res.json({success: false})
         await connectToDb()
         const listing = await Listing.findOne({code: code})
         if (!listing) return res.json({success: false, alertMessage: 'Listing not found'})
@@ -21,13 +21,13 @@ const getListingData = async (req, res) => {
         const quantitySold = listing.quantitySold
         const quantityAvailable = quantity - quantitySold
         if (!quantityAvailable)
-            res.json({success: false, alertMessage: 'Listing not available'})
+            return res.json({success: false, alertMessage: 'Listing not available'})
         const hidden = listing.hidden
-        if (hidden) res.json({success: false, alertMessage: 'Listing hidden'})
+        if (hidden) return res.json({success: false, alertMessage: 'Listing hidden'})
         const notes = insertBreaks(listing.notes)
         const useEscrow = listing.useEscrow
         const saleMethod = listing.saleMethod
-        res.json({
+        return res.json({
             success: true, listing: {
                 fixedAmount: fixedAmount,
                 usdAmount: usdAmount,
@@ -38,7 +38,7 @@ const getListingData = async (req, res) => {
             }
         })
     } else
-        res.json({success: false})
+        return res.json({success: false})
 }
 
 export default getListingData

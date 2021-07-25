@@ -11,17 +11,17 @@ const setHiddenValue = async (req, res) => {
         const token = data.token
         const recaptchaResponse = data.recaptchaResponse
         const recaptchaValid = verifyRecaptcha(recaptchaResponse)
-        if (!recaptchaValid) res.json({success: false})
+        if (!recaptchaValid) return res.json({success: false})
         const listingId = getIdFromToken(token, 'listingId')
         if (!listingId)
-            res.json({success: false})
+            return res.json({success: false})
         await connectToDb()
         const listing = await Listing.findById(listingId)
         const hidden = listing.hidden
         await Listing.updateOne({_id: listingId}, {$set: {hidden: !hidden, lastUpdatedTimestamp: Date.now()}})
-        res.json({success: true})
+        return res.json({success: true})
     } else
-        res.json({success: false})
+        return res.json({success: false})
 
 }
 

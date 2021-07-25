@@ -11,17 +11,17 @@ const getMessageBoardData = async (req, res) => {
         const data = req.body
         const recaptchaResponse = data.recaptchaResponse
         const recaptchaValid = verifyRecaptcha(recaptchaResponse)
-        if (!recaptchaValid) res.json({success: false})
+        if (!recaptchaValid) return res.json({success: false})
         const token = data.token
         const messageBoardData = getDataFromToken(token)
         if (!messageBoardData)
-            res.json({success: false, alertMessage: 'Invalid token'})
+            return res.json({success: false, alertMessage: 'Invalid token'})
         const user = messageBoardData.user
         const messageBoardId = messageBoardData.messageBoardId
         await connectToDb()
         const messageBoardData2 = await MessageBoard.findById(messageBoardId)
         if (!messageBoardData2)
-            res.json({success: false, alertMessage: 'Message board not found'})
+            return res.json({success: false, alertMessage: 'Message board not found'})
         const messages = messageBoardData2.messages
         const listingDetails = messageBoardData2.listingDetails
         const useEscrow = listingDetails.useEscrow
@@ -60,9 +60,9 @@ const getMessageBoardData = async (req, res) => {
                 }
             }
         }
-        res.json({success: true, messageBoardData: messageBoardData3})
+        return res.json({success: true, messageBoardData: messageBoardData3})
     } else
-        res.json({success: false})
+        return res.json({success: false})
 }
 
 export default getMessageBoardData

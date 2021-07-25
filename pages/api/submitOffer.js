@@ -11,20 +11,20 @@ const submitOffer = async (req, res) => {
         const data = req.body
         const recaptchaResponse = data.recaptchaResponse
         const recaptchaValid = verifyRecaptcha(recaptchaResponse)
-        if (!recaptchaValid) res.json({success: false})
+        if (!recaptchaValid) return res.json({success: false})
         const code = data.code
         const pageTimestamp = data.pageTimestamp
         const listing = await Listing.findOne({code: code})
-        if (!listing) res.json({success: false, alertMessage: 'Listing not found'})
+        if (!listing) return res.json({success: false, alertMessage: 'Listing not found'})
         const lastUpdatedTimestamp = listing.lastUpdatedTimestamp
         if (pageTimestamp <= lastUpdatedTimestamp)
-            res.json({success: false, alertMessage: 'Listing out of date'})
-        if (listing.hidden) res.json({success: false, alertMessage: 'Listing hidden'})
+            return res.json({success: false, alertMessage: 'Listing out of date'})
+        if (listing.hidden) return res.json({success: false, alertMessage: 'Listing hidden'})
         const quantity = listing.quantity
         const quantitySold = listing.quantitySold
         const quantityAvailable = quantity - quantitySold
         if (!quantityAvailable)
-            res.json({success: false, alertMessage: 'Listing not available'})
+            return res.json({success: false, alertMessage: 'Listing not available'})
         const listingId = listing._id
         const saleMethod = listing.saleMethod
         const fixedAmount = listing.fixedAmount
@@ -37,10 +37,10 @@ const submitOffer = async (req, res) => {
         const offerEosAmount = parseFloat(data.eosAmount)
         if (fixedAmount === 'usd') {
             if (offerUsdAmount >= usdAmount)
-                res.json({success: false})
+                return res.json({success: false})
         } else {
             if (offerEosAmount >= eosAmount)
-                res.json({success: false})
+                return res.json({success: false})
         }
         const offerEmailAddress = data.emailAddress
         const payload = {listingId: listingId}
@@ -98,9 +98,9 @@ const submitOffer = async (req, res) => {
                 }
             }
         }
-        res.json({success: true})
+        return res.json({success: true})
     } else
-        res.json({success: false})
+        return res.json({success: false})
 }
 
 export default submitOffer

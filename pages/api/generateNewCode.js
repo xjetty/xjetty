@@ -10,18 +10,18 @@ const generateNewCode = async (req, res) => {
         const token = data.token
         const recaptchaResponse = data.recaptchaResponse
         const recaptchaValid = verifyRecaptcha(recaptchaResponse)
-        if (!recaptchaValid) res.json({success: false})
+        if (!recaptchaValid) return res.json({success: false})
         const listingId = getIdFromToken(token, 'listingId')
         if (!listingId)
-            res.json({success: false})
+            return res.json({success: false})
         await connectToDb()
         const code = await updateCode(listingId)
         let link = `https://blockcommerc.com/listing/${code}`
         if (!process.env.LIVE)
             link = `http://localhost:3000/listing/${code}`
-        res.json({success: true, link: link, code: code})
+        return res.json({success: true, link: link, code: code})
     } else
-        res.json({success: false})
+        return res.json({success: false})
 }
 
 export default generateNewCode

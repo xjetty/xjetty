@@ -14,16 +14,16 @@ const acceptOrDeclineOffers = async (req, res) => {
         const data = req.body
         const recaptchaResponse = data.recaptchaResponse
         const recaptchaValid = verifyRecaptcha(recaptchaResponse)
-        if (!recaptchaValid) res.json({success: false})
+        if (!recaptchaValid) return res.json({success: false})
         const token = data.token
         const listingId = getIdFromToken(token, 'listingId')
         if (!listingId)
-            res.json({success: false})
+            return res.json({success: false})
         const offerTokens = data.offerTokens
         const decision = data.decision
         const decisions = ['accept', 'decline']
         if (!decisions.includes(decision))
-            res.json({success: false})
+            return res.json({success: false})
         let status = ''
         if (decision === 'accept') {
             status = 'Accepted'
@@ -33,7 +33,7 @@ const acceptOrDeclineOffers = async (req, res) => {
         await connectToDb()
         const offers = await Offer.find({listingId: listingId})
         if (!offers)
-            res.json({success: false})
+            return res.json({success: false})
         const timestamp = Date.now()
         for (const offer of offers) {
             if (offerIds.includes(offer._id.toString()) && offer.status === 'Accept or Decline') {
@@ -54,9 +54,9 @@ const acceptOrDeclineOffers = async (req, res) => {
                 }
             }
         }
-        res.json({success: true, timestamp: timestamp})
+        return res.json({success: true, timestamp: timestamp})
     } else
-        res.json({success: false})
+        return res.json({success: false})
 }
 
 export default acceptOrDeclineOffers

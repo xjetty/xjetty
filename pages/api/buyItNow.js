@@ -25,7 +25,7 @@ const buyItNow = async (req, res) => {
         const data = req.body
         const recaptchaResponse = data.recaptchaResponse
         const recaptchaValid = verifyRecaptcha(recaptchaResponse)
-        if (!recaptchaValid) res.json({success: false})
+        if (!recaptchaValid) return res.json({success: false})
         const eosAccount = data.eosAccount
         let eosAccountName = data.eosAccountName
         let associativePrivateKey = data.associativePrivateKey.trim()
@@ -40,7 +40,7 @@ const buyItNow = async (req, res) => {
         if (eosAccount !== 'New') {
             const eosAccountData = getDataFromToken(eosAccount)
             if (!eosAccountData)
-                res.json({success: false})
+                return res.json({success: false})
             eosAccountName = eosAccountData.eosAccountName
             associativePrivateKey = eosAccountData.associativePrivateKey
             memo = eosAccountData.memo
@@ -62,22 +62,22 @@ const buyItNow = async (req, res) => {
         if (!offer) {
             listing = await Listing.findOne({code: code})
             if (!listing)
-                res.json({success: false, alertMessage: 'Listing not found'})
-            if (listing.hidden) res.json({success: false, alertMessage: 'Listing hidden'})
+                return res.json({success: false, alertMessage: 'Listing not found'})
+            if (listing.hidden) return res.json({success: false, alertMessage: 'Listing hidden'})
             listingId = listing._id
             fixedAmount = listing.fixedAmount
             usdAmount = listing.usdAmount
             eosAmount = listing.eosAmount
             buyerEmailAddress = emailAddress
             if (!emailValidator.validate(buyerEmailAddress))
-                res.json({success: false})
+                return res.json({success: false})
         } else {
             const offerId = getIdFromToken(token, 'offerId')
             if (!offerId)
-                res.json({success: false, alertMessage: 'Invalid token'})
+                return res.json({success: false, alertMessage: 'Invalid token'})
             const offer = await Offer.findById(offerId)
             if (!offer)
-                res.json({success: false, alertMessage: 'Offer not found'})
+                return res.json({success: false, alertMessage: 'Offer not found'})
             listingId = offer.listingId
             fixedAmount = offer.fixedAmount
             usdAmount = offer.usdAmount
@@ -85,12 +85,12 @@ const buyItNow = async (req, res) => {
             buyerEmailAddress = offer.emailAddress
             listing = await Listing.findOne({_id: listingId})
             if (!listing)
-                res.json({success: false, alertMessage: 'Listing not found'})
-            if (listing.hidden) res.json({success: false, alertMessage: 'Listing hidden'})
+                return res.json({success: false, alertMessage: 'Listing not found'})
+            if (listing.hidden) return res.json({success: false, alertMessage: 'Listing hidden'})
         }
         const lastUpdatedOnTimestamp = listing.lastUpdatedOnTimestamp
         if (pageTimestamp <= lastUpdatedOnTimestamp)
-            res.json({success: false, alertMessage: 'Listing out of date'})
+            return res.json({success: false, alertMessage: 'Listing out of date'})
         const notes = listing.notes
         const sellerEmailAddress = listing.emailAddress
         const sellerEosAccountName = listing.eosAccountName
@@ -100,12 +100,12 @@ const buyItNow = async (req, res) => {
         const buyerMemo = memo
         const eosAccountNameValid = validateEosAccountName(buyerEosAccountName)
         if (!eosAccountNameValid)
-            res.json({success: false})
+            return res.json({success: false})
         const eosAccountNameVerified = await verifyEosAccountName(
             buyerEosAccountName
         )
-        if (!eosAccountNameVerified) res.json({success: false})
-        if (!associativePrivateKey) res.json({success: false})
+        if (!eosAccountNameVerified) return res.json({success: false})
+        if (!associativePrivateKey) return res.json({success: false})
         const eosRate = await getEosRate()
         const transactionQuantity = getTransactionQuantity(
             fixedAmount,
@@ -115,7 +115,7 @@ const buyItNow = async (req, res) => {
         )
         const transactionPrepared = await prepareTransaction(listingId)
         if (!transactionPrepared.success)
-            res.json({success: false, alertMessage: transactionPrepared.alertMessage})
+            return res.json({success: false, alertMessage: transactionPrepared.alertMessage})
         let sellerEosAccountName2 = ''
         let sellerMemo2 = ''
         if (useEscrow) {
@@ -137,12 +137,12 @@ const buyItNow = async (req, res) => {
             )
             if (result.json && result.json.code) {
                 const errorMessage = result.json.error.details[0].message
-                res.json({success: false, alertMessage: errorMessage})
+                return res.json({success: false, alertMessage: errorMessage})
             } else if (!result) {
-                res.json({success: false})
+                return res.json({success: false})
             } else transactionId = result.transaction_id
         } catch (error) {
-            res.json({success: false, alertMessage: 'Invalid associative private key'})
+            return res.json({success: false, alertMessage: 'Invalid associative private key'})
         }
         await increaseQuantitySold(listingId)
         await updatePending(listingId, false)
@@ -223,9 +223,9 @@ const buyItNow = async (req, res) => {
         const messageBuyer = `Go to your message board for review<br><br><a href=${linkSeller}>${linkSeller}</a><br><br>Notes: ${notes}`
         await sendEmail(buyerEmailAddress, subjectSeller, messageSeller)
         await sendEmail(sellerEmailAddress, subjectBuyer, messageBuyer)
-        res.json({success: true, eosAccountToken: eosAccountToken, eosAccountName: eosAccountName})
+        return res.json({success: true, eosAccountToken: eosAccountToken, eosAccountName: eosAccountName})
     } else
-        res.json({success: false})
+        return res.json({success: false})
 }
 
 export default buyItNow

@@ -14,14 +14,14 @@ const getManagerData = async (req, res) => {
         const token = data.token
         const recaptchaResponse = data.recaptchaResponse
         const recaptchaValid = verifyRecaptcha(recaptchaResponse)
-        if (!recaptchaValid) res.json({success: false})
+        if (!recaptchaValid) return res.json({success: false})
         const listingId = getIdFromToken(token, 'listingId')
         if (!listingId)
-            res.json({success: false, alertMessage: 'Invalid token'})
+            return res.json({success: false, alertMessage: 'Invalid token'})
         await connectToDb()
         const listing = await Listing.findById(listingId)
         if (!listing)
-            res.json({success: false, alertMessage: 'Listing not found'})
+            return res.json({success: false, alertMessage: 'Listing not found'})
         let code = listing.code
         if (!code)
             code = await updateCode(listingId)
@@ -69,9 +69,9 @@ const getManagerData = async (req, res) => {
                 createdOnTimestamp: offer.createdOnTimestamp
             })
         })
-        res.json({success: true, listing: listingData, offers: offerData})
+        return res.json({success: true, listing: listingData, offers: offerData})
     } else
-        res.json({success: false})
+        return res.json({success: false})
 }
 
 export default getManagerData

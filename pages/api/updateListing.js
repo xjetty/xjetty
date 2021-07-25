@@ -13,15 +13,15 @@ const updateListing = async (req, res) => {
         delete data.token
         data.lastUpdatedTimestamp = Date.now()
         const recaptchaValid = verifyRecaptcha(recaptchaResponse)
-        if (!recaptchaValid) res.json({success: false})
+        if (!recaptchaValid) return res.json({success: false})
         const listingId = getIdFromToken(token, 'listingId')
         if (!listingId)
-            res.json({success: false})
+            return res.json({success: false})
         await connectToDb()
         await Listing.updateOne({_id: listingId}, {$set: data})
-        res.json({success: true})
+        return res.json({success: true})
     } else
-        res.json({success: false})
+        return res.json({success: false})
 }
 
 export default updateListing

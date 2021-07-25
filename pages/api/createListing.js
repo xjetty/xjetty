@@ -12,7 +12,7 @@ const createListing = async (req, res) => {
         const data = req.body
         const recaptchaResponse = data.recaptchaResponse
         const recaptchaValid = verifyRecaptcha(recaptchaResponse)
-        if (!recaptchaValid) res.json({success: false})
+        if (!recaptchaValid) return res.json({success: false})
         delete data.recaptchaResponse
         data.notes = cleanString(data.notes)
         await connectToDb()
@@ -29,12 +29,12 @@ const createListing = async (req, res) => {
             const subject = 'You created a listing'
             const message = `Share the code in your manager<br><br><a href=${link}>${link}</a><br><br>Notes: ${insertBreaks(notes)}`
             const messageId = await sendEmail(emailAddress, subject, message)
-            res.json({success: true, messageId: messageId})
+            return res.json({success: true, messageId: messageId})
         } catch (e) {
-            res.json({success: false})
+            return res.json({success: false})
         }
     } else
-        res.json({success: false})
+        return res.json({success: false})
 }
 
 export default createListing

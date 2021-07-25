@@ -12,20 +12,20 @@ const postMessage = async (req, res) => {
         const data = req.body
         const recaptchaResponse = data.recaptchaResponse
         const recaptchaValid = verifyRecaptcha(recaptchaResponse)
-        if (!recaptchaValid) res.json({success: false})
+        if (!recaptchaValid) return res.json({success: false})
         const token = data.token
         const messageBoardData = getDataFromToken(token)
         if (!messageBoardData)
-            res.json({success: false, alertMessage: 'Invalid token'})
+            return res.json({success: false, alertMessage: 'Invalid token'})
         const user = messageBoardData.user
         const messageBoardId = messageBoardData.messageBoardId
         const message = cleanString(data.message)
         if (!message)
-            res.json({success: false})
+            return res.json({success: false})
         await connectToDb()
         const messageBoardData2 = await MessageBoard.findById(messageBoardId)
         if (!messageBoardData2)
-            res.json({success: false, alertMessage: 'Message board not found'})
+            return res.json({success: false, alertMessage: 'Message board not found'})
         const messages = messageBoardData2.messages
         const newMessage = {
             user: user,
@@ -53,9 +53,9 @@ const postMessage = async (req, res) => {
             const message = `Go to your message board to read your new message<br><br><a href=${link}>${link}</a>`
             await sendEmail(sellerEmailAddress, 'You have a new message', message)
         }
-        res.json({success: true})
+        return res.json({success: true})
     } else
-        res.json({success: false})
+        return res.json({success: false})
 }
 
 export default postMessage

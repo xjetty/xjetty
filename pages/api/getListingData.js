@@ -13,7 +13,6 @@ const getListingData = async (req, res) => {
         if (!recaptchaVerified) res.json({success: false})
         await connectToDb()
         const listing = await Listing.findOne({code: code})
-        res.json({success: false, listing: listing})
         if (!listing) res.json({success: false, alertMessage: 'Listing not found'})
         const fixedAmount = listing.fixedAmount
         const usdAmount = listing.usdAmount

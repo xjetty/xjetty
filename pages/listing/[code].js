@@ -79,13 +79,13 @@ const Listing = () => {
     }, [recaptchaResponse])
 
     return (
-        <html>
+        <>
         <Head>
             <title>Listing - BlockCommerc</title>
         </Head>
         <UpdateEosRate/>
         {show && <ListingComponent/>}
-        </html>
+        </>
     )
 }
 

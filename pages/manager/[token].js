@@ -95,13 +95,13 @@ const Manager = () => {
     }, [recaptchaResponse])
 
     return (
-        <html>
+        <>
         <Head>
             <title>Manager - BlockCommerc</title>
         </Head>
         <UpdateEosRate/>
         {show && <ManagerComponent/>}
-        </html>
+        </>
     )
 }
 

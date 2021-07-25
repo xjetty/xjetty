@@ -16,7 +16,7 @@ const useStyles = makeStyles(() => ({
 const LayoutComponent = ({children}) => {
     const classes = useStyles()
     return (
-        <html>
+        <>
         <Head>
             <link rel="stylesheet"
                   href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
@@ -37,7 +37,7 @@ const LayoutComponent = ({children}) => {
         <SnackbarComponent/>
         <RecaptchaFieldComponent/>
         <DialogComponent/>
-        </html>
+        </>
     )
 }
 

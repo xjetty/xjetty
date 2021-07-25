@@ -89,12 +89,12 @@ const Offer = () => {
     }, [recaptchaResponse])
 
     return (
-        <html>
+        <>
         <Head>
             <title>Offer - BlockCommerc</title>
         </Head>
         {show && <ListingComponent/>}
-        </html>
+        </>
     )
 
 }

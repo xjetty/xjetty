@@ -79,7 +79,7 @@ const MessageBoard = () => {
     }, [recaptchaResponse])
 
     return (
-        <html>
+        <>
         <Head>
             <title>Message Board - BlockCommerc</title>
         </Head>
@@ -101,7 +101,7 @@ const MessageBoard = () => {
                 </Grid>
             ))}
         </Grid>)}
-        </html>
+        </>
     )
 }
 

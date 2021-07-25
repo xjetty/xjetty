@@ -13,7 +13,7 @@ const getListingData = async (req, res) => {
         if (!recaptchaVerified) res.json({success: false})
         await connectToDb()
         const listing = await Listing.findOne({code: code})
-        if (!listing) res.json({success: false, reason: 'listingNotFound'})
+        if (!listing) res.json({success: false, alertMessage: 'Listing not found'})
         const fixedAmount = listing.fixedAmount
         const usdAmount = listing.usdAmount
         const eosAmount = listing.eosAmount
@@ -21,9 +21,9 @@ const getListingData = async (req, res) => {
         const quantitySold = listing.quantitySold
         const quantityAvailable = quantity - quantitySold
         if (!quantityAvailable)
-            res.json({success: false, reason: 'listingNotAvailable'})
+            res.json({success: false, alertMessage: 'Listing not available'})
         const hidden = listing.hidden
-        if (hidden) res.json({success: false, reason: 'listingHidden'})
+        if (hidden) res.json({success: false, alertMessage: 'Listing hidden'})
         const notes = insertBreaks(listing.notes)
         const useEscrow = listing.useEscrow
         const saleMethod = listing.saleMethod

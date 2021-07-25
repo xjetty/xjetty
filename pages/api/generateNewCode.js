@@ -16,7 +16,7 @@ const generateNewCode = async (req, res) => {
             res.json({success: false})
         await connectToDb()
         const code = await updateCode(listingId)
-        let link = `https://blockcommercing.com/listing/${code}`
+        let link = `https://blockcommerc.com/listing/${code}`
         if (!process.env.LIVE)
             link = `http://localhost:3000/listing/${code}`
         res.json({success: true, link: link, code: code})

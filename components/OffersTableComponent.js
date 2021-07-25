@@ -117,6 +117,7 @@ const OffersTableComponent = () => {
             setRowsSelected(rowsSelected)
         },
         rowsSelected: rowsSelected,
+        // eslint-disable-next-line react/display-name
         customToolbarSelect: () => {
             return (
                 <div style={{marginRight: '24px'}}>

@@ -39,7 +39,7 @@ const postMessage = async (req, res) => {
         if (user === 'seller') {
             const payload = {user: 'buyer', messageBoardId: messageBoardId}
             const token = jwt.sign(payload, process.env.JWT_SIGNATURE)
-            let link = `https://blockcommercing.com/message-board/${token}`
+            let link = `https://blockcommerc.com/message-board/${token}`
             if (!process.env.LIVE)
                 link = `http://localhost:3000/message-board/${token}`
             const message = `Go to your message board to read your new message<br><br><a href=${link}>${link}</a>`
@@ -47,7 +47,7 @@ const postMessage = async (req, res) => {
         } else {
             const payload = {user: 'seller', messageBoardId: messageBoardId}
             const token = jwt.sign(payload, process.env.JWT_SIGNATURE)
-            let link = `https://blockcommercing.com/message-board/${token}`
+            let link = `https://blockcommerc.com/message-board/${token}`
             if (!process.env.LIVE)
                 link = `http://localhost:3000/message-board/${token}`
             const message = `Go to your message board to read your new message<br><br><a href=${link}>${link}</a>`

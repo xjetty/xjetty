@@ -17,6 +17,6 @@ module.exports = {
         ESCROW_ASSOCIATIVE_PRIVATE_KEY:
             '5KD6WKJ2ctuZKpYedyZjE9TcFAC79HfSzLZR5FBFs671sN5z9hY',
         ESCROW_MEMO: '',
-        LIVE: false
+        LIVE: true
     }
 }

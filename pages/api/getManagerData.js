@@ -37,7 +37,7 @@ const getManagerData = async (req, res) => {
         const saleMethod = listing.saleMethod
         const eosAccountName = listing.eosAccountName
         const maximumPercentLessThan = listing.maximumPercentLessThan
-        let link = `https://blockcommercing.com/listing/${code}`
+        let link = `https://blockcommerc.com/listing/${code}`
         if (!process.env.LIVE)
             link = `http://localhost:3000/listing/${code}`
         const listingData = {

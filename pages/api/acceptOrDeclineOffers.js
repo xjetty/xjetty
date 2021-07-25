@@ -43,7 +43,7 @@ const acceptOrDeclineOffers = async (req, res) => {
                     const emailAddress = offer.emailAddress
                     const token = jwt.sign({offerId: offer._id}, process.env.JWT_SIGNATURE)
                     let link = `http://localhost:3000/offer/${token}`
-                    link = `https://blockcommercing.com/offer/${token}`
+                    link = `https://blockcommerc.com/offer/${token}`
                     if (!process.env.LIVE)
                         link = `http://localhost:3000/offer/${token}`
                     const subject = 'Your offer was accepted'

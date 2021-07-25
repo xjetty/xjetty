@@ -5,12 +5,6 @@ const {JsSignatureProvider} = require('eosjs/dist/eosjs-jssig')
 const fetch = require('node-fetch')
 const {TextEncoder, TextDecoder} = require('util')
 
-const eosNodeServer = getEosNodeServer()
-if (!eosNodeServer)
-    return false
-
-const rpc = new JsonRpc(eosNodeServer, {fetch})
-
 export async function attemptTransaction(
     transactionQuantity,
     sellerEosAccountName,
@@ -19,6 +13,11 @@ export async function attemptTransaction(
     memo,
     useEscrow
 ) {
+    const eosNodeServer = getEosNodeServer()
+    if (!eosNodeServer)
+        return false
+
+    const rpc = new JsonRpc(eosNodeServer, {fetch})
     const signatureProvider = new JsSignatureProvider([associativePrivateKey])
     const api = new Api({
         rpc,

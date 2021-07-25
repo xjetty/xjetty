@@ -88,8 +88,8 @@ const manageEscrow = async (req, res) => {
             const sellerPayload = {user: 'seller', messageBoardId: messageBoardId}
             const buyerToken = jwt.sign(buyerPayload, process.env.JWT_SIGNATURE)
             const sellerToken = jwt.sign(sellerPayload, process.env.JWT_SIGNATURE)
-            let linkBuyer = `https://blockcommercing.com/message-board/${buyerToken}`
-            let linkSeller = `https://blockcommercing.com/message-board/${sellerToken}`
+            let linkBuyer = `https://blockcommerc.com/message-board/${buyerToken}`
+            let linkSeller = `https://blockcommerc.com/message-board/${sellerToken}`
             if (!process.env.LIVE) {
                 linkBuyer = `http://localhost:3000/message-board/${buyerToken}`
                 linkSeller = `http://localhost:3000/message-board/${sellerToken}`
@@ -133,8 +133,8 @@ const manageEscrow = async (req, res) => {
             const sellerPayload = {user: 'seller', messageBoardId: messageBoardId}
             const buyerToken = jwt.sign(buyerPayload, process.env.JWT_SIGNATURE)
             const sellerToken = jwt.sign(sellerPayload, process.env.JWT_SIGNATURE)
-            let linkBuyer = `https://blockcommercing.com/message-board/${buyerToken}`
-            let linkSeller = `https://blockcommercing.com/message-board/${sellerToken}`
+            let linkBuyer = `https://blockcommerc.com/message-board/${buyerToken}`
+            let linkSeller = `https://blockcommerc.com/message-board/${sellerToken}`
             if (!process.env.LIVE) {
                 linkBuyer = `http://localhost:3000/message-board/${buyerToken}`
                 linkSeller = `http://localhost:3000/message-board/${sellerToken}`

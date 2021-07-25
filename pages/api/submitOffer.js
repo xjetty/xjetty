@@ -46,7 +46,7 @@ const submitOffer = async (req, res) => {
         const payload = {listingId: listingId}
         const JWT_SIGNATURE = process.env.JWT_SIGNATURE
         const token = jwt.sign(payload, JWT_SIGNATURE)
-        let link = `https://blockcommercing.com/manager/${token}`
+        let link = `https://blockcommerc.com/manager/${token}`
         if (!process.env.LIVE)
             link = `http://localhost:3000/manager/${token}`
         const subject = 'You got an offer'

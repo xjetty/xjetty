@@ -67,7 +67,7 @@ const Home = () => {
                                     <LinkIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="No fee of any kind"
+                                    primary="No fees"
                                 />
                             </ListItem>
                             <ListItem>
@@ -75,7 +75,7 @@ const Home = () => {
                                     <LinkIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Assign a certain quantity"
+                                    primary="Item quantities"
                                 />
                             </ListItem>
                             <ListItem>
@@ -83,7 +83,7 @@ const Home = () => {
                                     <LinkIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Fix by fiat or crypto"
+                                    primary="Fiat or crypto fixation"
                                 />
                             </ListItem>
                             <ListItem>
@@ -91,7 +91,7 @@ const Home = () => {
                                     <LinkIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Choose to accept offers"
+                                    primary="Offers"
                                 />
                             </ListItem>
                             <ListItem>
@@ -99,7 +99,7 @@ const Home = () => {
                                     <LinkIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Bestow trust with an escrow"
+                                    primary="Escrows"
                                 />
                             </ListItem>
                         </List>
@@ -123,7 +123,7 @@ const Home = () => {
                                     <StarIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Thousands of Transactions per Second"
+                                    primary="Thousands of transactions per second"
                                 />
                             </ListItem>
                             <ListItem>
@@ -131,7 +131,7 @@ const Home = () => {
                                     <StarIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Near-Instant Transaction Times"
+                                    primary="Near-instant transaction times"
                                 />
                             </ListItem>
                             <ListItem>
@@ -139,7 +139,7 @@ const Home = () => {
                                     <StarIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Zero Percent Transaction Fees"
+                                    primary="Zero percent transaction fees"
                                 />
                             </ListItem>
                         </List>

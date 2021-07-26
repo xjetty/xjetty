@@ -34,7 +34,7 @@ const Offer = () => {
     useEffect(() => {
         setToken(token)
         setOffer(true)
-    })
+    }, [setToken, setOffer])
 
     const updateEosRate = async () => {
         const res = await axios.get(

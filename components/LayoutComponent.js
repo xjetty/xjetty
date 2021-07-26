@@ -17,7 +17,7 @@ const LayoutComponent = ({children}) => {
     const [hidden, setHidden] = React.useState(true)
     useEffect(() => {
         setHidden(false)
-    }, [])
+    }, [setHidden])
     return (
         <div hidden={hidden}>
         <Head>

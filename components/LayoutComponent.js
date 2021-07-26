@@ -1,10 +1,9 @@
 import Head from "next/head";
 import NavBarComponent from "./NavBarComponent";
 import {Box, Container, makeStyles, Toolbar} from "@material-ui/core";
-import FooterComponent from "./FooterComponent";
 import SnackbarComponent from "./SnackbarComponent";
 import RecaptchaFieldComponent from "./FieldComponents/RecaptchaFieldComponent";
-import React from "react";
+import React, {useEffect} from "react";
 import DialogComponent from "./DialogComponent";
 
 const useStyles = makeStyles(() => ({
@@ -15,8 +14,12 @@ const useStyles = makeStyles(() => ({
 
 const LayoutComponent = ({children}) => {
     const classes = useStyles()
+    const [hidden, setHidden] = React.useState(true)
+    useEffect(() => {
+        setHidden(false)
+    }, [])
     return (
-        <>
+        <div hidden={hidden}>
         <Head>
             <link rel="stylesheet"
                   href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
@@ -37,7 +40,7 @@ const LayoutComponent = ({children}) => {
         <SnackbarComponent/>
         <RecaptchaFieldComponent/>
         <DialogComponent/>
-        </>
+        </div>
     )
 }
 

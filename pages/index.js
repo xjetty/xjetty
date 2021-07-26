@@ -53,7 +53,7 @@ const Home = () => {
                     />
                     <CardContent>
                         <Typography className={classes.title} color="textSecondary" gutterBottom>
-                            The Way Commerce Should Be Done on the Blockchain
+                            The Way Commerce Should Be on the Blockchain
                         </Typography>
                         <Typography variant="h5" component="h2">
                             BlockCommerc
@@ -67,7 +67,7 @@ const Home = () => {
                                     <LinkIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="No fees of any kind"
+                                    primary="No fee of any kind"
                                 />
                             </ListItem>
                             <ListItem>
@@ -75,7 +75,7 @@ const Home = () => {
                                     <LinkIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Specify a certain quantity"
+                                    primary="Assign a certain quantity"
                                 />
                             </ListItem>
                             <ListItem>
@@ -83,7 +83,7 @@ const Home = () => {
                                     <LinkIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Fix with fiat or crypto"
+                                    primary="Fix by fiat or crypto"
                                 />
                             </ListItem>
                             <ListItem>
@@ -99,7 +99,7 @@ const Home = () => {
                                     <LinkIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Gain trust with the escrow"
+                                    primary="Bestow trust with an escrow"
                                 />
                             </ListItem>
                         </List>

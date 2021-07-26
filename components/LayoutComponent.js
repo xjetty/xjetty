@@ -20,26 +20,26 @@ const LayoutComponent = ({children}) => {
     }, [setHidden])
     return (
         <div hidden={hidden}>
-        <Head>
-            <link rel="stylesheet"
-                  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
-            <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
-            <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
-            {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-            <script src="https://cdn.jsdelivr.net/npm/eosjs-api@7.0.4/lib/eos-api.min.js"/>
-        </Head>
-        <div className={classes.root}>
-            <NavBarComponent/>
-            <Toolbar/>
-            <Container>
-                <Box my={2}>
-                    {children}
-                </Box>
-            </Container>
-        </div>
-        <SnackbarComponent/>
-        <RecaptchaFieldComponent/>
-        <DialogComponent/>
+            <Head>
+                <link rel="stylesheet"
+                      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
+                <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+                <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
+                {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+                <script src="https://cdn.jsdelivr.net/npm/eosjs-api@7.0.4/lib/eos-api.min.js"/>
+            </Head>
+            <div className={classes.root}>
+                <NavBarComponent/>
+                <Toolbar/>
+                <Container>
+                    <Box my={2}>
+                        {children}
+                    </Box>
+                </Container>
+            </div>
+            <SnackbarComponent/>
+            <RecaptchaFieldComponent/>
+            <DialogComponent/>
         </div>
     )
 }

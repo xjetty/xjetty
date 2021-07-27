@@ -1,10 +1,31 @@
-import {Button, Card, CardContent, Grid, LinearProgress} from "@material-ui/core";
+import {
+    Button,
+    Card,
+    CardContent,
+    Dialog, DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle,
+    Grid,
+    LinearProgress, Paper
+} from "@material-ui/core";
 import React, {useContext, useEffect} from "react";
 import {AppContext} from "../../contexts/AppContext";
 import axios from "axios";
+import Draggable from "react-draggable";
+
+function PaperComponent(props) {
+    return (
+        <Draggable handle="#draggable-dialog-title" cancel={'[class*="MuiDialogContent-root"]'}>
+            <Paper {...props} />
+        </Draggable>
+    )
+}
 
 const EscrowActionComponent = (props) => {
 
+    const [open, setOpen] = React.useState(false)
+    const [title, setTitle] = React.useState('')
     const [submittingData, setSubmittingData] = React.useState(false)
     const [buttonAction, setButtonAction] = React.useState('')
 
@@ -16,12 +37,6 @@ const EscrowActionComponent = (props) => {
         setSnackbarOpen,
         setSnackbarMessage
     } = useContext(AppContext)
-
-    const submitRecaptcha = (buttonAction) => {
-        setSubmittingData(true)
-        setButtonAction(buttonAction)
-        recaptchaRef.current.execute()
-    }
 
     const manageEscrow = async () => {
         try {
@@ -62,6 +77,26 @@ const EscrowActionComponent = (props) => {
         })
     }
 
+    const handleClose = () => {
+        if (!submittingData)
+            setOpen(false)
+    }
+
+    const handleNo = () => {
+        setOpen(false)
+    }
+
+    const handleYes = () => {
+        setSubmittingData(true)
+        recaptchaRef.current.execute()
+    }
+
+    const handleButton = (buttonAction, title) => {
+        setButtonAction(buttonAction)
+        setTitle(title)
+        setOpen(true)
+    }
+
     useEffect(() => {
         if (recaptchaResponse && submittingData)
             manageEscrow()
@@ -72,23 +107,18 @@ const EscrowActionComponent = (props) => {
             <Card>
                 <CardContent>
                     <Grid container spacing={2}>
-                        {submittingData && (<Grid item xs={12}>
-                            <LinearProgress/>
-                        </Grid>)}
                         {props.user === 'buyer' ? (
                             <>
                                 <Grid item xs={12}>
                                     <Button
-                                        onClick={submitRecaptcha('releaseEscrow')}
-                                        disabled={submittingData}
+                                        onClick={handleButton('releaseEscrow', 'Release escrow?')}
                                         variant="contained"
                                         color="primary">
                                         Release escrow
                                     </Button>
                                     {!escrowDetails.disputeOpened && (
                                         <Button
-                                            onClick={submitRecaptcha('openDispute')}
-                                            disabled={submittingData}
+                                            onClick={handleButton('openDispute', 'Open dispute?')}
                                             variant="contained"
                                             color="primary">
                                             Open dispute
@@ -96,20 +126,50 @@ const EscrowActionComponent = (props) => {
                                     )}
                                 </Grid>
                             </>
-                        ) : !escrowDetails.escrowRefunded ? (
+                        ) : (
                             <Grid item xs={12}>
                                 <Button
-                                    onClick={submitRecaptcha('refundEscrow')}
-                                    disabled={submittingData}
+                                    onClick={handleButton('refundEscrow', 'Refund escrow?')}
                                     variant="contained"
                                     color="primary">
                                     Refund escrow
                                 </Button>
                             </Grid>
-                        ) : ('')}
+                        )}
                     </Grid>
                 </CardContent>
             </Card>
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                PaperComponent={PaperComponent}
+                aria-labelledby="draggable-dialog-title"
+                fullWidth
+            >
+                <DialogTitle style={{cursor: 'move'}} id="draggable-dialog-title">
+                    {title}
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12}>
+                                This decision is final.
+                            </Grid>
+                            {submittingData && (<Grid item xs={12}>
+                                <LinearProgress/>
+                            </Grid>)}
+                        </Grid>
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button disabled={submittingData} autoFocus onClick={handleNo} color="primary">
+                        No
+                    </Button>
+                    <Button disabled={submittingData} onClick={handleYes} color="primary">
+                        Yes
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </>
     )
 }

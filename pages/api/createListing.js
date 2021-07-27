@@ -28,8 +28,8 @@ const createListing = async (req, res) => {
                 link = `http://localhost:3000/manager/${token}`
             const subject = 'You created a listing'
             const message = `Share the code in your manager<br><br><a href=${link}>${link}</a><br><br>Notes: ${insertBreaks(notes)}`
-            await sendEmail(emailAddress, subject, message)
-            return res.json({success: true})
+            const emailRes = await sendEmail(emailAddress, subject, message)
+            return res.json({success: true, emailRes: emailRes})
         } catch (e) {
             return res.json({success: false})
         }

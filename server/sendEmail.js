@@ -8,10 +8,11 @@ export async function sendEmail(emailAddress, subject, message) {
         subject: subject,
         html: message
     }
+    let res = null
     try {
-        await sgMail.send(msg)
-        return true
+        res = await sgMail.send(msg)
+        return res
     } catch (e) {
-        return false
+        return res
     }
 }

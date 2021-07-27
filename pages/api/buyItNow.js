@@ -7,7 +7,7 @@ import {getTransactionQuantity} from '../../server/getTransactionQuantity'
 import {attemptTransaction} from '../../server/attemptTransaction'
 import emailValidator from 'email-validator'
 import {verifyEosAccountName} from '../../server/verifyEosAccountName'
-import {updatePending} from '../../server/updatePending'
+import {updatePendingTransactions} from '../../server/updatePendingTransactions'
 import {prepareTransaction} from '../../server/prepareTransaction'
 import {increaseQuantitySold} from '../../server/increaseQuantitySold'
 import jwt from 'jsonwebtoken'
@@ -145,7 +145,7 @@ const buyItNow = async (req, res) => {
             return res.json({success: false, alertMessage: 'Invalid associative private key'})
         }
         await increaseQuantitySold(listingId)
-        await updatePending(listingId, false)
+        await updatePendingTransactions(listingId, false)
         const eosFormatter = new Intl.NumberFormat('en-US', {
             style: 'currency',
             currency: 'USD',

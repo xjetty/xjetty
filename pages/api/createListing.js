@@ -11,7 +11,7 @@ const createListing = async (req, res) => {
     if (method === 'POST') {
         const data = req.body
         const recaptchaResponse = data.recaptchaResponse
-        const recaptchaValid = verifyRecaptcha(recaptchaResponse)
+        const recaptchaValid = await verifyRecaptcha(recaptchaResponse)
         if (!recaptchaValid) return res.json({success: false})
         delete data.recaptchaResponse
         data.notes = cleanString(data.notes)

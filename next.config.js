@@ -3,10 +3,7 @@ module.exports = {
     env: {
         MONGO_URI:
             'mongodb+srv://user:Snapshooter!23@blockcommercapp.bslzk.mongodb.net/BlockCommercApp?retryWrites=true&w=majority',
-        EMAIL_SERVER_HOST: 'smtp.sendgrid.net',
-        EMAIL_SERVER_PORT: 25,
-        EMAIL_SERVER_USER: 'apikey',
-        EMAIL_SERVER_PASSWORD: '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',
+        SENDGRID_API_KEY: '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',
         JWT_SIGNATURE: 'crypto4ever',
         RECAPTCHA_SITE_KEY: '6Le-jL0bAAAAALtVFAZwX-GB2KHwl8wUmGP7T_VE',
         RECAPTCHA_SECRET_KEY: '6Le-jL0bAAAAAJowKEnL-rWbiWaLaY8ibNr260XT',

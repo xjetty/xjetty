@@ -1,23 +1,20 @@
-import nodemailer from 'nodemailer'
+const sgMail = require('@sendgrid/mail')
 
 export async function sendEmail(emailAddress, subject, message) {
-    try {
-        let transporter = nodemailer.createTransport({
-            host: process.env.EMAIL_SERVER_HOST,
-            port: process.env.EMAIL_SERVER_PORT,
-            auth: {
-                user: process.env.EMAIL_SERVER_USER,
-                pass: process.env.EMAIL_SERVER_PASSWORD
-            }
-        })
-        const info = await transporter.sendMail({
-            from: 'BlockCommerc <donotreply@blockcommerc.com>',
-            to: emailAddress,
-            subject: subject,
-            html: message
-        })
-        return info.messageId
-    } catch (e) {
-        return null
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+    const msg = {
+        to: emailAddress,
+        from: 'BlockCommerc <donotreply@blockcommerc.com>',
+        subject: subject,
+        text: message.replace(/(<([^>]+)>)/gi, ''),
+        html: message,
     }
+    sgMail
+        .send(msg)
+        .then(() => {
+            return true
+        })
+        .catch((error) => {
+            return false
+        })
 }

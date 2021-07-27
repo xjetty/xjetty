@@ -16,7 +16,7 @@ const NavBarComponent = () => {
                 <Typography variant="h6" className={classes.title}>
                     BlockCommerc
                 </Typography>
-                <Link href="/" passHref>
+                <Link href="/">
                     <IconButton color="inherit">
                         <HomeIcon/>
                     </IconButton>

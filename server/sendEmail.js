@@ -8,12 +8,10 @@ export async function sendEmail(emailAddress, subject, message) {
         subject: subject,
         html: message
     }
-    sgMail
-        .send(msg)
-        .then(() => {
-            return true
-        })
-        .catch((error) => {
-            return false
-        })
+    try {
+        await sgMail.send(msg)
+        return true
+    } catch (e) {
+        return false
+    }
 }

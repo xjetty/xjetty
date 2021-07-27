@@ -6,13 +6,13 @@ export async function sendEmail(emailAddress, subject, message) {
         to: emailAddress,
         from: 'BlockCommerc <noreply@blockcommerc.com>',
         subject: subject,
+        text: message.replace(/(<([^>]+)>)/gi, ''),
         html: message
     }
-    let res = null
     try {
-        res = await sgMail.send(msg)
-        return res
+        await sgMail.send(msg)
+        return true
     } catch (e) {
-        return res
+        return false
     }
 }

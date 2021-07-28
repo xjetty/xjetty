@@ -12,9 +12,13 @@ const useStyles = makeStyles(() => ({
     }
 }))
 
-const LayoutComponent = ({children, render}) => {
+const LayoutComponent = ({children}) => {
     const classes = useStyles()
-    if (render) {
+    const [hidden, setHidden] = React.useState(true)
+    useEffect(() => {
+        setHidden(false)
+    }, [setHidden])
+    if (!hidden) {
         return (
             <>
                 <Head>
@@ -39,18 +43,7 @@ const LayoutComponent = ({children, render}) => {
                 <DialogComponent/>
             </>
         )
-    } else {
-        return null
-    }
-}
-
-export async function getStaticProps() {
-    const render = true
-    return {
-        props: {
-            render,
-        },
-    }
+    } else return null
 }
 
 export default LayoutComponent

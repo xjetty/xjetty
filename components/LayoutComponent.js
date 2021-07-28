@@ -1,4 +1,3 @@
-import Head from "next/head";
 import NavBarComponent from "./NavBarComponent";
 import {Box, Container, makeStyles, Toolbar} from "@material-ui/core";
 import SnackbarComponent from "./SnackbarComponent";
@@ -21,12 +20,6 @@ const LayoutComponent = ({children}) => {
     if (!hidden) {
         return (
             <>
-                {/*<Head>*/}
-                {/*    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"*/}
-                {/*          rel="stylesheet"/>*/}
-                {/*    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"*/}
-                {/*          rel="stylesheet"/>*/}
-                {/*</Head>*/}
                 <div className={classes.root}>
                     <NavBarComponent/>
                     <Toolbar/>

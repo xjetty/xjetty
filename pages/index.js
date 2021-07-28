@@ -52,7 +52,7 @@ const Home = () => {
                     />
                     <CardContent>
                         <Typography className={classes.title} color="textSecondary" gutterBottom>
-                            The Way Commerce Should Be on the Blockchain
+                            Bringing Commerce on the Blockchain to Everyone
                         </Typography>
                         <Typography variant="h5" component="h2">
                             BlockCommerc
@@ -66,7 +66,7 @@ const Home = () => {
                                     <LinkIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="No fees"
+                                    primary="No fees whatsoever"
                                 />
                             </ListItem>
                             <ListItem>
@@ -74,7 +74,7 @@ const Home = () => {
                                     <LinkIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Item quantities"
+                                    primary="Set the item quantity"
                                 />
                             </ListItem>
                             <ListItem>
@@ -82,7 +82,7 @@ const Home = () => {
                                     <LinkIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Fiat or crypto fixation"
+                                    primary="Fix by fiat or crypto"
                                 />
                             </ListItem>
                             <ListItem>
@@ -90,7 +90,7 @@ const Home = () => {
                                     <LinkIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Offers"
+                                    primary="Choose to accept offers"
                                 />
                             </ListItem>
                             <ListItem>
@@ -98,7 +98,7 @@ const Home = () => {
                                     <LinkIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Escrows"
+                                    primary="Use the escrow to gain trust"
                                 />
                             </ListItem>
                         </List>

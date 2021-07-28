@@ -190,9 +190,11 @@ function MyApp({Component, pageProps}) {
                 setEscrowDetails,
             }}>
             <ThemeProvider theme={theme}>
-                <LayoutComponent hidden={hidden}>
-                    <Component {...pageProps} />
-                </LayoutComponent>
+                <div hidden={hidden}>
+                    <LayoutComponent>
+                        <Component {...pageProps} />
+                    </LayoutComponent>
+                </div>
             </ThemeProvider>
         </AppContext.Provider>
     )

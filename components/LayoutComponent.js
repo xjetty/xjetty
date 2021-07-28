@@ -19,7 +19,7 @@ const LayoutComponent = ({children}) => {
         setHidden(false)
     }, [setHidden])
     return (
-        <React.Fragment hidden={hidden}>
+        <span hidden={hidden}>
             <Head>
                 <link rel="stylesheet"
                       href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
@@ -40,7 +40,7 @@ const LayoutComponent = ({children}) => {
             <SnackbarComponent/>
             <RecaptchaFieldComponent/>
             <DialogComponent/>
-        </React.Fragment>
+        </span>
     )
 }
 

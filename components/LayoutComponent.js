@@ -18,32 +18,56 @@ const LayoutComponent = ({children}) => {
     useEffect(() => {
         setHidden(false)
     }, [setHidden])
-    if (!hidden) {
-        return (
-            <>
-                <Head>
-                    {/*<link rel="stylesheet"*/}
-                    {/*      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>*/}
-                    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
-                    <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
-                    {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-                    <script src="https://cdn.jsdelivr.net/npm/eosjs-api@7.0.4/lib/eos-api.min.js"/>
-                </Head>
-                <div className={classes.root}>
-                    <NavBarComponent/>
-                    <Toolbar/>
-                    <Container>
-                        <Box my={2}>
-                            {children}
-                        </Box>
-                    </Container>
-                </div>
-                <SnackbarComponent/>
-                <RecaptchaFieldComponent/>
-                <DialogComponent/>
-            </>
-        )
-    } else return null
+    return (
+        <>
+            <Head>
+                {/*<link rel="stylesheet"*/}
+                {/*      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>*/}
+                <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+                <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
+                {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+                <script src="https://cdn.jsdelivr.net/npm/eosjs-api@7.0.4/lib/eos-api.min.js"/>
+            </Head>
+            <div className={classes.root}>
+                <NavBarComponent/>
+                <Toolbar/>
+                <Container>
+                    <Box my={2}>
+                        {children}
+                    </Box>
+                </Container>
+            </div>
+            <SnackbarComponent/>
+            <RecaptchaFieldComponent/>
+            <DialogComponent/>
+        </>
+    )
+    // if (!hidden) {
+    //     return (
+    //         <>
+    //             <Head>
+    //                 {/*<link rel="stylesheet"*/}
+    //                 {/*      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>*/}
+    //                 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+    //                 <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
+    //                 {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+    //                 <script src="https://cdn.jsdelivr.net/npm/eosjs-api@7.0.4/lib/eos-api.min.js"/>
+    //             </Head>
+    //             <div className={classes.root}>
+    //                 <NavBarComponent/>
+    //                 <Toolbar/>
+    //                 <Container>
+    //                     <Box my={2}>
+    //                         {children}
+    //                     </Box>
+    //                 </Container>
+    //             </div>
+    //             <SnackbarComponent/>
+    //             <RecaptchaFieldComponent/>
+    //             <DialogComponent/>
+    //         </>
+    //     )
+    // } else return null
 }
 
 export default LayoutComponent

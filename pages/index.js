@@ -16,7 +16,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import Link from 'next/link'
 import ContactFormComponent from "../components/FormComponents/ContactFormComponent";
 import SendMessageActionComponent from "../components/ActionComponents/SendMessageActionComponent";
-import React from 'react'
+import React, {useEffect} from 'react'
 import GoToListingComponent from "../components/GoToListingComponent";
 
 const useStyles = makeStyles({
@@ -33,10 +33,14 @@ const useStyles = makeStyles({
 })
 
 const Home = () => {
+    const [hidden, setHidden] = React.useState(true)
     const classes = useStyles()
+    useEffect(() => {
+        setHidden(false)
+    }, [setHidden])
 
     return (
-        <>
+        <div hidden={hidden}>
         <Head>
             <title>Home - BlockCommerc</title>
         </Head>
@@ -183,7 +187,7 @@ const Home = () => {
                 </Card>
             </Grid>
         </Grid>
-        </>
+        </div>
     )
 
 }

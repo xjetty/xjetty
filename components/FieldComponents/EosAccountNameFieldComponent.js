@@ -74,9 +74,8 @@ const EosAccountNameFieldComponent = () => {
     }, [eosAccountNameError, eosAccountName])
 
     const checkError = () => {
-        if (!eosAccountNameError && !eosAccountName) {
+        if (!eosAccountNameError && !eosAccountName)
             setEosAccountNameError(true)
-        } else setEosAccountNameError(false)
     }
 
     return (

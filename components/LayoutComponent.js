@@ -12,13 +12,9 @@ const useStyles = makeStyles(() => ({
     }
 }))
 
-const LayoutComponent = ({children}) => {
+const LayoutComponent = ({children, render}) => {
     const classes = useStyles()
-    const [hidden, setHidden] = React.useState(true)
-    useEffect(() => {
-        setHidden(false)
-    }, [setHidden])
-    if (!hidden) {
+    if (render) {
         return (
             <>
                 <Head>
@@ -44,7 +40,16 @@ const LayoutComponent = ({children}) => {
             </>
         )
     } else {
-        return ''
+        return null
+    }
+}
+
+export async function getStaticProps() {
+    const render = true
+    return {
+        props: {
+            render,
+        },
     }
 }
 

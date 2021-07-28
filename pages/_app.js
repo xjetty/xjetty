@@ -2,7 +2,7 @@ import '../styles/globals.css'
 import {createTheme} from '@material-ui/core/styles'
 import {blue, red} from "@material-ui/core/colors";
 import {AppContext} from "../contexts/AppContext";
-import React, {useEffect} from "react"
+import React from "react"
 import {ThemeProvider} from "@material-ui/core";
 import LayoutComponent from "../components/LayoutComponent";
 
@@ -72,10 +72,6 @@ function MyApp({Component, pageProps}) {
     const [eosAccountItems, setEosAccountItems] = React.useState([])
     const [showOffers, setShowOffers] = React.useState(false)
     const [escrowDetails, setEscrowDetails] = React.useState({})
-    const [appHidden, setAppHidden] = React.useState(true)
-    useEffect(() => {
-        setAppHidden(false)
-    }, [setAppHidden])
     return (
         <AppContext.Provider
             value={{
@@ -190,11 +186,9 @@ function MyApp({Component, pageProps}) {
                 setEscrowDetails,
             }}>
             <ThemeProvider theme={theme}>
-                <div hidden={hidden}>
-                    <LayoutComponent>
-                        <Component {...pageProps} />
-                    </LayoutComponent>
-                </div>
+                <LayoutComponent>
+                    <Component {...pageProps} />
+                </LayoutComponent>
             </ThemeProvider>
         </AppContext.Provider>
     )

@@ -105,7 +105,7 @@ const Home = () => {
                     </CardContent>
                     <CardActions>
                         <Link href="/create">
-                            <Button variant="contained" color="primary">Create a listing</Button>
+                            <Button size="large" variant="contained" color="primary">Create a listing</Button>
                         </Link>
                     </CardActions>
                 </Card>

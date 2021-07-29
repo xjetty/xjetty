@@ -66,7 +66,7 @@ const Home = () => {
                                     <LinkIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="No fees whatsoever"
+                                    primary="No seller fees, no buyer fees, no transaction fees - no fees of any kind"
                                 />
                             </ListItem>
                             <ListItem>
@@ -74,7 +74,7 @@ const Home = () => {
                                     <LinkIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Set the item quantity"
+                                    primary="Specify the item quantity to prevent over buying"
                                 />
                             </ListItem>
                             <ListItem>
@@ -82,7 +82,7 @@ const Home = () => {
                                     <LinkIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Fix by fiat or crypto"
+                                    primary="Fix your item price by USD or crypto"
                                 />
                             </ListItem>
                             <ListItem>
@@ -98,7 +98,7 @@ const Home = () => {
                                     <LinkIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Use the escrow to gain trust"
+                                    primary="Gain trust with the escrow"
                                 />
                             </ListItem>
                         </List>

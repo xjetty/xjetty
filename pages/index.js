@@ -10,7 +10,6 @@ import {
     ListItemText,
     Typography
 } from "@material-ui/core";
-import WidgetsIcon from '@material-ui/icons/Link'
 import StarIcon from '@material-ui/icons/Star'
 import WidgetsIcon from '@material-ui/icons/Widgets'
 import {makeStyles} from "@material-ui/core/styles";

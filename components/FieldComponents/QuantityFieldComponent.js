@@ -17,7 +17,7 @@ const QuantityFieldComponent = () => {
             step={1}
             min={minimumQuantity}
             max={100}
-            valueLabelDisplay="auto"
+            valueLabelDisplay="on"
         />
     )
 }

@@ -66,7 +66,7 @@ const Home = () => {
                                     <LinkIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="No seller fees, no buyer fees, no transaction fees - no fees of any kind"
+                                    primary="No seller fees, no buyer fees, no transaction fees, no fees of any kind"
                                 />
                             </ListItem>
                             <ListItem>

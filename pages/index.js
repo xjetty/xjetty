@@ -10,8 +10,9 @@ import {
     ListItemText,
     Typography
 } from "@material-ui/core";
-import LinkIcon from '@material-ui/icons/Link'
+import WidgetsIcon from '@material-ui/icons/Link'
 import StarIcon from '@material-ui/icons/Star'
+import WidgetsIcon from '@material-ui/icons/Widgets'
 import {makeStyles} from "@material-ui/core/styles";
 import Link from 'next/link'
 import ContactFormComponent from "../components/FormComponents/ContactFormComponent";
@@ -63,7 +64,7 @@ const Home = () => {
                         <List>
                             <ListItem>
                                 <ListItemIcon>
-                                    <LinkIcon color="primary"/>
+                                    <WidgetsIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
                                     primary="No seller fees, no buyer fees, no transaction fees, no fees of any kind"
@@ -71,7 +72,7 @@ const Home = () => {
                             </ListItem>
                             <ListItem>
                                 <ListItemIcon>
-                                    <LinkIcon color="primary"/>
+                                    <WidgetsIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
                                     primary="Specify the item quantity to prevent over buying"
@@ -79,7 +80,7 @@ const Home = () => {
                             </ListItem>
                             <ListItem>
                                 <ListItemIcon>
-                                    <LinkIcon color="primary"/>
+                                    <WidgetsIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
                                     primary="Fix your item price by USD or crypto"
@@ -87,7 +88,7 @@ const Home = () => {
                             </ListItem>
                             <ListItem>
                                 <ListItemIcon>
-                                    <LinkIcon color="primary"/>
+                                    <WidgetsIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
                                     primary="Choose to accept offers"
@@ -95,7 +96,7 @@ const Home = () => {
                             </ListItem>
                             <ListItem>
                                 <ListItemIcon>
-                                    <LinkIcon color="primary"/>
+                                    <WidgetsIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
                                     primary="Gain trust with the escrow"

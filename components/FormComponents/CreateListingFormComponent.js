@@ -76,7 +76,9 @@ const CreateListingFormComponent = () => {
                                         <Typography gutterBottom>
                                             Maximum percent less than
                                         </Typography>
-                                        <MaximumPercentLessThanFieldComponent/>
+                                        <Box mt={4}>
+                                            <MaximumPercentLessThanFieldComponent/>
+                                        </Box>
                                     </Grid>
                                 )}
                                 <Grid item xs={12}>

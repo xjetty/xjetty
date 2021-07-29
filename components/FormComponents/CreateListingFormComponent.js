@@ -52,10 +52,16 @@ const CreateListingFormComponent = () => {
                                     <NotesFieldComponent/>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Typography gutterBottom>
-                                        Quantity
-                                    </Typography>
-                                    <QuantityFieldComponent/>
+                                    <Grid container spacing={2}>
+                                        <Grid item xs={12}>
+                                            <Typography gutterBottom>
+                                                Quantity
+                                            </Typography>
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <QuantityFieldComponent/>
+                                        </Grid>
+                                    </Grid>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <SaleMethodFieldComponent/>

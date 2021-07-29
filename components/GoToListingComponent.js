@@ -1,5 +1,5 @@
 import MaskedInput from "react-text-mask";
-import {Button, Card, CardActions, CardContent, TextField} from "@material-ui/core";
+import {Button, Card, CardActions, CardContent, Grid, TextField} from "@material-ui/core";
 import React from "react";
 
 const mask = (props) => {
@@ -32,18 +32,22 @@ const GoToListingComponent = () => {
     return (
         <Card>
             <CardContent>
-                <TextField
-                    value={code}
-                    onChange={handle}
-                    InputProps={{inputComponent: mask}}
-                    fullWidth
-                    label="Code"
-                    variant="filled"
-                />
+                <Grid container spacing={2}>
+                    <Grid item xs={12} md={6}>
+                        <TextField
+                            value={code}
+                            onChange={handle}
+                            InputProps={{inputComponent: mask}}
+                            fullWidth
+                            label="Code"
+                            variant="filled"
+                        />
+                    </Grid>
+                </Grid>
             </CardContent>
             <CardActions>
                 <Button href={'https://blockcommerc.com/listing/' + code} target="_blank" disabled={code.length !== 5}
-                        variant="contained">Go to listing</Button>
+                        variant="contained" color="secondary">Go to listing</Button>
             </CardActions>
         </Card>
 

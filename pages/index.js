@@ -66,7 +66,7 @@ const Home = () => {
                                     <WidgetsIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="No seller fees, no buyer fees, no transaction fees, frankly, no fees at all"
+                                    primary="No fees"
                                 />
                             </ListItem>
                             <ListItem>
@@ -74,7 +74,7 @@ const Home = () => {
                                     <WidgetsIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Prevent over buying by specifying the item quantity"
+                                    primary="Item quantities"
                                 />
                             </ListItem>
                             <ListItem>
@@ -82,7 +82,7 @@ const Home = () => {
                                     <WidgetsIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Ensure you get the right amount of crypto by fixing the price by USD, or crypto"
+                                    primary="USD or crypto"
                                 />
                             </ListItem>
                             <ListItem>
@@ -90,7 +90,7 @@ const Home = () => {
                                     <WidgetsIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="If you aren't sure about the price, try accepting offers"
+                                    primary="Offers"
                                 />
                             </ListItem>
                             <ListItem>
@@ -98,7 +98,7 @@ const Home = () => {
                                     <WidgetsIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Get the sales of skeptical buyers with the escrow"
+                                    primary="And escrows"
                                 />
                             </ListItem>
                         </List>

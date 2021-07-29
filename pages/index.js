@@ -82,7 +82,7 @@ const Home = () => {
                                     <WidgetsIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Fix the item price by USD or crypto"
+                                    primary="Ensure you get the right amount of crypto by fixing the price by USD, or crypto"
                                 />
                             </ListItem>
                             <ListItem>
@@ -90,7 +90,7 @@ const Home = () => {
                                     <WidgetsIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Be flexible to buyers and accept offers"
+                                    primary="If you aren't sure about the asking price, accept offers"
                                 />
                             </ListItem>
                             <ListItem>
@@ -98,7 +98,7 @@ const Home = () => {
                                     <WidgetsIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Show your trustworthiness by using the escrow"
+                                    primary="Get the sales of skeptical buyers with the escrow"
                                 />
                             </ListItem>
                         </List>

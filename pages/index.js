@@ -66,7 +66,7 @@ const Home = () => {
                                     <WidgetsIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="No seller fees, no buyer fees, no transaction fees, no fees of any kind"
+                                    primary="No seller fees, no buyer fees, no transaction fees, no fees at all"
                                 />
                             </ListItem>
                             <ListItem>
@@ -74,7 +74,7 @@ const Home = () => {
                                     <WidgetsIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Specify the item quantity to prevent over buying"
+                                    primary="Prevent over buying by specifying the item quantity"
                                 />
                             </ListItem>
                             <ListItem>
@@ -82,7 +82,7 @@ const Home = () => {
                                     <WidgetsIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Fix your item price by USD or crypto"
+                                    primary="Fix the item price by USD or crypto"
                                 />
                             </ListItem>
                             <ListItem>
@@ -90,7 +90,7 @@ const Home = () => {
                                     <WidgetsIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Choose to accept offers"
+                                    primary="Be flexible to buyers and accept offers"
                                 />
                             </ListItem>
                             <ListItem>
@@ -98,7 +98,7 @@ const Home = () => {
                                     <WidgetsIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Gain trust with the escrow"
+                                    primary="Show your trustworthiness by using the escrow"
                                 />
                             </ListItem>
                         </List>

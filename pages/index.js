@@ -52,13 +52,13 @@ const Home = () => {
                     />
                     <CardContent>
                         <Typography className={classes.title} color="textSecondary" gutterBottom>
-                            Commerce Made Simple on the Blockchain
+                            Enabling You To Conduct Simple Commerce on the Blockchain
                         </Typography>
                         <Typography variant="h5" component="h2">
                             BlockCommerc
                         </Typography>
                         <Typography color="textSecondary">
-                            Share a Code, Make Sales
+                            Share Your Code or Link With Buyers and Generate Sales in Crypto Automatically
                         </Typography>
                         <List>
                             <ListItem>

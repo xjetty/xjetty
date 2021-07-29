@@ -90,7 +90,7 @@ const Home = () => {
                                     <WidgetsIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="If you aren't sure about the asking price, accept offers"
+                                    primary="If you aren't sure about the price, accept offers"
                                 />
                             </ListItem>
                             <ListItem>
@@ -98,7 +98,7 @@ const Home = () => {
                                     <WidgetsIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Get the sales of skeptical buyers with the escrow"
+                                    primary="Eliminate the doubt of skeptical buyers by using the escrow"
                                 />
                             </ListItem>
                         </List>

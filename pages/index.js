@@ -98,7 +98,7 @@ const Home = () => {
                                     <WidgetsIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Eliminate the doubt of skeptical buyers by using the escrow"
+                                    primary="Get the sales of skeptical buyers by using the escrow"
                                 />
                             </ListItem>
                         </List>

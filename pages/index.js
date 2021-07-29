@@ -66,7 +66,7 @@ const Home = () => {
                                     <WidgetsIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="No seller fees, no buyer fees, no transaction fees, no fees at all"
+                                    primary="No seller fees, no buyer fees, no transaction fees, frankly, no fees at all"
                                 />
                             </ListItem>
                             <ListItem>
@@ -90,7 +90,7 @@ const Home = () => {
                                     <WidgetsIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="If you aren't sure about the price, accept offers"
+                                    primary="If you aren't sure about the price, try accepting offers"
                                 />
                             </ListItem>
                             <ListItem>
@@ -98,7 +98,7 @@ const Home = () => {
                                     <WidgetsIcon color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Get the sales of skeptical buyers by using the escrow"
+                                    primary="Get the sales of skeptical buyers with the escrow"
                                 />
                             </ListItem>
                         </List>

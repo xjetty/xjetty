@@ -11,6 +11,7 @@ const QuantityFieldComponent = () => {
 
     return (
         <Slider
+            my={2}
             key={sliderKey}
             defaultValue={defaultQuantity}
             onChangeCommitted={handle}

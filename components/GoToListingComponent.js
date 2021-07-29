@@ -32,18 +32,14 @@ const GoToListingComponent = () => {
     return (
         <Card>
             <CardContent>
-                <Grid container spacing={2}>
-                    <Grid item xs={12} md={6}>
-                        <TextField
-                            value={code}
-                            onChange={handle}
-                            InputProps={{inputComponent: mask}}
-                            fullWidth
-                            label="Code"
-                            variant="filled"
-                        />
-                    </Grid>
-                </Grid>
+                <TextField
+                    value={code}
+                    onChange={handle}
+                    InputProps={{inputComponent: mask}}
+                    fullWidth
+                    label="Code"
+                    variant="filled"
+                />
             </CardContent>
             <CardActions>
                 <Button href={'https://blockcommerc.com/listing/' + code} target="_blank" disabled={code.length !== 5}

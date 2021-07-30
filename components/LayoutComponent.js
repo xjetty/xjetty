@@ -2,7 +2,7 @@ import NavBarComponent from "./NavBarComponent";
 import {Box, Container, makeStyles, Toolbar} from "@material-ui/core";
 import SnackbarComponent from "./SnackbarComponent";
 import RecaptchaFieldComponent from "./FieldComponents/RecaptchaFieldComponent";
-import React, {useEffect} from "react";
+import React from "react";
 import DialogComponent from "./DialogComponent";
 
 const useStyles = makeStyles(() => ({

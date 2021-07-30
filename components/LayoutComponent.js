@@ -17,24 +17,40 @@ const LayoutComponent = ({children}) => {
     useEffect(() => {
         setHidden(false)
     }, [setHidden])
-    if (!hidden) {
-        return (
-            <>
-                <div className={classes.root}>
-                    <NavBarComponent/>
-                    <Toolbar/>
-                    <Container>
-                        <Box my={2}>
-                            {children}
-                        </Box>
-                    </Container>
-                </div>
-                <SnackbarComponent/>
-                <RecaptchaFieldComponent/>
-                <DialogComponent/>
-            </>
-        )
-    } else return null
+    return (
+        <>
+            <div className={classes.root}>
+                <NavBarComponent/>
+                <Toolbar/>
+                <Container>
+                    <Box my={2}>
+                        {children}
+                    </Box>
+                </Container>
+            </div>
+            <SnackbarComponent/>
+            <RecaptchaFieldComponent/>
+            <DialogComponent/>
+        </>
+    )
+    // if (!hidden) {
+    //     return (
+    //         <>
+    //             <div className={classes.root}>
+    //                 <NavBarComponent/>
+    //                 <Toolbar/>
+    //                 <Container>
+    //                     <Box my={2}>
+    //                         {children}
+    //                     </Box>
+    //                 </Container>
+    //             </div>
+    //             <SnackbarComponent/>
+    //             <RecaptchaFieldComponent/>
+    //             <DialogComponent/>
+    //         </>
+    //     )
+    // } else return null
 }
 
 export default LayoutComponent

@@ -8,7 +8,7 @@ const NotesFieldComponent = () => {
     const helperText = useMemo(() => {
         if (notesError) {
             return 'Notes is required'
-        } else return 'Text only'
+        } else return ''
     }, [notesError])
 
     const handle = (event) => {

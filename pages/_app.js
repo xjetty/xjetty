@@ -72,11 +72,11 @@ function MyApp({Component, pageProps}) {
     const [eosAccountItems, setEosAccountItems] = React.useState([])
     const [showOffers, setShowOffers] = React.useState(false)
     const [escrowDetails, setEscrowDetails] = React.useState({})
-    React.useEffect(() => {
-        const jssStyles = document.querySelector('#jss-server-side');
-        if (jssStyles)
-            jssStyles.parentElement.removeChild(jssStyles);
-    }, []);
+    // React.useEffect(() => {
+    //     const jssStyles = document.querySelector('#jss-server-side');
+    //     if (jssStyles)
+    //         jssStyles.parentElement.removeChild(jssStyles);
+    // }, []);
     return (
         <AppContext.Provider
             value={{

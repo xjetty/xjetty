@@ -45,7 +45,7 @@ const EmailAddressFieldComponent = () => {
 
     return (
         <TextField
-            autocomplete="email"
+            autoComplete="email"
             disabled={offer}
             error={emailAddressError}
             helperText={helperText}

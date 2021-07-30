@@ -153,7 +153,7 @@ const CreateListingActionComponent = () => {
             {listingCreated && (
                 <Grid item xs={12}>
                     <Alert severity="success">
-                        Check your email. You created a listing. Share the code in your manager
+                        Success! You created a listing! An email was sent to you. Your code or link can be found in your manager.
                     </Alert>
                 </Grid>
             )}

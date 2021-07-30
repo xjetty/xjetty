@@ -3,7 +3,7 @@ import {createTheme} from '@material-ui/core/styles'
 import {blue, red} from "@material-ui/core/colors";
 import {AppContext} from "../contexts/AppContext";
 import React from "react"
-import {ThemeProvider} from "@material-ui/core";
+import {CssBaseline, ThemeProvider} from "@material-ui/core";
 import LayoutComponent from "../components/LayoutComponent";
 
 const theme = createTheme({
@@ -72,6 +72,11 @@ function MyApp({Component, pageProps}) {
     const [eosAccountItems, setEosAccountItems] = React.useState([])
     const [showOffers, setShowOffers] = React.useState(false)
     const [escrowDetails, setEscrowDetails] = React.useState({})
+    React.useEffect(() => {
+        const jssStyles = document.querySelector('#jss-server-side');
+        if (jssStyles)
+            jssStyles.parentElement.removeChild(jssStyles);
+    }, []);
     return (
         <AppContext.Provider
             value={{
@@ -186,6 +191,7 @@ function MyApp({Component, pageProps}) {
                 setEscrowDetails,
             }}>
             <ThemeProvider theme={theme}>
+                <CssBaseline/>
                 <LayoutComponent>
                     <Component {...pageProps} />
                 </LayoutComponent>

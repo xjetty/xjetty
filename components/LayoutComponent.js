@@ -13,10 +13,6 @@ const useStyles = makeStyles(() => ({
 
 const LayoutComponent = ({children}) => {
     const classes = useStyles()
-    const [hidden, setHidden] = React.useState(true)
-    useEffect(() => {
-        setHidden(false)
-    }, [setHidden])
     return (
         <>
             <div className={classes.root}>
@@ -33,24 +29,6 @@ const LayoutComponent = ({children}) => {
             <DialogComponent/>
         </>
     )
-    // if (!hidden) {
-    //     return (
-    //         <>
-    //             <div className={classes.root}>
-    //                 <NavBarComponent/>
-    //                 <Toolbar/>
-    //                 <Container>
-    //                     <Box my={2}>
-    //                         {children}
-    //                     </Box>
-    //                 </Container>
-    //             </div>
-    //             <SnackbarComponent/>
-    //             <RecaptchaFieldComponent/>
-    //             <DialogComponent/>
-    //         </>
-    //     )
-    // } else return null
 }
 
 export default LayoutComponent

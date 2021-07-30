@@ -191,7 +191,7 @@ function MyApp({Component, pageProps}) {
                 setEscrowDetails,
             }}>
             <ThemeProvider theme={theme}>
-                {/*<CssBaseline/>*/}
+                <CssBaseline/>
                 <LayoutComponent>
                     <Component {...pageProps} />
                 </LayoutComponent>

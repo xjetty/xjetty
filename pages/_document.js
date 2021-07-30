@@ -13,7 +13,7 @@ class MyDocument extends Document {
             <Html>
                 <Head>
                     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-                          rel="preload" as="font"/>
+                          rel="stylesheet"/>
                     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
                           rel="stylesheet"/>
                     <meta name="viewport" content="initial-scale=1.0, width=device-width"/>

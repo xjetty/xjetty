@@ -44,7 +44,7 @@ const CreateListingFormComponent = () => {
                             Create a Listing
                         </Typography>
                         <Typography color="textSecondary">
-                            Link Your Commerce Item to the Blockchain
+                            Become a Merchant on the Blockchain
                         </Typography>
                         <Box my={2}>
                             <Grid container spacing={2}>

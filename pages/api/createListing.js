@@ -26,8 +26,8 @@ const createListing = async (req, res) => {
             let link = `https://blockcommerc.com/manager/${token}`
             if (!process.env.LIVE)
                 link = `http://localhost:3000/manager/${token}`
-            const subject = 'You created a listing'
-            const message = `Share the code in your manager<br><br><a href=${link}>${link}</a><br><br>Notes: ${insertBreaks(notes)}`
+            const subject = 'You created a listing!'
+            const message = `Share the link or code in your manager<br><br><a href=${link}>${link}</a><br><br>Notes: ${insertBreaks(notes)}`
             const emailSent = await sendEmail(emailAddress, subject, message)
             if (emailSent) {
                 return res.json({success: true})

@@ -10,11 +10,13 @@ export async function sendEmail(emailAddress, subject, message) {
         text: message.replace(/(<([^>]+)>)/gi, ''),
         html: message
     }
-    mg.messages().send(data, function (error, body) {
-
+    mg.messages().send(data, function (error) {
+        if (!error) {
+            return true
+        } else
+            return false
     })
 }
-
 
 
 // const sgMail = require('@sendgrid/mail')

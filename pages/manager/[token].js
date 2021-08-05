@@ -96,11 +96,11 @@ const Manager = () => {
 
     return (
         <>
-        <Head>
-            <title>Manager - BlockCommerc</title>
-        </Head>
-        <UpdateEosRate/>
-        {show && <ManagerComponent/>}
+            <Head>
+                <title>Manager - BlockCommerc</title>
+            </Head>
+            <UpdateEosRate/>
+            {show && <ManagerComponent/>}
         </>
     )
 }

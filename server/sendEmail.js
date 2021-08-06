@@ -7,7 +7,7 @@ export async function sendEmail(emailAddress, subject, message) {
         service: 'gmail',
         auth: {
             user: 'blockcommerc@gmail.com',
-            pass: 'Snapshooter!23'
+            pass: 'Snapshooter1'
         }
     });
 

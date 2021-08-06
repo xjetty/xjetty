@@ -12,7 +12,10 @@ export async function sendEmail(emailAddress, subject, message) {
         html: message
     }
     mg.messages().send(data, function (error, body) {
-        return error
+        if (!error) {
+            return true
+        } else
+            return false
     })
 }
 

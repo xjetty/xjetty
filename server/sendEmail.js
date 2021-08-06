@@ -20,7 +20,7 @@ export async function sendEmail(emailAddress, subject, message) {
 
     transporter.sendMail(mailOptions, function (err, info) {
         if(err)
-            return err
+            return info
         else
             return true
     })

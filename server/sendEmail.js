@@ -21,10 +21,6 @@ export async function sendEmail(emailAddress, subject, message) {
     };
 
     await transporter.sendMail(mailOptions, function (err, info) {
-        if (err)
-            return false
-        else
-            return true
     })
 }
 

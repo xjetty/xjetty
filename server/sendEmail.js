@@ -10,11 +10,8 @@ export async function sendEmail(emailAddress, subject, message) {
         text: message.replace(/(<([^>]+)>)/gi, ''),
         html: message
     }
-    mg.messages().send(data, function (error) {
-        if (!error) {
-            return true
-        } else
-            return false
+    mg.messages().send(data, function (error, body) {
+        return error
     })
 }
 

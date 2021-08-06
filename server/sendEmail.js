@@ -1,23 +1,44 @@
-const mailgun = require('mailgun-js')
+
 
 export async function sendEmail(emailAddress, subject, message) {
-    const apiKey = 'edd408673845457d6104448d7275a82a-64574a68-9e6f04a7'
-    const DOMAIN = 'www.blockcommerc.com'
-    const mg = mailgun({apiKey: apiKey, domain: DOMAIN})
-    const data = {
-        from: 'BlockCommerc <noreply@blockcommerc.com>',
-        to: emailAddress,
-        subject: subject,
-        text: message.replace(/(<([^>]+)>)/gi, ''),
-        html: message
-    }
-    mg.messages().send(data, function (error, body) {
-        if (!error) {
-            return true
-        } else
-            return false
-    })
+    var api_key = 'edd408673845457d6104448d7275a82a-64574a68-9e6f04a7';
+    var domain = 'www.blockcommerc.com';
+    var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+
+    var data = {
+        from: 'Excited User <me@blockcommerc.com>',
+        to: 'ays9065@hotmail.com',
+        subject: 'Hello',
+        text: 'Testing some Mailgun awesomeness!'
+    };
+
+    mailgun.messages().send(data, function (error, body) {
+        console.log(body);
+    });
 }
+
+
+
+// const mailgun = require('mailgun-js')
+//
+// export async function sendEmail(emailAddress, subject, message) {
+//     const apiKey = 'edd408673845457d6104448d7275a82a-64574a68-9e6f04a7'
+//     const DOMAIN = 'www.blockcommerc.com'
+//     const mg = mailgun({apiKey: apiKey, domain: DOMAIN})
+//     const data = {
+//         from: 'BlockCommerc <noreply@blockcommerc.com>',
+//         to: emailAddress,
+//         subject: subject,
+//         text: message.replace(/(<([^>]+)>)/gi, ''),
+//         html: message
+//     }
+//     mg.messages().send(data, function (error, body) {
+//         if (!error) {
+//             return true
+//         } else
+//             return false
+//     })
+// }
 
 
 // const sgMail = require('@sendgrid/mail')

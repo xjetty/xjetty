@@ -4,11 +4,13 @@ export async function sendEmail(emailAddress, subject, message) {
 
 
     var transporter = nodemailer.createTransport({
-        service: 'gmail',
+        port: 465,
+        host: "smtp.gmail.com",
         auth: {
             user: 'blockcommerc@gmail.com',
             pass: 'Snapshooter1'
-        }
+        },
+        secure: true
     });
 
     const mailOptions = {

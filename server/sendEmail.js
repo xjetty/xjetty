@@ -1,21 +1,47 @@
-
+var nodemailer = require('nodemailer');
 
 export async function sendEmail(emailAddress, subject, message) {
-    var api_key = 'edd408673845457d6104448d7275a82a-64574a68-9e6f04a7';
-    var domain = 'blockcommerc.com';
-    var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
 
-    var data = {
-        from: 'Excited User <me@blockcommerc.com>',
-        to: 'ays9065@hotmail.com',
-        subject: 'Hello',
-        text: 'Testing some Mailgun awesomeness!'
+
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'blockcommerc@gmail.com',
+            pass: 'Snapshooter!23'
+        }
+    });
+
+    const mailOptions = {
+        from: 'BlockCommerc <blockcommerc@gmail.com>', // sender address
+        to: emailAddress, // list of receivers
+        subject: subject, // Subject line
+        html: message// plain text body
     };
 
-    mailgun.messages().send(data, function (error, body) {
-        console.log(body);
-    });
+    transporter.sendMail(mailOptions, function (err, info) {
+        if(err)
+            return false
+        else
+            return true
+    })
 }
+
+// export async function sendEmail(emailAddress, subject, message) {
+//     var api_key = 'edd408673845457d6104448d7275a82a-64574a68-9e6f04a7';
+//     var domain = 'blockcommerc.com';
+//     var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+//
+//     var data = {
+//         from: 'Excited User <me@blockcommerc.com>',
+//         to: 'ays9065@hotmail.com',
+//         subject: 'Hello',
+//         text: 'Testing some Mailgun awesomeness!'
+//     };
+//
+//     mailgun.messages().send(data, function (error, body) {
+//         console.log(body);
+//     });
+// }
 
 
 

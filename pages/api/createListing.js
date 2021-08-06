@@ -7,6 +7,7 @@ import {cleanString} from "../../server/cleanString";
 import {insertBreaks} from "../../server/insertBreaks";
 
 const createListing = async (req, res) => {
+    return res.json({aoisdjfoisdjf: 'aosdijfaoisjdf'})
     const method = req.method
     if (method === 'POST') {
         const data = req.body

@@ -34,10 +34,10 @@ const createListing = async (req, res) => {
             } else
                 return res.json({success: false, emailError: emailSent})
         } catch (e) {
-            return res.json({success: false})
+            return res.json({success: false, here: 'here'})
         }
     } else
-        return res.json({success: false})
+        return res.json({success: false, bye: 'bye'})
 }
 
 export default createListing

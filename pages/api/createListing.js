@@ -32,7 +32,7 @@ const createListing = async (req, res) => {
             if (emailSent) {
                 return res.json({success: true})
             } else
-                return res.json({success: false})
+                return res.json({success: false, err: emailSent})
         } catch (e) {
             return res.json({success: false})
         }

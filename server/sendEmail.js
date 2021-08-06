@@ -2,7 +2,7 @@ const mailgun = require('mailgun-js')
 
 export async function sendEmail(emailAddress, subject, message) {
     const apiKey = '57486ffe7c5dd0483e374bf2d484c14d-64574a68-71556a20'
-    const DOMAIN = 'https://api.mailgun.net/v3/blockcommerc.com/messages'
+    const DOMAIN = 'https://api.mailgun.net/v3/blockcommerc.com'
     const mg = mailgun({apiKey: apiKey, domain: DOMAIN})
     const data = {
         from: 'BlockCommerc <noreply@blockcommerc.com>',

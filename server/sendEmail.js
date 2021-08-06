@@ -22,7 +22,7 @@ export async function sendEmail(emailAddress, subject, message) {
 
     transporter.sendMail(mailOptions, function (err, info) {
         if(err)
-            return info
+            return false
         else
             return true
     })

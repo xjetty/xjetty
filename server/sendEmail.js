@@ -2,7 +2,7 @@
 
 export async function sendEmail(emailAddress, subject, message) {
     var api_key = 'edd408673845457d6104448d7275a82a-64574a68-9e6f04a7';
-    var domain = 'www.blockcommerc.com';
+    var domain = 'blockcommerc.com';
     var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
 
     var data = {

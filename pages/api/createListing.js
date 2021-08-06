@@ -12,7 +12,7 @@ const createListing = async (req, res) => {
         const data = req.body
         const recaptchaResponse = data.recaptchaResponse
         const recaptchaValid = await verifyRecaptcha(recaptchaResponse)
-        if (!recaptchaValid) return res.json({success: false})
+        if (!recaptchaValid) return res.json({success: false, recaptcha: 'true'})
         delete data.recaptchaResponse
         data.notes = cleanString(data.notes)
         await connectToDb()

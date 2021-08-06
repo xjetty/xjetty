@@ -20,8 +20,8 @@ export async function sendEmail(emailAddress, subject, message) {
         html: message// plain text body
     };
 
-    transporter.sendMail(mailOptions, function (err, info) {
-        if(err)
+    await transporter.sendMail(mailOptions, function (err, info) {
+        if (err)
             return false
         else
             return true
@@ -44,7 +44,6 @@ export async function sendEmail(emailAddress, subject, message) {
 //         console.log(body);
 //     });
 // }
-
 
 
 // const mailgun = require('mailgun-js')

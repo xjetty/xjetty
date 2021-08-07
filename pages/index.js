@@ -6,13 +6,9 @@ import {
     Grid,
     List,
     ListItem,
-    ListItemIcon,
     ListItemText, ListSubheader,
     Typography
 } from "@material-ui/core";
-import StarIcon from '@material-ui/icons/Star'
-import WidgetsIcon from '@material-ui/icons/Widgets'
-import CheckIcon from '@material-ui/icons/Check'
 import {makeStyles} from "@material-ui/core/styles";
 import Link from 'next/link'
 import ContactFormComponent from "../components/FormComponents/ContactFormComponent";
@@ -26,17 +22,7 @@ const useStyles = makeStyles({
         width: 'inherit',
         marginLeft: 'auto',
         marginRight: 'auto'
-    },
-    goToListing: {
-        alignItems: 'center',
-        display: 'flex',
-        maxWidth: 250,
-        marginLeft: 'auto',
-        marginRight: 'auto',
-    },
-    title: {
-        fontSize: 14,
-    },
+    }
 })
 
 const Home = () => {

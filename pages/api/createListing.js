@@ -29,10 +29,7 @@ const createListing = async (req, res) => {
             const subject = 'You created a listing!'
             const message = `Share the link or code in your manager<br><br><a href=${link}>${link}</a><br><br>Notes: ${insertBreaks(notes)}`
             await sendEmail(emailAddress, subject, message)
-            if (emailSent) {
-                return res.json({success: true})
-            } else
-                return res.json({success: false})
+            return res.json({success: true})
         } catch (e) {
             return res.json({success: false})
         }

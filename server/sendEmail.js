@@ -16,7 +16,6 @@ export async function sendEmail(emailAddress, subject, message) {
         transporter.verify(function (error, success) {
             if (error) {
                 reject(error)
-                return false
             } else
                 resolve(success)
         })
@@ -33,11 +32,8 @@ export async function sendEmail(emailAddress, subject, message) {
         transporter.sendMail(mailData, (err, info) => {
             if (err) {
                 reject(err)
-                return false
-            } else {
+            } else
                 resolve(info)
-                return true
-            }
         })
     })
 }

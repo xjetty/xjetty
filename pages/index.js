@@ -7,11 +7,12 @@ import {
     List,
     ListItem,
     ListItemIcon,
-    ListItemText,
+    ListItemText, ListSubheader,
     Typography
 } from "@material-ui/core";
 import StarIcon from '@material-ui/icons/Star'
 import WidgetsIcon from '@material-ui/icons/Widgets'
+import CheckIcon from '@material-ui/icons/Check'
 import {makeStyles} from "@material-ui/core/styles";
 import Link from 'next/link'
 import ContactFormComponent from "../components/FormComponents/ContactFormComponent";
@@ -26,6 +27,13 @@ const useStyles = makeStyles({
         marginLeft: 'auto',
         marginRight: 'auto'
     },
+    goToListing: {
+        alignItems: 'center',
+        display: 'flex',
+        maxWidth: 250,
+        marginLeft: 'auto',
+        marginRight: 'auto',
+    },
     title: {
         fontSize: 14,
     },
@@ -35,13 +43,19 @@ const Home = () => {
     const classes = useStyles()
 
     return (
-        <>
+        <html>
         <Head>
             <title>Home - BlockCommerc</title>
         </Head>
         <Grid container spacing={2}>
             <Grid item xs={12}>
-                <GoToListingComponent/>
+                <Card>
+                    <CardContent>
+                        <Typography variant="h5" component="h2" color="secondary">
+                            Stop receiving more than one crypto payment for the same item. Receive the exact amount you requested in USD or crypto. Buyers don't enter amounts, you do.
+                        </Typography>
+                    </CardContent>
+                </Card>
             </Grid>
             <Grid item xs={12}>
                 <Card>
@@ -51,97 +65,66 @@ const Home = () => {
                         title="BlockCommerc Logo"
                     />
                     <CardContent>
-                        <Typography className={classes.title} color="textSecondary" gutterBottom>
-                            Enabling You To Conduct Simple Commerce on the Blockchain
-                        </Typography>
-                        <Typography variant="h5" component="h2">
-                            BlockCommerc
-                        </Typography>
-                        <Typography color="textSecondary">
-                            Share Your Code or Link With Buyers and Generate Sales in Crypto Automatically
-                        </Typography>
-                        <List>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12}>
+                                <Typography variant="h5" component="h2">
+                                    BlockCommerc
+                                </Typography>
+                                <Typography color="textSecondary">
+                                    The Way Commerce Should Be on the Blockchain, With EOS.IO Cryptocurrency
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <GoToListingComponent/>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Typography color="textSecondary">
+                                    OR
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Link href="/create">
+                                    <Button variant="contained" color="primary">Create a listing</Button>
+                                </Link>
+                            </Grid>
+                        </Grid>
+                    </CardContent>
+                </Card>
+            </Grid>
+            <Grid item xs={12}>
+                <Card>
+                    <CardContent>
+                        <List subheader={<ListSubheader>Features</ListSubheader>}>
                             <ListItem>
-                                <ListItemIcon>
-                                    <WidgetsIcon color="primary"/>
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary="No fees"
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemIcon>
-                                    <WidgetsIcon color="primary"/>
-                                </ListItemIcon>
                                 <ListItemText
                                     primary="Item quantities"
                                 />
                             </ListItem>
                             <ListItem>
-                                <ListItemIcon>
-                                    <WidgetsIcon color="primary"/>
-                                </ListItemIcon>
                                 <ListItemText
-                                    primary="USD or crypto"
+                                    primary="No fees"
                                 />
                             </ListItem>
                             <ListItem>
-                                <ListItemIcon>
-                                    <WidgetsIcon color="primary"/>
-                                </ListItemIcon>
                                 <ListItemText
                                     primary="Offers"
                                 />
                             </ListItem>
                             <ListItem>
-                                <ListItemIcon>
-                                    <WidgetsIcon color="primary"/>
-                                </ListItemIcon>
                                 <ListItemText
                                     primary="And escrows"
                                 />
                             </ListItem>
                         </List>
                     </CardContent>
-                    <CardActions>
-                        <Link href="/create">
-                            <Button variant="contained" color="primary">Create a listing</Button>
-                        </Link>
-                    </CardActions>
                 </Card>
             </Grid>
             <Grid item xs={12}>
                 <Card>
                     <CardContent>
-                        <Typography variant="h5" component="h2">
-                            Built Around the EOS.IO Network
+                        <Typography variant="h5" component="h2" color="primary">
+                            Thousands of transactions per second, near-instant transaction times, and zero percent transaction fees.
                         </Typography>
-                        <List>
-                            <ListItem>
-                                <ListItemIcon>
-                                    <StarIcon color="primary"/>
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary="Thousands of transactions per second"
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemIcon>
-                                    <StarIcon color="primary"/>
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary="Near-instant transaction times"
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemIcon>
-                                    <StarIcon color="primary"/>
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary="Zero percent transaction fees"
-                                />
-                            </ListItem>
-                        </List>
                     </CardContent>
                 </Card>
             </Grid>
@@ -182,7 +165,7 @@ const Home = () => {
                 </Card>
             </Grid>
         </Grid>
-        </>
+        </html>
     )
 
 }

@@ -108,9 +108,6 @@ const Home = () => {
             <Grid item xs={12}>
                 <Card>
                     <CardContent>
-                        <Typography variant="h5" component="h2" color="primary">
-                            Thousands of transactions per second, near-instant transaction times, and zero percent transaction fees.
-                        </Typography>
                         <List subheader={<ListSubheader>EOS.IO</ListSubheader>}>
                             <ListItem>
                                 <ListItemText

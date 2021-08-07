@@ -29,7 +29,7 @@ const Home = () => {
     const classes = useStyles()
 
     return (
-        <html>
+        <>
         <Head>
             <title>Home - BlockCommerc</title>
         </Head>
@@ -151,7 +151,7 @@ const Home = () => {
                 </Card>
             </Grid>
         </Grid>
-        </html>
+        </>
     )
 
 }

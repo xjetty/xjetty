@@ -38,7 +38,7 @@ const Home = () => {
                 <Card>
                     <CardContent>
                         <Typography variant="h5" component="h2" color="secondary">
-                            Stop receiving more than one crypto payment for the same item. Receive the exact amount you requested in USD or crypto. Buyers don't enter amounts, you do.
+                            Stop receiving more than one crypto payment for the same item. Receive the exact amount you requested in USD or crypto. Buyers don&apos;t enter amounts, you do.
                         </Typography>
                     </CardContent>
                 </Card>

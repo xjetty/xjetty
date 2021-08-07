@@ -111,6 +111,23 @@ const Home = () => {
                         <Typography variant="h5" component="h2" color="primary">
                             Thousands of transactions per second, near-instant transaction times, and zero percent transaction fees.
                         </Typography>
+                        <List subheader={<ListSubheader>EOS.IO</ListSubheader>}>
+                            <ListItem>
+                                <ListItemText
+                                    primary="Thousands of transactions per second"
+                                />
+                            </ListItem>
+                            <ListItem>
+                                <ListItemText
+                                    primary="Near-instant transaction times"
+                                />
+                            </ListItem>
+                            <ListItem>
+                                <ListItemText
+                                    primary="Zero percent transaction fees"
+                                />
+                            </ListItem>
+                        </List>
                     </CardContent>
                 </Card>
             </Grid>

@@ -114,9 +114,9 @@ const Home = () => {
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <Typography variant="h5" color="secondary">
-                                    BlockCommerc&apos;s built-in crypto payment processor and fixed quantities prevents
-                                    voided crypto purchases
-                                    and allows you to receive the exact amount you requested in USD or crypto.
+                                    BlockCommerc&apos;s built-in crypto payment processor and fixed quantities make
+                                    voided crypto purchases a thing of the past and allow you to receive the exact
+                                    amount you requested in USD or crypto.
                                 </Typography>
                             </Grid>
                         </Grid>

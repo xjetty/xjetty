@@ -6,8 +6,9 @@ import {
     Card, CardActions,
     CardContent, CardMedia,
     Grid,
+    Divider,
     List,
-    ListItem,
+    ListItem, ListItemIcon,
     ListItemText, ListSubheader, Paper,
     Typography
 } from "@material-ui/core";
@@ -16,7 +17,7 @@ import Link from 'next/link'
 import ContactFormComponent from "../components/FormComponents/ContactFormComponent";
 import SendMessageActionComponent from "../components/ActionComponents/SendMessageActionComponent";
 import GoToListingComponent from "../components/GoToListingComponent";
-import Image from "material-ui-image"
+import {CheckCircle} from '@material-ui/icons'
 
 const useStyles = makeStyles((theme) => ({
     media: {
@@ -82,6 +83,9 @@ const Home = () => {
                                     EOS.IO Cryptocurrency
                                 </Typography>
                             </Grid>
+                            <Grid item xs={12}>
+                                <Divider/>
+                            </Grid>
                             <Grid item xs={12} style={{maxWidth: 300, marginLeft: 'auto', marginRight: 'auto'}}>
                                 <GoToListingComponent/>
                             </Grid>
@@ -122,18 +126,27 @@ const Home = () => {
             <Grid item xs={12}>
                 <Card>
                     <CardContent>
-                        <List subheader={<ListSubheader>Add&apos;l Features</ListSubheader>}>
+                        <List subheader={<ListSubheader>Bonus Features</ListSubheader>}>
                             <ListItem>
+                                <ListItemIcon>
+                                    <CheckCircle color="primary"/>
+                                </ListItemIcon>
                                 <ListItemText
                                     primary="No fees whatsoever"
                                 />
                             </ListItem>
                             <ListItem>
+                                <ListItemIcon>
+                                    <CheckCircle color="primary"/>
+                                </ListItemIcon>
                                 <ListItemText
                                     primary="You can take offers"
                                 />
                             </ListItem>
                             <ListItem>
+                                <ListItemIcon>
+                                    <CheckCircle color="primary"/>
+                                </ListItemIcon>
                                 <ListItemText
                                     primary="You can use an escrow"
                                 />

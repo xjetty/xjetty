@@ -132,7 +132,7 @@ const Home = () => {
                                     <CheckCircle color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="No fees whatsoever"
+                                    primary="No fees"
                                 />
                             </ListItem>
                             <ListItem>
@@ -140,7 +140,7 @@ const Home = () => {
                                     <CheckCircle color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="The ability to take offers"
+                                    primary="Offers"
                                 />
                             </ListItem>
                             <ListItem>
@@ -148,7 +148,7 @@ const Home = () => {
                                     <CheckCircle color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="The ability to use an escrow"
+                                    primary="Escrows"
                                 />
                             </ListItem>
                         </List>

@@ -1,12 +1,14 @@
 import Head from "next/head";
 import {
+    Avatar,
+    Box,
     Button, ButtonGroup,
     Card, CardActions,
     CardContent, CardMedia,
     Grid,
     List,
     ListItem,
-    ListItemText, ListSubheader,
+    ListItemText, ListSubheader, Paper,
     Typography
 } from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
@@ -14,35 +16,42 @@ import Link from 'next/link'
 import ContactFormComponent from "../components/FormComponents/ContactFormComponent";
 import SendMessageActionComponent from "../components/ActionComponents/SendMessageActionComponent";
 import GoToListingComponent from "../components/GoToListingComponent";
+import Image from "material-ui-image"
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     media: {
         height: 200,
         backgroundSize: 'contain',
         width: 'inherit',
         marginLeft: 'auto',
         marginRight: 'auto'
+    },
+    large: {
+        width: theme.spacing(12),
+        height: theme.spacing(12),
+        textAlign: 'center',
+        marginLeft: "auto",
+        marginRight: 'auto'
+    },
+    centerText: {
+        textAlign: 'center'
+    },
+    centerImage: {
+        textAlign: 'center',
+        marginLeft: "auto",
+        marginRight: 'auto'
     }
-})
+}));
 
 const Home = () => {
     const classes = useStyles()
 
     return (
-        <>
+        <html>
         <Head>
             <title>Home - BlockCommerc</title>
         </Head>
         <Grid container spacing={2}>
-            <Grid item xs={12}>
-                <Card>
-                    <CardContent>
-                        <Typography variant="h5" component="h2" color="secondary">
-                            Stop receiving more than one crypto payment for the same item. Receive the exact amount you requested in USD or crypto.
-                        </Typography>
-                    </CardContent>
-                </Card>
-            </Grid>
             <Grid item xs={12}>
                 <Card>
                     <CardMedia
@@ -52,26 +61,44 @@ const Home = () => {
                     />
                     <CardContent>
                         <Grid container spacing={2}>
-                            <Grid item xs={12}>
+                            <Grid item xs={12} className={classes.centerText}>
                                 <Typography variant="h5" component="h2">
                                     BlockCommerc
                                 </Typography>
                                 <Typography color="textSecondary">
-                                    The Way Commerce Should Be on the Blockchain, With EOS.IO Cryptocurrency
+                                    The Way Commerce Should Be on the Blockchain
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={12} className={classes.centerText}>
+                                <Typography color="textSecondary">
+                                    With,
                                 </Typography>
                             </Grid>
                             <Grid item xs={12}>
+                                <Avatar alt="EOSIO Logo" src="/eosio-logo.png" className={classes.large}/>
+                            </Grid>
+                            <Grid item xs={12} className={classes.centerText}>
+                                <Typography color="textSecondary">
+                                    EOS.IO Cryptocurrency
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={12} style={{maxWidth: 300, marginLeft: 'auto', marginRight: 'auto'}}>
                                 <GoToListingComponent/>
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={12} className={classes.centerText}>
                                 <Typography color="textSecondary">
                                     OR
                                 </Typography>
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={12} className={classes.centerText}>
                                 <Link href="/create">
-                                    <Button variant="contained" color="primary">Create a listing</Button>
+                                    <Button size="large" variant="contained" color="primary">Create a listing</Button>
                                 </Link>
+                            </Grid>
+                            <Grid item xs={12} className={classes.centerText}>
+                                <Typography variant="body2" color="textSecondary">
+                                    Copyright &#169; {new Date().getFullYear()} BlockCommerc. All Rights Reserved
+                                </Typography>
                             </Grid>
                         </Grid>
                     </CardContent>
@@ -80,48 +107,35 @@ const Home = () => {
             <Grid item xs={12}>
                 <Card>
                     <CardContent>
-                        <List subheader={<ListSubheader>Features</ListSubheader>}>
-                            <ListItem>
-                                <ListItemText
-                                    primary="Item quantities"
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText
-                                    primary="No fees"
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText
-                                    primary="Offers"
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText
-                                    primary="And escrows"
-                                />
-                            </ListItem>
-                        </List>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12}>
+                                <Typography variant="h5" color="secondary">
+                                    BlockCommerc&apos;s built-in crypto payment processor and fixed quantities prevents
+                                    voided crypto purchases
+                                    and allows you to receive the exact amount you requested in USD or crypto.
+                                </Typography>
+                            </Grid>
+                        </Grid>
                     </CardContent>
                 </Card>
             </Grid>
             <Grid item xs={12}>
                 <Card>
                     <CardContent>
-                        <List subheader={<ListSubheader>EOS.IO</ListSubheader>}>
+                        <List subheader={<ListSubheader>Add&apos;l Features</ListSubheader>}>
                             <ListItem>
                                 <ListItemText
-                                    primary="Thousands of transactions per second"
+                                    primary="No fees whatsoever"
                                 />
                             </ListItem>
                             <ListItem>
                                 <ListItemText
-                                    primary="Near-instant transaction times"
+                                    primary="You can take offers"
                                 />
                             </ListItem>
                             <ListItem>
                                 <ListItemText
-                                    primary="Zero percent transaction fees"
+                                    primary="You can use an escrow"
                                 />
                             </ListItem>
                         </List>
@@ -165,7 +179,7 @@ const Home = () => {
                 </Card>
             </Grid>
         </Grid>
-        </>
+        </html>
     )
 
 }

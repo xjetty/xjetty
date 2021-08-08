@@ -1,7 +1,6 @@
 import Head from "next/head";
 import {
     Avatar,
-    Box,
     Button, ButtonGroup,
     Card, CardActions,
     CardContent, CardMedia,
@@ -9,7 +8,7 @@ import {
     Divider,
     List,
     ListItem, ListItemIcon,
-    ListItemText, ListSubheader, Paper,
+    ListItemText, ListSubheader,
     Typography
 } from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
@@ -115,7 +114,7 @@ const Home = () => {
                             <Grid item xs={12}>
                                 <Typography variant="h5" color="secondary">
                                     BlockCommerc&apos;s built-in crypto payment processor and fixed quantities make
-                                    voided crypto purchases a thing of the past and allow you to receive the exact
+                                    voided crypto purchases a thing of the past and allows you to receive the exact
                                     amount you requested in USD or crypto.
                                 </Typography>
                             </Grid>

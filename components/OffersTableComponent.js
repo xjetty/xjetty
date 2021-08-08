@@ -14,7 +14,7 @@ import {
 } from "@material-ui/core";
 import axios from "axios";
 import MUIDataTable from 'mui-datatables'
-import {ThumbDownTwoTone, ThumbUpTwoTone, CheckCircle, Cancel} from "@material-ui/icons";
+import {ThumbDown, ThumbUp, CheckCircle, Cancel} from "@material-ui/icons";
 
 const columns = [
     {
@@ -123,12 +123,12 @@ const OffersTableComponent = () => {
                 <div style={{marginRight: '24px'}}>
                     <Tooltip title={'Accept'}>
                         <IconButton onClick={acceptOffer}>
-                            <CheckCircle/>
+                            <ThumbUp/>
                         </IconButton>
                     </Tooltip>
                     <Tooltip title={'Decline'}>
                         <IconButton onClick={declineOffer}>
-                            <Cancel/>
+                            <ThumbDown/>
                         </IconButton>
                     </Tooltip>
                 </div>

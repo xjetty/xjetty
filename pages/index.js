@@ -148,7 +148,7 @@ const Home = () => {
                                     <CheckCircle color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Escrows"
+                                    primary="And escrows"
                                 />
                             </ListItem>
                         </List>

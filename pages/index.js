@@ -160,7 +160,7 @@ const Home = () => {
                     <CardContent>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
-                                <Typography variant="h5" component="h2">
+                                <Typography>
                                     Recommended Wallets
                                 </Typography>
                             </Grid>
@@ -179,7 +179,7 @@ const Home = () => {
                     <CardContent>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
-                                <Typography variant="h5" component="h2">
+                                <Typography>
                                     Contact BlockCommerc
                                 </Typography>
                             </Grid>

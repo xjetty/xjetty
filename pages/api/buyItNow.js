@@ -32,7 +32,8 @@ const buyItNow = async (req, res) => {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
     })
-    return res.json({success: false, number: 'asdfsadf'.replace('/a/g', '')})
+    const replaceme = 'asdfasdf'
+    return res.json({success: false, number: replaceme.replace('/a/g', '')})
     const method = req.method
     if (method === 'POST') {
         const data = req.body

@@ -39,7 +39,7 @@ const Manager = () => {
 
     useEffect(() => {
         setToken(token)
-    })
+    }, [setToken])
 
     useEffect(() => {
         recaptchaRef.current.execute()

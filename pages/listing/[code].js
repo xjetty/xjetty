@@ -31,7 +31,7 @@ const Listing = () => {
 
     useEffect(() => {
         setCode(code)
-    })
+    }, [setCode])
 
     const setEosAccountItems2 = () => {
         if (localStorage.getItem('eosAccountItems'))

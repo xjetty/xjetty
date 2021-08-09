@@ -44,9 +44,9 @@ const GoToListingComponent = () => {
             InputProps={{inputComponent: mask, endAdornment: (
                     <InputAdornment position="end">
                         {/* eslint-disable-next-line @next/next/link-passhref */}
-                        {code.length === 5 && <Link href={'https://blockcommerc.com/listing/' + code}> <IconButton>
+                        {code.length === 5 && <IconButton href={'https://blockcommerc.com/listing/' + code}>
                             <Send/>
-                        </IconButton></Link>}
+                        </IconButton>}
                     </InputAdornment>
                 )}}
             label="I have a code"

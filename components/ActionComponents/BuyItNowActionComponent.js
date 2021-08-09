@@ -28,7 +28,7 @@ const BuyItNowActionComponent = () => {
         token,
         memo,
         pageTimestamp,
-        pastUsedAccount,
+        eosAccount,
         setMemo,
         setEosAccountItems,
         setEosAccount,
@@ -42,7 +42,7 @@ const BuyItNowActionComponent = () => {
     const buyItNow = async () => {
         try {
             const res = await axios.post('../api/buyItNow', {
-                pastUsedAccount: pastUsedAccount,
+                eosAccount: eosAccount,
                 eosAccountName: eosAccountName,
                 associativePrivateKey: associativePrivateKey,
                 memo: memo,
@@ -102,7 +102,7 @@ const BuyItNowActionComponent = () => {
     }, [recaptchaResponse])
 
     const disabled = useMemo(() => {
-        if (pastUsedAccount === 'None') {
+        if (eosAccount === 'New') {
             return (
                 eosAccountNameError ||
                 associativePrivateKeyError ||
@@ -119,7 +119,7 @@ const BuyItNowActionComponent = () => {
                 submittingData
             )
         }
-    }, [eosAccountNameError, associativePrivateKeyError, emailAddressError, submittingData, pastUsedAccount])
+    }, [eosAccountNameError, associativePrivateKeyError, emailAddressError, submittingData, eosAccount])
 
     return (
         <>

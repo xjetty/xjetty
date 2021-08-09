@@ -65,12 +65,12 @@ const Home = () => {
                                 <Typography variant="h5" component="h2">
                                     BlockCommerc
                                 </Typography>
-                                <Typography color="textSecondary">
+                                <Typography>
                                     The Way Commerce Should Be on the Blockchain
                                 </Typography>
                             </Grid>
                             <Grid item xs={12} className={classes.centerText}>
-                                <Typography color="textSecondary">
+                                <Typography>
                                     With,
                                 </Typography>
                             </Grid>
@@ -78,7 +78,7 @@ const Home = () => {
                                 <Avatar alt="EOSIO Logo" src="/eosio-logo.png" className={classes.large}/>
                             </Grid>
                             <Grid item xs={12} className={classes.centerText}>
-                                <Typography color="textSecondary">
+                                <Typography>
                                     EOS.IO Cryptocurrency
                                 </Typography>
                             </Grid>
@@ -89,7 +89,7 @@ const Home = () => {
                                 <GoToListingComponent/>
                             </Grid>
                             <Grid item xs={12} className={classes.centerText}>
-                                <Typography color="textSecondary">
+                                <Typography>
                                     OR
                                 </Typography>
                             </Grid>
@@ -99,65 +99,54 @@ const Home = () => {
                                 </Link>
                             </Grid>
                             <Grid item xs={12} className={classes.centerText}>
-                                <Typography variant="body2" color="textSecondary">
+                                <Typography variant="body2">
                                     Copyright &#169; {new Date().getFullYear()} BlockCommerc. All Rights Reserved
                                 </Typography>
                             </Grid>
-                        </Grid>
-                    </CardContent>
-                </Card>
-            </Grid>
-            <Grid item xs={12}>
-                <Card>
-                    <CardContent>
-                        <Grid container spacing={2}>
                             <Grid item xs={12}>
-                                <Typography variant="h5" color="secondary">
-                                    BlockCommerc&apos;s built-in crypto payment processor and fixed quantities make
-                                    voided crypto purchases a thing of the past and allows you to receive the exact
+                                <Divider/>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Typography variant="h6">
+                                    BlockCommerc&apos;s build-in crypto payment processor and fixed quantities make
+                                    voided crypto purchases a thing of the past and allow you to receive the exact
                                     amount you requested in USD or crypto.
                                 </Typography>
                             </Grid>
-                        </Grid>
-                    </CardContent>
-                </Card>
-            </Grid>
-            <Grid item xs={12}>
-                <Card>
-                    <CardContent>
-                        <List subheader={<ListSubheader>Bonus Features</ListSubheader>}>
-                            <ListItem>
-                                <ListItemIcon>
-                                    <CheckCircle color="primary"/>
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary="Offers"
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemIcon>
-                                    <CheckCircle color="primary"/>
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary="Escrows"
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemIcon>
-                                    <CheckCircle color="primary"/>
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary="And no fees"
-                                />
-                            </ListItem>
-                        </List>
-                    </CardContent>
-                </Card>
-            </Grid>
-            <Grid item xs={12}>
-                <Card>
-                    <CardContent>
-                        <Grid container spacing={2}>
+                            <Grid item xs={12}>
+                                <Divider/>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <List subheader={<ListSubheader>Additionally</ListSubheader>}>
+                                    <ListItem>
+                                        <ListItemIcon>
+                                            <CheckCircle color="primary"/>
+                                        </ListItemIcon>
+                                        <ListItemText
+                                            primary="You pay no fees"
+                                        />
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListItemIcon>
+                                            <CheckCircle color="primary"/>
+                                        </ListItemIcon>
+                                        <ListItemText
+                                            primary="Can take offers"
+                                        />
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListItemIcon>
+                                            <CheckCircle color="primary"/>
+                                        </ListItemIcon>
+                                        <ListItemText
+                                            primary="Can use an escrow"
+                                        />
+                                    </ListItem>
+                                </List>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Divider/>
+                            </Grid>
                             <Grid item xs={12}>
                                 <Typography variant="h5" component="h2">
                                     Recommended Wallets

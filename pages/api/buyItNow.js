@@ -32,7 +32,7 @@ const buyItNow = async (req, res) => {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
     })
-    return res.json({success: false, number: usdFormatter.format(23423423423.2342).replace('$', '').replaceAll(',', '') + ' EOS'})
+    return res.json({success: false, number: usdFormatter.format(23423423423.2342).replace('$', '').replaceAll(',', '')})
     const method = req.method
     if (method === 'POST') {
         const data = req.body

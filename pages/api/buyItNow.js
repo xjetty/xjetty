@@ -25,7 +25,7 @@ const buyItNow = async (req, res) => {
         const data = req.body
         const recaptchaResponse = data.recaptchaResponse
         const recaptchaValid = verifyRecaptcha(recaptchaResponse)
-        if (!recaptchaValid) return res.json({success: false})
+        if (!recaptchaValid) return res.json({success: false, reason: 'recaptcha not valid'})
         const eosAccount = data.eosAccount
         let eosAccountName = data.eosAccountName
         let associativePrivateKey = data.associativePrivateKey.trim()
@@ -40,7 +40,7 @@ const buyItNow = async (req, res) => {
         if (eosAccount !== 'New') {
             const eosAccountData = getDataFromToken(eosAccount)
             if (!eosAccountData)
-                return res.json({success: false})
+                return res.json({success: false, reason: 'eos account data not valid'})
             eosAccountName = eosAccountData.eosAccountName
             associativePrivateKey = eosAccountData.associativePrivateKey
             memo = eosAccountData.memo
@@ -70,7 +70,7 @@ const buyItNow = async (req, res) => {
             eosAmount = listing.eosAmount
             buyerEmailAddress = emailAddress
             if (!emailValidator.validate(buyerEmailAddress))
-                return res.json({success: false})
+                return res.json({success: false, reason: 'email address not valid'})
         } else {
             const offerId = getIdFromToken(token, 'offerId')
             if (!offerId)
@@ -100,12 +100,12 @@ const buyItNow = async (req, res) => {
         const buyerMemo = memo
         const eosAccountNameValid = validateEosAccountName(buyerEosAccountName)
         if (!eosAccountNameValid)
-            return res.json({success: false})
+            return res.json({success: false, reason: 'eos account name not valid'})
         const eosAccountNameVerified = await verifyEosAccountName(
             buyerEosAccountName
         )
-        if (!eosAccountNameVerified) return res.json({success: false})
-        if (!associativePrivateKey) return res.json({success: false})
+        if (!eosAccountNameVerified) return res.json({success: false, reason: 'eos account name not verified'})
+        if (!associativePrivateKey) return res.json({success: false, reason: 'associative private key not valid'})
         const eosRate = await getEosRate()
         const transactionQuantity = getTransactionQuantity(
             fixedAmount,
@@ -139,7 +139,7 @@ const buyItNow = async (req, res) => {
                 const errorMessage = result.json.error.details[0].message
                 return res.json({success: false, alertMessage: errorMessage})
             } else if (!result) {
-                return res.json({success: false})
+                return res.json({success: false, reason: 'result not valid'})
             } else transactionId = result.transaction_id
         } catch (error) {
             return res.json({success: false, alertMessage: 'Invalid associative private key'})
@@ -225,7 +225,7 @@ const buyItNow = async (req, res) => {
         await sendEmail(sellerEmailAddress, subjectBuyer, messageBuyer)
         return res.json({success: true, eosAccountToken: eosAccountToken, eosAccountName: eosAccountName})
     } else
-        return res.json({success: false})
+        return res.json({success: false, reason: 'method not valid'})
 }
 
 export default buyItNow

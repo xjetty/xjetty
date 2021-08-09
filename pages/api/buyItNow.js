@@ -100,7 +100,7 @@ const buyItNow = async (req, res) => {
         const buyerMemo = memo
         const eosAccountNameValid = validateEosAccountName(buyerEosAccountName)
         if (!eosAccountNameValid)
-            return res.json({success: false, reason: 'eos account name not valid', eosAccountName: buyerEosAccountName})
+            return res.json({success: false, reason: 'eos account name not valid', eosAccountName: eosAccountName})
         const eosAccountNameVerified = await verifyEosAccountName(
             buyerEosAccountName
         )

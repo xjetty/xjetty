@@ -120,7 +120,7 @@ const Home = () => {
                                 <List subheader={<ListSubheader>Additionally</ListSubheader>}>
                                     <ListItem>
                                         <ListItemIcon>
-                                            <CheckCircle color="primary"/>
+                                            <CheckCircle color="secondary"/>
                                         </ListItemIcon>
                                         <ListItemText
                                             primary="You pay no fees"
@@ -128,7 +128,7 @@ const Home = () => {
                                     </ListItem>
                                     <ListItem>
                                         <ListItemIcon>
-                                            <CheckCircle color="primary"/>
+                                            <CheckCircle color="secondary"/>
                                         </ListItemIcon>
                                         <ListItemText
                                             primary="You can take offers"
@@ -136,7 +136,7 @@ const Home = () => {
                                     </ListItem>
                                     <ListItem>
                                         <ListItemIcon>
-                                            <CheckCircle color="primary"/>
+                                            <CheckCircle color="secondary"/>
                                         </ListItemIcon>
                                         <ListItemText
                                             primary="And you can use an escrow"

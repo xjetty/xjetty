@@ -32,11 +32,6 @@ const buyItNow = async (req, res) => {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
     })
-    const search = '-'
-    const replacer = new RegExp(search, 'g')
-
-    const string = 'e851e2fa-4f00-4609-9dd2-9b3794c59619'
-    return res.json({success: false, number: string.replace(replacer, '')})
     const method = req.method
     if (method === 'POST') {
         const data = req.body

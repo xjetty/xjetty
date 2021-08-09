@@ -2,21 +2,21 @@ export function getTransactionQuantity(
     fixedAmount,
     usdAmount,
     eosAmount,
-    eosRate,
-    eosFormatter
+    eosRate
 ) {
-    const format = `${eosFormatter
-        .format(usdAmount / eosRate)
-        .replace('$', '')
-        .replaceAll(',', '')} EOS`
-    return ({format: format})
+    const eosFormatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 4,
+        maximumFractionDigits: 4
+    })
+    const search = '$,'
+    const replacer = new RegExp(search, 'g')
     if (fixedAmount === 'usd') {
         return `${eosFormatter
             .format(usdAmount / eosRate)
-            .replace('$', '')
-            .replaceAll(',', '')} EOS`
+            .replace(replacer, '')} EOS`
     } else return `${eosFormatter
         .format(eosAmount)
-        .replace('$', '')
-        .replaceAll(',', '')} EOS`
+        .replace(replacer, '')} EOS`
 }

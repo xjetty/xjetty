@@ -20,6 +20,18 @@ import {validateEosAccountName} from "../../server/validateEosAccountName";
 import Escrow from '../../models/Escrow'
 
 const buyItNow = async (req, res) => {
+    const eosFormatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 4,
+        maximumFractionDigits: 4
+    })
+    const usdFormatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    })
     const method = req.method
     if (method === 'POST') {
         const data = req.body
@@ -112,7 +124,8 @@ const buyItNow = async (req, res) => {
             fixedAmount,
             usdAmount,
             eosAmount,
-            eosRate
+            eosRate,
+            eosFormatter
         )
         return res.json({success: false, transactionQuantity: transactionQuantity})
         const transactionPrepared = await prepareTransaction(listingId)
@@ -148,18 +161,6 @@ const buyItNow = async (req, res) => {
         }
         await increaseQuantitySold(listingId)
         await updatePendingTransactions(listingId, false)
-        const eosFormatter = new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-            minimumFractionDigits: 4,
-            maximumFractionDigits: 4
-        })
-        const usdFormatter = new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        })
         const transactionAmount = parseFloat(
             transactionQuantity.replace(' EOS', '')
         )

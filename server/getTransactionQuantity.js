@@ -15,5 +15,8 @@ export function getTransactionQuantity(
             .format(usdAmount / eosRate)
             .replace('$', '')
             .replaceAll(',', '')} EOS`
-    } else return `${eosAmount} EOS`
+    } else return `${eosFormatter
+        .format(eosAmount)
+        .replace('$', '')
+        .replaceAll(',', '')} EOS`
 }

@@ -9,7 +9,7 @@ import {
     List,
     ListItem, ListItemIcon,
     ListItemText, ListSubheader,
-    Typography
+    Typography, Box
 } from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import Link from 'next/link'
@@ -106,7 +106,7 @@ const Home = () => {
                             <Grid item xs={12}>
                                 <Divider/>
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={12} className={classes.centerText}>
                                 <Typography variant="h6">
                                     BlockCommerc&apos;s build-in crypto payment processor and fixed quantities make
                                     voided crypto purchases a thing of the past and allow you to receive the exact
@@ -117,42 +117,49 @@ const Home = () => {
                                 <Divider/>
                             </Grid>
                             <Grid item xs={12}>
-                                <List subheader={<ListSubheader>Additionally</ListSubheader>}>
-                                    <ListItem>
-                                        <ListItemIcon>
-                                            <CheckCircle color="secondary"/>
-                                        </ListItemIcon>
-                                        <ListItemText
-                                            primary="You pay no fees"
-                                        />
-                                    </ListItem>
-                                    <ListItem>
-                                        <ListItemIcon>
-                                            <CheckCircle color="secondary"/>
-                                        </ListItemIcon>
-                                        <ListItemText
-                                            primary="You can take offers"
-                                        />
-                                    </ListItem>
-                                    <ListItem>
-                                        <ListItemIcon>
-                                            <CheckCircle color="secondary"/>
-                                        </ListItemIcon>
-                                        <ListItemText
-                                            primary="And you can use an escrow"
-                                        />
-                                    </ListItem>
-                                </List>
+                                <Box
+                                    display="flex"
+                                    justifyContent="center"
+                                    alignItems="center"
+                                >
+                                    <List subheader={<ListSubheader>Additionally</ListSubheader>}>
+                                        <ListItem>
+                                            <ListItemIcon>
+                                                <CheckCircle color="secondary"/>
+                                            </ListItemIcon>
+                                            <ListItemText
+                                                primary="You pay no fees"
+                                            />
+                                        </ListItem>
+                                        <ListItem>
+                                            <ListItemIcon>
+                                                <CheckCircle color="secondary"/>
+                                            </ListItemIcon>
+                                            <ListItemText
+                                                primary="You can take offers"
+                                            />
+                                        </ListItem>
+                                        <ListItem>
+                                            <ListItemIcon>
+                                                <CheckCircle color="secondary"/>
+                                            </ListItemIcon>
+                                            <ListItemText
+                                                primary="And you can use an escrow"
+                                            />
+                                        </ListItem>
+                                    </List>
+                                </Box>
+
                             </Grid>
                             <Grid item xs={12}>
                                 <Divider/>
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={12} className={classes.centerText}>
                                 <Typography variant="h5" component="h2">
                                     Recommended Wallets
                                 </Typography>
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={12} className={classes.centerText}>
                                 <ButtonGroup variant="contained"
                                              aria-label="contained primary button group">
                                     <Button href="https://greymass.com/en/anchor/" target="_blank">Anchor</Button>

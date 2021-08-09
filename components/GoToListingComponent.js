@@ -3,6 +3,7 @@ import {Button, Card, CardActions, CardContent, Grid, IconButton, InputAdornment
 import React from "react";
 import {makeStyles} from "@material-ui/core/styles";
 import {FileCopy, Send} from "@material-ui/icons";
+import Link from 'next/link'
 
 const mask = (props) => {
     const {inputRef, ...other} = props
@@ -42,9 +43,10 @@ const GoToListingComponent = () => {
             onChange={handle}
             InputProps={{inputComponent: mask, endAdornment: (
                     <InputAdornment position="end">
-                        {code.length === 5 && <IconButton>
+                        {/* eslint-disable-next-line @next/next/link-passhref */}
+                        {code.length === 5 && <Link href={'https://blockcommerc.com/listing/' + code}> <IconButton>
                             <Send/>
-                        </IconButton>}
+                        </IconButton></Link>}
                     </InputAdornment>
                 )}}
             label="I have a code"

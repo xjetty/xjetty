@@ -88,7 +88,7 @@ const BuyItNowActionComponent = () => {
                 recaptchaRef.current.reset()
             })
         } catch (error) {
-            alert('Lost Internet connection')
+            alert(error)
             setSubmittingData(false)
             process.nextTick(() => {
                 recaptchaRef.current.reset()

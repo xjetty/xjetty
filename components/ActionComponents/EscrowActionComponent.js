@@ -111,14 +111,14 @@ const EscrowActionComponent = (props) => {
                             <>
                                 <Grid item xs={12}>
                                     <Button
-                                        onClick={handleButton('releaseEscrow', 'Release escrow?')}
+                                        onClick={handleButton.bind(this, 'releaseEscrow', 'Release escrow?')}
                                         variant="contained"
                                         color="primary">
                                         Release escrow
                                     </Button>
                                     {!escrowDetails.disputeOpened && (
                                         <Button
-                                            onClick={handleButton('openDispute', 'Open dispute?')}
+                                            onClick={handleButton.bind(this, 'openDispute', 'Open dispute?')}
                                             variant="contained"
                                             color="primary">
                                             Open dispute
@@ -129,7 +129,7 @@ const EscrowActionComponent = (props) => {
                         ) : (
                             <Grid item xs={12}>
                                 <Button
-                                    onClick={handleButton('refundEscrow', 'Refund escrow?')}
+                                    onClick={handleButton.bind(this, 'refundEscrow', 'Refund escrow?')}
                                     variant="contained"
                                     color="primary">
                                     Refund escrow

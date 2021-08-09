@@ -44,7 +44,7 @@ const GoToListingComponent = () => {
             InputProps={{inputComponent: mask, endAdornment: (
                     <InputAdornment position="end">
                         {/* eslint-disable-next-line @next/next/link-passhref */}
-                        {code.length === 5 && <IconButton href={'https://blockcommerc.com/listing/' + code}>
+                        {code.length === 5 && <IconButton href={'https://blockcommerc.com/listing/' + code} target="_blank">
                             <Send/>
                         </IconButton>}
                     </InputAdornment>

@@ -104,10 +104,10 @@ const buyItNow = async (req, res) => {
         const eosAccountNameVerified = await verifyEosAccountName(
             buyerEosAccountName
         )
-        return res.json({success: false, eosAccountNameVerified: eosAccountNameVerified})
         if (!eosAccountNameVerified) return res.json({success: false, reason: 'eos account name not verified'})
         if (!associativePrivateKey) return res.json({success: false, reason: 'associative private key not valid'})
         const eosRate = await getEosRate()
+        return res.json({success: false, eosRate: eosRate})
         const transactionQuantity = getTransactionQuantity(
             fixedAmount,
             usdAmount,

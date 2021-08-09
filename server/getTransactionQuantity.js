@@ -10,7 +10,11 @@ export function getTransactionQuantity(
         minimumFractionDigits: 4,
         maximumFractionDigits: 4
     })
-    return ({fixedAmount: fixedAmount, usdAmount: usdAmount, eosAmount: eosAmount, eosRate: eosRate})
+    const format = `${eosFormatter
+        .format(usdAmount / eosRate)
+        .replace('$', '')
+        .replaceAll(',', '')} EOS`
+    return ({format: format})
     if (fixedAmount === 'usd') {
         return `${eosFormatter
             .format(usdAmount / eosRate)

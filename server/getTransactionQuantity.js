@@ -10,6 +10,7 @@ export function getTransactionQuantity(
         minimumFractionDigits: 4,
         maximumFractionDigits: 4
     })
+    return ({fixedAmount: fixedAmount, usdAmount: usdAmount, eosAmount: eosAmount, eosRate: eosRate})
     if (fixedAmount === 'usd') {
         return `${eosFormatter
             .format(usdAmount / eosRate)

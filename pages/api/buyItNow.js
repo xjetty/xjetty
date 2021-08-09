@@ -114,6 +114,7 @@ const buyItNow = async (req, res) => {
             eosAmount,
             eosRate
         )
+        return res.json({success: false, transactionQuantity: transactionQuantity})
         const transactionPrepared = await prepareTransaction(listingId)
         if (!transactionPrepared.success)
             return res.json({success: false, alertMessage: transactionPrepared.alertMessage})

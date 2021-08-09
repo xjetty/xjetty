@@ -52,7 +52,7 @@ const ListingSchema = new mongoose.Schema({
         }
     },
     eosAmount: {
-        type: String,
+        type: Number,
         required: true,
         validate: {
             validator: function (value) {

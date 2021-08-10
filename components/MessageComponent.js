@@ -15,10 +15,10 @@ const MessageComponent = (props) => {
                 <Typography variant="h5" component="h2">
                     {props.user}
                 </Typography>
-                <Typography className={classes.pos} color="textSecondary">
+                <Typography className={classes.pos}>
                     {props.datetime}
                 </Typography>
-                <Typography variant="body2" component="p">
+                <Typography variant="body1" component="p">
                     {props.message}
                 </Typography>
             </CardContent>

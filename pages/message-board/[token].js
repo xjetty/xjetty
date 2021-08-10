@@ -44,7 +44,6 @@ const MessageBoard = () => {
                 setEscrow(escrow)
                 setUser(user)
                 setShow(true)
-                alert('worked!')
                 process.nextTick(() => {
                     recaptchaRef.current.reset()
                 })

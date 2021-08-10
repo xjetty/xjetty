@@ -52,13 +52,13 @@ const ListingDetailsComponent = (props) => {
                         </ListItem>
                         <ListItem>
                             <ListItemText
-                                primary={props.listingDetails.eosAmount}
+                                primary={`${props.listingDetails.eosAmount} EOS`}
                                 secondary="EOS Amount"
                             />
                         </ListItem>
                         <ListItem>
                             <ListItemText
-                                primary={props.listingDetails.useEscrow ? 'In Use' : 'Not in Use'}
+                                primary={props.listingDetails.useEscrow ? 'Used' : 'Not used'}
                                 secondary="Escrow"
                             />
                         </ListItem>

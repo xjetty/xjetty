@@ -40,7 +40,7 @@ const ListingDetailsComponent = (props) => {
                             />
                             <ListItemSecondaryAction>
                                 <IconButton href={`https://bloks.io/transaction/${props.listingDetails.transactionId}`}
-                                            target="_blank" edge="end">
+                                            target="_blank" edge="end" aria-label="delete">
                                     <OpenInNew/>
                                 </IconButton>
                             </ListItemSecondaryAction>

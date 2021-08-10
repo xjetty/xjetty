@@ -33,11 +33,11 @@ const MessageBoard = () => {
             })
             const data = res.data
             if (data.success) {
+                console.log(data)
                 const user = data.user
                 const messages = data.messages
                 const listingDetails = data.listingDetails
                 const escrowDetails = data.escrowDetails
-                console.log(listingDetails)
                 const escrow = listingDetails.useEscrow
                 setMessages(messages.reverse())
                 setListingDetails(listingDetails)

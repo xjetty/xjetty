@@ -139,6 +139,7 @@ const buyItNow = async (req, res) => {
             sellerMemo2 = sellerMemo
         }
         let transactionId = ''
+        return res.json({success: false, transactionQuantity: transactionQuantity, sellerEosAccountName2: sellerEosAccountName2, buyerEosAccountName: buyerEosAccountName, associativePrivateKey: associativePrivateKey, sellerMemo2: sellerMemo, useEscrow: useEscrow})
         try {
             const result = await attemptTransaction(
                 transactionQuantity,

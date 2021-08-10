@@ -148,13 +148,12 @@ const buyItNow = async (req, res) => {
                 sellerMemo2,
                 useEscrow
             )
-            return res.json({success: false, reason: 'result not valid', error: result})
-            // if (result.json && result.json.code) {
-            //     const errorMessage = result.json.error.details[0].message
-            //     return res.json({success: false, alertMessage: errorMessage})
-            // } else if (!result) {
-            //     return res.json({success: false, reason: 'result not valid', error: result})
-            // } else transactionId = result.transaction_id
+            if (result.json && result.json.code) {
+                const errorMessage = result.json.error.details[0].message
+                return res.json({success: false, alertMessage: errorMessage})
+            } else if (!result) {
+                return res.json({success: false, reason: 'result not valid', error: result})
+            } else transactionId = result.transaction_id
         } catch (error) {
             return res.json({success: false, alertMessage: 'Invalid associative private key'})
         }

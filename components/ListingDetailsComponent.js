@@ -32,7 +32,7 @@ const ListingDetailsComponent = (props) => {
                     <Typography className={classes.heading}>Listing Details</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                    <List fullWidth>
+                    <List>
                         <ListItem>
                             <ListItemText
                                 primary={props.listingDetails.transactionId}

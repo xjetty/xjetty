@@ -90,10 +90,10 @@ const MessageBoard = () => {
                 <EscrowComponent token={token} user={user}/>
             </Grid>) : ('')}
             <Grid item xs={12}>
-                <PostMessageFormComponent token={token}/>
+                <ListingDetailsComponent listingDetails={listingDetails}/>
             </Grid>
             <Grid item xs={12}>
-                <ListingDetailsComponent listingDetails={listingDetails}/>
+                <PostMessageFormComponent token={token}/>
             </Grid>
             {messages.map((message, index) => (
                 <Grid item xs={12} key={index}>

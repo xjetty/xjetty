@@ -119,7 +119,7 @@ const BuyItNowActionComponent = () => {
                 submittingData
             )
         }
-    }, [eosAccountNameError, associativePrivateKeyError, emailAddressError, submittingData, eosAccount])
+    }, [eosAccountNameError, associativePrivateKeyError, emailAddressError, submittingData, eosAccount, eosAccountName, associativePrivateKey, emailAddress])
 
     return (
         <>

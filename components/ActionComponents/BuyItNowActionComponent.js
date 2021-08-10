@@ -74,7 +74,7 @@ const BuyItNowActionComponent = () => {
                     if (eosAccountItems) {
                         eosAccountItems.push(eosAccountItem)
                     } else
-                        eosAccountItems = eosAccountItem
+                        eosAccountItems = [eosAccountItem]
                     localStorage.setItem('eosAccountItems', JSON.stringify(eosAccountItems))
                     setEosAccountItems(eosAccountItems)
                     setEosAccount(eosAccountToken)

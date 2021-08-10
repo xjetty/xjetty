@@ -32,7 +32,7 @@ const ListingDetailsComponent = (props) => {
                     <Typography className={classes.heading}>Listing Details</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                    <List>
+                    <List fullWidth>
                         <ListItem>
                             <ListItemText
                                 primary={props.listingDetails.transactionId}
@@ -40,7 +40,7 @@ const ListingDetailsComponent = (props) => {
                             />
                             <ListItemSecondaryAction>
                                 <IconButton href={`https://bloks.io/transaction/${props.listingDetails.transactionId}`}
-                                            target="_blank" edge="end" aria-label="delete">
+                                            target="_blank" edge="end">
                                     <OpenInNew/>
                                 </IconButton>
                             </ListItemSecondaryAction>

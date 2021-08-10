@@ -62,6 +62,6 @@ export async function attemptTransaction(
             }
         )
     } catch (e) {
-        return false
+        return e
     }
 }

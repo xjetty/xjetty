@@ -10,13 +10,10 @@ export function getTransactionQuantity(
         minimumFractionDigits: 4,
         maximumFractionDigits: 4
     })
-    const search = '$,'
-    const replacer = new RegExp(search, 'g')
+    let eosAmount2 = ''
     if (fixedAmount === 'usd') {
-        return `${eosFormatter
-            .format(usdAmount / eosRate)
-            .replace(replacer, '')} EOS`
-    } else return `${eosFormatter
-        .format(eosAmount)
-        .replace(replacer, '')} EOS`
+        eosAmount2 = usdAmount / eosRate
+    } else eosAmount2 = eosAmount
+
+    return `${eosFormatter.format(eosAmount2).replace('$', '').replace(new RegExp(',', 'g'), '')} EOS`
 }

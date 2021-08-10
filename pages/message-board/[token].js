@@ -53,6 +53,7 @@ const MessageBoard = () => {
                 alert('Something went wrong')
         } catch (e) {
             alert(e)
+            console.log(e)
         }
     }
 

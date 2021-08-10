@@ -31,7 +31,7 @@ const ListingDetailsComponent = (props) => {
                     expandIcon={<ExpandMoreIcon/>}>
                     <Typography className={classes.heading}>Listing Details</Typography>
                 </AccordionSummary>
-                <AccordionDetails>
+                <AccordionDetails style={{display: 'inherit'}}>
                     <List>
                         <ListItem>
                             <ListItemText

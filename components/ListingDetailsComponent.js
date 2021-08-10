@@ -2,15 +2,16 @@ import {
     Accordion,
     AccordionDetails,
     AccordionSummary,
-    Grid,
+    Grid, IconButton,
     List,
-    ListItem,
+    ListItem, ListItemSecondaryAction,
     ListItemText,
     Typography
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import React, {useEffect} from "react";
 import {makeStyles} from "@material-ui/core/styles";
+import OpenInNew from '@material-ui/icons/OpenInNew'
 
 const useStyles = makeStyles((theme) => ({
     heading: {
@@ -37,6 +38,12 @@ const ListingDetailsComponent = (props) => {
                                 primary={props.listingDetails.transactionId}
                                 secondary="Transaction ID"
                             />
+                            <ListItemSecondaryAction>
+                                <IconButton href={`https://bloks.io/transaction/${props.listingDetails.transactionId}`}
+                                            target="_blank" edge="end">
+                                    <OpenInNew/>
+                                </IconButton>
+                            </ListItemSecondaryAction>
                         </ListItem>
                         <ListItem>
                             <ListItemText

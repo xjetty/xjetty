@@ -15,7 +15,7 @@ const MessageComponent = (props) => {
                 <Typography variant="h5" component="h2">
                     {props.user}
                 </Typography>
-                <Typography className={classes.pos}>
+                <Typography className={classes.pos} class="textSecondary">
                     {props.datetime}
                 </Typography>
                 <Typography variant="body1" component="p">

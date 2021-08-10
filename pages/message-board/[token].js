@@ -52,7 +52,7 @@ const MessageBoard = () => {
             } else
                 alert('Something went wrong')
         } catch (e) {
-            alert('Lost Internet connection')
+            alert(e)
         }
     }
 

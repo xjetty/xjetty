@@ -38,6 +38,7 @@ const MessageBoard = () => {
                 const listingDetails = data.listingDetails
                 const escrowDetails = data.escrowDetails
                 const escrow = listingDetails.useEscrow
+                console.log(listingDetails)
                 setMessages(messages.reverse())
                 setListingDetails(listingDetails)
                 setEscrowDetails(escrowDetails)

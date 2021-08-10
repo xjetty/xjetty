@@ -24,7 +24,6 @@ const getMessageBoardData = async (req, res) => {
             return res.json({success: false, alertMessage: 'Message board not found'})
         const messages = messageBoardData2.messages
         const listingDetails = messageBoardData2.listingDetails
-        return res.json({success: false, listingDetails: listingDetails})
         const useEscrow = listingDetails.useEscrow
         delete listingDetails.sellerEosAccountName
         delete listingDetails.buyerEosAccountName

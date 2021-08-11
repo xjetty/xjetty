@@ -57,7 +57,7 @@ const ListingDetailsComponent = (props) => {
                     <Typography className={classes.heading}>Listing Details</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                    <Grid container>
+                    <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <TextField
                                 value={props.listingDetails.notes}

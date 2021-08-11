@@ -100,7 +100,7 @@ const MessageBoard = () => {
                     <PostMessageFormComponent subtitle={`Communicate With Your ${user === 'seller' ? 'Buyer': 'Seller'}`} token={token}/>
                 </Grid>
                 {messages.map((message, index) => (
-                    <Grid item xs={12} md={4} key={index}>
+                    <Grid item xs={12} key={index}>
                         <MessageComponent user={message.user === user ? 'You' : capitalizeFirstLetter(message.user)}
                                           message={message.message}
                                           datetime={getDatetime(message.timestamp)}/>

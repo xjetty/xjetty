@@ -64,7 +64,7 @@ const ListingDetailsComponent = (props) => {
                                 fullWidth
                                 label="Notes"
                                 multiline
-                                variant="filled"
+                                variant="outlined"
                                 InputProps={{
                                     readOnly: true,
                                 }}
@@ -75,7 +75,7 @@ const ListingDetailsComponent = (props) => {
                                 value={props.listingDetails.fixedAmount.toUpperCase()}
                                 fullWidth
                                 label="Fixed amount"
-                                variant="filled"
+                                variant="outlined"
                                 InputProps={{
                                     readOnly: true,
                                 }}
@@ -86,7 +86,7 @@ const ListingDetailsComponent = (props) => {
                                 value={props.listingDetails.usdAmount}
                                 fullWidth
                                 label="USD amount"
-                                variant="filled"
+                                variant="outlined"
                                 InputProps={{
                                     readOnly: true,
                                 }}
@@ -97,7 +97,7 @@ const ListingDetailsComponent = (props) => {
                                 value={`${props.listingDetails.eosAmount} EOS`}
                                 fullWidth
                                 label="EOS amount"
-                                variant="filled"
+                                variant="outlined"
                                 InputProps={{
                                     readOnly: true,
                                 }}
@@ -108,7 +108,7 @@ const ListingDetailsComponent = (props) => {
                                 value={props.listingDetails.useEscrow ? 'Used' : 'Not used'}
                                 fullWidth
                                 label="Escrow"
-                                variant="filled"
+                                variant="outlined"
                                 InputProps={{
                                     readOnly: true,
                                 }}
@@ -119,7 +119,7 @@ const ListingDetailsComponent = (props) => {
                                 value={props.listingDetails.transactionId}
                                 fullWidth
                                 label="Transaction ID"
-                                variant="filled"
+                                variant="outlined"
                                 InputProps={{
                                     readOnly: true,
                                     endAdornment: (

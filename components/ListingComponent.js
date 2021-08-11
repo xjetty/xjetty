@@ -124,7 +124,7 @@ const ListingComponent = () => {
                     </AccordionSummary>
                     <AccordionDetails>
                         <Typography>
-                            <div dangerouslySetInnerHTML={{__html: notes}}></div>
+                            <span dangerouslySetInnerHTML={{__html: notes}}/>
                         </Typography>
                     </AccordionDetails>
                 </Accordion>

@@ -1,5 +1,6 @@
 import {Card, CardContent, Typography} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
+import React from "react";
 
 const useStyles = makeStyles({
     pos: {
@@ -19,7 +20,7 @@ const MessageComponent = (props) => {
                     @ {props.datetime}
                 </Typography>
                 <Typography variant="body1" component="p">
-                    {props.message}
+                    <span dangerouslySetInnerHTML={{__html: props.message.replace(/\n/g, '<br />')}}/>
                 </Typography>
             </CardContent>
         </Card>

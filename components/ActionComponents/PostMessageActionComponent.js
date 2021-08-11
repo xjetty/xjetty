@@ -14,7 +14,9 @@ const PostMessageActionComponent = (props) => {
         setSnackbarOpen,
         setSnackbarMessage,
         messages,
-        setMessages
+        setMessages,
+        setMessageError,
+        setMessage
     } = useContext(AppContext)
 
     const submitRecaptcha = () => {
@@ -39,6 +41,8 @@ const PostMessageActionComponent = (props) => {
                 const messages2 = messages
                 messages2.unshift(message)
                 setMessages(messages2)
+                setMessage('')
+                setMessageError(false)
                 setSnackbarMessage('Message posted successfully')
                 setSnackbarOpen(true)
             } else if (data && data.alertMessage) {

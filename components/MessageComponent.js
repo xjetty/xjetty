@@ -16,7 +16,7 @@ const MessageComponent = (props) => {
                     {props.user}
                 </Typography>
                 <Typography className={classes.pos} color="textSecondary">
-                    {props.datetime}
+                    @ {props.datetime}
                 </Typography>
                 <Typography variant="body1" component="p">
                     {props.message}

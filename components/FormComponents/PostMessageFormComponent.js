@@ -7,10 +7,12 @@ const PostMessageFormComponent = (props) => {
         <>
             <Card>
                 <CardContent>
-                    <Typography variant="h5" component="h2">
-                        Post a Message
-                    </Typography>
                     <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                            <Typography variant="h5" component="h2">
+                                Post a Message
+                            </Typography>
+                        </Grid>
                         <Grid item xs={12}>
                             <MessageFieldComponent/>
                         </Grid>

@@ -54,7 +54,7 @@ const ListingDetailsComponent = (props) => {
             <Accordion>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon/>}>
-                    <Typography className={classes.heading}>Listing Details</Typography>
+                    <Typography className={classes.heading}>Purchase</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                     <Grid container spacing={2}>

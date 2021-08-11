@@ -20,6 +20,7 @@ const MessageBoard = () => {
     const [escrow, setEscrow] = React.useState(false)
     const [user, setUser] = React.useState('')
     const [listingDetails, setListingDetails] = React.useState({})
+    const [createdOnTimestamp, setCreatedOnTimestamp] = React.useState('')
 
     useEffect(() => {
         recaptchaRef.current.execute()
@@ -39,6 +40,8 @@ const MessageBoard = () => {
                 const listingDetails = messageBoardData.listingDetails
                 const escrowDetails = messageBoardData.escrowDetails
                 const escrow = listingDetails.useEscrow
+                const createdOnTimestamp = messages[0]['timestamp']
+                setCreatedOnTimestamp(createdOnTimestamp)
                 setMessages(messages.reverse())
                 setListingDetails(listingDetails)
                 setEscrowDetails(escrowDetails)
@@ -82,27 +85,28 @@ const MessageBoard = () => {
 
     return (
         <>
-        <Head>
-            <title>Message Board - BlockCommerc</title>
-        </Head>
-        {show && (<Grid container spacing={2}>
-            {escrow ? (<Grid item xs={12}>
-                <EscrowComponent token={token} user={user}/>
-            </Grid>) : ('')}
-            <Grid item xs={12}>
-                <ListingDetailsComponent listingDetails={listingDetails}/>
-            </Grid>
-            <Grid item xs={12}>
-                <PostMessageFormComponent token={token}/>
-            </Grid>
-            {messages.map((message, index) => (
-                <Grid item xs={12} key={index}>
-                    <MessageComponent user={message.user === user ? 'You' : capitalizeFirstLetter(message.user)}
-                                      message={message.message}
-                                      datetime={getDatetime(message.timestamp)}/>
+            <Head>
+                <title>Message Board - BlockCommerc</title>
+            </Head>
+            {show && (<Grid container spacing={2}>
+                {escrow ? (<Grid item xs={12}>
+                    <EscrowComponent token={token} user={user}/>
+                </Grid>) : ('')}
+                <Grid item xs={12}>
+                    <ListingDetailsComponent createdOnDatetime={getDatetime(createdOnTimestamp)}
+                                             listingDetails={listingDetails}/>
                 </Grid>
-            ))}
-        </Grid>)}
+                <Grid item xs={12}>
+                    <PostMessageFormComponent token={token}/>
+                </Grid>
+                {messages.map((message, index) => (
+                    <Grid item xs={12} key={index}>
+                        <MessageComponent user={message.user === user ? 'You' : capitalizeFirstLetter(message.user)}
+                                          message={message.message}
+                                          datetime={getDatetime(message.timestamp)}/>
+                    </Grid>
+                ))}
+            </Grid>)}
         </>
     )
 }

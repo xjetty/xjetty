@@ -58,13 +58,24 @@ const ListingDetailsComponent = (props) => {
                 </AccordionSummary>
                 <AccordionDetails>
                     <Grid container spacing={2}>
+                        <Grid item xs={12} md={6}>
+                            <TextField
+                                value={props.createdOnDatetime}
+                                fullWidth
+                                label="Datetime"
+                                variant="filled"
+                                InputProps={{
+                                    readOnly: true,
+                                }}
+                            />
+                        </Grid>
                         <Grid item xs={12}>
                             <TextField
                                 value={props.listingDetails.notes}
                                 fullWidth
                                 label="Notes"
                                 multiline
-                                variant="outlined"
+                                variant="filled"
                                 InputProps={{
                                     readOnly: true,
                                 }}
@@ -75,7 +86,7 @@ const ListingDetailsComponent = (props) => {
                                 value={props.listingDetails.fixedAmount.toUpperCase()}
                                 fullWidth
                                 label="Fixed amount"
-                                variant="outlined"
+                                variant="filled"
                                 InputProps={{
                                     readOnly: true,
                                 }}
@@ -86,7 +97,7 @@ const ListingDetailsComponent = (props) => {
                                 value={props.listingDetails.usdAmount}
                                 fullWidth
                                 label="USD amount"
-                                variant="outlined"
+                                variant="filled"
                                 InputProps={{
                                     readOnly: true,
                                 }}
@@ -97,7 +108,7 @@ const ListingDetailsComponent = (props) => {
                                 value={`${props.listingDetails.eosAmount} EOS`}
                                 fullWidth
                                 label="EOS amount"
-                                variant="outlined"
+                                variant="filled"
                                 InputProps={{
                                     readOnly: true,
                                 }}
@@ -108,7 +119,7 @@ const ListingDetailsComponent = (props) => {
                                 value={props.listingDetails.useEscrow ? 'Used' : 'Not used'}
                                 fullWidth
                                 label="Escrow"
-                                variant="outlined"
+                                variant="filled"
                                 InputProps={{
                                     readOnly: true,
                                 }}
@@ -119,7 +130,7 @@ const ListingDetailsComponent = (props) => {
                                 value={props.listingDetails.transactionId}
                                 fullWidth
                                 label="Transaction ID"
-                                variant="outlined"
+                                variant="filled"
                                 InputProps={{
                                     readOnly: true,
                                     endAdornment: (

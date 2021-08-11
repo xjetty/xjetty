@@ -97,7 +97,7 @@ const MessageBoard = () => {
                                              listingDetails={listingDetails}/>
                 </Grid>
                 <Grid item xs={12}>
-                    <PostMessageFormComponent token={token}/>
+                    <PostMessageFormComponent subtitle={`Communicate With Your ${user === 'seller' ? 'Buyer': 'Seller'}`} token={token}/>
                 </Grid>
                 {messages.map((message, index) => (
                     <Grid item xs={12} key={index}>

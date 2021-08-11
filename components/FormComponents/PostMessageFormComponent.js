@@ -12,6 +12,9 @@ const PostMessageFormComponent = (props) => {
                             <Typography variant="h5" component="h2">
                                 Post a Message
                             </Typography>
+                            <Typography color="textSecondary">
+                                {props.subtitle}
+                            </Typography>
                         </Grid>
                         <Grid item xs={12}>
                             <MessageFieldComponent/>

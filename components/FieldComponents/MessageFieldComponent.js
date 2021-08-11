@@ -10,7 +10,7 @@ const MessageFieldComponent = () => {
         const valueTrim = value.trim()
         if (!valueTrim) {
             setMessageError(true)
-        } else setMessageError(true)
+        } else setMessageError(false)
         setMessage(value)
     }
 

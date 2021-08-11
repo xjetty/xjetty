@@ -15,11 +15,9 @@ const MessageFieldComponent = () => {
 
     const checkError = () => {
         const valueTrim = message.trim()
-        if (!messageError) {
-            if (!valueTrim) {
-                setMessageError(true)
-            } else setMessageError(false)
-        }
+        if (!valueTrim) {
+            setMessageError(true)
+        } else setMessageError(false)
     }
 
     const helperText = useMemo(() => {

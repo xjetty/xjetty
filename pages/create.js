@@ -5,11 +5,11 @@ import UpdateEosRate from "../components/UpdateEosRate";
 const Create = () => {
     return (
         <>
-        <Head>
-            <title>Create a Listing - BlockCommerc</title>
-        </Head>
-        <UpdateEosRate/>
-        <CreateListingFormComponent/>
+            <Head>
+                <title>Create a Listing - BlockCommerc</title>
+            </Head>
+            <UpdateEosRate/>
+            <CreateListingFormComponent/>
         </>
     )
 }

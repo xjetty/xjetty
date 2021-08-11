@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const DisputeSchema = new mongoose.Schema({
     escrowId: {
-        type: Number
+        type: Object
     },
     resolved: {
         type: Boolean,

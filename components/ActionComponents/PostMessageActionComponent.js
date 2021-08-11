@@ -61,19 +61,21 @@ const PostMessageActionComponent = (props) => {
 
     return (
         <>
-            {submittingData && (
+            <Grid container spacing={2}>
+                {submittingData && (
+                    <Grid item xs={12}>
+                        <LinearProgress/>
+                    </Grid>
+                )}
                 <Grid item xs={12}>
-                    <LinearProgress/>
+                    <Button
+                        onClick={submitRecaptcha}
+                        disabled={disabled}
+                        variant="contained"
+                        color="primary">
+                        Post message
+                    </Button>
                 </Grid>
-            )}
-            <Grid item xs={12}>
-                <Button
-                    onClick={submitRecaptcha}
-                    disabled={disabled}
-                    variant="contained"
-                    color="primary">
-                    Post message
-                </Button>
             </Grid>
         </>
     )

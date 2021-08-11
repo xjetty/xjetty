@@ -53,7 +53,7 @@ const postMessage = async (req, res) => {
             const message = `Go to your message board to read your new message<br><br><a href=${link}>${link}</a>`
             await sendEmail(sellerEmailAddress, 'You have a new message', message)
         }
-        return res.json({success: true})
+        return res.json({success: true, message: newMessage})
     } else
         return res.json({success: false})
 }

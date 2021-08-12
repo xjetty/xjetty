@@ -1,6 +1,6 @@
 import {
     Button,
-    Card,
+    Card, CardActions,
     CardContent,
     Dialog, DialogActions,
     DialogContent,
@@ -106,7 +106,7 @@ const EscrowActionComponent = (props) => {
     return (
         <>
             <Card>
-                <CardContent gutterBottom>
+                <CardContent>
 
                     <List component="nav">
                         <ListItem button>
@@ -155,6 +155,9 @@ const EscrowActionComponent = (props) => {
                     {/*    )}*/}
                     {/*</Grid>*/}
                 </CardContent>
+                <CardActions>
+
+                </CardActions>
             </Card>
             <Dialog
                 open={open}

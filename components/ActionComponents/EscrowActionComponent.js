@@ -118,7 +118,8 @@ const EscrowActionComponent = (props) => {
                                     </ListItemIcon>
                                     <ListItemText primary="Release escrow"/>
                                 </ListItem>
-                                <ListItem button onClick={handleButton.bind(this, 'openDispute', 'Open dispute?')}>
+                                <ListItem button
+                                          onClick={(event) => handleButton(event, 'openDispute', 'Open dispute?')}>
                                     <ListItemIcon>
                                         <MeetingRoom/>
                                     </ListItemIcon>

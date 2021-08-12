@@ -13,7 +13,7 @@ import React, {useContext, useEffect} from "react";
 import {AppContext} from "../../contexts/AppContext";
 import axios from "axios";
 import Draggable from "react-draggable";
-import {LockOpen, MeetingRoom} from '@material-ui/icons'
+import {LockOpen, MeetingRoom, Restore} from '@material-ui/icons'
 
 function PaperComponent(props) {
     return (
@@ -108,56 +108,34 @@ const EscrowActionComponent = (props) => {
             <Card>
                 <CardContent>
 
-                    <List component="nav">
-                        <ListItem button>
-                            <ListItemIcon>
-                                <LockOpen />
-                            </ListItemIcon>
-                            <ListItemText primary="Release escrow" />
-                        </ListItem>
-                        <ListItem button>
-                            <ListItemIcon>
-                                <MeetingRoom />
-                            </ListItemIcon>
-                            <ListItemText primary="Open dispute" />
-                        </ListItem>
-                    </List>
-
-                    {/*<Grid container spacing={2}>*/}
-                    {/*    {props.user === 'buyer' ? (*/}
-                    {/*        <>*/}
-                    {/*            <Grid item xs={12}>*/}
-                    {/*                <Button*/}
-                    {/*                    onClick={handleButton.bind(this, 'releaseEscrow', 'Release escrow?')}*/}
-                    {/*                    variant="contained"*/}
-                    {/*                    color="primary">*/}
-                    {/*                    Release escrow*/}
-                    {/*                </Button>*/}
-                    {/*                {!escrowDetails.disputeOpened && (*/}
-                    {/*                    <Button*/}
-                    {/*                        onClick={handleButton.bind(this, 'openDispute', 'Open dispute?')}*/}
-                    {/*                        variant="contained"*/}
-                    {/*                        color="primary">*/}
-                    {/*                        Open dispute*/}
-                    {/*                    </Button>*/}
-                    {/*                )}*/}
-                    {/*            </Grid>*/}
-                    {/*        </>*/}
-                    {/*    ) : (*/}
-                    {/*        <Grid item xs={12}>*/}
-                    {/*            <Button*/}
-                    {/*                onClick={handleButton.bind(this, 'refundEscrow', 'Refund escrow?')}*/}
-                    {/*                variant="contained"*/}
-                    {/*                color="primary">*/}
-                    {/*                Refund escrow*/}
-                    {/*            </Button>*/}
-                    {/*        </Grid>*/}
-                    {/*    )}*/}
-                    {/*</Grid>*/}
+                    {props.user === 'buyer' ? (
+                        <>
+                            <List component="nav">
+                                <ListItem button onClick={handleButton.bind(this, 'releaseEscrow', 'Release escrow?')}>
+                                    <ListItemIcon>
+                                        <LockOpen/>
+                                    </ListItemIcon>
+                                    <ListItemText primary="Release escrow"/>
+                                </ListItem>
+                                <ListItem button onClick={handleButton.bind(this, 'openDispute', 'Open dispute?')}>
+                                    <ListItemIcon>
+                                        <MeetingRoom/>
+                                    </ListItemIcon>
+                                    <ListItemText primary="Open dispute"/>
+                                </ListItem>
+                            </List>
+                        </>
+                    ) : (
+                        <List component="nav">
+                            <ListItem button onClick={handleButton.bind(this, 'refundEscrow', 'Refund escrow?')}>
+                                <ListItemIcon>
+                                    <Restore/>
+                                </ListItemIcon>
+                                <ListItemText primary="Refund escrow"/>
+                            </ListItem>
+                        </List>
+                    )}
                 </CardContent>
-                <CardActions>
-
-                </CardActions>
             </Card>
             <Dialog
                 open={open}

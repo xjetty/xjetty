@@ -92,7 +92,7 @@ const EscrowActionComponent = (props) => {
         recaptchaRef.current.execute()
     }
 
-    const handleButton = (buttonAction, title) => {
+    const handleButton = (event, buttonAction, title) => {
         setButtonAction(buttonAction)
         setTitle(title)
         setOpen(true)
@@ -111,7 +111,7 @@ const EscrowActionComponent = (props) => {
                     {props.user === 'buyer' ? (
                         <>
                             <List component="nav">
-                                <ListItem button onClick={handleButton.bind(this, 'releaseEscrow', 'Release escrow?')}>
+                                <ListItem button onClick={(event) => handleButton(event, 'releaseEscrow', 'Release escrow?')}>
                                     <ListItemIcon>
                                         <LockOpen/>
                                     </ListItemIcon>

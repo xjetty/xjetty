@@ -111,7 +111,8 @@ const EscrowActionComponent = (props) => {
                     {props.user === 'buyer' ? (
                         <>
                             <List component="nav">
-                                <ListItem button onClick={(event) => handleButton(event, 'releaseEscrow', 'Release escrow?')}>
+                                <ListItem button
+                                          onClick={(event) => handleButton(event, 'releaseEscrow', 'Release escrow?')}>
                                     <ListItemIcon>
                                         <LockOpen/>
                                     </ListItemIcon>
@@ -127,7 +128,7 @@ const EscrowActionComponent = (props) => {
                         </>
                     ) : (
                         <List component="nav">
-                            <ListItem button onClick={handleButton.bind(this, 'refundEscrow', 'Refund escrow?')}>
+                            <ListItem button onClick={(event) => handleButton(event, 'refundEscrow', 'Refund escrow?')}>
                                 <ListItemIcon>
                                     <Restore/>
                                 </ListItemIcon>

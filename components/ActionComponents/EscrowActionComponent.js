@@ -105,10 +105,10 @@ const EscrowActionComponent = (props) => {
 
     return (
         <>
-            <Card>
+            <Card gutterBottom>
                 <CardContent>
 
-                    <List component="nav" gutterBottom>
+                    <List component="nav">
                         <ListItem button>
                             <ListItemIcon>
                                 <LockOpen />

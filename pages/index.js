@@ -20,7 +20,11 @@ import {CheckCircle} from '@material-ui/icons'
 
 const useStyles = makeStyles((theme) => ({
     media: {
-        height: theme.spacing(10)
+        height: theme.spacing(10),
+        backgroundSize: 'contain',
+        // width: 'inherit',
+        // marginLeft: 'auto',
+        // marginRight: 'auto'
     },
 }));
 

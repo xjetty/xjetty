@@ -107,38 +107,45 @@ const EscrowActionComponent = (props) => {
         <>
             <Card>
                 <CardContent>
-                    <Typography variant="h5">
-                        Escrow Actions
-                    </Typography>
-                    {props.user === 'buyer' ? (
-                        <>
-                            <List component="nav">
-                                <ListItem button
-                                          onClick={(event) => handleButton(event, 'releaseEscrow', 'Release escrow?')}>
-                                    <ListItemIcon>
-                                        <LockOpen/>
-                                    </ListItemIcon>
-                                    <ListItemText primary="Release escrow"/>
-                                </ListItem>
-                                <ListItem button
-                                          onClick={(event) => handleButton(event, 'openDispute', 'Open dispute?')}>
-                                    <ListItemIcon>
-                                        <MeetingRoom/>
-                                    </ListItemIcon>
-                                    <ListItemText primary="Open dispute"/>
-                                </ListItem>
-                            </List>
-                        </>
-                    ) : (
-                        <List component="nav">
-                            <ListItem button onClick={(event) => handleButton(event, 'refundEscrow', 'Refund escrow?')}>
-                                <ListItemIcon>
-                                    <Restore/>
-                                </ListItemIcon>
-                                <ListItemText primary="Refund escrow"/>
-                            </ListItem>
-                        </List>
-                    )}
+                    <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                            <Typography variant="h5" component="h2">
+                                Escrow Actions
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={12}>
+                            {props.user === 'buyer' ? (
+                                <>
+                                    <List component="nav">
+                                        <ListItem button
+                                                  onClick={(event) => handleButton(event, 'releaseEscrow', 'Release escrow?')}>
+                                            <ListItemIcon>
+                                                <LockOpen/>
+                                            </ListItemIcon>
+                                            <ListItemText primary="Release escrow"/>
+                                        </ListItem>
+                                        <ListItem button
+                                                  onClick={(event) => handleButton(event, 'openDispute', 'Open dispute?')}>
+                                            <ListItemIcon>
+                                                <MeetingRoom/>
+                                            </ListItemIcon>
+                                            <ListItemText primary="Open dispute"/>
+                                        </ListItem>
+                                    </List>
+                                </>
+                            ) : (
+                                <List component="nav">
+                                    <ListItem button
+                                              onClick={(event) => handleButton(event, 'refundEscrow', 'Refund escrow?')}>
+                                        <ListItemIcon>
+                                            <Restore/>
+                                        </ListItemIcon>
+                                        <ListItemText primary="Refund escrow"/>
+                                    </ListItem>
+                                </List>
+                            )}
+                        </Grid>
+                    </Grid>
                 </CardContent>
             </Card>
             <Dialog

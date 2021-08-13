@@ -99,7 +99,7 @@ const Home = () => {
                                 </Link>
                             </Grid>
                             <Grid item xs={12} className={classes.centerText}>
-                                <Typography variant="body2" color="textSecondary">
+                                <Typography variant="body2">
                                     Copyright &#169; {new Date().getFullYear()} BlockCommerc. All Rights Reserved
                                 </Typography>
                             </Grid>

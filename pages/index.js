@@ -71,7 +71,7 @@ const Home = () => {
                             </Grid>
                             <Grid item xs={12} className={classes.centerText}>
                                 <Typography color="textSecondary">
-                                    With,
+                                    With
                                 </Typography>
                             </Grid>
                             <Grid item xs={12}>

@@ -65,12 +65,12 @@ const Home = () => {
                                 <Typography variant="h5" component="h2">
                                     BlockCommerc
                                 </Typography>
-                                <Typography>
+                                <Typography class="textSecondary">
                                     The Way Commerce Should Be on the Blockchain
                                 </Typography>
                             </Grid>
                             <Grid item xs={12} className={classes.centerText}>
-                                <Typography>
+                                <Typography class="textSecondary">
                                     With,
                                 </Typography>
                             </Grid>
@@ -78,7 +78,7 @@ const Home = () => {
                                 <Avatar alt="EOSIO Logo" src="/eosio-logo.png" className={classes.large}/>
                             </Grid>
                             <Grid item xs={12} className={classes.centerText}>
-                                <Typography>
+                                <Typography class="textSecondary">
                                     EOS.IO Cryptocurrency
                                 </Typography>
                             </Grid>
@@ -89,7 +89,7 @@ const Home = () => {
                                 <GoToListingComponent/>
                             </Grid>
                             <Grid item xs={12} className={classes.centerText}>
-                                <Typography>
+                                <Typography class="textSecondary">
                                     OR
                                 </Typography>
                             </Grid>
@@ -99,7 +99,7 @@ const Home = () => {
                                 </Link>
                             </Grid>
                             <Grid item xs={12} className={classes.centerText}>
-                                <Typography variant="body2">
+                                <Typography variant="body2" class="textSecondary">
                                     Copyright &#169; {new Date().getFullYear()} BlockCommerc. All Rights Reserved
                                 </Typography>
                             </Grid>
@@ -107,7 +107,7 @@ const Home = () => {
                                 <Divider/>
                             </Grid>
                             <Grid item xs={12} className={classes.centerText}>
-                                <Typography variant="h6">
+                                <Typography variant="h6" color="secondary">
                                     BlockCommerc&apos;s build-in crypto payment processor and fixed quantities make
                                     voided crypto purchases a thing of the past and allow you to receive the exact
                                     amount you requested in USD or crypto.

@@ -1,4 +1,4 @@
-import {Card, CardContent, List, ListItem, ListItemText} from "@material-ui/core";
+import {Card, CardContent, Grid, List, ListItem, ListItemText, TextField} from "@material-ui/core";
 import React, {useContext} from "react";
 import {AppContext} from "../contexts/AppContext";
 
@@ -19,38 +19,63 @@ const EscrowDetailsComponent = () => {
         <>
             <Card>
                 <CardContent>
-                    <List>
-                        <ListItem>
-                            <ListItemText
-                                primary={escrowDetails.transactionId ? escrowDetails.transactionId : 'N/A'}
-                                secondary="Escrow Transaction ID"
+                    <Grid container spacing={2}>
+                        <Grid item xs={12} md={6}>
+                            <TextField
+                                value={escrowDetails.transactionId ? escrowDetails.transactionId : 'N/A'}
+                                fullWidth
+                                label="Escrow transaction ID"
+                                variant="filled"
+                                InputProps={{
+                                    readOnly: true,
+                                }}
                             />
-                        </ListItem>
-                        <ListItem>
-                            <ListItemText
-                                primary={escrowDetails.escrowReleased ? getDatetime(escrowDetails.escrowReleasedOnTimestamp) : 'N/A'}
-                                secondary="Escrow Released On"
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                            <TextField
+                                value={escrowDetails.escrowReleased ? getDatetime(escrowDetails.escrowReleasedOnTimestamp) : 'N/A'}
+                                fullWidth
+                                label="Escrow released on"
+                                variant="filled"
+                                InputProps={{
+                                    readOnly: true,
+                                }}
                             />
-                        </ListItem>
-                        <ListItem>
-                            <ListItemText
-                                primary={escrowDetails.escrowRefunded ? getDatetime(escrowDetails.escrowRefundedOnTimestamp) : 'N/A'}
-                                secondary="Escrow Refunded On"
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                            <TextField
+                                value={escrowDetails.escrowRefunded ? getDatetime(escrowDetails.escrowRefundedOnTimestamp) : 'N/A'}
+                                fullWidth
+                                label="Escrow refunded on"
+                                variant="filled"
+                                InputProps={{
+                                    readOnly: true,
+                                }}
                             />
-                        </ListItem>
-                        <ListItem>
-                            <ListItemText
-                                primary={escrowDetails.disputeOpened ? getDatetime(escrowDetails.disputeOpenedOnTimestamp) : 'N/A'}
-                                secondary="Dispute Opened On"
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                            <TextField
+                                value={escrowDetails.disputeOpened ? getDatetime(escrowDetails.disputeOpenedOnTimestamp) : 'N/A'}
+                                fullWidth
+                                label="Dispute opened on"
+                                variant="filled"
+                                InputProps={{
+                                    readOnly: true,
+                                }}
                             />
-                        </ListItem>
-                        <ListItem>
-                            <ListItemText
-                                primary={escrowDetails.disputeResolved ? getDatetime(escrowDetails.disputeResolvedOnTimestamp) : 'N/A'}
-                                secondary="Dispute Resolved On"
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                            <TextField
+                                value={escrowDetails.disputeResolved ? getDatetime(escrowDetails.disputeResolvedOnTimestamp) : 'N/A'}
+                                fullWidth
+                                label="Dispute resolved on"
+                                variant="filled"
+                                InputProps={{
+                                    readOnly: true,
+                                }}
                             />
-                        </ListItem>
-                    </List>
+                        </Grid>
+                    </Grid>
                 </CardContent>
             </Card>
         </>

@@ -20,9 +20,9 @@ const EscrowDetailsComponent = () => {
             <Card>
                 <CardContent>
                     <Grid container spacing={2}>
-                        <Grid item xs={12} md={6}>
+                        {escrowDetails.transactionId && (<Grid item xs={12} md={6}>
                             <TextField
-                                value={escrowDetails.transactionId ? escrowDetails.transactionId : 'N/A'}
+                                value={escrowDetails.transactionId}
                                 fullWidth
                                 label="Escrow transaction ID"
                                 variant="filled"
@@ -30,51 +30,51 @@ const EscrowDetailsComponent = () => {
                                     readOnly: true,
                                 }}
                             />
-                        </Grid>
-                        <Grid item xs={12} md={6}>
+                        </Grid>)}
+                        {escrowDetails.escrowReleased && (<Grid item xs={12} md={6}>
                             <TextField
-                                value={escrowDetails.escrowReleased ? getDatetime(escrowDetails.escrowReleasedOnTimestamp) : 'N/A'}
+                                value={getDatetime(escrowDetails.escrowReleasedOnTimestamp)}
                                 fullWidth
-                                label="Escrow released on"
+                                label="Escrow released"
                                 variant="filled"
                                 InputProps={{
                                     readOnly: true,
                                 }}
                             />
-                        </Grid>
-                        <Grid item xs={12} md={6}>
+                        </Grid>)}
+                        {escrowDetails.escrowRefunded && (<Grid item xs={12} md={6}>
                             <TextField
-                                value={escrowDetails.escrowRefunded ? getDatetime(escrowDetails.escrowRefundedOnTimestamp) : 'N/A'}
+                                value={getDatetime(escrowDetails.escrowRefundedOnTimestamp)}
                                 fullWidth
-                                label="Escrow refunded on"
+                                label="Escrow refunded"
                                 variant="filled"
                                 InputProps={{
                                     readOnly: true,
                                 }}
                             />
-                        </Grid>
-                        <Grid item xs={12} md={6}>
+                        </Grid>)}
+                        {escrowDetails.disputeOpened && (<Grid item xs={12} md={6}>
                             <TextField
-                                value={escrowDetails.disputeOpened ? getDatetime(escrowDetails.disputeOpenedOnTimestamp) : 'N/A'}
+                                value={getDatetime(escrowDetails.disputeOpenedOnTimestamp)}
                                 fullWidth
-                                label="Dispute opened on"
+                                label="Dispute opened"
                                 variant="filled"
                                 InputProps={{
                                     readOnly: true,
                                 }}
                             />
-                        </Grid>
-                        <Grid item xs={12} md={6}>
+                        </Grid>)}
+                        {escrowDetails.disputeResolved && (<Grid item xs={12} md={6}>
                             <TextField
-                                value={escrowDetails.disputeResolved ? getDatetime(escrowDetails.disputeResolvedOnTimestamp) : 'N/A'}
+                                value={getDatetime(escrowDetails.disputeResolvedOnTimestamp)}
                                 fullWidth
-                                label="Dispute resolved on"
+                                label="Dispute resolved"
                                 variant="filled"
                                 InputProps={{
                                     readOnly: true,
                                 }}
                             />
-                        </Grid>
+                        </Grid>)}
                     </Grid>
                 </CardContent>
             </Card>

@@ -7,7 +7,7 @@ import {
     DialogContentText,
     DialogTitle,
     Grid,
-    LinearProgress, List, ListItem, ListItemIcon, ListItemText, Paper
+    LinearProgress, List, ListItem, ListItemIcon, ListItemText, Paper, Typography
 } from "@material-ui/core";
 import React, {useContext, useEffect} from "react";
 import {AppContext} from "../../contexts/AppContext";
@@ -107,7 +107,9 @@ const EscrowActionComponent = (props) => {
         <>
             <Card>
                 <CardContent>
-
+                    <Typography variant="h5">
+                        Escrow Actions
+                    </Typography>
                     {props.user === 'buyer' ? (
                         <>
                             <List component="nav">

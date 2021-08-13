@@ -1,4 +1,4 @@
-import {Card, CardContent, Grid, List, ListItem, ListItemText, TextField} from "@material-ui/core";
+import {Card, CardContent, Grid, List, ListItem, ListItemText, TextField, Typography} from "@material-ui/core";
 import React, {useContext} from "react";
 import {AppContext} from "../contexts/AppContext";
 
@@ -20,6 +20,11 @@ const EscrowDetailsComponent = () => {
             <Card>
                 <CardContent>
                     <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                            <Typography variant="h5">
+                                Escrow Details
+                            </Typography>
+                        </Grid>
                         {escrowDetails.transactionId && (<Grid item xs={12} md={6}>
                             <TextField
                                 value={escrowDetails.transactionId}

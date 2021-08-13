@@ -9,7 +9,7 @@ import {
     List,
     ListItem, ListItemIcon,
     ListItemText, ListSubheader,
-    Typography, Box
+    Typography, Box, CardHeader
 } from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import Link from 'next/link'
@@ -20,108 +20,62 @@ import {CheckCircle} from '@material-ui/icons'
 
 const useStyles = makeStyles((theme) => ({
     media: {
-        height: 200,
-        backgroundSize: 'contain',
-        width: 'inherit',
-        marginLeft: 'auto',
-        marginRight: 'auto'
+        height: theme.spacing(10)
     },
-    large: {
-        width: theme.spacing(12),
-        height: theme.spacing(12),
-        textAlign: 'center',
-        marginLeft: "auto",
-        marginRight: 'auto'
-    },
-    centerText: {
-        textAlign: 'center'
-    },
-    centerImage: {
-        textAlign: 'center',
-        marginLeft: "auto",
-        marginRight: 'auto'
-    }
 }));
 
 const Home = () => {
     const classes = useStyles()
 
     return (
-        <html>
-        <Head>
-            <title>Home - BlockCommerc</title>
-        </Head>
-        <Grid container spacing={2}>
-            <Grid item xs={12}>
-                <Card>
-                    <CardMedia
-                        className={classes.media}
-                        image='/logo.jpg'
-                        title="BlockCommerc Logo"
-                    />
-                    <CardContent>
-                        <Grid container spacing={2}>
-                            <Grid item xs={12} className={classes.centerText}>
-                                <Typography variant="h5" component="h2">
-                                    BlockCommerc
-                                </Typography>
-                                <Typography color="textSecondary">
-                                    The Way Commerce Should Be on the Blockchain
-                                </Typography>
+        <>
+            <Head>
+                <title>Home - BlockCommerc</title>
+            </Head>
+            <Grid container spacing={2}>
+                <Grid item xs={12}>
+                    <Card>
+                        <CardHeader
+                            title="BlockCommerc"
+                            subheader="The Way Commerce Should Be on the Blockchain With EOS.IO Cryptocurrency"
+                        />
+                        <CardMedia
+                            className={classes.media}
+                            image='/logo.jpg'
+                            title="BlockCommerc Logo"
+                        />
+                        <CardContent>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12}>
+                                    <GoToListingComponent/>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Typography color="textSecondary">
+                                        OR
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Link href="/create">
+                                        <Button size="large" variant="contained" color="primary">Create a
+                                            listing</Button>
+                                    </Link>
+                                </Grid>
                             </Grid>
-                            <Grid item xs={12} className={classes.centerText}>
-                                <Typography color="textSecondary">
-                                    With
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Avatar alt="EOSIO Logo" src="/eosio-logo.png" className={classes.large}/>
-                            </Grid>
-                            <Grid item xs={12} className={classes.centerText}>
-                                <Typography color="textSecondary">
-                                    EOS.IO Cryptocurrency
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Divider/>
-                            </Grid>
-                            <Grid item xs={12} style={{maxWidth: 300, marginLeft: 'auto', marginRight: 'auto'}}>
-                                <GoToListingComponent/>
-                            </Grid>
-                            <Grid item xs={12} className={classes.centerText}>
-                                <Typography color="textSecondary">
-                                    OR
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={12} className={classes.centerText}>
-                                <Link href="/create">
-                                    <Button size="large" variant="contained" color="primary">Create a listing</Button>
-                                </Link>
-                            </Grid>
-                            <Grid item xs={12} className={classes.centerText}>
-                                <Typography variant="body2">
-                                    Copyright &#169; {new Date().getFullYear()} BlockCommerc. All Rights Reserved
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Divider/>
-                            </Grid>
-                            <Grid item xs={12} className={classes.centerText}>
-                                <Typography variant="h6" color="secondary">
-                                    BlockCommerc&apos;s build-in crypto payment processor and fixed quantities make
-                                    voided crypto purchases a thing of the past and allow you to receive the exact
-                                    amount you requested in USD or crypto.
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Divider/>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Box
-                                    display="flex"
-                                    justifyContent="center"
-                                    alignItems="center"
-                                >
+                        </CardContent>
+                    </Card>
+                </Grid>
+                <Grid item xs={12}>
+                    <Card>
+                        <CardContent>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12}>
+                                    <Typography variant="h6" color="secondary">
+                                        BlockCommerc&apos;s build-in crypto payment processor and fixed quantities make
+                                        voided crypto purchases a thing of the past and allow you to receive the exact
+                                        amount you requested in USD or crypto.
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={12}>
                                     <List subheader={<ListSubheader>Additionally</ListSubheader>}>
                                         <ListItem>
                                             <ListItemIcon>
@@ -148,46 +102,49 @@ const Home = () => {
                                             />
                                         </ListItem>
                                     </List>
-                                </Box>
-
+                                </Grid>
                             </Grid>
-                            <Grid item xs={12}>
-                                <Divider/>
+                        </CardContent>
+                    </Card>
+                </Grid>
+                <Grid item xs={12}>
+                    <Card>
+                        <CardContent>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12} className={classes.centerText}>
+                                    <Typography variant="h5" component="h2">
+                                        Recommended Wallets
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={12} className={classes.centerText}>
+                                    <ButtonGroup variant="contained"
+                                                 aria-label="contained primary button group">
+                                        <Button href="https://greymass.com/en/anchor/" target="_blank">Anchor</Button>
+                                    </ButtonGroup>
+                                </Grid>
                             </Grid>
-                            <Grid item xs={12} className={classes.centerText}>
-                                <Typography variant="h5" component="h2">
-                                    Recommended Wallets
-                                </Typography>
+                        </CardContent>
+                    </Card>
+                </Grid>
+                <Grid item xs={12}>
+                    <Card>
+                        <CardContent>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12}>
+                                    <Typography variant="h5" component="h2">
+                                        Contact BlockCommerc
+                                    </Typography>
+                                </Grid>
+                                <ContactFormComponent/>
                             </Grid>
-                            <Grid item xs={12} className={classes.centerText}>
-                                <ButtonGroup variant="contained"
-                                             aria-label="contained primary button group">
-                                    <Button href="https://greymass.com/en/anchor/" target="_blank">Anchor</Button>
-                                </ButtonGroup>
-                            </Grid>
-                        </Grid>
-                    </CardContent>
-                </Card>
+                        </CardContent>
+                        <CardActions>
+                            <SendMessageActionComponent/>
+                        </CardActions>
+                    </Card>
+                </Grid>
             </Grid>
-            <Grid item xs={12}>
-                <Card>
-                    <CardContent>
-                        <Grid container spacing={2}>
-                            <Grid item xs={12}>
-                                <Typography variant="h5" component="h2">
-                                    Contact BlockCommerc
-                                </Typography>
-                            </Grid>
-                            <ContactFormComponent/>
-                        </Grid>
-                    </CardContent>
-                    <CardActions>
-                        <SendMessageActionComponent/>
-                    </CardActions>
-                </Card>
-            </Grid>
-        </Grid>
-        </html>
+        </>
     )
 
 }

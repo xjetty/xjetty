@@ -20,11 +20,8 @@ import {CheckCircle} from '@material-ui/icons'
 
 const useStyles = makeStyles((theme) => ({
     media: {
-        height: theme.spacing(10),
+        height: theme.spacing(15),
         backgroundSize: 'contain',
-        // width: 'inherit',
-        // marginLeft: 'auto',
-        // marginRight: 'auto'
     },
 }));
 
@@ -50,7 +47,7 @@ const Home = () => {
                         />
                         <CardContent>
                             <Grid container spacing={2}>
-                                <Grid item xs={12}>
+                                <Grid item xs={12} md={4}>
                                     <GoToListingComponent/>
                                 </Grid>
                                 <Grid item xs={12}>

@@ -155,6 +155,7 @@ const Home = () => {
                                     <ButtonGroup
                                         orientation="vertical"
                                         variant="contained"
+                                        color="primary"
                                     >
                                         <Button variant="contained" href="https://exodus.com"
                                                 target="_blank">Exodus</Button>

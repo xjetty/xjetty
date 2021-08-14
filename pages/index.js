@@ -122,7 +122,7 @@ const Home = () => {
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Button href="https://exodus.com" target="_blank">Exodus</Button>
+                                    <Button variant="contained" href="https://exodus.com" target="_blank">Exodus</Button>
                                 </Grid>
                             </Grid>
                         </CardContent>

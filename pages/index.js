@@ -122,10 +122,7 @@ const Home = () => {
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <ButtonGroup variant="contained"
-                                                 aria-label="contained primary button group">
-                                        <Button href="https://exodus.com" target="_blank">Exodus</Button>
-                                    </ButtonGroup>
+                                    <Button href="https://exodus.com" target="_blank">Exodus</Button>
                                 </Grid>
                             </Grid>
                         </CardContent>

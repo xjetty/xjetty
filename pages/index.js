@@ -124,15 +124,16 @@ const Home = () => {
                                 <Grid item xs={12}>
                                     <ButtonGroup
                                         orientation="vertical"
-                                        color="primary"
-                                        aria-label="vertical contained primary button group"
                                         variant="contained"
                                     >
                                         <Button variant="contained" href="https://exodus.com"
                                                 target="_blank">Exodus</Button>
-                                        <Button variant="contained" href="https://getwombat.io/">Wombat</Button>
-                                        <Button variant="contained" href="https://greymass.com/en/anchor/">Anchor</Button>
-                                        <Button variant="contained" href="https://guarda.com/">Guarda (buy crypto)</Button>
+                                        <Button variant="contained" href="https://getwombat.io/"
+                                                target="_blank">Wombat</Button>
+                                        <Button variant="contained" href="https://greymass.com/en/anchor/"
+                                                target="_blank">Anchor</Button>
+                                        <Button variant="contained" href="https://guarda.com/" target="_blank">Guarda
+                                            (buy crypto)</Button>
                                     </ButtonGroup>
                                 </Grid>
                             </Grid>

@@ -13,7 +13,7 @@ const useStyles = makeStyles(() => ({
 const FooterComponent = () => {
     const classes = useStyles()
     return (
-        <AppBar position="fixed" color="primary" className={classes.appBar}>
+        <AppBar position="absolute" color="primary" className={classes.appBar}>
             <Toolbar variant="dense">
                 <Typography variant="body1" className={classes.title}>
                     Copyright &#169; {new Date().getFullYear()} BlockCommerc

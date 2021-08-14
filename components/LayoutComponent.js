@@ -1,5 +1,5 @@
 import NavBarComponent from "./NavBarComponent";
-import {Box, Container, Grid, Toolbar, Typography} from "@material-ui/core";
+import {Box, Container, Toolbar} from "@material-ui/core";
 import SnackbarComponent from "./SnackbarComponent";
 import RecaptchaFieldComponent from "./FieldComponents/RecaptchaFieldComponent";
 import React from "react";

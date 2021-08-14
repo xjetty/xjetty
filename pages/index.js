@@ -155,6 +155,11 @@ const Home = () => {
                         </CardActions>
                     </Card>
                 </Grid>
+                <Grid item xs={12} style={{textAlign: 'center'}}>
+                    <Typography variant="body2">
+                        Copyright &#169; { new Date().getFullYear() } BlockCommerc. All Rights Reserved
+                    </Typography>
+                </Grid>
             </Grid>
         </>
     )

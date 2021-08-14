@@ -123,6 +123,7 @@ const Home = () => {
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Button variant="contained" href="https://exodus.com" target="_blank">Exodus</Button>
+                                    <Button variant="contained" href="https://getwombat.io/">Wombat</Button>
                                 </Grid>
                             </Grid>
                         </CardContent>

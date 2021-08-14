@@ -17,9 +17,7 @@ const SendMessageActionComponent = () => {
         recaptchaRef,
         recaptchaResponse,
         setSnackbarMessage,
-        setSnackbarOpen,
-        showSomethingWentWrongDialog,
-        showLostInternetConnectionDialog
+        setSnackbarOpen
     } = useContext(AppContext)
 
     const [submittingData, setSubmittingData] = React.useState(false)
@@ -33,44 +31,38 @@ const SendMessageActionComponent = () => {
         recaptchaRef.current.execute()
     }
 
-    useEffect(() => {
-        const sendMessage = async () => {
-            try {
-                const res = await axios.post('api/sendMessage', {
-                    emailAddress: emailAddress,
-                    message: message,
-                    recaptchaResponse: recaptchaResponse
-                })
-                if (res.data.success) {
-                    setEmailAddress('')
-                    setMessage('')
-                    setEmailAddressError(false)
-                    setMessageError(false)
-                    setSubmittingData(false)
-                    process.nextTick(() => {
-                        recaptchaRef.current.reset()
-                    })
-                    setSnackbarMessage('Message sent successfully')
-                    setSnackbarOpen(true)
-                } else {
-                    setSubmittingData(false)
-                    process.nextTick(() => {
-                        recaptchaRef.current.reset()
-                    })
-                    showSomethingWentWrongDialog()
-                }
-            } catch (e) {
+    const sendMessage = async () => {
+        try {
+            const res = await axios.post('api/sendMessage', {
+                emailAddress: emailAddress,
+                message: message,
+                recaptchaResponse: recaptchaResponse
+            })
+            if (res.data.success) {
+                setEmailAddress('')
+                setMessage('')
+                setEmailAddressError(false)
+                setMessageError(false)
                 setSubmittingData(false)
                 process.nextTick(() => {
                     recaptchaRef.current.reset()
                 })
-                showLostInternetConnectionDialog()
-            }
+                setSnackbarMessage('Message sent successfully')
+                setSnackbarOpen(true)
+            } else
+                alert('Something went wrong')
+        } catch (e) {
+            alert('Lost Internet connection')
         }
+        setSubmittingData(false)
+        process.nextTick(() => {
+            recaptchaRef.current.reset()
+        })
+    }
 
-        if (submittingData && recaptchaResponse) {
+    useEffect(() => {
+        if (submittingData && recaptchaResponse)
             sendMessage()
-        }
     }, [recaptchaResponse])
 
     return (
@@ -79,8 +71,7 @@ const SendMessageActionComponent = () => {
                 <LinearProgress/>
             </Grid>)}
             <Grid item xs={12}>
-                <Button onClick={submitRecaptcha} disabled={disabled} variant="contained"
-                        color="primary">Send message</Button>
+                <Button onClick={submitRecaptcha} disabled={disabled} variant="contained">Send message</Button>
             </Grid>
         </Grid>
     )

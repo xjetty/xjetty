@@ -14,7 +14,7 @@ import Link from 'next/link'
 import ContactFormComponent from "../components/FormComponents/ContactFormComponent";
 import SendMessageActionComponent from "../components/ActionComponents/SendMessageActionComponent";
 import GoToListingComponent from "../components/GoToListingComponent";
-import {CheckCircle} from '@material-ui/icons'
+import {CheckCircle, Copyright} from '@material-ui/icons'
 
 const useStyles = makeStyles((theme) => ({
     media: {
@@ -156,9 +156,20 @@ const Home = () => {
                     </Card>
                 </Grid>
                 <Grid item xs={12}>
-                    <Typography variant="body2">
-                        Copyright &#169; { new Date().getFullYear() } BlockCommerc. All Rights Reserved
-                    </Typography>
+                    <Card>
+                        <CardContent>
+                            <List>
+                                <ListItem>
+                                    <ListItemIcon>
+                                        <Copyright/>
+                                    </ListItemIcon>
+                                    <ListItemText
+                                        primary={`${new Date().getFullYear()} BlockCommerc. All Rights Reserved`}
+                                    />
+                                </ListItem>
+                            </List>
+                        </CardContent>
+                    </Card>
                 </Grid>
             </Grid>
         </>

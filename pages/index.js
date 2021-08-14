@@ -80,6 +80,7 @@ const Home = () => {
                 </Grid>
                 <Grid item xs={12}>
                     <Card>
+                        <CardContent>
                             <List subheader={<ListSubheader>Additionally</ListSubheader>}>
                                 <ListItem>
                                     <ListItemIcon>
@@ -106,6 +107,7 @@ const Home = () => {
                                     />
                                 </ListItem>
                             </List>
+                        </CardContent>
                     </Card>
                 </Grid>
                 <Grid item xs={12}>

@@ -41,12 +41,18 @@ const Home = () => {
                             image='/logo.jpg'
                             title="BlockCommerc Logo"
                         />
-                        <CardHeader
-                            title="BlockCommerc"
-                            subheader="The Way Commerce Should Be on the Blockchain With EOS.IO Cryptocurrency"
-                        />
                         <CardContent>
                             <Grid container spacing={2}>
+                                <Grid item xs={12}>
+                                    <Typography variant="h5">
+                                        BlockCommerc
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Typography color="textSecondary">
+                                        Commerce Made Easy for Everyone With EOS.IO Cryptocurrency
+                                    </Typography>
+                                </Grid>
                                 <Grid item xs={12} md={4}>
                                     <GoToListingComponent/>
                                 </Grid>

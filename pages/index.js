@@ -46,7 +46,7 @@ const Home = () => {
                                         BlockCommerc
                                     </Typography>
                                     <Typography color="textSecondary">
-                                        Commerce Made Easy for Everyone With EOS.IO Cryptocurrency
+                                        Commerce Made Easy on the Blockchain With EOS.IO Cryptocurrency
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={12} md={4}>

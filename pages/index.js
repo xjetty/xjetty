@@ -157,7 +157,7 @@ const Home = () => {
                 </Grid>
                 <Grid item xs={12}>
                     <Card>
-                        <List dense>
+                        <List>
                             <ListItem>
                                 <ListItemIcon>
                                     <Copyright/>

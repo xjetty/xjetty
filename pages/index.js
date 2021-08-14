@@ -177,7 +177,7 @@ const Home = () => {
                             <Grid container spacing={2}>
                                 <Grid item xs={12}>
                                     <Typography variant="h6">
-                                        Contact BlockCommerc
+                                        Contact Us
                                     </Typography>
                                 </Grid>
                                 <ContactFormComponent/>

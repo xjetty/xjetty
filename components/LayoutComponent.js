@@ -13,13 +13,6 @@ const LayoutComponent = ({children}) => {
             <Container>
                 <Box my={2}>
                     {children}
-                    <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <Typography variant="body2">
-                                Copyright &#169; { new Date().getFullYear() } BlockCommerc. All Rights Reserved
-                            </Typography>
-                        </Grid>
-                    </Grid>
                 </Box>
             </Container>
             <SnackbarComponent/>

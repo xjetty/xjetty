@@ -24,7 +24,9 @@ const useStyles = makeStyles((theme) => ({
         backgroundSize: 'contain',
     },
     walletButtons: {
-        margin: theme.spacing(1)
+        '& > *': {
+            margin: theme.spacing(1),
+        }
     }
 }));
 
@@ -126,7 +128,8 @@ const Home = () => {
                                 </Grid>
                                 <Grid item xs={12}>
                                     <div className={classes.walletButtons}>
-                                        <Button variant="contained" href="https://exodus.com" target="_blank">Exodus</Button>
+                                        <Button variant="contained" href="https://exodus.com"
+                                                target="_blank">Exodus</Button>
                                         <Button variant="contained" href="https://getwombat.io/">Wombat</Button>
                                     </div>
                                 </Grid>

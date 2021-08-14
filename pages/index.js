@@ -20,7 +20,7 @@ import {CheckCircle} from '@material-ui/icons'
 
 const useStyles = makeStyles((theme) => ({
     media: {
-        height: theme.spacing(15),
+        height: theme.spacing(20),
         backgroundSize: 'contain',
     },
 }));
@@ -36,14 +36,14 @@ const Home = () => {
             <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <Card>
-                        <CardHeader
-                            title="BlockCommerc"
-                            subheader="The Way Commerce Should Be on the Blockchain With EOS.IO Cryptocurrency"
-                        />
                         <CardMedia
                             className={classes.media}
                             image='/logo.jpg'
                             title="BlockCommerc Logo"
+                        />
+                        <CardHeader
+                            title="BlockCommerc"
+                            subheader="The Way Commerce Should Be on the Blockchain With EOS.IO Cryptocurrency"
                         />
                         <CardContent>
                             <Grid container spacing={2}>

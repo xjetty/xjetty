@@ -47,8 +47,6 @@ const Home = () => {
                                     <Typography variant="h5">
                                         BlockCommerc
                                     </Typography>
-                                </Grid>
-                                <Grid item xs={12}>
                                     <Typography color="textSecondary">
                                         Commerce Made Easy for Everyone With EOS.IO Cryptocurrency
                                     </Typography>

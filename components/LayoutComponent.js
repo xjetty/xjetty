@@ -11,7 +11,7 @@ const useStyles = makeStyles(() => ({
         // flexGrow: 1
     },
     container: {
-        height: '100vh'
+        minHeight: '100vh'
     }
 }))
 

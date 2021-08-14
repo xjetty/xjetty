@@ -71,9 +71,9 @@ const Home = () => {
                     <Card>
                         <CardContent>
                             <Typography variant="h6" color="secondary">
-                                BlockCommerc&apos;s built-in crypto payment processor and fixed quantities make
-                                voided crypto purchases a thing of the past and allow you to receive the exact
-                                amount you entered in USD or crypto.
+                                BlockCommerc&apos;s built-in crypto payment processor and fixed item quantities
+                                make voided crypto purchases a thing of the past and allow you to receive the
+                                exact amount you listed in USD or crypto.
                             </Typography>
                         </CardContent>
                     </Card>

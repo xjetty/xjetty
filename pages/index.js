@@ -113,13 +113,13 @@ const Home = () => {
                 <Grid item xs={12}>
                     <Card>
                         <CardContent>
-                            <List subheader={<ListSubheader>EOS.IO</ListSubheader>}>
+                            <List subheader={<ListSubheader>EOS</ListSubheader>}>
                                 <ListItem>
                                     <ListItemIcon>
                                         <EmojiEvents color="primary"/>
                                     </ListItemIcon>
                                     <ListItemText
-                                        primary="Thousands of transactions per second"
+                                        primary="2,800 transactions per second"
                                     />
                                 </ListItem>
                                 <ListItem>
@@ -127,7 +127,7 @@ const Home = () => {
                                         <EmojiEvents color="primary"/>
                                     </ListItemIcon>
                                     <ListItemText
-                                        primary="Near-instant transaction times"
+                                        primary="0.5s transaction times"
                                     />
                                 </ListItem>
                                 <ListItem>
@@ -135,7 +135,7 @@ const Home = () => {
                                         <EmojiEvents color="primary"/>
                                     </ListItemIcon>
                                     <ListItemText
-                                        primary="Zero percent transaction fees"
+                                        primary="0% transaction fees"
                                     />
                                 </ListItem>
                             </List>

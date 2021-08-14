@@ -163,8 +163,8 @@ const Home = () => {
                                     <Copyright/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="BlockCommerc"
-                                    secondary={`${new Date().getFullYear()}. All Rights Reserved`}
+                                    primary={`BlockCommerc, ${new Date().getFullYear()}`}
+                                    secondary="All Rights Reserved"
                                 />
                             </ListItem>
                         </List>

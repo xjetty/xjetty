@@ -9,6 +9,9 @@ import FooterComponent from "./FooterComponent";
 const useStyles = makeStyles(() => ({
     root: {
         // flexGrow: 1
+    },
+    container: {
+        height: '100vh'
     }
 }))
 
@@ -19,7 +22,7 @@ const LayoutComponent = ({children}) => {
             <div className={classes.root}>
                 <NavBarComponent/>
                 <Toolbar/>
-                <Container>
+                <Container className={classes.container}>
                     <Box my={2}>
                         {children}
                     </Box>

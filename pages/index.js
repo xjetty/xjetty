@@ -73,7 +73,7 @@ const Home = () => {
                             <Grid container spacing={2}>
                                 <Grid item xs={12}>
                                     <Typography variant="h6" color="secondary">
-                                        BlockCommerc&apos;s build-in crypto payment processor and fixed quantities make
+                                        BlockCommerc&apos;s built-in crypto payment processor and fixed quantities make
                                         voided crypto purchases a thing of the past and allow you to receive the exact
                                         amount you requested in USD or crypto.
                                     </Typography>
@@ -154,11 +154,6 @@ const Home = () => {
                             <SendMessageActionComponent/>
                         </CardActions>
                     </Card>
-                </Grid>
-                <Grid item xs={12}>
-                    <Typography variant="body2">
-                        Copyright &#169; { new Date().getFullYear() } BlockCommerc. All Rights Reserved
-                    </Typography>
                 </Grid>
             </Grid>
         </>

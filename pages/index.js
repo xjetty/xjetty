@@ -54,7 +54,7 @@ const Home = () => {
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Typography color="textSecondary">
-                                        or I want to
+                                        or, I want to
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={12}>

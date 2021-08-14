@@ -116,15 +116,15 @@ const Home = () => {
                     <Card>
                         <CardContent>
                             <Grid container spacing={2}>
-                                <Grid item xs={12} className={classes.centerText}>
-                                    <Typography variant="h5" component="h2">
+                                <Grid item xs={12}>
+                                    <Typography variant="h6">
                                         Recommended Wallets
                                     </Typography>
                                 </Grid>
-                                <Grid item xs={12} className={classes.centerText}>
+                                <Grid item xs={12}>
                                     <ButtonGroup variant="contained"
                                                  aria-label="contained primary button group">
-                                        <Button href="https://greymass.com/en/anchor/" target="_blank">Anchor</Button>
+                                        <Button href="https://exodus.com" target="_blank">Exodus</Button>
                                     </ButtonGroup>
                                 </Grid>
                             </Grid>
@@ -136,7 +136,7 @@ const Home = () => {
                         <CardContent>
                             <Grid container spacing={2}>
                                 <Grid item xs={12}>
-                                    <Typography variant="h5" component="h2">
+                                    <Typography variant="h6">
                                         Contact BlockCommerc
                                     </Typography>
                                 </Grid>

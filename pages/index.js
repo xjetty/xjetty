@@ -80,66 +80,62 @@ const Home = () => {
                 </Grid>
                 <Grid item xs={12}>
                     <Card>
-                        <CardContent>
-                            <List subheader={<ListSubheader>Additionally</ListSubheader>}>
-                                <ListItem>
-                                    <ListItemIcon>
-                                        <CheckCircle color="secondary"/>
-                                    </ListItemIcon>
-                                    <ListItemText
-                                        primary="You pay no fees"
-                                    />
-                                </ListItem>
-                                <ListItem>
-                                    <ListItemIcon>
-                                        <CheckCircle color="secondary"/>
-                                    </ListItemIcon>
-                                    <ListItemText
-                                        primary="You can take offers"
-                                    />
-                                </ListItem>
-                                <ListItem>
-                                    <ListItemIcon>
-                                        <CheckCircle color="secondary"/>
-                                    </ListItemIcon>
-                                    <ListItemText
-                                        primary="And you can use an escrow"
-                                    />
-                                </ListItem>
-                            </List>
-                        </CardContent>
+                        <List subheader={<ListSubheader>Additionally</ListSubheader>}>
+                            <ListItem>
+                                <ListItemIcon>
+                                    <CheckCircle color="secondary"/>
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary="You pay no fees"
+                                />
+                            </ListItem>
+                            <ListItem>
+                                <ListItemIcon>
+                                    <CheckCircle color="secondary"/>
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary="You can take offers"
+                                />
+                            </ListItem>
+                            <ListItem>
+                                <ListItemIcon>
+                                    <CheckCircle color="secondary"/>
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary="And you can use an escrow"
+                                />
+                            </ListItem>
+                        </List>
                     </Card>
                 </Grid>
                 <Grid item xs={12}>
                     <Card>
-                        <CardContent>
-                            <List subheader={<ListSubheader>EOS.IO</ListSubheader>}>
-                                <ListItem>
-                                    <ListItemIcon>
-                                        <EmojiEvents color="primary"/>
-                                    </ListItemIcon>
-                                    <ListItemText
-                                        primary="Thousands of transactions per second"
-                                    />
-                                </ListItem>
-                                <ListItem>
-                                    <ListItemIcon>
-                                        <EmojiEvents color="primary"/>
-                                    </ListItemIcon>
-                                    <ListItemText
-                                        primary="Near-instant transaction times"
-                                    />
-                                </ListItem>
-                                <ListItem>
-                                    <ListItemIcon>
-                                        <EmojiEvents color="primary"/>
-                                    </ListItemIcon>
-                                    <ListItemText
-                                        primary="Zero percent transaction fees"
-                                    />
-                                </ListItem>
-                            </List>
-                        </CardContent>
+                        <List subheader={<ListSubheader>EOS.IO</ListSubheader>}>
+                            <ListItem>
+                                <ListItemIcon>
+                                    <EmojiEvents color="primary"/>
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary="Thousands of transactions per second"
+                                />
+                            </ListItem>
+                            <ListItem>
+                                <ListItemIcon>
+                                    <EmojiEvents color="primary"/>
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary="Near-instant transaction times"
+                                />
+                            </ListItem>
+                            <ListItem>
+                                <ListItemIcon>
+                                    <EmojiEvents color="primary"/>
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary="Zero percent transaction fees"
+                                />
+                            </ListItem>
+                        </List>
                     </Card>
                 </Grid>
                 <Grid item xs={12}>

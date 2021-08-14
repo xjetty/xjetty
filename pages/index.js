@@ -1,15 +1,13 @@
 import Head from "next/head";
 import {
-    Avatar,
     Button, ButtonGroup,
     Card, CardActions,
     CardContent, CardMedia,
     Grid,
-    Divider,
     List,
     ListItem, ListItemIcon,
     ListItemText, ListSubheader,
-    Typography, Box, CardHeader
+    Typography
 } from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import Link from 'next/link'
@@ -23,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
         height: theme.spacing(20),
         backgroundSize: 'contain'
     }
-}));
+}))
 
 const Home = () => {
     const classes = useStyles()
@@ -160,7 +158,6 @@ const Home = () => {
             </Grid>
         </>
     )
-
 }
 
 export default Home

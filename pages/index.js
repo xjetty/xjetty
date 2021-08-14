@@ -81,7 +81,7 @@ const Home = () => {
                 <Grid item xs={12}>
                     <Card>
                         <CardContent>
-                            <List subheader={<ListSubheader>Additionally</ListSubheader>}>
+                            <List subheader={<ListSubheader>Additionally,</ListSubheader>}>
                                 <ListItem>
                                     <ListItemIcon>
                                         <CheckCircle color="secondary"/>

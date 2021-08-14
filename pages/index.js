@@ -21,12 +21,7 @@ import {CheckCircle} from '@material-ui/icons'
 const useStyles = makeStyles((theme) => ({
     media: {
         height: theme.spacing(20),
-        backgroundSize: 'contain',
-    },
-    walletButtons: {
-        '& > *': {
-            marginRight: theme.spacing(1),
-        }
+        backgroundSize: 'contain'
     }
 }));
 
@@ -127,11 +122,16 @@ const Home = () => {
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <div className={classes.walletButtons}>
+                                    <ButtonGroup
+                                        orientation="vertical"
+                                        color="primary"
+                                        aria-label="vertical contained primary button group"
+                                        variant="contained"
+                                    >
                                         <Button variant="contained" href="https://exodus.com"
                                                 target="_blank">Exodus</Button>
                                         <Button variant="contained" href="https://getwombat.io/">Wombat</Button>
-                                    </div>
+                                    </ButtonGroup>
                                 </Grid>
                             </Grid>
                         </CardContent>

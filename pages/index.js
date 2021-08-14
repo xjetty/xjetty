@@ -70,43 +70,43 @@ const Home = () => {
                 <Grid item xs={12}>
                     <Card>
                         <CardContent>
-                            <Grid container spacing={2}>
-                                <Grid item xs={12}>
-                                    <Typography variant="h6" color="secondary">
-                                        BlockCommerc&apos;s built-in crypto payment processor and fixed quantities make
-                                        voided crypto purchases a thing of the past and allow you to receive the exact
-                                        amount you requested in USD or crypto.
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <List subheader={<ListSubheader>Additionally</ListSubheader>}>
-                                        <ListItem>
-                                            <ListItemIcon>
-                                                <CheckCircle color="secondary"/>
-                                            </ListItemIcon>
-                                            <ListItemText
-                                                primary="You pay no fees"
-                                            />
-                                        </ListItem>
-                                        <ListItem>
-                                            <ListItemIcon>
-                                                <CheckCircle color="secondary"/>
-                                            </ListItemIcon>
-                                            <ListItemText
-                                                primary="You can take offers"
-                                            />
-                                        </ListItem>
-                                        <ListItem>
-                                            <ListItemIcon>
-                                                <CheckCircle color="secondary"/>
-                                            </ListItemIcon>
-                                            <ListItemText
-                                                primary="And you can use an escrow"
-                                            />
-                                        </ListItem>
-                                    </List>
-                                </Grid>
-                            </Grid>
+                            <Typography variant="h6" color="secondary">
+                                BlockCommerc&apos;s built-in crypto payment processor and fixed quantities make
+                                voided crypto purchases a thing of the past and allow you to receive the exact
+                                amount you entered in USD or crypto.
+                            </Typography>
+                        </CardContent>
+                    </Card>
+                </Grid>
+                <Grid item xs={12}>
+                    <Card>
+                        <CardContent>
+                            <List subheader={<ListSubheader>Additionally</ListSubheader>}>
+                                <ListItem>
+                                    <ListItemIcon>
+                                        <CheckCircle color="secondary"/>
+                                    </ListItemIcon>
+                                    <ListItemText
+                                        primary="You pay no fees"
+                                    />
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemIcon>
+                                        <CheckCircle color="secondary"/>
+                                    </ListItemIcon>
+                                    <ListItemText
+                                        primary="You can take offers"
+                                    />
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemIcon>
+                                        <CheckCircle color="secondary"/>
+                                    </ListItemIcon>
+                                    <ListItemText
+                                        primary="And you can use an escrow"
+                                    />
+                                </ListItem>
+                            </List>
                         </CardContent>
                     </Card>
                 </Grid>

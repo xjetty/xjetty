@@ -131,6 +131,8 @@ const Home = () => {
                                         <Button variant="contained" href="https://exodus.com"
                                                 target="_blank">Exodus</Button>
                                         <Button variant="contained" href="https://getwombat.io/">Wombat</Button>
+                                        <Button variant="contained" href="https://greymass.com/en/anchor/">Anchor</Button>
+                                        <Button variant="contained" href="https://guarda.com/">Guarda (buy crypto)</Button>
                                     </ButtonGroup>
                                 </Grid>
                             </Grid>

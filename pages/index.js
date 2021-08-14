@@ -56,6 +56,8 @@ const Home = () => {
                                     <Typography color="textSecondary">
                                         or, I want to
                                     </Typography>
+                                </Grid>
+                                <Grid item xs={12}>
                                     <Link href="/create">
                                         <Button size="large" variant="contained" color="primary">Create a
                                             listing</Button>

@@ -112,32 +112,34 @@ const Home = () => {
                 </Grid>
                 <Grid item xs={12}>
                     <Card>
-                        <List subheader={<ListSubheader>EOS.IO</ListSubheader>}>
-                            <ListItem>
-                                <ListItemIcon>
-                                    <EmojiEvents color="primary"/>
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary="Thousands of transactions per second"
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemIcon>
-                                    <EmojiEvents color="primary"/>
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary="Near-instant transaction times"
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemIcon>
-                                    <EmojiEvents color="primary"/>
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary="Zero percent transaction fees"
-                                />
-                            </ListItem>
-                        </List>
+                        <CardContent>
+                            <List subheader={<ListSubheader>EOS.IO</ListSubheader>}>
+                                <ListItem>
+                                    <ListItemIcon>
+                                        <EmojiEvents color="primary"/>
+                                    </ListItemIcon>
+                                    <ListItemText
+                                        primary="Thousands of transactions per second"
+                                    />
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemIcon>
+                                        <EmojiEvents color="primary"/>
+                                    </ListItemIcon>
+                                    <ListItemText
+                                        primary="Near-instant transaction times"
+                                    />
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemIcon>
+                                        <EmojiEvents color="primary"/>
+                                    </ListItemIcon>
+                                    <ListItemText
+                                        primary="Zero percent transaction fees"
+                                    />
+                                </ListItem>
+                            </List>
+                        </CardContent>
                     </Card>
                 </Grid>
                 <Grid item xs={12}>

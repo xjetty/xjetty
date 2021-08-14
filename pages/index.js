@@ -157,18 +157,17 @@ const Home = () => {
                 </Grid>
                 <Grid item xs={12}>
                     <Card>
-                        <CardContent>
-                            <List>
-                                <ListItem>
-                                    <ListItemIcon>
-                                        <Copyright/>
-                                    </ListItemIcon>
-                                    <ListItemText
-                                        primary={`${new Date().getFullYear()} BlockCommerc. All Rights Reserved`}
-                                    />
-                                </ListItem>
-                            </List>
-                        </CardContent>
+                        <List>
+                            <ListItem>
+                                <ListItemIcon>
+                                    <Copyright/>
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary="BlockCommerc"
+                                    secondary={`${new Date().getFullYear()}. All Rights Reserved`}
+                                />
+                            </ListItem>
+                        </List>
                     </Card>
                 </Grid>
             </Grid>

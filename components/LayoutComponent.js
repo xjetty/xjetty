@@ -11,6 +11,8 @@ const useStyles = makeStyles(() => ({
         // flexGrow: 1
     },
     container: {
+        display: 'flex',
+        flexDirection: 'column',
         minHeight: '100vh'
     }
 }))

@@ -4,6 +4,7 @@ import SnackbarComponent from "./SnackbarComponent";
 import RecaptchaFieldComponent from "./FieldComponents/RecaptchaFieldComponent";
 import React from "react";
 import DialogComponent from "./DialogComponent";
+import FooterComponent from "./FooterComponent";
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -23,6 +24,7 @@ const LayoutComponent = ({children}) => {
                         {children}
                     </Box>
                 </Container>
+                <FooterComponent/>
             </div>
             <SnackbarComponent/>
             <RecaptchaFieldComponent/>

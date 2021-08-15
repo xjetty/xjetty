@@ -28,7 +28,18 @@ const SendMessageActionComponent = () => {
 
     const submitRecaptcha = () => {
         if (!emailAddress || !message || emailAddressError || messageError) {
-            alert('You are missing some parameters.')
+            const messages = []
+            let count = 0
+            if (!emailAddress || emailAddressError) {
+                messages.push('Email address')
+                count++
+            }
+            if (!message || messageError) {
+                messages.push('Message')
+                count++
+            }
+            const word = count > 1 ? 'fields' : 'field'
+            alert(`Please complete ${messages.join(', ')} ${word}.`)
         } else {
             setSubmittingData(true)
             recaptchaRef.current.execute()

@@ -22,13 +22,17 @@ const SendMessageActionComponent = () => {
 
     const [submittingData, setSubmittingData] = React.useState(false)
 
-    const disabled = useMemo(() => {
-        return submittingData || !emailAddress || !message || emailAddressError || messageError
-    }, [submittingData, emailAddress, emailAddressError, message, messageError])
+    // const disabled = useMemo(() => {
+    //     return submittingData || !emailAddress || !message || emailAddressError || messageError
+    // }, [submittingData, emailAddress, emailAddressError, message, messageError])
 
     const submitRecaptcha = () => {
-        setSubmittingData(true)
-        recaptchaRef.current.execute()
+        if (!emailAddress || !message || emailAddressError || messageError) {
+            alert('You are missing some parameters.')
+        } else {
+            setSubmittingData(true)
+            recaptchaRef.current.execute()
+        }
     }
 
     const sendMessage = async () => {
@@ -71,7 +75,7 @@ const SendMessageActionComponent = () => {
                 <LinearProgress/>
             </Grid>)}
             <Grid item xs={12}>
-                <Button onClick={submitRecaptcha} disabled={disabled} variant="contained">Send message</Button>
+                <Button onClick={submitRecaptcha} disabled={submittingData} variant="contained">Send message</Button>
             </Grid>
         </Grid>
     )

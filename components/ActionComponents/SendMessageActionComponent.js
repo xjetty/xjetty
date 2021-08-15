@@ -39,7 +39,7 @@ const SendMessageActionComponent = () => {
                 count++
             }
             const word = count > 1 ? 'fields' : 'field'
-            alert(`Please complete ${messages.join(', ')} ${word}.`)
+            alert(`Please complete the ${messages.join(', ')} ${word}.`)
         } else {
             setSubmittingData(true)
             recaptchaRef.current.execute()

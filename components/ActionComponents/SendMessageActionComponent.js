@@ -22,28 +22,13 @@ const SendMessageActionComponent = () => {
 
     const [submittingData, setSubmittingData] = React.useState(false)
 
-    // const disabled = useMemo(() => {
-    //     return submittingData || !emailAddress || !message || emailAddressError || messageError
-    // }, [submittingData, emailAddress, emailAddressError, message, messageError])
+    const disabled = useMemo(() => {
+        return submittingData || !emailAddress || !message || emailAddressError || messageError
+    }, [submittingData, emailAddress, emailAddressError, message, messageError])
 
     const submitRecaptcha = () => {
-        if (!emailAddress || !message || emailAddressError || messageError) {
-            const messages = []
-            let count = 0
-            if (!emailAddress || emailAddressError) {
-                messages.push('Email address')
-                count++
-            }
-            if (!message || messageError) {
-                messages.push('Message')
-                count++
-            }
-            const word = count > 1 ? 'fields' : 'field'
-            alert(`Please complete the ${messages.join(', ')} ${word}.`)
-        } else {
-            setSubmittingData(true)
-            recaptchaRef.current.execute()
-        }
+        setSubmittingData(true)
+        recaptchaRef.current.execute()
     }
 
     const sendMessage = async () => {
@@ -86,7 +71,7 @@ const SendMessageActionComponent = () => {
                 <LinearProgress/>
             </Grid>)}
             <Grid item xs={12}>
-                <Button onClick={submitRecaptcha} disabled={submittingData} variant="contained">Send message</Button>
+                <Button onClick={submitRecaptcha} disabled={disabled} variant="contained">Send message</Button>
             </Grid>
         </Grid>
     )

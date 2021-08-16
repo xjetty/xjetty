@@ -71,7 +71,7 @@ const SendMessageActionComponent = () => {
                 <LinearProgress/>
             </Grid>)}
             <Grid item xs={12}>
-                <Button onClick={submitRecaptcha} disabled={disabled} variant="contained">Send message</Button>
+                <Button onClick={submitRecaptcha} disabled={disabled} variant="contained" key={disabled}>Send message</Button>
             </Grid>
         </Grid>
     )

@@ -63,6 +63,16 @@ const Home = () => {
                                             listing</Button>
                                     </Link>
                                 </Grid>
+                                <Grid item xs={12}>
+                                    <Typography color="textSecondary">
+                                        or view
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Link href="/listings">
+                                        <Button size="large" variant="contained" color="secondary">Public listings</Button>
+                                    </Link>
+                                </Grid>
                             </Grid>
                         </CardContent>
                     </Card>

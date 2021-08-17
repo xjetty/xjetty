@@ -65,7 +65,7 @@ const Home = () => {
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Typography color="textSecondary">
-                                        or view
+                                        or, view
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={12}>

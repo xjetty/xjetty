@@ -72,6 +72,7 @@ function MyApp({Component, pageProps}) {
     const [eosAccountItems, setEosAccountItems] = React.useState([])
     const [showOffers, setShowOffers] = React.useState(false)
     const [escrowDetails, setEscrowDetails] = React.useState({})
+    const [publicListing, setPublicListing] = React.useState(false)
     React.useEffect(() => {
         const jssStyles = document.querySelector('#jss-server-side');
         if (jssStyles)
@@ -80,6 +81,8 @@ function MyApp({Component, pageProps}) {
     return (
         <AppContext.Provider
             value={{
+                publicListing,
+                setPublicListing,
                 dialogOpen,
                 setDialogOpen,
                 dialogHasTitle,

@@ -15,6 +15,7 @@ import MemoFieldComponent from "../FieldComponents/MemoFieldComponent";
 import EmailAddressFieldComponent from "../FieldComponents/EmailAddressFieldComponent";
 import CreateListingActionComponent from "../ActionComponents/CreateListingActionComponent";
 import {makeStyles} from "@material-ui/core/styles";
+import PublicListingFieldComponent from "../FieldComponents/PublicListingFieldComponent";
 
 const useStyles = makeStyles({
     media: {
@@ -50,6 +51,9 @@ const CreateListingFormComponent = () => {
                             <Grid container spacing={2}>
                                 <Grid item xs={12}>
                                     <NotesFieldComponent/>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <PublicListingFieldComponent/>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Typography gutterBottom>

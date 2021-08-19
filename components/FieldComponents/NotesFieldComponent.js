@@ -7,7 +7,7 @@ const NotesFieldComponent = () => {
 
     const helperText = useMemo(() => {
         if (notesError) {
-            return 'Notes is required'
+            return 'Description is required'
         } else return ''
     }, [notesError])
 
@@ -34,7 +34,7 @@ const NotesFieldComponent = () => {
             onChange={handle}
             onBlur={checkError}
             fullWidth
-            label="Notes"
+            label="Description"
             multiline
             variant="filled"
             helperText={helperText}

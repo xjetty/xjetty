@@ -58,28 +58,15 @@ const CreateListingFormComponent = () => {
                                 <Grid item xs={12}>
                                     <PublicListingFieldComponent/>
                                 </Grid>
-                                {publicListing && (<Grid item xs={12}>
-                                    <Card variant="outlined">
-                                        <CardContent>
-                                            <Grid container spacing={2}>
-                                                <Grid item xs={12}>
-                                                    <Typography color="textSecondary">
-                                                        Display
-                                                    </Typography>
-                                                </Grid>
-                                                <Grid item xs={12}>
-                                                    <TitleFieldComponent/>
-                                                </Grid>
-                                                <Grid item xs={12}>
-                                                    <ImageLinkFieldComponent/>
-                                                </Grid>
-                                                <Grid item xs={12}>
-                                                    <KeywordsFieldComponent/>
-                                                </Grid>
-                                            </Grid>
-                                        </CardContent>
-                                    </Card>
-                                </Grid>)}
+                                {publicListing && (<><Grid item xs={12}>
+                                    <TitleFieldComponent/>
+                                </Grid>
+                                    <Grid item xs={12}>
+                                        <ImageLinkFieldComponent/>
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <KeywordsFieldComponent/>
+                                    </Grid></>)}
                                 <Grid item xs={12}>
                                     <Typography gutterBottom>
                                         Quantity

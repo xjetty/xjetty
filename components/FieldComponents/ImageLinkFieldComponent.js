@@ -1,6 +1,7 @@
-import {TextField} from '@material-ui/core'
+import {IconButton, InputAdornment, TextField} from '@material-ui/core'
 import {useContext} from 'react'
 import {AppContext} from '../../contexts/AppContext'
+import {AddCircle} from "@material-ui/icons";
 
 const ImageLinkFieldComponent = () => {
     const {displayImageLink, setDisplayImageLink} = useContext(AppContext)
@@ -15,9 +16,18 @@ const ImageLinkFieldComponent = () => {
             value={displayImageLink}
             onChange={handle}
             fullWidth
-            label="Image link"
+            label="Image link 1"
             variant="filled"
             multiline
+            InputProps={{
+                endAdornment: (
+                    <InputAdornment position="end">
+                        <IconButton onClick={}>
+                            <AddCircle/>
+                        </IconButton>
+                    </InputAdornment>
+                )
+            }}
         />
     )
 }

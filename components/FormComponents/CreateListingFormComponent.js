@@ -60,14 +60,6 @@ const CreateListingFormComponent = () => {
                                     <ImageLinkFieldComponent/>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Button
-                                        variant="contained"
-                                        startIcon={<Add />}
-                                    >
-                                        Add another
-                                    </Button>
-                                </Grid>
-                                <Grid item xs={12}>
                                     <NotesFieldComponent/>
                                 </Grid>
                                 <Grid item xs={12}>

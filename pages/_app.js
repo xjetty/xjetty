@@ -75,6 +75,7 @@ function MyApp({Component, pageProps}) {
     const [publicListing, setPublicListing] = React.useState(false)
     const [displayImageLink, setDisplayImageLink] = React.useState('')
     const [title, setTitle] = React.useState('')
+    const [keywords, setKeywords] = React.useState('')
     React.useEffect(() => {
         const jssStyles = document.querySelector('#jss-server-side');
         if (jssStyles)
@@ -83,6 +84,8 @@ function MyApp({Component, pageProps}) {
     return (
         <AppContext.Provider
             value={{
+                keywords,
+                setKeywords,
                 title,
                 setTitle,
                 displayImageLink,

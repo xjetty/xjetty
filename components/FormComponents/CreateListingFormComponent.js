@@ -18,6 +18,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import PublicListingFieldComponent from "../FieldComponents/PublicListingFieldComponent";
 import ImageLinkFieldComponent from "../FieldComponents/ImageLinkFieldComponent";
 import TitleFieldComponent from "../FieldComponents/TitleFieldComponent";
+import KeywordsFieldComponent from "../FieldComponents/KeywordsFieldComponent";
 
 const useStyles = makeStyles({
     media: {
@@ -72,7 +73,9 @@ const CreateListingFormComponent = () => {
                                                 <Grid item xs={12}>
                                                     <ImageLinkFieldComponent/>
                                                 </Grid>
-
+                                                <Grid item xs={12}>
+                                                    <KeywordsFieldComponent/>
+                                                </Grid>
                                             </Grid>
                                         </CardContent>
                                     </Card>

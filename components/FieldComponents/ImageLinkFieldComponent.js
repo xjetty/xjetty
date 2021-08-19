@@ -1,7 +1,7 @@
 import {IconButton, InputAdornment, TextField} from '@material-ui/core'
 import {useContext} from 'react'
 import {AppContext} from '../../contexts/AppContext'
-import {AddCircle} from "@material-ui/icons";
+import {Add} from "@material-ui/icons";
 
 const ImageLinkFieldComponent = () => {
     const {displayImageLink, setDisplayImageLink} = useContext(AppContext)
@@ -22,7 +22,7 @@ const ImageLinkFieldComponent = () => {
                 endAdornment: (
                     <InputAdornment position="end">
                         <IconButton>
-                            <AddCircle/>
+                            <Add/>
                         </IconButton>
                     </InputAdornment>
                 )

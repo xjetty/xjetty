@@ -2,7 +2,7 @@ import {TextField} from '@material-ui/core'
 import {useContext} from 'react'
 import {AppContext} from '../../contexts/AppContext'
 
-const DisplayImageLinkFieldComponent = () => {
+const ImageLinkFieldComponent = () => {
     const {displayImageLink, setDisplayImageLink} = useContext(AppContext)
 
     const handle = (event) => {
@@ -15,11 +15,11 @@ const DisplayImageLinkFieldComponent = () => {
             value={displayImageLink}
             onChange={handle}
             fullWidth
-            label="Display image link"
+            label="Image link"
             variant="filled"
             multiline
         />
     )
 }
 
-export default DisplayImageLinkFieldComponent
+export default ImageLinkFieldComponent

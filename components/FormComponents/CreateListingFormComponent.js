@@ -1,6 +1,6 @@
 import {useContext} from "react";
 import {AppContext} from "../../contexts/AppContext";
-import {Box, Card, CardActions, CardContent, CardMedia, Grid, Typography} from "@material-ui/core";
+import {Box, Button, Card, CardActions, CardContent, CardMedia, Grid, Typography} from "@material-ui/core";
 import NotesFieldComponent from "../FieldComponents/NotesFieldComponent";
 import QuantityFieldComponent from "../FieldComponents/QuantityFieldComponent";
 import SaleMethodFieldComponent from "../FieldComponents/SaleMethodFieldComponent";
@@ -19,6 +19,7 @@ import PublicListingFieldComponent from "../FieldComponents/PublicListingFieldCo
 import ImageLinkFieldComponent from "../FieldComponents/ImageLinkFieldComponent";
 import TitleFieldComponent from "../FieldComponents/TitleFieldComponent";
 import KeywordsFieldComponent from "../FieldComponents/KeywordsFieldComponent";
+import {Add} from '@material-ui/icons'
 
 const useStyles = makeStyles({
     media: {
@@ -57,6 +58,14 @@ const CreateListingFormComponent = () => {
                                 </Grid>
                                 <Grid item xs={12}>
                                     <ImageLinkFieldComponent/>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Button
+                                        variant="contained"
+                                        startIcon={<Add />}
+                                    >
+                                        Add another
+                                    </Button>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <NotesFieldComponent/>

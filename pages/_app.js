@@ -76,6 +76,7 @@ function MyApp({Component, pageProps}) {
     const [displayImageLink, setDisplayImageLink] = React.useState('')
     const [title, setTitle] = React.useState('')
     const [keywords, setKeywords] = React.useState('')
+    const [titleError, setTitleError] = React.useState(false)
     React.useEffect(() => {
         const jssStyles = document.querySelector('#jss-server-side');
         if (jssStyles)
@@ -84,6 +85,8 @@ function MyApp({Component, pageProps}) {
     return (
         <AppContext.Provider
             value={{
+                titleError,
+                setTitleError,
                 keywords,
                 setKeywords,
                 title,

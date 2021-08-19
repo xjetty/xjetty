@@ -1,22 +1,41 @@
 import {TextField} from '@material-ui/core'
-import {useContext} from 'react'
+import {useContext, useMemo} from 'react'
 import {AppContext} from '../../contexts/AppContext'
 
 const TitleFieldComponent = () => {
-    const {title, setTitle} = useContext(AppContext)
+    const {title, setTitle, titleError, setTitleError} = useContext(AppContext)
+
+    const helperText = useMemo(() => {
+        if (titleError) {
+            return 'Title is required'
+        } else return ''
+    }, [titleError])
 
     const handle = (event) => {
-        let value = event.target.value
+        const value = event.target.value
+        const valueTrim = value.trim()
+        if (!valueTrim) {
+            setTitleError(true)
+        } else setTitleError(false)
         setTitle(value)
+    }
+
+    const checkError = () => {
+        const valueTrim = title.trim()
+        if (!valueTrim) {
+            setTitleError(true)
+        } else setTitleError(false)
     }
 
     return (
         <TextField
             value={title}
             onChange={handle}
+            onBlur={checkError}
             fullWidth
             label="Title"
             variant="filled"
+            helperText={helperText}
             multiline
         />
     )

@@ -2,7 +2,7 @@ import {FormControlLabel, Switch} from '@material-ui/core'
 import {useContext} from 'react'
 import {AppContext} from '../../contexts/AppContext'
 
-const AddMemoFieldComponent = () => {
+const PublicListingFieldComponent = () => {
     const {publicListing, setPublicListing} = useContext(AppContext)
 
     const handle = (event) => {
@@ -17,4 +17,4 @@ const AddMemoFieldComponent = () => {
     )
 }
 
-export default AddMemoFieldComponent
+export default PublicListingFieldComponent

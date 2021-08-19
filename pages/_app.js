@@ -73,6 +73,7 @@ function MyApp({Component, pageProps}) {
     const [showOffers, setShowOffers] = React.useState(false)
     const [escrowDetails, setEscrowDetails] = React.useState({})
     const [publicListing, setPublicListing] = React.useState(false)
+    const [displayImageLink, setDisplayImageLink] = React.useState('')
     React.useEffect(() => {
         const jssStyles = document.querySelector('#jss-server-side');
         if (jssStyles)
@@ -81,6 +82,8 @@ function MyApp({Component, pageProps}) {
     return (
         <AppContext.Provider
             value={{
+                displayImageLink,
+                setDisplayImageLink,
                 publicListing,
                 setPublicListing,
                 dialogOpen,

@@ -16,6 +16,7 @@ import EmailAddressFieldComponent from "../FieldComponents/EmailAddressFieldComp
 import CreateListingActionComponent from "../ActionComponents/CreateListingActionComponent";
 import {makeStyles} from "@material-ui/core/styles";
 import PublicListingFieldComponent from "../FieldComponents/PublicListingFieldComponent";
+import DisplayImageLinkFieldComponent from "../FieldComponents/DisplayImageLinkFieldComponent";
 
 const useStyles = makeStyles({
     media: {
@@ -29,7 +30,7 @@ const useStyles = makeStyles({
 
 const CreateListingFormComponent = () => {
     const classes = useStyles()
-    const {saleMethod, addMemo} = useContext(AppContext)
+    const {saleMethod, addMemo, publicListing} = useContext(AppContext)
 
     return (
         <Grid container spacing={2}>
@@ -55,6 +56,9 @@ const CreateListingFormComponent = () => {
                                 <Grid item xs={12}>
                                     <PublicListingFieldComponent/>
                                 </Grid>
+                                {publicListing && (<Grid item xs={12}>
+                                    <DisplayImageLinkFieldComponent/>
+                                </Grid>)}
                                 <Grid item xs={12}>
                                     <Typography gutterBottom>
                                         Quantity

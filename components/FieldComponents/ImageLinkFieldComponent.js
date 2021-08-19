@@ -18,7 +18,6 @@ const ImageLinkFieldComponent = () => {
             fullWidth
             label="Image link 1"
             variant="filled"
-            multiline
             InputProps={{
                 endAdornment: (
                     <InputAdornment position="end">

@@ -29,6 +29,7 @@ const TitleFieldComponent = () => {
 
     return (
         <TextField
+            error={titleError}
             value={title}
             onChange={handle}
             onBlur={checkError}

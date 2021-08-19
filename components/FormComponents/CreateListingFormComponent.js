@@ -53,20 +53,21 @@ const CreateListingFormComponent = () => {
                         <Box my={2}>
                             <Grid container spacing={2}>
                                 <Grid item xs={12}>
+                                    <TitleFieldComponent/>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <ImageLinkFieldComponent/>
+                                </Grid>
+                                <Grid item xs={12}>
                                     <NotesFieldComponent/>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <PublicListingFieldComponent/>
                                 </Grid>
-                                {publicListing && (<><Grid item xs={12}>
-                                    <TitleFieldComponent/>
-                                </Grid>
-                                    <Grid item xs={12}>
-                                        <ImageLinkFieldComponent/>
-                                    </Grid>
+                                {publicListing && (
                                     <Grid item xs={12}>
                                         <KeywordsFieldComponent/>
-                                    </Grid></>)}
+                                    </Grid>)}
                                 <Grid item xs={12}>
                                     <Typography gutterBottom>
                                         Quantity

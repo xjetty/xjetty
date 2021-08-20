@@ -12,6 +12,7 @@ const ImageLinksFieldComponent = () => {
         console.log('input value:', value)
         console.log('index', index)
         const imageLinks = [...imageLinks]
+        console.log('image links before check this one!:', imageLinks)
         imageLinks[index] = value
         setImageLinks(imageLinks)
         console.log('image links:', imageLinks)

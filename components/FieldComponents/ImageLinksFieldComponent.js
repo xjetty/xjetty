@@ -23,7 +23,7 @@ const ImageLinksFieldComponent = () => {
 
     // handle click event of the Add button
     const handleAddClick = () => {
-        setImageLinks([...imageLinks, {}])
+        setImageLinks([...imageLinks, ""])
     }
 
     return (

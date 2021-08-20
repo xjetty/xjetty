@@ -28,7 +28,7 @@ const ImageLinkFieldComponent = () => {
             InputProps={{
                 endAdornment: (
                     <InputAdornment position="end">
-                        <IconButton onClick={handleImageLinks}>
+                        <IconButton key={imageLinks} onClick={handleImageLinks}>
                             <Add/>
                         </IconButton>
                     </InputAdornment>

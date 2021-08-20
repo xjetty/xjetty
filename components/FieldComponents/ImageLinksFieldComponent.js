@@ -1,18 +1,14 @@
 import {IconButton, InputAdornment, TextField} from '@material-ui/core'
 import {useContext} from 'react'
 import {AppContext} from '../../contexts/AppContext'
-import {Add} from "@material-ui/icons";
+import {Remove} from "@material-ui/icons";
 
-const ImageLinkFieldComponent = () => {
-    const {displayImageLink, setDisplayImageLink, setImageLinks, imageLinks} = useContext(AppContext)
+const ImageLinksFieldComponent = (props) => {
+    const {displayImageLink, setDisplayImageLink} = useContext(AppContext)
 
     const handle = (event) => {
         let value = event.target.value
         setDisplayImageLink(value)
-    }
-
-    const handleImageLinks = () =>{
-        setImageLinks(imageLinks + 1)
     }
 
     return (
@@ -20,13 +16,13 @@ const ImageLinkFieldComponent = () => {
             value={displayImageLink}
             onChange={handle}
             fullWidth
-            label="Image link 1"
+            label={`Image link ${props.index}`}
             variant="filled"
             InputProps={{
                 endAdornment: (
                     <InputAdornment position="end">
-                        <IconButton onClick={handleImageLinks}>
-                            <Add/>
+                        <IconButton>
+                            <Remove/>
                         </IconButton>
                     </InputAdornment>
                 )
@@ -35,4 +31,4 @@ const ImageLinkFieldComponent = () => {
     )
 }
 
-export default ImageLinkFieldComponent
+export default ImageLinksFieldComponent

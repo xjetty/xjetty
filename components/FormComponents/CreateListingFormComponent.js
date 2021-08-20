@@ -33,7 +33,7 @@ const useStyles = makeStyles({
 
 const CreateListingFormComponent = () => {
     const classes = useStyles()
-    const {saleMethod, addMemo, publicListing} = useContext(AppContext)
+    const {saleMethod, addMemo, publicListing, imageLinks} = useContext(AppContext)
 
     return (
         <Grid container spacing={2}>
@@ -59,6 +59,11 @@ const CreateListingFormComponent = () => {
                                 <Grid item xs={12}>
                                     <ImageLinkFieldComponent/>
                                 </Grid>
+                                {imageLinks.map((imageLink, index) => (
+                                    <Grid key={index} item xs={12}>
+                                        <ImageLinkFieldComponent index={index} />
+                                    </Grid>
+                                ))}
                                 <Grid item xs={12}>
                                     <NotesFieldComponent/>
                                 </Grid>

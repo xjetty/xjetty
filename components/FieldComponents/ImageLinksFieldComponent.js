@@ -8,12 +8,12 @@ const ImageLinksFieldComponent = (props) => {
 
     const handle = (event) => {
         let value = event.target.value
-
+        props.value = value
     }
 
     return (
         <TextField
-            value=''
+            value={props.value}
             onChange={handle}
             fullWidth
             label={`Image link ${props.index}`}

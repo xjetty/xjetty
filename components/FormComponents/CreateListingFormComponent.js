@@ -36,10 +36,6 @@ const CreateListingFormComponent = () => {
     const classes = useStyles()
     const {saleMethod, addMemo, publicListing, imageLinks} = useContext(AppContext)
 
-    useEffect(() => {
-
-    }, [imageLinks])
-
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>

@@ -1,4 +1,4 @@
-import {useContext} from "react";
+import {useContext, useEffect} from "react";
 import {AppContext} from "../../contexts/AppContext";
 import {Box, Button, Card, CardActions, CardContent, CardMedia, Grid, Typography} from "@material-ui/core";
 import NotesFieldComponent from "../FieldComponents/NotesFieldComponent";
@@ -35,6 +35,10 @@ const useStyles = makeStyles({
 const CreateListingFormComponent = () => {
     const classes = useStyles()
     const {saleMethod, addMemo, publicListing, imageLinks} = useContext(AppContext)
+
+    useEffect(() => {
+
+    }, [imageLinks])
 
     return (
         <Grid container spacing={2}>

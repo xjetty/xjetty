@@ -11,10 +11,6 @@ const ImageLinksFieldComponent = (props) => {
         props.value = value
     }
 
-    useEffect(() => {
-
-    }, [imageLinks])
-
     return (
         <TextField
             value={props.value}

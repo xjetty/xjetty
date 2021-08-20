@@ -9,6 +9,7 @@ const ImageLinksFieldComponent = (props) => {
     const handle = (event) => {
         let value = event.target.value
         imageLinks[props.index] = value
+        setImageLinks(imageLinks)
     }
 
     return (

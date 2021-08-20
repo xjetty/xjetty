@@ -4,7 +4,7 @@ import {AppContext} from '../../contexts/AppContext'
 import {Add} from "@material-ui/icons";
 
 const ImageLinkFieldComponent = () => {
-    const {displayImageLink, setDisplayImageLink, setImageLinks, imageLinks} = useContext(AppContext)
+    const {displayImageLink, setDisplayImageLink, setImageLinks, imageLinks, imageLinksKey, setImageLinksKey} = useContext(AppContext)
 
     const handle = (event) => {
         let value = event.target.value
@@ -16,6 +16,7 @@ const ImageLinkFieldComponent = () => {
         newImageLinks.push('')
         setImageLinks(newImageLinks)
         console.log(imageLinks)
+        setImageLinksKey(imageLinksKey + 1)
     }
 
     return (
@@ -28,7 +29,7 @@ const ImageLinkFieldComponent = () => {
             InputProps={{
                 endAdornment: (
                     <InputAdornment position="end">
-                        <IconButton key={imageLinks} onClick={handleImageLinks}>
+                        <IconButton onClick={handleImageLinks}>
                             <Add/>
                         </IconButton>
                     </InputAdornment>

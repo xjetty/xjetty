@@ -30,6 +30,7 @@ const ImageLinksFieldComponent = () => {
         imageLinks.map((x, i) => {
             return (
                 <TextField
+                    key={i}
                     value={x}
                     onChange={e => handleInputChange(e, i)}
                     fullWidth

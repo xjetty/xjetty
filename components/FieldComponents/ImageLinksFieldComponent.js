@@ -32,7 +32,7 @@ const ImageLinksFieldComponent = () => {
             {
                 imageLinks.map((x, i) => {
                     return (
-                        <Grid item xs={12} key={i}>
+                        <Grid item xs={12} key={1}>
                             <TextField
                                 value={x}
                                 onChange={e => handleInputChange(e, i)}

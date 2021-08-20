@@ -6,11 +6,9 @@ import {Add, Remove} from "@material-ui/icons"
 const ImageLinksFieldComponent = () => {
     const {imageLinks, setImageLinks} = useContext(AppContext)
 
-    useEffect(() => {
-        setTimeout(() => {
-            console.log(imageLinks)
-        }, 100)
-    })
+    setTimeout(() => {
+        console.log(imageLinks)
+    }, 100)
 
     // handle input change
     const handleInputChange = (e, index) => {

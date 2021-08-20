@@ -60,9 +60,12 @@ const CreateListingFormComponent = () => {
                                     <ImageLinkFieldComponent/>
                                 </Grid>
                                 {imageLinks.map((imageLink, index) => (
-                                    <Grid key={index} item xs={12}>
-                                        <ImageLinkFieldComponent index={index} />
-                                    </Grid>
+                                    <> {index}
+                                        <Grid key={index} item xs={12}>
+                                            <ImageLinkFieldComponent index={index} />
+                                        </Grid>
+                                    </>
+
                                 ))}
                                 <Grid item xs={12}>
                                     <NotesFieldComponent/>

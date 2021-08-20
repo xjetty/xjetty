@@ -32,10 +32,10 @@ const ImageLinksFieldComponent = () => {
             {
                 imageLinks.map((x, i) => {
                     return (
-                        <Grid item xs={12} key={1}>
+                        <Grid item xs={12} key={i}>
                             <TextField
                                 value={x}
-                                onChange={e => handleInputChange(e, i)}
+                                onChange={handleInputChange}
                                 fullWidth
                                 label={`Image link ${i + 1}`}
                                 variant="filled"

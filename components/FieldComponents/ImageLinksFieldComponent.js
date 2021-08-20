@@ -9,9 +9,11 @@ const ImageLinksFieldComponent = () => {
     // handle input change
     const handleInputChange = (e, index) => {
         const {value} = e.target
+        console.log('input value:', value)
         const imageLinks = [...imageLinks]
         imageLinks[index] = value
         setImageLinks(imageLinks)
+        console.log('image links:', imageLinks)
     }
 
     // handle click event of the Remove button
@@ -23,7 +25,7 @@ const ImageLinksFieldComponent = () => {
 
     // handle click event of the Add button
     const handleAddClick = () => {
-        setImageLinks([...imageLinks, ""])
+        setImageLinks([...imageLinks, ''])
     }
 
     return (
@@ -61,6 +63,7 @@ const ImageLinksFieldComponent = () => {
                     )
                 })
             }
+            <div style={{ marginTop: 20 }}>{JSON.stringify(imageLinks)}</div>
         </>
 
     )

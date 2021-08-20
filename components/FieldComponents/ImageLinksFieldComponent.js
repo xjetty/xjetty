@@ -10,6 +10,7 @@ const ImageLinksFieldComponent = () => {
     const handleInputChange = (e, index) => {
         const {value} = e.target
         console.log('input value:', value)
+        console.log('index', index)
         const imageLinks = [...imageLinks]
         imageLinks[index] = value
         setImageLinks(imageLinks)
@@ -38,7 +39,7 @@ const ImageLinksFieldComponent = () => {
                                 value={x}
                                 onChange={e => handleInputChange(e, i)}
                                 fullWidth
-                                label={`Image link index`}
+                                label={`Image link ${i + 1}`}
                                 variant="filled"
                                 InputProps={{
                                     endAdornment: (

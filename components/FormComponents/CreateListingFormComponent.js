@@ -60,7 +60,7 @@ const CreateListingFormComponent = () => {
                                 <Grid item xs={12}>
                                     <ImageLinkFieldComponent/>
                                 </Grid>
-                                {imageLinks.map((imageLink, index) => {
+                                {imageLinks.map(function (imageLink, index) {
                                     return (
                                         <Grid key={index} item xs={12}>
                                             <ImageLinksFieldComponent value={imageLink} index={index}/>

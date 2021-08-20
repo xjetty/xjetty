@@ -15,6 +15,7 @@ const ImageLinkFieldComponent = () => {
         const newImageLinks = imageLinks
         newImageLinks.push('')
         setImageLinks(newImageLinks)
+        console.log(imageLinks)
     }
 
     return (

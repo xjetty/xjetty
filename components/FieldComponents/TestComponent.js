@@ -1,4 +1,6 @@
 import {useState} from "react";
+import {IconButton, InputAdornment, TextField} from "@material-ui/core";
+import {Add} from "@material-ui/icons";
 
 function TestComponent() {
     const [inputList, setInputList] = useState(['']);
@@ -29,12 +31,37 @@ function TestComponent() {
             {inputList.map((x, i) => {
                 return (
                     <div key={i}>
-                        <input
-                            name="firstName"
-                            placeholder="Enter First Name"
+                        <TextField
                             value={x}
                             onChange={e => handleInputChange(e, i)}
+                            fullWidth
+                            // label={`Image link ${i + 1}`}
+                            variant="filled"
+                            // InputProps={{
+                            //     endAdornment: (
+                            //         <InputAdornment position="end">
+                            //             <IconButton onClick={handleAddClick}>
+                            //                 <Add/>
+                            //             </IconButton>
+                            //         </InputAdornment>
+                            //     )
+                            // }}
+                            // InputProps={{
+                            //     endAdornment: (
+                            //         <InputAdornment position="end">
+                            //             <IconButton>
+                            //                 <Remove/>
+                            //             </IconButton>
+                            //         </InputAdornment>
+                            //     )
+                            // }}
                         />
+                        {/*<input*/}
+                        {/*    name="firstName"*/}
+                        {/*    placeholder="Enter First Name"*/}
+                        {/*    value={x}*/}
+                        {/*    onChange={e => handleInputChange(e, i)}*/}
+                        {/*/>*/}
                         {/*<input*/}
 
                         {/*    name="lastName"*/}

@@ -30,15 +30,7 @@ const ImageLinkFieldComponent = () => {
             fullWidth
             label="Image link 1"
             variant="filled"
-            InputProps={{
-                endAdornment: (
-                    <InputAdornment position="end">
-                        <IconButton onClick={handleImageLinks}>
-                            <Add/>
-                        </IconButton>
-                    </InputAdornment>
-                )
-            }}
+
         />
     )
 }

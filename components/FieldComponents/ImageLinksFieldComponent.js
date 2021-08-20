@@ -10,26 +10,19 @@ const ImageLinksFieldComponent = () => {
         console.log(imageLinks)
     }, [imageLinks])
 
-    // handle input change
     const handleInputChange = (e, index) => {
         const {value} = e.target
-        console.log('input value:', value)
-        console.log('index', index)
-        // const imageLinks = [...imageLinks]
-        console.log('image links before check this one!:', imageLinks)
+        const imageLinks = [...imageLinks]
         imageLinks[index] = value
         setImageLinks(imageLinks)
-        console.log('image links:', imageLinks)
     }
 
-    // handle click event of the Remove button
     const handleRemoveClick = index => {
         const imageLinks = [...imageLinks]
         imageLinks.splice(index, 1)
         setImageLinks(imageLinks)
     }
 
-    // handle click event of the Add button
     const handleAddClick = () => {
         setImageLinks([...imageLinks, ''])
     }
@@ -69,7 +62,7 @@ const ImageLinksFieldComponent = () => {
                     )
                 })
             }
-            <div style={{ marginTop: 20 }}>{JSON.stringify(imageLinks)}</div>
+            <div style={{marginTop: 20}}>{JSON.stringify(imageLinks)}</div>
         </>
 
     )

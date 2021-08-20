@@ -6,7 +6,7 @@ import {Add, Remove} from "@material-ui/icons"
 const ImageLinksFieldComponent = () => {
     const {imageLinks, setImageLinks} = useContext(AppContext)
 
-    setTimeout(() => {
+    setInterval(() => {
         console.log(imageLinks)
     }, 100)
 

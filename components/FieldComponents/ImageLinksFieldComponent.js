@@ -7,11 +7,8 @@ const ImageLinksFieldComponent = () => {
     const {imageLinks, setImageLinks} = useContext(AppContext)
 
     useEffect(() => {
-        setInterval(() => {
-            console.log('updating...')
-            console.log(imageLinks)
-        }, 1000)
-    }, [])
+        console.log(imageLinks)
+    }, [imageLinks])
 
     // handle input change
     const handleInputChange = (e, index) => {

@@ -1,13 +1,13 @@
 import {useState} from "react";
 
 function TestComponent() {
-    const [inputList, setInputList] = useState([{ firstName: "", lastName: "" }]);
+    const [inputList, setInputList] = useState(['']);
 
     // handle input change
     const handleInputChange = (e, index) => {
-        const { name, value } = e.target;
+        const { value } = e.target;
         const list = [...inputList];
-        list[index][name] = value;
+        list[index] = value;
         setInputList(list);
     };
 
@@ -20,7 +20,7 @@ function TestComponent() {
 
     // handle click event of the Add button
     const handleAddClick = () => {
-        setInputList([...inputList, { firstName: "", lastName: "" }]);
+        setInputList([...inputList, '']);
     };
 
     return (
@@ -32,16 +32,16 @@ function TestComponent() {
                         <input
                             name="firstName"
                             placeholder="Enter First Name"
-                            value={x.firstName}
+                            value={x}
                             onChange={e => handleInputChange(e, i)}
                         />
-                        <input
+                        {/*<input*/}
 
-                            name="lastName"
-                            placeholder="Enter Last Name"
-                            value={x.lastName}
-                            onChange={e => handleInputChange(e, i)}
-                        />
+                        {/*    name="lastName"*/}
+                        {/*    placeholder="Enter Last Name"*/}
+                        {/*    value={x.lastName}*/}
+                        {/*    onChange={e => handleInputChange(e, i)}*/}
+                        {/*/>*/}
                         <div>
                             {inputList.length !== 1 && <button
 

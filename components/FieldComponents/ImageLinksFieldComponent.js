@@ -1,15 +1,19 @@
 import {IconButton, InputAdornment, TextField} from '@material-ui/core'
-import {useContext} from 'react'
+import {useContext, useEffect} from 'react'
 import {AppContext} from '../../contexts/AppContext'
 import {Remove} from "@material-ui/icons";
 
 const ImageLinksFieldComponent = (props) => {
-    const {} = useContext(AppContext)
+    const {imageLinks} = useContext(AppContext)
 
     const handle = (event) => {
         let value = event.target.value
         props.value = value
     }
+
+    useEffect(() => {
+
+    }, [imageLinks])
 
     return (
         <TextField

@@ -1,10 +1,12 @@
 import {Grid, IconButton, InputAdornment, TextField} from '@material-ui/core'
-import {useContext, useEffect} from 'react'
+import {useContext, useEffect, useState} from 'react'
 import {AppContext} from '../../contexts/AppContext'
 import {Add, Remove} from "@material-ui/icons"
 
 const ImageLinksFieldComponent = () => {
-    const {imageLinks, setImageLinks} = useContext(AppContext)
+    // const {imageLinks, setImageLinks} = useContext(AppContext)
+
+    const [imageLinks, setImageLinks] = useState(['']);
 
     useEffect(() => {
         console.log(imageLinks)

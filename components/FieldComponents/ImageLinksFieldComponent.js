@@ -16,7 +16,7 @@ const ImageLinksFieldComponent = (props) => {
             value={props.value}
             onChange={handle}
             fullWidth
-            label={`Image link ${props.index}`}
+            label={`Image link ${props.index + 1}`}
             variant="filled"
             InputProps={{
                 endAdornment: (

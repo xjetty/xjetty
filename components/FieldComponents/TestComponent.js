@@ -35,17 +35,19 @@ function TestComponent() {
                             value={x}
                             onChange={e => handleInputChange(e, i)}
                             fullWidth
-                            // label={`Image link ${i + 1}`}
+                            label={`Image link ${i + 1}`}
                             variant="filled"
-                            // InputProps={{
-                            //     endAdornment: (
-                            //         <InputAdornment position="end">
-                            //             <IconButton onClick={handleAddClick}>
-                            //                 <Add/>
-                            //             </IconButton>
-                            //         </InputAdornment>
-                            //     )
-                            // }}
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        {inputList.length - 1 === i &&
+                                        <IconButton onClick={handleAddClick}>
+                                            <Add/>
+                                        </IconButton>
+                                        }
+                                    </InputAdornment>
+                                )
+                            }}
                             // InputProps={{
                             //     endAdornment: (
                             //         <InputAdornment position="end">

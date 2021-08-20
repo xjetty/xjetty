@@ -20,6 +20,7 @@ import ImageLinkFieldComponent from "../FieldComponents/ImageLinkFieldComponent"
 import TitleFieldComponent from "../FieldComponents/TitleFieldComponent";
 import KeywordsFieldComponent from "../FieldComponents/KeywordsFieldComponent";
 import {Add} from '@material-ui/icons'
+import ImageLinksFieldComponent from "../FieldComponents/ImageLinksFieldComponent";
 
 const useStyles = makeStyles({
     media: {
@@ -60,9 +61,9 @@ const CreateListingFormComponent = () => {
                                     <ImageLinkFieldComponent/>
                                 </Grid>
                                 {imageLinks.map((imageLink, index) => (
-                                    <> {index}
+                                    <>
                                         <Grid key={index} item xs={12}>
-                                            <ImageLinkFieldComponent index={index} />
+                                            <ImageLinksFieldComponent index={index} />
                                         </Grid>
                                     </>
 

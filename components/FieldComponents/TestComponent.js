@@ -24,11 +24,11 @@ function TestComponent() {
     };
 
     return (
-        <div className="App">
+        <div>
             <h3><a href="https://cluemediator.com">Clue Mediator</a></h3>
             {inputList.map((x, i) => {
                 return (
-                    <div className="box">
+                    <div key={i}>
                         <input
                             name="firstName"
                             placeholder="Enter First Name"
@@ -36,15 +36,15 @@ function TestComponent() {
                             onChange={e => handleInputChange(e, i)}
                         />
                         <input
-                            className="ml10"
+
                             name="lastName"
                             placeholder="Enter Last Name"
                             value={x.lastName}
                             onChange={e => handleInputChange(e, i)}
                         />
-                        <div className="btn-box">
+                        <div>
                             {inputList.length !== 1 && <button
-                                className="mr10"
+
                                 onClick={() => handleRemoveClick(i)}>Remove</button>}
                             {inputList.length - 1 === i && <button onClick={handleAddClick}>Add</button>}
                         </div>

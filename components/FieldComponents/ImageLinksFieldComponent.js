@@ -4,16 +4,16 @@ import {AppContext} from '../../contexts/AppContext'
 import {Remove} from "@material-ui/icons";
 
 const ImageLinksFieldComponent = (props) => {
-    const {displayImageLink, setDisplayImageLink} = useContext(AppContext)
+    const {} = useContext(AppContext)
 
     const handle = (event) => {
         let value = event.target.value
-        setDisplayImageLink(value)
+
     }
 
     return (
         <TextField
-            value={displayImageLink}
+            value=''
             onChange={handle}
             fullWidth
             label={`Image link ${props.index}`}

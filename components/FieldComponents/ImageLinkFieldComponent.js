@@ -12,7 +12,9 @@ const ImageLinkFieldComponent = () => {
     }
 
     const handleImageLinks = () =>{
-        setImageLinks(imageLinks + 1)
+        const newImageLinks = imageLinks
+        newImageLinks.push('')
+        setImageLinks(newImageLinks)
     }
 
     return (

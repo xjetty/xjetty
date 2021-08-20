@@ -1,4 +1,4 @@
-import {IconButton, InputAdornment, TextField} from '@material-ui/core'
+import {Grid, IconButton, InputAdornment, TextField} from '@material-ui/core'
 import {useContext, useEffect} from 'react'
 import {AppContext} from '../../contexts/AppContext'
 import {Add, Remove} from "@material-ui/icons"
@@ -26,39 +26,44 @@ const ImageLinksFieldComponent = () => {
         setImageLinks([...imageLinks, ''])
     }
 
-    {
-        imageLinks.map((x, i) => {
-            return (
-                <TextField
-                    key={i}
-                    value={x}
-                    onChange={e => handleInputChange(e, i)}
-                    fullWidth
-                    label={`Image link index`}
-                    variant="filled"
-                    InputProps={{
-                        endAdornment: (
-                            <InputAdornment position="end">
-                                <IconButton onClick={handleAddClick}>
-                                    <Add/>
-                                </IconButton>
-                            </InputAdornment>
-                        )
-                    }}
-                    // InputProps={{
-                    //     endAdornment: (
-                    //         <InputAdornment position="end">
-                    //             <IconButton>
-                    //                 <Remove/>
-                    //             </IconButton>
-                    //         </InputAdornment>
-                    //     )
-                    // }}
-                />
-            )
-        })
-    }
+    return (
+        <>
+            {
+                imageLinks.map((x, i) => {
+                    return (
+                        <Grid item xs={12} key={i}>
+                            <TextField
+                                value={x}
+                                onChange={e => handleInputChange(e, i)}
+                                fullWidth
+                                label={`Image link index`}
+                                variant="filled"
+                                InputProps={{
+                                    endAdornment: (
+                                        <InputAdornment position="end">
+                                            <IconButton onClick={handleAddClick}>
+                                                <Add/>
+                                            </IconButton>
+                                        </InputAdornment>
+                                    )
+                                }}
+                                // InputProps={{
+                                //     endAdornment: (
+                                //         <InputAdornment position="end">
+                                //             <IconButton>
+                                //                 <Remove/>
+                                //             </IconButton>
+                                //         </InputAdornment>
+                                //     )
+                                // }}
+                            />
+                        </Grid>
+                    )
+                })
+            }
+        </>
 
+    )
 
 }
 

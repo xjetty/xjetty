@@ -77,7 +77,7 @@ function MyApp({Component, pageProps}) {
     const [title, setTitle] = React.useState('')
     const [keywords, setKeywords] = React.useState('')
     const [titleError, setTitleError] = React.useState(false)
-    const [imageLinks, setImageLinks] = React.useState([''])
+    const [imageLinks, setImageLinks] = React.useState([{}])
     const [imageLinksKey, setImageLinksKey] = React.useState(0)
     React.useEffect(() => {
         const jssStyles = document.querySelector('#jss-server-side');

@@ -57,7 +57,7 @@ export default function ImageLinkPreview() {
                 <ImageList className={classes.imageList} cols={2.5}>
                     {inputList.map((item, index) => (
                         <ImageListItem key={index}>
-                            <img src={item}/>
+                            <img src={item} alt="Image preview"/>
                             <ImageListItemBar
                                 title={`Image ${index + 1}`}
                                 classes={{

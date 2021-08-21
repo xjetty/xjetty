@@ -2,7 +2,7 @@ import '../styles/globals.css'
 import {createTheme} from '@material-ui/core/styles'
 import {blue, red} from "@material-ui/core/colors";
 import {AppContext} from "../contexts/AppContext";
-import React from "react"
+import React, {useState} from "react"
 import {CssBaseline, ThemeProvider} from "@material-ui/core";
 import LayoutComponent from "../components/LayoutComponent";
 
@@ -77,8 +77,7 @@ function MyApp({Component, pageProps}) {
     const [title, setTitle] = React.useState('')
     const [keywords, setKeywords] = React.useState('')
     const [titleError, setTitleError] = React.useState(false)
-    const [imageLinks, setImageLinks] = React.useState([''])
-    const [imageLinksKey, setImageLinksKey] = React.useState(0)
+    const [inputList, setInputList] = useState([''])
     React.useEffect(() => {
         const jssStyles = document.querySelector('#jss-server-side');
         if (jssStyles)
@@ -87,10 +86,8 @@ function MyApp({Component, pageProps}) {
     return (
         <AppContext.Provider
             value={{
-                imageLinksKey,
-                setImageLinksKey,
-                imageLinks,
-                setImageLinks,
+                inputList,
+                setInputList,
                 titleError,
                 setTitleError,
                 keywords,

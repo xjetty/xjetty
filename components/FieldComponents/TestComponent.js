@@ -1,35 +1,33 @@
-import {useState} from "react";
-import {IconButton, InputAdornment, TextField} from "@material-ui/core";
-import {Add, Remove} from "@material-ui/icons";
+import {useContext, useState} from "react"
+import {Grid, IconButton, InputAdornment, TextField} from "@material-ui/core"
+import {Add, Remove} from "@material-ui/icons"
+import {AppContext} from "../../contexts/AppContext";
 
 function TestComponent() {
-    const [inputList, setInputList] = useState(['']);
+    const {inputList, setInputList} = useContext(AppContext)
 
-    // handle input change
     const handleInputChange = (e, index) => {
-        const {value} = e.target;
-        const list = [...inputList];
-        list[index] = value;
-        setInputList(list);
-    };
+        const {value} = e.target
+        const list = [...inputList]
+        list[index] = value
+        setInputList(list)
+    }
 
-    // handle click event of the Remove button
     const handleRemoveClick = index => {
-        const list = [...inputList];
-        list.splice(index, 1);
-        setInputList(list);
-    };
+        const list = [...inputList]
+        list.splice(index, 1)
+        setInputList(list)
+    }
 
-    // handle click event of the Add button
     const handleAddClick = () => {
-        setInputList([...inputList, '']);
-    };
+        setInputList([...inputList, ''])
+    }
 
     return (
-        <div>
+        <>
             {inputList.map((x, i) => {
                 return (
-                    <div key={i}>
+                    <Grid item xs={12} key={i}>
                         <TextField
                             value={x}
                             onChange={e => handleInputChange(e, i)}
@@ -50,41 +48,12 @@ function TestComponent() {
                                     </InputAdornment>
                                 )
                             }}
-                            // InputProps={{
-                            //     endAdornment: (
-                            //         <InputAdornment position="end">
-                            //             <IconButton>
-                            //                 <Remove/>
-                            //             </IconButton>
-                            //         </InputAdornment>
-                            //     )
-                            // }}
                         />
-                        {/*<input*/}
-                        {/*    name="firstName"*/}
-                        {/*    placeholder="Enter First Name"*/}
-                        {/*    value={x}*/}
-                        {/*    onChange={e => handleInputChange(e, i)}*/}
-                        {/*/>*/}
-                        {/*<input*/}
-
-                        {/*    name="lastName"*/}
-                        {/*    placeholder="Enter Last Name"*/}
-                        {/*    value={x.lastName}*/}
-                        {/*    onChange={e => handleInputChange(e, i)}*/}
-                        {/*/>*/}
-                        {/*<div>*/}
-                        {/*    {inputList.length !== 1 && <button*/}
-
-                        {/*        onClick={() => handleRemoveClick(i)}>Remove</button>}*/}
-                        {/*    {inputList.length - 1 === i && <button onClick={handleAddClick}>Add</button>}*/}
-                        {/*</div>*/}
-                    </div>
-                );
+                    </Grid>
+                )
             })}
-            <div style={{marginTop: 20}}>{JSON.stringify(inputList)}</div>
-        </div>
-    );
+        </>
+    )
 }
 
 export default TestComponent

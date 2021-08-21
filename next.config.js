@@ -1,4 +1,7 @@
 module.exports = {
+    images: {
+        domains: ['postimg.cc'],
+    },
     reactStrictMode: true,
     env: {
         MONGO_URI:

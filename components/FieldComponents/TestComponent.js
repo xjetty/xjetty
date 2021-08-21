@@ -2,7 +2,6 @@ import {useContext, useEffect, useMemo} from "react"
 import {Grid, IconButton, InputAdornment, TextField} from "@material-ui/core"
 import {Add, Remove} from "@material-ui/icons"
 import {AppContext} from "../../contexts/AppContext"
-const urlExists = require('url-exists')
 
 function TestComponent() {
     const {inputList, setInputList} = useContext(AppContext)
@@ -24,15 +23,6 @@ function TestComponent() {
         setInputList([...inputList, ''])
     }
 
-    const hasError = useMemo((x) => {
-        if (x.trim()) {
-            urlExists(x.trim(), function (err, exists) {
-                return !exists
-            })
-        } else
-            return false
-    }, [inputList])
-
     return (
         <>
             {inputList.map((x, i) => {
@@ -40,7 +30,6 @@ function TestComponent() {
                     <Grid item xs={12} key={i}>
                         <TextField
                             value={x}
-                            error={hasError(x)}
                             onChange={e => handleInputChange(e, i)}
                             fullWidth
                             label={`Image link ${i + 1}`}

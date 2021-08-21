@@ -22,6 +22,7 @@ import KeywordsFieldComponent from "../FieldComponents/KeywordsFieldComponent";
 import {Add} from '@material-ui/icons'
 import ImageLinksFieldComponent from "../FieldComponents/ImageLinksFieldComponent";
 import TestComponent from "../FieldComponents/TestComponent";
+import ImageLinkPreview from "../FieldComponents/ImageLinkPreview";
 
 const useStyles = makeStyles({
     media: {
@@ -58,6 +59,7 @@ const CreateListingFormComponent = () => {
                                 <Grid item xs={12}>
                                     <TitleFieldComponent/>
                                 </Grid>
+                                <ImageLinkPreview/>
                                 <TestComponent/>
                                 <Grid item xs={12}>
                                     <NotesFieldComponent/>

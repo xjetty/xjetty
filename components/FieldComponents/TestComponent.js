@@ -4,14 +4,13 @@ import {Add, Remove} from "@material-ui/icons"
 import {AppContext} from "../../contexts/AppContext"
 
 function TestComponent() {
-    const {inputList, setInputList, imagePreviewKey, setImagePreviewKey} = useContext(AppContext)
+    const {inputList, setInputList} = useContext(AppContext)
 
     const handleInputChange = (e, index) => {
         const {value} = e.target
         const list = [...inputList]
         list[index] = value
         setInputList(list)
-        setImagePreviewKey(!imagePreviewKey)
     }
 
     const handleRemoveClick = index => {

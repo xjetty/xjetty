@@ -7,7 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import {AppContext} from "../../contexts/AppContext";
 import {Grid} from "@material-ui/core";
-
+import Image from 'next/image'
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -57,7 +57,7 @@ export default function ImageLinkPreview() {
                 <ImageList className={classes.imageList} cols={2.5}>
                     {inputList.map((item, index) => (
                         <ImageListItem key={index}>
-                            <img src={item} alt="Image preview"/>
+                            <Image src={item} alt="Image preview"/>
                             <ImageListItemBar
                                 title={`Image ${index + 1}`}
                                 classes={{

@@ -1,13 +1,13 @@
 import {useState} from "react";
 import {IconButton, InputAdornment, TextField} from "@material-ui/core";
-import {Add} from "@material-ui/icons";
+import {Add, Remove} from "@material-ui/icons";
 
 function TestComponent() {
     const [inputList, setInputList] = useState(['']);
 
     // handle input change
     const handleInputChange = (e, index) => {
-        const { value } = e.target;
+        const {value} = e.target;
         const list = [...inputList];
         list[index] = value;
         setInputList(list);
@@ -27,7 +27,6 @@ function TestComponent() {
 
     return (
         <div>
-            <h3><a href="https://cluemediator.com">Clue Mediator</a></h3>
             {inputList.map((x, i) => {
                 return (
                     <div key={i}>
@@ -40,6 +39,9 @@ function TestComponent() {
                             InputProps={{
                                 endAdornment: (
                                     <InputAdornment position="end">
+                                        {inputList.length !== 1 && <IconButton onClick={() => handleRemoveClick(i)}>
+                                            <Remove/>
+                                        </IconButton>}
                                         {inputList.length - 1 === i &&
                                         <IconButton onClick={handleAddClick}>
                                             <Add/>
@@ -71,16 +73,16 @@ function TestComponent() {
                         {/*    value={x.lastName}*/}
                         {/*    onChange={e => handleInputChange(e, i)}*/}
                         {/*/>*/}
-                        <div>
-                            {inputList.length !== 1 && <button
+                        {/*<div>*/}
+                        {/*    {inputList.length !== 1 && <button*/}
 
-                                onClick={() => handleRemoveClick(i)}>Remove</button>}
-                            {inputList.length - 1 === i && <button onClick={handleAddClick}>Add</button>}
-                        </div>
+                        {/*        onClick={() => handleRemoveClick(i)}>Remove</button>}*/}
+                        {/*    {inputList.length - 1 === i && <button onClick={handleAddClick}>Add</button>}*/}
+                        {/*</div>*/}
                     </div>
                 );
             })}
-            <div style={{ marginTop: 20 }}>{JSON.stringify(inputList)}</div>
+            <div style={{marginTop: 20}}>{JSON.stringify(inputList)}</div>
         </div>
     );
 }

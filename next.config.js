@@ -1,6 +1,6 @@
 module.exports = {
     images: {
-        domains: ['postimg.cc'],
+        domains: ['i.postimg.cc'],
     },
     reactStrictMode: true,
     env: {

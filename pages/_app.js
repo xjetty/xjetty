@@ -78,6 +78,7 @@ function MyApp({Component, pageProps}) {
     const [keywords, setKeywords] = React.useState('')
     const [titleError, setTitleError] = React.useState(false)
     const [inputList, setInputList] = useState([''])
+    const [imagePreviewKey, setImagePreviewKey] = useState(true)
     React.useEffect(() => {
         const jssStyles = document.querySelector('#jss-server-side');
         if (jssStyles)
@@ -86,6 +87,8 @@ function MyApp({Component, pageProps}) {
     return (
         <AppContext.Provider
             value={{
+                imagePreviewKey,
+                setImagePreviewKey,
                 inputList,
                 setInputList,
                 titleError,

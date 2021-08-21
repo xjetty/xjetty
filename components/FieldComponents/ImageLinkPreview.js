@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
  * ];
  */
 export default function ImageLinkPreview() {
-    const {inputList} = useContext(AppContext)
+    const {inputList, imagePreviewKey} = useContext(AppContext)
     const classes = useStyles();
 
     return (
@@ -56,7 +56,7 @@ export default function ImageLinkPreview() {
             <div className={classes.root}>
                 <ImageList className={classes.imageList} cols={2.5}>
                     {inputList.map((item, index) => (
-                        <ImageListItem key={index}>
+                        <ImageListItem key={imagePreviewKey}>
                             <Image src={item} alt="Image preview"/>
                             <ImageListItemBar
                                 title={`Image ${index + 1}`}

@@ -58,10 +58,6 @@ const CreateListingFormComponent = () => {
                                 <Grid item xs={12}>
                                     <TitleFieldComponent/>
                                 </Grid>
-                                {/*<Grid item xs={12}>*/}
-                                {/*    <ImageLinkFieldComponent/>*/}
-                                {/*</Grid>*/}
-                                <ImageLinksFieldComponent />
                                 <TestComponent/>
                                 <Grid item xs={12}>
                                     <NotesFieldComponent/>

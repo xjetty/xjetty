@@ -4,6 +4,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import {AppContext} from "../../contexts/AppContext"
+import {Checkbox, Input, ListItemText} from "@material-ui/core";
 
 const countryItems = [
     'All (Worldwide)',
@@ -258,24 +259,42 @@ const countryItems = [
     "Åland Islands"
 ]
 
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+    PaperProps: {
+        style: {
+            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+            width: 250,
+        },
+    },
+};
+
 const CountriesFieldComponent = () => {
     const {countries, setCountries} = useContext(AppContext)
 
-    const handle = (event) => {
-        setCountries(event.target.value)
-    }
+    const handleChange = (event) => {
+        setCountries(event.target.value);
+    };
 
     return (
-        <FormControl variant="filled" fullWidth>
-            <InputLabel id="countries">Countries</InputLabel>
+        <FormControl>
+            <InputLabel id="demo-mutiple-checkbox-label">Countries</InputLabel>
             <Select
-                labelId="eos-account"
+                labelId="demo-mutiple-checkbox-label"
+                id="demo-mutiple-checkbox"
+                multiple
                 value={countries}
-                onChange={handle}
+                onChange={handleChange}
+                input={<Input/>}
+                renderValue={(selected) => selected.join(', ')}
+                MenuProps={MenuProps}
             >
-                <MenuItem value={'New'}>New</MenuItem>
-                {countryItems.map((item, index) => (
-                    <MenuItem value={item} key={index}>{item}</MenuItem>
+                {countryItems.map((name) => (
+                    <MenuItem key={name} value={name}>
+                        <Checkbox checked={countries.indexOf(name) > -1}/>
+                        <ListItemText primary={name}/>
+                    </MenuItem>
                 ))}
             </Select>
         </FormControl>

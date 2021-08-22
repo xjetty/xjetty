@@ -4,7 +4,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import {AppContext} from "../../contexts/AppContext"
-import {Checkbox, Input, ListItemText} from "@material-ui/core";
+import {Checkbox, ListItemText, TextField} from "@material-ui/core";
 
 const countryItems = [
     'All (Worldwide)',
@@ -286,6 +286,7 @@ const CountriesFieldComponent = () => {
                 multiple
                 value={countries}
                 onChange={handleChange}
+                input={<TextField variant="filled" />}
                 renderValue={(selected) => selected.join(', ')}
                 MenuProps={MenuProps}
             >

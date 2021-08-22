@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export default function ImageLinkPreview() {
-    const {inputList} = useContext(AppContext)
+    const {inputList, setInputList} = useContext(AppContext)
     const classes = useStyles()
 
     const show = useMemo(() => {
@@ -46,6 +46,12 @@ export default function ImageLinkPreview() {
         })
         return show
     }, [inputList])
+
+    const handleRemoveClick = index => {
+        const list = [...inputList]
+        list.splice(index, 1)
+        setInputList(list)
+    }
 
     if (show) {
         return (
@@ -65,7 +71,7 @@ export default function ImageLinkPreview() {
                                                 title: classes.title,
                                             }}
                                             actionIcon={
-                                                <IconButton>
+                                                <IconButton onClick={() => handleRemoveClick(index)}>
                                                     <Remove className={classes.title}/>
                                                 </IconButton>
                                             }

@@ -79,6 +79,7 @@ function MyApp({Component, pageProps}) {
     const [titleError, setTitleError] = React.useState(false)
     const [inputList, setInputList] = useState([''])
     const [imagePreviewKey, setImagePreviewKey] = useState(true)
+    const [countries, setCountries] = useState([])
     React.useEffect(() => {
         const jssStyles = document.querySelector('#jss-server-side');
         if (jssStyles)

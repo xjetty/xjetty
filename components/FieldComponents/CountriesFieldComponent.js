@@ -278,7 +278,7 @@ const CountriesFieldComponent = () => {
     };
 
     return (
-        <FormControl>
+        <FormControl variant="filled" fullWidth>
             <InputLabel id="demo-mutiple-checkbox-label">Countries</InputLabel>
             <Select
                 labelId="demo-mutiple-checkbox-label"

@@ -5,6 +5,7 @@ import ImageListItem from '@material-ui/core/ImageListItem'
 import ImageListItemBar from '@material-ui/core/ImageListItemBar'
 import IconButton from '@material-ui/core/IconButton'
 import StarBorderIcon from '@material-ui/icons/StarBorder'
+import {Remove} from '@material-ui/icons'
 import {AppContext} from "../../contexts/AppContext"
 import {Grid} from "@material-ui/core"
 import Image from 'next/image'
@@ -65,7 +66,7 @@ export default function ImageLinkPreview() {
                                             }}
                                             actionIcon={
                                                 <IconButton>
-                                                    <StarBorderIcon className={classes.title}/>
+                                                    <Remove className={classes.title}/>
                                                 </IconButton>
                                             }
                                         />

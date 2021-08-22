@@ -278,7 +278,7 @@ const CountriesFieldComponent = () => {
     };
 
     return (
-        <FormControl variant="filled" fullWidth>
+        <FormControl fullWidth>
             <InputLabel id="demo-mutiple-checkbox-label">Countries</InputLabel>
             <Select
                 labelId="demo-mutiple-checkbox-label"
@@ -286,7 +286,7 @@ const CountriesFieldComponent = () => {
                 multiple
                 value={countries}
                 onChange={handleChange}
-                input={<Input/>}
+                input={<Input variant="filled"/>}
                 renderValue={(selected) => selected.join(', ')}
                 MenuProps={MenuProps}
             >

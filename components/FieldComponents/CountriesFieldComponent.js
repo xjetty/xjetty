@@ -6,7 +6,6 @@ import Select from '@material-ui/core/Select'
 import {AppContext} from "../../contexts/AppContext"
 
 const countryItems = [
-    'All (Worldwide)',
     "Afghanistan",
     "Albania",
     "Algeria",
@@ -262,8 +261,8 @@ const CountriesFieldComponent = () => {
     const {countries, setCountries} = useContext(AppContext)
 
     const handleChange = (event) => {
-        setCountries(event.target.value);
-    };
+        setCountries(event.target.value)
+    }
 
     return (
         <FormControl variant="filled" fullWidth>
@@ -274,7 +273,6 @@ const CountriesFieldComponent = () => {
                 value={countries}
                 onChange={handleChange}
             >
-                <MenuItem value={'New'}>New</MenuItem>
                 {countryItems.map((item) => (
                     <MenuItem value={item} key={item}>{item}</MenuItem>
                 ))}

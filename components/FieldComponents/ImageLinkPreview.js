@@ -57,24 +57,27 @@ export default function ImageLinkPreview() {
             <div className={classes.root}>
                 <ImageList className={classes.imageList} cols={2.5}>
                     {inputList.map((item, index) => {
-                        return (
-                            <ImageListItem key={item}>
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img src={item} alt="Image preview"/>
-                                <ImageListItemBar
-                                    title={`Image ${index + 1}`}
-                                    classes={{
-                                        root: classes.titleBar,
-                                        title: classes.title,
-                                    }}
-                                    actionIcon={
-                                        <IconButton>
-                                            <StarBorderIcon className={classes.title}/>
-                                        </IconButton>
-                                    }
-                                />
-                            </ImageListItem>
-                        )
+                        if (item.trim()) {
+                            return (
+                                <ImageListItem key={item}>
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img src={item} alt="Image preview"/>
+                                    <ImageListItemBar
+                                        title={`Image ${index + 1}`}
+                                        classes={{
+                                            root: classes.titleBar,
+                                            title: classes.title,
+                                        }}
+                                        actionIcon={
+                                            <IconButton>
+                                                <StarBorderIcon className={classes.title}/>
+                                            </IconButton>
+                                        }
+                                    />
+                                </ImageListItem>
+                            )
+                        } else
+                            return ''
                     })}
                 </ImageList>
             </div>

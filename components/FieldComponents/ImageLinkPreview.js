@@ -48,9 +48,13 @@ export default function ImageLinkPreview() {
     }, [inputList])
 
     const handleRemoveClick = index => {
-        const list = [...inputList]
-        list.splice(index, 1)
-        setInputList(list)
+        if (inputList.length === 1) {
+            setInputList([''])
+        } else {
+            const list = [...inputList]
+            list.splice(index, 1)
+            setInputList(list)
+        }
     }
 
     if (show) {

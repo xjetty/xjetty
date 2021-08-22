@@ -88,6 +88,8 @@ function MyApp({Component, pageProps}) {
     return (
         <AppContext.Provider
             value={{
+                countries,
+                setCountries,
                 imagePreviewKey,
                 setImagePreviewKey,
                 inputList,

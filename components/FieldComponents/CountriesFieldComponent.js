@@ -286,8 +286,6 @@ const CountriesFieldComponent = () => {
                 multiple
                 value={countries}
                 onChange={handleChange}
-                variant="filled"
-                input={<Input />}
                 renderValue={(selected) => selected.join(', ')}
                 MenuProps={MenuProps}
             >

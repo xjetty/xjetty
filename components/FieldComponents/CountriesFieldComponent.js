@@ -4,7 +4,6 @@ import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import {AppContext} from "../../contexts/AppContext"
-import {Checkbox, ListItemText, TextField} from "@material-ui/core";
 
 const countryItems = [
     'All (Worldwide)',
@@ -259,17 +258,6 @@ const countryItems = [
     "Åland Islands"
 ]
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-    PaperProps: {
-        style: {
-            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-            width: 250,
-        },
-    },
-};
-
 const CountriesFieldComponent = () => {
     const {countries, setCountries} = useContext(AppContext)
 
@@ -278,23 +266,17 @@ const CountriesFieldComponent = () => {
     };
 
     return (
-        <FormControl fullWidth>
-            <InputLabel id="demo-mutiple-checkbox-label">Countries</InputLabel>
+        <FormControl variant="filled" fullWidth>
+            <InputLabel id="eos-account">Countries</InputLabel>
             <Select
-                labelId="demo-mutiple-checkbox-label"
-                id="demo-mutiple-checkbox"
                 multiple
+                labelId="eos-account"
                 value={countries}
                 onChange={handleChange}
-                input={<TextField variant="filled" />}
-                renderValue={(selected) => selected.join(', ')}
-                MenuProps={MenuProps}
             >
-                {countryItems.map((name) => (
-                    <MenuItem key={name} value={name}>
-                        <Checkbox checked={countries.indexOf(name) > -1}/>
-                        <ListItemText primary={name}/>
-                    </MenuItem>
+                <MenuItem value={'New'}>New</MenuItem>
+                {countryItems.map((item) => (
+                    <MenuItem value={item} key={item}>{item}</MenuItem>
                 ))}
             </Select>
         </FormControl>

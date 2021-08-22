@@ -43,6 +43,7 @@ export default function ImageLinkPreview() {
             } else
                 return true
         })
+        return show
     }, [inputList])
 
     if (show) {

@@ -60,7 +60,7 @@ const CreateListingFormComponent = () => {
                                     <TitleFieldComponent/>
                                 </Grid>
                                 <ImageLinkPreview/>
-                                {JSON.stringify(inputList)}
+                                {/*{JSON.stringify(inputList)}*/}
                                 <TestComponent/>
                                 <Grid item xs={12}>
                                     <NotesFieldComponent/>

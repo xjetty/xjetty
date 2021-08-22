@@ -59,7 +59,7 @@ export default function ImageLinkPreview() {
                     {inputList.map((item, index) => {
                         if (item.trim()) {
                             return (
-                                <ImageListItem key={imagePreviewKey}>
+                                <ImageListItem key={index}>
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
                                     <img src={item} alt="Image preview"/>
                                     <ImageListItemBar

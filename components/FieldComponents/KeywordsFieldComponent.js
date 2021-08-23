@@ -1,23 +1,29 @@
 import {TextField} from '@material-ui/core'
 import {useContext} from 'react'
 import {AppContext} from '../../contexts/AppContext'
+import ChipInput from 'material-ui-chip-input'
 
 const KeywordsFieldComponent = () => {
     const {keywords, setKeywords} = useContext(AppContext)
 
-    const handle = (event) => {
-        let value = event.target.value
-        setKeywords(value)
+    const handleAddChip = (chip) => {
+        const keywords = [...keywords, chip]
+        setKeywords(keywords)
+    }
+
+    const handleDeleteChip = (chip, index) => {
+        const keywords = [...keywords]
+        keywords.splice(index, 1)
+        setKeywords(keywords)
     }
 
     return (
-        <TextField
+        <ChipInput
             value={keywords}
-            onChange={handle}
-            fullWidth
-            label="Keywords"
+            onAdd={(chip) => handleAddChip(chip)}
+            onDelete={(chip, index) => handleDeleteChip(chip, index)}
             variant="filled"
-            multiline
+            label="Keywords"
         />
     )
 }

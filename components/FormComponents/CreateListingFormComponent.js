@@ -86,7 +86,7 @@ const CreateListingFormComponent = () => {
                                     <Typography gutterBottom>
                                         Quantity
                                     </Typography>
-                                    <Box mt={4}>
+                                    <Box mt={4} ml={2} mr={2}>
                                         <QuantityFieldComponent/>
                                     </Box>
                                 </Grid>

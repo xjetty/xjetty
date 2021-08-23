@@ -89,6 +89,7 @@ const EosAmountFieldComponent = () => {
 
     return (
         <TextField
+            InputLabelProps={{required: fixedAmount === 'eos'}}
             error={eosAmountError}
             helperText={helperText}
             onBlur={checkError}

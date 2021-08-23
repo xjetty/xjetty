@@ -92,6 +92,7 @@ const UsdAmountFieldComponent = () => {
 
     return (
         <TextField
+            InputLabelProps={{required: fixedAmount === 'usd'}}
             error={usdAmountError}
             helperText={helperText}
             disabled={fixedAmount === 'eos'}

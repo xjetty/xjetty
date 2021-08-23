@@ -80,6 +80,7 @@ function MyApp({Component, pageProps}) {
     const [inputList, setInputList] = useState([''])
     const [imagePreviewKey, setImagePreviewKey] = useState(true)
     const [countries, setCountries] = useState([])
+    const [worldwide, setWorldwide] = useState(true)
     React.useEffect(() => {
         const jssStyles = document.querySelector('#jss-server-side');
         if (jssStyles)
@@ -88,6 +89,8 @@ function MyApp({Component, pageProps}) {
     return (
         <AppContext.Provider
             value={{
+                worldwide,
+                setWorldwide,
                 countries,
                 setCountries,
                 imagePreviewKey,

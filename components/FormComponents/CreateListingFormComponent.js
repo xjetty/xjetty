@@ -24,6 +24,7 @@ import ImageLinksFieldComponent from "../FieldComponents/ImageLinksFieldComponen
 import TestComponent from "../FieldComponents/TestComponent";
 import ImageLinkPreview from "../FieldComponents/ImageLinkPreview";
 import CountriesFieldComponent from "../FieldComponents/CountriesFieldComponent";
+import WorldwideFieldComponent from "../FieldComponents/WorldwideFieldComponent";
 
 const useStyles = makeStyles({
     media: {
@@ -37,7 +38,7 @@ const useStyles = makeStyles({
 
 const CreateListingFormComponent = () => {
     const classes = useStyles()
-    const {saleMethod, addMemo, publicListing, inputList, imageLinks, imageLinksKey} = useContext(AppContext)
+    const {saleMethod, addMemo, publicListing, worldwide} = useContext(AppContext)
 
     return (
         <Grid container spacing={2}>
@@ -75,8 +76,11 @@ const CreateListingFormComponent = () => {
                                             <KeywordsFieldComponent/>
                                         </Grid>
                                         <Grid item xs={12}>
-                                            <CountriesFieldComponent/>
+                                            <WorldwideFieldComponent/>
                                         </Grid>
+                                        {!worldwide && (<Grid item xs={12}>
+                                            <CountriesFieldComponent/>
+                                        </Grid>)}
                                     </>
                                 )}
                                 <Grid item xs={12}>

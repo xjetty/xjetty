@@ -12,7 +12,7 @@ const KeywordsFieldComponent = () => {
 
     return (
         <TextField
-            placeholder="Use commas to separate keywords"
+            placeholder="Use a comma to separate keywords"
             value={keywords}
             onChange={handle}
             fullWidth

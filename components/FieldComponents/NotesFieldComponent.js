@@ -29,6 +29,7 @@ const NotesFieldComponent = () => {
 
     return (
         <TextField
+            InputLabelProps={{required: true}}
             error={notesError}
             value={notes}
             onChange={handle}

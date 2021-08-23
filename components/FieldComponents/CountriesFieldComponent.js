@@ -268,6 +268,7 @@ const CountriesFieldComponent = () => {
         <FormControl variant="filled" fullWidth>
             <InputLabel id="eos-account">Countries</InputLabel>
             <Select
+                InputLabelProps={{required: true}}
                 multiple
                 labelId="eos-account"
                 value={countries}

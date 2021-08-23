@@ -3,7 +3,7 @@ import {AppContext} from '../../contexts/AppContext'
 import {TextField} from '@material-ui/core'
 
 const MemoFieldComponent = () => {
-    const {memo, setMemo, memoError, setMemoError} = useContext(AppContext)
+    const {memo, setMemo, memoError, setMemoError, addMemo} = useContext(AppContext)
 
     const handle = (event) => {
         const value = event.target.value
@@ -29,6 +29,7 @@ const MemoFieldComponent = () => {
 
     return (
         <TextField
+            InputLabelProps={{required: addMemo}}
             error={memoError}
             onBlur={checkError}
             helperText={helperText}

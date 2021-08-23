@@ -80,6 +80,7 @@ const EosAccountNameFieldComponent = () => {
 
     return (
         <TextField
+            InputLabelProps={{required: true}}
             onKeyUp={verify}
             error={eosAccountNameError}
             helperText={helperText}

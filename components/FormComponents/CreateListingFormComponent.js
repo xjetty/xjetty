@@ -83,12 +83,16 @@ const CreateListingFormComponent = () => {
                                     </>
                                 )}
                                 <Grid item xs={12}>
-                                    <Typography gutterBottom>
-                                        Quantity
-                                    </Typography>
-                                    {/*<Box mt={5} ml={2} mr={2}>*/}
-                                        <QuantityFieldComponent/>
-                                    {/*</Box>*/}
+                                    <Grid container spacing={2}>
+                                        <Grid item xs={12}>
+                                            <Typography gutterBottom>
+                                                Quantity
+                                            </Typography>
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <QuantityFieldComponent/>
+                                        </Grid>
+                                    </Grid>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <SaleMethodFieldComponent/>

@@ -19,7 +19,10 @@ const KeywordsFieldComponent = () => {
 
     return (
         <ChipInput
+            fullWidth
             value={keywords}
+            alwaysShowPlaceholder
+            placeholder="Press enter after every keyword"
             onAdd={(chip) => handleAddChip(chip)}
             onDelete={(chip, index) => handleDeleteChip(chip, index)}
             variant="filled"

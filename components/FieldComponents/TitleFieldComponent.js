@@ -29,6 +29,7 @@ const TitleFieldComponent = () => {
 
     return (
         <TextField
+            InputLabelProps={{required: true}}
             error={titleError}
             value={title}
             onChange={handle}

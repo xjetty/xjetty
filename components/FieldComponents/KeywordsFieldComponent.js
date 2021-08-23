@@ -20,7 +20,7 @@ const KeywordsFieldComponent = () => {
     return (
         <ChipInput
             fullWidth
-            inputLabelProps={{focused: true}}
+            inputLabelProps={{required: true}}
             value={keywords}
             alwaysShowPlaceholder
             placeholder="Press enter after every keyword"

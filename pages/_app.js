@@ -77,7 +77,7 @@ function MyApp({Component, pageProps}) {
     const [title, setTitle] = React.useState('')
     const [keywords, setKeywords] = React.useState('')
     const [titleError, setTitleError] = React.useState(false)
-    const [imageLink, imageLinks] = useState([''])
+    const [imageLinks, setImageLinks] = useState([''])
     const [countries, setCountries] = useState([])
     const [worldwide, setWorldwide] = useState(true)
     React.useEffect(() => {
@@ -92,8 +92,8 @@ function MyApp({Component, pageProps}) {
                 setWorldwide,
                 countries,
                 setCountries,
-                imageLink,
                 imageLinks,
+                setImageLinks,
                 titleError,
                 setTitleError,
                 keywords,

@@ -1,28 +1,22 @@
-import {Grid, IconButton, InputAdornment, TextField} from '@material-ui/core'
-import {useContext, useEffect, useState} from 'react'
-import {AppContext} from '../../contexts/AppContext'
+import {useContext} from "react"
+import {Grid, IconButton, InputAdornment, TextField} from "@material-ui/core"
 import {Add, Remove} from "@material-ui/icons"
+import {AppContext} from "../../contexts/AppContext"
 
-const ImageLinksFieldComponent = () => {
-    // const {imageLinks, setImageLinks} = useContext(AppContext)
-
-    const [imageLinks, setImageLinks] = useState(['']);
-
-    useEffect(() => {
-        console.log(imageLinks)
-    }, [imageLinks])
+function ImageLinksFieldComponent() {
+    const {imageLinks, setImageLinks} = useContext(AppContext)
 
     const handleInputChange = (e, index) => {
         const {value} = e.target
-        const imageLinks = [...imageLinks]
-        imageLinks[index] = value
-        setImageLinks(imageLinks)
+        const list = [...imageLinks]
+        list[index] = value
+        setImageLinks(list)
     }
 
     const handleRemoveClick = index => {
-        const imageLinks = [...imageLinks]
-        imageLinks.splice(index, 1)
-        setImageLinks(imageLinks)
+        const list = [...imageLinks]
+        list.splice(index, 1)
+        setImageLinks(list)
     }
 
     const handleAddClick = () => {
@@ -31,44 +25,35 @@ const ImageLinksFieldComponent = () => {
 
     return (
         <>
-            {
-                imageLinks.map((x, i) => {
-                    return (
-                        <Grid item xs={12} key={i}>
-                            <TextField
-                                value={x}
-                                onChange={handleInputChange}
-                                fullWidth
-                                label={`Image link ${i + 1}`}
-                                variant="filled"
-                                InputProps={{
-                                    endAdornment: (
-                                        <InputAdornment position="end">
-                                            <IconButton onClick={handleAddClick}>
-                                                <Add/>
-                                            </IconButton>
-                                        </InputAdornment>
-                                    )
-                                }}
-                                // InputProps={{
-                                //     endAdornment: (
-                                //         <InputAdornment position="end">
-                                //             <IconButton>
-                                //                 <Remove/>
-                                //             </IconButton>
-                                //         </InputAdornment>
-                                //     )
-                                // }}
-                            />
-                        </Grid>
-                    )
-                })
-            }
-            <div style={{marginTop: 20}}>{JSON.stringify(imageLinks)}</div>
+            {imageLinks.map((x, i) => {
+                return (
+                    <Grid item xs={12} key={i}>
+                        <TextField
+                            value={x}
+                            onChange={e => handleInputChange(e, i)}
+                            fullWidth
+                            label={`Image link ${i + 1}`}
+                            variant="filled"
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        {imageLinks.length !== 1 && <IconButton onClick={() => handleRemoveClick(i)}>
+                                            <Remove/>
+                                        </IconButton>}
+                                        {imageLinks.length - 1 === i &&
+                                        <IconButton onClick={handleAddClick}>
+                                            <Add/>
+                                        </IconButton>
+                                        }
+                                    </InputAdornment>
+                                )
+                            }}
+                        />
+                    </Grid>
+                )
+            })}
         </>
-
     )
-
 }
 
 export default ImageLinksFieldComponent

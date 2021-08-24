@@ -21,8 +21,8 @@ import TitleFieldComponent from "../FieldComponents/TitleFieldComponent";
 import KeywordsFieldComponent from "../FieldComponents/KeywordsFieldComponent";
 import {Add} from '@material-ui/icons'
 import ImageLinksFieldComponent from "../FieldComponents/ImageLinksFieldComponent";
-import TestComponent from "../FieldComponents/TestComponent";
-import ImageLinkPreview from "../FieldComponents/ImageLinkPreview";
+import TestComponent from "../FieldComponents/ImageLinksFieldComponent";
+import ImageLinkPreviewComponent from "../ImageLinkPreviewComponent";
 import CountriesFieldComponent from "../FieldComponents/CountriesFieldComponent";
 import WorldwideFieldComponent from "../FieldComponents/WorldwideFieldComponent";
 
@@ -61,8 +61,8 @@ const CreateListingFormComponent = () => {
                                 <Grid item xs={12}>
                                     <TitleFieldComponent/>
                                 </Grid>
-                                <ImageLinkPreview/>
-                                <TestComponent/>
+                                <ImageLinkPreviewComponent/>
+                                <ImageLinksFieldComponent/>
                                 <Grid item xs={12}>
                                     <NotesFieldComponent/>
                                 </Grid>

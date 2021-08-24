@@ -4,11 +4,9 @@ import ImageList from '@material-ui/core/ImageList'
 import ImageListItem from '@material-ui/core/ImageListItem'
 import ImageListItemBar from '@material-ui/core/ImageListItemBar'
 import IconButton from '@material-ui/core/IconButton'
-import StarBorderIcon from '@material-ui/icons/StarBorder'
 import {Remove} from '@material-ui/icons'
-import {AppContext} from "../../contexts/AppContext"
+import {AppContext} from "../contexts/AppContext"
 import {Grid} from "@material-ui/core"
-import Image from 'next/image'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -31,13 +29,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-export default function ImageLinkPreview() {
-    const {inputList, setInputList} = useContext(AppContext)
+export default function ImageLinkPreviewComponent() {
+    const {imageLinks, setImageLinks} = useContext(AppContext)
     const classes = useStyles()
 
     const show = useMemo(() => {
         let show = false
-        inputList.every(value => {
+        imageLinks.every(value => {
             if (value.trim()) {
                 show = true
                 return false
@@ -45,15 +43,15 @@ export default function ImageLinkPreview() {
                 return true
         })
         return show
-    }, [inputList])
+    }, [imageLinks])
 
     const handleRemoveClick = index => {
-        if (inputList.length === 1) {
-            setInputList([''])
+        if (imageLinks.length === 1) {
+            setImageLinks([''])
         } else {
-            const list = [...inputList]
+            const list = [...imageLinks]
             list.splice(index, 1)
-            setInputList(list)
+            setImageLinks(list)
         }
     }
 
@@ -62,7 +60,7 @@ export default function ImageLinkPreview() {
             <Grid item xs={12}>
                 <div className={classes.root}>
                     <ImageList className={classes.imageList} cols={2.5}>
-                        {inputList.map((item, index) => {
+                        {imageLinks.map((item, index) => {
                             if (item.trim()) {
                                 return (
                                     <ImageListItem key={index}>

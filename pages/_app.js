@@ -77,8 +77,7 @@ function MyApp({Component, pageProps}) {
     const [title, setTitle] = React.useState('')
     const [keywords, setKeywords] = React.useState('')
     const [titleError, setTitleError] = React.useState(false)
-    const [inputList, setInputList] = useState([''])
-    const [imagePreviewKey, setImagePreviewKey] = useState(true)
+    const [imageLink, imageLinks] = useState([''])
     const [countries, setCountries] = useState([])
     const [worldwide, setWorldwide] = useState(true)
     React.useEffect(() => {
@@ -93,10 +92,8 @@ function MyApp({Component, pageProps}) {
                 setWorldwide,
                 countries,
                 setCountries,
-                imagePreviewKey,
-                setImagePreviewKey,
-                inputList,
-                setInputList,
+                imageLink,
+                imageLinks,
                 titleError,
                 setTitleError,
                 keywords,

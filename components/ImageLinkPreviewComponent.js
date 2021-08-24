@@ -9,13 +9,6 @@ import {AppContext} from "../contexts/AppContext"
 import {Grid} from "@material-ui/core"
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        // display: 'flex',
-        // flexWrap: 'wrap',
-        // justifyContent: 'space-around',
-        // overflow: 'hidden',
-        // backgroundColor: theme.palette.background.paper,
-    },
     imageList: {
         flexWrap: 'nowrap',
         transform: 'translateZ(0)',
@@ -58,33 +51,31 @@ export default function ImageLinkPreviewComponent() {
     if (show) {
         return (
             <Grid item xs={12}>
-                <div className={classes.root}>
-                    <ImageList className={classes.imageList} cols={2.5}>
-                        {imageLinks.map((item, index) => {
-                            if (item.trim()) {
-                                return (
-                                    <ImageListItem key={index}>
-                                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                                        <img src={item} alt="Image preview"/>
-                                        <ImageListItemBar
-                                            title={`Image ${index + 1}`}
-                                            classes={{
-                                                root: classes.titleBar,
-                                                title: classes.title,
-                                            }}
-                                            actionIcon={
-                                                <IconButton onClick={() => handleRemoveClick(index)}>
-                                                    <Remove className={classes.title}/>
-                                                </IconButton>
-                                            }
-                                        />
-                                    </ImageListItem>
-                                )
-                            } else
-                                return ''
-                        })}
-                    </ImageList>
-                </div>
+                <ImageList className={classes.imageList} cols={2.5}>
+                    {imageLinks.map((item, index) => {
+                        if (item.trim()) {
+                            return (
+                                <ImageListItem key={index}>
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img src={item} alt="Image preview"/>
+                                    <ImageListItemBar
+                                        title={`Image ${index + 1}`}
+                                        classes={{
+                                            root: classes.titleBar,
+                                            title: classes.title,
+                                        }}
+                                        actionIcon={
+                                            <IconButton onClick={() => handleRemoveClick(index)}>
+                                                <Remove className={classes.title}/>
+                                            </IconButton>
+                                        }
+                                    />
+                                </ImageListItem>
+                            )
+                        } else
+                            return ''
+                    })}
+                </ImageList>
             </Grid>
         )
     } else

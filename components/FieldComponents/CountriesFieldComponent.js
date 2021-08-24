@@ -266,6 +266,7 @@ const CountriesFieldComponent = () => {
             setCountriesError(false)
         } else
             setCountriesError(true)
+        setCountries(value)
     }
 
     const helperText = useMemo(() => {

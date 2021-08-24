@@ -6,7 +6,7 @@ import ImageListItemBar from '@material-ui/core/ImageListItemBar'
 import IconButton from '@material-ui/core/IconButton'
 import {Remove} from '@material-ui/icons'
 import {AppContext} from "../contexts/AppContext"
-import {Grid} from "@material-ui/core"
+import {Button, Grid} from "@material-ui/core"
 
 const useStyles = makeStyles((theme) => ({
     imageList: {
@@ -79,5 +79,9 @@ export default function ImageLinkPreviewComponent() {
             </Grid>
         )
     } else
-        return ''
+        return (
+            <Grid item xs={12}>
+                <Button variant="contained" href="https://postimages.org" target="_blank">Get links here</Button>
+            </Grid>
+        )
 }

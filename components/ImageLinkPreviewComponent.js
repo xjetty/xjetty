@@ -17,8 +17,8 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.background.paper,
     },
     imageList: {
-        flexWrap: 'nowrap',
-        transform: 'translateZ(0)',
+        // flexWrap: 'nowrap',
+        // transform: 'translateZ(0)',
     },
     title: {
         color: theme.palette.primary.light,

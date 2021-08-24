@@ -1,6 +1,6 @@
-import {useContext, useEffect} from "react";
+import {useContext} from "react";
 import {AppContext} from "../../contexts/AppContext";
-import {Box, Button, Card, CardActions, CardContent, CardMedia, Grid, Typography} from "@material-ui/core";
+import {Box, Card, CardActions, CardContent, CardMedia, Grid, Typography} from "@material-ui/core";
 import NotesFieldComponent from "../FieldComponents/NotesFieldComponent";
 import QuantityFieldComponent from "../FieldComponents/QuantityFieldComponent";
 import SaleMethodFieldComponent from "../FieldComponents/SaleMethodFieldComponent";
@@ -16,12 +16,9 @@ import EmailAddressFieldComponent from "../FieldComponents/EmailAddressFieldComp
 import CreateListingActionComponent from "../ActionComponents/CreateListingActionComponent";
 import {makeStyles} from "@material-ui/core/styles";
 import PublicListingFieldComponent from "../FieldComponents/PublicListingFieldComponent";
-import ImageLinkFieldComponent from "../FieldComponents/ImageLinkFieldComponent";
 import TitleFieldComponent from "../FieldComponents/TitleFieldComponent";
 import KeywordsFieldComponent from "../FieldComponents/KeywordsFieldComponent";
-import {Add} from '@material-ui/icons'
 import ImageLinksFieldComponent from "../FieldComponents/ImageLinksFieldComponent";
-import TestComponent from "../FieldComponents/ImageLinksFieldComponent";
 import ImageLinkPreviewComponent from "../ImageLinkPreviewComponent";
 import CountriesFieldComponent from "../FieldComponents/CountriesFieldComponent";
 import WorldwideFieldComponent from "../FieldComponents/WorldwideFieldComponent";

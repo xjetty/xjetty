@@ -81,7 +81,7 @@ export default function ImageLinkPreviewComponent() {
     } else
         return (
             <Grid item xs={12}>
-                <Button color="primary" href="https://postimages.org" target="_blank">Get links here</Button>
+                <Button color="primary" href="https://postimages.org" target="_blank">Get image links here</Button>
             </Grid>
         )
 }

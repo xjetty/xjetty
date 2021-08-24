@@ -10,7 +10,7 @@ import {Grid} from "@material-ui/core"
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        display: 'flex',
+        // display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'space-around',
         overflow: 'hidden',

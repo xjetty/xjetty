@@ -80,6 +80,7 @@ function MyApp({Component, pageProps}) {
     const [imageLinks, setImageLinks] = useState([''])
     const [countries, setCountries] = useState([])
     const [worldwide, setWorldwide] = useState(true)
+    const [countriesError, setCountriesError] = useState(false)
     React.useEffect(() => {
         const jssStyles = document.querySelector('#jss-server-side');
         if (jssStyles)
@@ -88,6 +89,8 @@ function MyApp({Component, pageProps}) {
     return (
         <AppContext.Provider
             value={{
+                countriesError,
+                setCountriesError,
                 worldwide,
                 setWorldwide,
                 countries,

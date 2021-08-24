@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, useMemo} from 'react'
 import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
@@ -258,20 +258,32 @@ const countryItems = [
 ]
 
 const CountriesFieldComponent = () => {
-    const {countries, setCountries} = useContext(AppContext)
+    const {countries, setCountries, countriesError, setCountriesError} = useContext(AppContext)
 
     const handleChange = (event) => {
-        setCountries(event.target.value)
+        const value = event.target.value
+        if (value.length) {
+            setCountriesError(false)
+        } else
+            setCountriesError(true)
     }
+
+    const helperText = useMemo(() => {
+        if (countriesError) {
+            return 'Countries is required'
+        } else return ''
+    }, [countriesError])
 
     return (
         <FormControl variant="filled" fullWidth>
             <InputLabel required>Countries</InputLabel>
             <Select
+                error={countriesError}
                 multiple
                 labelId="eos-account"
                 value={countries}
                 onChange={handleChange}
+                helperText={helperText}
             >
                 {countryItems.map((item) => (
                     <MenuItem value={item} key={item}>{item}</MenuItem>

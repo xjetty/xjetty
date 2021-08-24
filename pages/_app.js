@@ -77,7 +77,7 @@ function MyApp({Component, pageProps}) {
     const [title, setTitle] = React.useState('')
     const [keywords, setKeywords] = React.useState('')
     const [titleError, setTitleError] = React.useState(false)
-    const [imageLinks, setImageLinks] = useState(['https://i.postimg.cc/W3mysBSH/13770536-1124967690927817-8750591621402773340-n.jpg'])
+    const [imageLinks, setImageLinks] = useState([''])
     const [countries, setCountries] = useState([])
     const [worldwide, setWorldwide] = useState(true)
     React.useEffect(() => {

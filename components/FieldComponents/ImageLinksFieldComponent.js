@@ -29,7 +29,6 @@ function ImageLinksFieldComponent() {
                 return (
                     <Grid item xs={12} key={i}>
                         <TextField
-                            helperText="Use a direct link only"
                             value={x}
                             onChange={e => handleInputChange(e, i)}
                             fullWidth

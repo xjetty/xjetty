@@ -43,6 +43,13 @@ const CreateListingActionComponent = () => {
         descriptionError,
         publicListing,
         countriesError,
+        imageLinks,
+        keywords,
+        setTitle,
+        setTitleError,
+        setDescription,
+        setDescriptionError,
+        setImageLinks,
     } = useContext(AppContext)
 
     const [submittingData, setSubmittingData] = React.useState(false)
@@ -101,7 +108,13 @@ const CreateListingActionComponent = () => {
     const createListing = async () => {
         try {
             const res = await axios.post('api/createListing', {
+                title: title,
+                imageLinks: imageLinks,
                 description: description,
+                publicListing: publicListing,
+                keywords: keywords,
+                worldwide: worldwide,
+                countries: countries,
                 quantity: quantity,
                 saleMethod: saleMethod,
                 fixedAmount: fixedAmount,
@@ -117,11 +130,16 @@ const CreateListingActionComponent = () => {
             })
             const data = res.data
             if (data.success) {
+                setTitle('')
+                setImageLinks([''])
+                setDescription('')
                 setNotes('')
                 const newSliderKey = sliderKey + 1
                 setSliderKey(newSliderKey)
                 setUsdAmount('')
                 setEosAmount('')
+                setTitleError(false)
+                setDescriptionError(false)
                 setNotesError(false)
                 setUsdAmountError(false)
                 setEosAmountError(false)

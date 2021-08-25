@@ -27,88 +27,115 @@ const UpdateListingActionComponent = () => {
         setSnackbarOpen,
         setSnackbarMessage,
         setShowOffers,
+        countries,
+        worldwide,
+        title,
+        titleError,
+        description,
+        descriptionError,
+        publicListing,
+        countriesError,
+        imageLinks,
+        keywords,
+        setTitle,
+        setTitleError,
+        setDescription,
+        setDescriptionError,
+        setImageLinks,
     } = useContext(AppContext)
 
     const [submittingData, setSubmittingData] =
         React.useState(false)
 
-    const buttonDisabled = useMemo(() => {
+    const disabled = useMemo(() => {
         if (submittingData) return true
+        if (!title || titleError)
+            return true
+        if (!description || descriptionError)
+            return true
+        if (publicListing && !worldwide) {
+            if (!countries.length || countriesError)
+                return true
+        }
+        if (fixedAmount === 'usd') {
+            if (!usdAmount || usdAmountError)
+                return true
+        }
+        if (fixedAmount === 'eos') {
+            if (!eosAmount || eosAmountError)
+                return true
+        }
+        if (!eosAccountName || eosAccountNameError)
+            return true
         if (addMemo) {
-            return (
-                notesError ||
-                usdAmountError ||
-                eosAmountError ||
-                eosAccountNameError ||
-                memoError ||
-                !notes ||
-                !usdAmount ||
-                !eosAmount ||
-                !eosAccountName ||
-                !memo
-            )
-        } else
-            return (
-                notesError ||
-                usdAmountError ||
-                eosAmountError ||
-                eosAccountNameError ||
-                !notes ||
-                !usdAmount ||
-                !eosAmount ||
-                !eosAccountName
-            )
+            if (!addMemo || memoError)
+                return true
+        }
+        return false
     }, [
-        notesError,
-        usdAmountError,
-        eosAmountError,
-        eosAccountNameError,
-        memoError,
-        addMemo,
         submittingData,
-        notes,
+        title,
+        titleError,
+        description,
+        descriptionError,
+        publicListing,
+        worldwide,
+        countries,
+        countriesError,
+        fixedAmount,
         usdAmount,
+        usdAmountError,
         eosAmount,
+        eosAmountError,
         eosAccountName,
-        memo
+        eosAccountNameError,
+        addMemo,
+        memoError
     ])
 
-    useEffect(() => {
-        const updateListing = async () => {
-            try {
-                const res = await axios.post('../api/updateListing', {
-                    notes: notes,
-                    quantity: quantity,
-                    saleMethod: saleMethod,
-                    fixedAmount: fixedAmount,
-                    usdAmount: usdAmount,
-                    eosAmount: eosAmount,
-                    maximumPercentLessThan: maximumPercentLessThan,
-                    useEscrow: useEscrow,
-                    eosAccountName: eosAccountName,
-                    addMemo: addMemo,
-                    memo: memo,
-                    recaptchaResponse: recaptchaResponse,
-                    token: token
-                })
-                const data = res.data
-                if (data.success) {
-                    if (saleMethod !== 'askingPriceOnly') {
-                        setShowOffers(true)
-                    } else
-                        setShowOffers(false)
-                    setSnackbarMessage('Listing updated successfully')
-                    setSnackbarOpen(true)
-                } else
-                    alert('Something went wrong')
-            } catch (error) {
-                alert('Lost Internet connection')
-            }
-            setSubmittingData(false)
-            process.nextTick(() => {
-                recaptchaRef.current.reset()
+    const updateListing = async () => {
+        try {
+            const res = await axios.post('../api/updateListing', {
+                title: title,
+                imageLinks: imageLinks,
+                description: description,
+                publicListing: publicListing,
+                keywords: keywords,
+                worldwide: worldwide,
+                countries: countries,
+                quantity: quantity,
+                saleMethod: saleMethod,
+                fixedAmount: fixedAmount,
+                usdAmount: usdAmount,
+                eosAmount: eosAmount,
+                maximumPercentLessThan: maximumPercentLessThan,
+                useEscrow: useEscrow,
+                eosAccountName: eosAccountName,
+                addMemo: addMemo,
+                memo: memo,
+                recaptchaResponse: recaptchaResponse,
+                token: token
             })
+            const data = res.data
+            if (data.success) {
+                if (saleMethod !== 'askingPriceOnly') {
+                    setShowOffers(true)
+                } else
+                    setShowOffers(false)
+                setSnackbarMessage('Listing updated successfully')
+                setSnackbarOpen(true)
+            } else
+                alert('Something went wrong')
+        } catch (error) {
+            alert('Lost Internet connection')
         }
+        setSubmittingData(false)
+        process.nextTick(() => {
+            recaptchaRef.current.reset()
+        })
+    }
+
+    useEffect(() => {
         if (submittingData && recaptchaResponse)
             updateListing()
     }, [recaptchaResponse])

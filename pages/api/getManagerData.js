@@ -5,7 +5,6 @@ import Offer from '../../models/Offer'
 import {updateCode} from "../../server/updateCode";
 import jwt from "jsonwebtoken";
 import connectToDb from "../../middleware/connectToDb";
-import {insertBreaks} from "../../server/insertBreaks";
 
 const getManagerData = async (req, res) => {
     const method = req.method
@@ -25,6 +24,13 @@ const getManagerData = async (req, res) => {
         let code = listing.code
         if (!code)
             code = await updateCode(listingId)
+        const title = listing.title
+        const imageLinks = listing.imageLinks
+        const description = listing.description
+        const publicListing = listing.publicListing
+        const keywords = listing.keywords
+        const worldwide = listing.worldwide
+        const countries = listing.countries
         const fixedAmount = listing.fixedAmount
         const usdAmount = listing.usdAmount
         const eosAmount = listing.eosAmount
@@ -32,7 +38,6 @@ const getManagerData = async (req, res) => {
         const quantitySold = listing.quantitySold
         const minimumQuantity = (quantity - (quantity - quantitySold)) + 1
         const hidden = listing.hidden
-        const notes = listing.notes
         const useEscrow = listing.useEscrow
         const saleMethod = listing.saleMethod
         const eosAccountName = listing.eosAccountName
@@ -41,6 +46,13 @@ const getManagerData = async (req, res) => {
         if (!process.env.LIVE)
             link = `http://localhost:3000/listing/${code}`
         const listingData = {
+            title: title,
+            imageLinks: imageLinks,
+            description: description,
+            publicListing: publicListing,
+            keywords: keywords,
+            worldwide: worldwide,
+            countries: countries,
             fixedAmount: fixedAmount,
             usdAmount: usdAmount,
             eosAmount: eosAmount,
@@ -48,7 +60,6 @@ const getManagerData = async (req, res) => {
             quantitySold: quantitySold,
             minimumQuantity: minimumQuantity,
             hidden: hidden,
-            notes: notes,
             useEscrow: useEscrow,
             saleMethod: saleMethod,
             code: code,

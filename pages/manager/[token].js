@@ -7,14 +7,13 @@ import axios from "axios";
 import UpdateEosRate from "../../components/UpdateEosRate";
 
 const Manager = () => {
-
     const router = useRouter()
     const token = router.query.token
 
     const {
         recaptchaRef,
         recaptchaResponse,
-        setNotes,
+        setDescription,
         setQuantity,
         setSaleMethod,
         setFixedAmount,
@@ -32,7 +31,14 @@ const Manager = () => {
         setOffers,
         setShowOffers,
         setLinkCode,
-        setDefaultQuantity
+        setDefaultQuantity,
+        setTitle,
+        setImageLinks,
+        setPublicListing,
+        setKeywords,
+        setWorldwide,
+        setCountries,
+
     } = useContext(AppContext)
 
     const [show, setShow] = React.useState(false)
@@ -56,7 +62,13 @@ const Manager = () => {
                 const listing = data.listing
                 const offers = data.offers
                 setOffers(offers)
-                setNotes(listing.notes)
+                setTitle(listing.title)
+                setImageLinks(listing.imageLinks)
+                setPublicListing(listing.publicListing)
+                setKeywords(listing.keywords)
+                setWorldwide(listing.worldwide)
+                setCountries(listing.countries)
+                setDescription(listing.description)
                 setQuantity(listing.quantity)
                 setDefaultQuantity(listing.quantity)
                 setSaleMethod(listing.saleMethod)
@@ -64,14 +76,13 @@ const Manager = () => {
                 if (listing.fixedAmount === 'usd') {
                     setUsdAmount(listing.usdAmount)
                 } else setEosAmount(listing.eosAmount)
-                if (listing.saleMethod === 'askingPriceAndOffers')
-                    setMaximumPercentLessThan(listing.maximumPercentLessThan)
+                setMaximumPercentLessThan(listing.maximumPercentLessThan)
                 if (listing.saleMethod !== 'askingPriceOnly')
                     setShowOffers(true)
                 setUseEscrow(listing.useEscrow)
                 setEosAccountName(listing.eosAccountName)
                 setAddMemo(listing.addMemo)
-                if (listing.addMemo) setMemo(listing.memo)
+                setMemo(listing.memo)
                 setLink(listing.link)
                 setHidden(listing.hidden)
                 setMinimumQuantity(listing.minimumQuantity)

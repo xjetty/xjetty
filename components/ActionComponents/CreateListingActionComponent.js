@@ -152,7 +152,7 @@ const CreateListingActionComponent = () => {
             } else
                 alert('Something went wrong')
         } catch (error) {
-            alert('Lost Internet connection')
+            alert(error)
         }
         setSubmittingData(false)
         process.nextTick(() => {

@@ -1,7 +1,7 @@
 import {useContext} from "react";
 import {AppContext} from "../../contexts/AppContext";
 import {Box, Card, CardActions, CardContent, CardMedia, Grid, Typography} from "@material-ui/core";
-import NotesFieldComponent from "../FieldComponents/NotesFieldComponent";
+import DescriptionFieldComponent from "../FieldComponents/DescriptionFieldComponent";
 import QuantityFieldComponent from "../FieldComponents/QuantityFieldComponent";
 import SaleMethodFieldComponent from "../FieldComponents/SaleMethodFieldComponent";
 import FixedAmountFieldComponent from "../FieldComponents/FixedAmountFieldComponent";
@@ -61,7 +61,7 @@ const CreateListingFormComponent = () => {
                                 <ImageLinkPreviewComponent/>
                                 <ImageLinksFieldComponent/>
                                 <Grid item xs={12}>
-                                    <NotesFieldComponent/>
+                                    <DescriptionFieldComponent/>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <PublicListingFieldComponent/>

@@ -14,8 +14,8 @@ const theme = createTheme({
 })
 
 function MyApp({Component, pageProps}) {
-    const [notes, setNotes] = React.useState('')
-    const [notesError, setNotesError] = React.useState(false)
+    const [description, setDescription] = React.useState('')
+    const [descriptionError, setDescriptionError] = React.useState(false)
     const [quantity, setQuantity] = React.useState(1)
     const [saleMethod, setSaleMethod] = React.useState('askingPriceOnly')
     const [fixedAmount, setFixedAmount] = React.useState('usd')
@@ -115,10 +115,10 @@ function MyApp({Component, pageProps}) {
                 setDialogTitle,
                 dialogText,
                 setDialogText,
-                notes,
-                setNotes,
-                notesError,
-                setNotesError,
+                description,
+                setDescription,
+                descriptionError,
+                setDescriptionError,
                 quantity,
                 setQuantity,
                 saleMethod,

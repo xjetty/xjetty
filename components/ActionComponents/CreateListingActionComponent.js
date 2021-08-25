@@ -6,14 +6,12 @@ import {Alert} from "@material-ui/lab";
 
 const CreateListingActionComponent = () => {
     const {
-        notesError,
         usdAmountError,
         eosAmountError,
         eosAccountNameError,
         memoError,
         emailAddressError,
         addMemo,
-        notes,
         usdAmount,
         eosAmount,
         eosAccountName,
@@ -36,7 +34,15 @@ const CreateListingActionComponent = () => {
         setMemoError,
         setEmailAddressError,
         recaptchaResponse,
-        recaptchaRef
+        recaptchaRef,
+        countries,
+        worldwide,
+        title,
+        titleError,
+        description,
+        descriptionError,
+        publicListing,
+        countriesError,
     } = useContext(AppContext)
 
     const [submittingData, setSubmittingData] = React.useState(false)
@@ -44,55 +50,58 @@ const CreateListingActionComponent = () => {
 
     const disabled = useMemo(() => {
         if (submittingData) return true
+        if (!title || titleError)
+            return true
+        if (!description || descriptionError)
+            return true
+        if (publicListing && !worldwide) {
+            if (!countries.length || countriesError)
+                return true
+        }
+        if (fixedAmount === 'usd') {
+            if (!usdAmount || usdAmountError)
+                return true
+        }
+        if (fixedAmount === 'eos') {
+            if (!eosAmount || eosAmountError)
+                return true
+        }
+        if (!eosAccountName || eosAccountNameError)
+            return true
         if (addMemo) {
-            return (
-                notesError ||
-                usdAmountError ||
-                eosAmountError ||
-                eosAccountNameError ||
-                memoError ||
-                emailAddressError ||
-                !notes ||
-                !usdAmount ||
-                !eosAmount ||
-                !eosAccountName ||
-                !memo ||
-                !emailAddress
-            )
-        } else
-            return (
-                notesError ||
-                usdAmountError ||
-                eosAmountError ||
-                eosAccountNameError ||
-                emailAddressError ||
-                !notes ||
-                !usdAmount ||
-                !eosAmount ||
-                !eosAccountName ||
-                !emailAddress
-            )
+            if (!addMemo || memoError)
+                return true
+        }
+        if (!emailAddress || emailAddressError)
+            return true
+        return false
     }, [
-        notesError,
-        usdAmountError,
-        eosAmountError,
-        eosAccountNameError,
-        memoError,
-        emailAddressError,
-        addMemo,
         submittingData,
-        notes,
+        title,
+        titleError,
+        description,
+        descriptionError,
+        publicListing,
+        worldwide,
+        countries,
+        countriesError,
+        fixedAmount,
         usdAmount,
+        usdAmountError,
         eosAmount,
+        eosAmountError,
         eosAccountName,
-        memo,
-        emailAddress
+        eosAccountNameError,
+        addMemo,
+        memoError,
+        emailAddress,
+        emailAddressError
     ])
 
     const createListing = async () => {
         try {
             const res = await axios.post('api/createListing', {
-                notes: notes,
+                description: description,
                 quantity: quantity,
                 saleMethod: saleMethod,
                 fixedAmount: fixedAmount,

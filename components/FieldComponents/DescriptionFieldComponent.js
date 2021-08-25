@@ -2,36 +2,36 @@ import React, {useMemo, useContext} from 'react'
 import {TextField} from '@material-ui/core'
 import {AppContext} from '../../contexts/AppContext'
 
-const NotesFieldComponent = () => {
-    const {notes, setNotes, notesError, setNotesError} = useContext(AppContext)
+const DescriptionFieldComponent = () => {
+    const {description, setDescription, descriptionError, setDescriptionError} = useContext(AppContext)
 
     const helperText = useMemo(() => {
-        if (notesError) {
+        if (descriptionError) {
             return 'Description is required'
         } else return ''
-    }, [notesError])
+    }, [descriptionError])
 
     const handle = (event) => {
         const value = event.target.value
         const valueTrim = value.trim()
         if (!valueTrim) {
-            setNotesError(true)
-        } else setNotesError(false)
-        setNotes(value)
+            setDescriptionError(true)
+        } else setDescriptionError(false)
+        setDescription(value)
     }
 
     const checkError = () => {
-        const valueTrim = notes.trim()
+        const valueTrim = description.trim()
         if (!valueTrim) {
-            setNotesError(true)
-        } else setNotesError(false)
+            setDescriptionError(true)
+        } else setDescriptionError(false)
     }
 
     return (
         <TextField
             InputLabelProps={{required: true}}
-            error={notesError}
-            value={notes}
+            error={descriptionError}
+            value={description}
             onChange={handle}
             onBlur={checkError}
             fullWidth
@@ -43,4 +43,4 @@ const NotesFieldComponent = () => {
     )
 }
 
-export default NotesFieldComponent
+export default DescriptionFieldComponent

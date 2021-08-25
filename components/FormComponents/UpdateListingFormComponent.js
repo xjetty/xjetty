@@ -1,5 +1,5 @@
 import {Box, Card, CardActions, CardContent, Grid, Typography} from "@material-ui/core";
-import NotesFieldComponent from "../FieldComponents/NotesFieldComponent";
+import DescriptionFieldComponent from "../FieldComponents/DescriptionFieldComponent";
 import QuantityFieldComponent from "../FieldComponents/QuantityFieldComponent";
 import SaleMethodFieldComponent from "../FieldComponents/SaleMethodFieldComponent";
 import FixedAmountFieldComponent from "../FieldComponents/FixedAmountFieldComponent";
@@ -25,7 +25,7 @@ const UpdateListingFormComponent = () => {
                     <CardContent>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
-                                <NotesFieldComponent/>
+                                <DescriptionFieldComponent/>
                             </Grid>
                             <Grid item xs={12}>
                                 <Typography gutterBottom>

@@ -38,7 +38,6 @@ const TitleFieldComponent = () => {
             label="Title"
             variant="filled"
             helperText={helperText}
-            multiline
         />
     )
 }

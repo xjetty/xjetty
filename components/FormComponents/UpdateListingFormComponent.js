@@ -13,10 +13,17 @@ import MemoFieldComponent from "../FieldComponents/MemoFieldComponent";
 import React, {useContext} from "react";
 import UpdateListingActionComponent from "../ActionComponents/UpdateListingActionComponent";
 import {AppContext} from "../../contexts/AppContext";
+import TitleFieldComponent from "../FieldComponents/TitleFieldComponent";
+import ImageLinkPreviewComponent from "../ImageLinkPreviewComponent";
+import ImageLinksFieldComponent from "../FieldComponents/ImageLinksFieldComponent";
+import PublicListingFieldComponent from "../FieldComponents/PublicListingFieldComponent";
+import KeywordsFieldComponent from "../FieldComponents/KeywordsFieldComponent";
+import WorldwideFieldComponent from "../FieldComponents/WorldwideFieldComponent";
+import CountriesFieldComponent from "../FieldComponents/CountriesFieldComponent";
 
 const UpdateListingFormComponent = () => {
 
-    const {saleMethod, addMemo} = useContext(AppContext)
+    const {saleMethod, addMemo, publicListing, worldwide} = useContext(AppContext)
 
     return (
         <Grid container spacing={2}>
@@ -25,8 +32,29 @@ const UpdateListingFormComponent = () => {
                     <CardContent>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
+                                <TitleFieldComponent/>
+                            </Grid>
+                            <ImageLinkPreviewComponent/>
+                            <ImageLinksFieldComponent/>
+                            <Grid item xs={12}>
                                 <DescriptionFieldComponent/>
                             </Grid>
+                            <Grid item xs={12}>
+                                <PublicListingFieldComponent/>
+                            </Grid>
+                            {publicListing && (
+                                <>
+                                    <Grid item xs={12}>
+                                        <KeywordsFieldComponent/>
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <WorldwideFieldComponent/>
+                                    </Grid>
+                                    {!worldwide && (<Grid item xs={12}>
+                                        <CountriesFieldComponent/>
+                                    </Grid>)}
+                                </>
+                            )}
                             <Grid item xs={12}>
                                 <Typography gutterBottom>
                                     Quantity

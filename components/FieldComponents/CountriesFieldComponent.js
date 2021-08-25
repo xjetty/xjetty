@@ -269,6 +269,13 @@ const CountriesFieldComponent = () => {
         setCountries(value)
     }
 
+    const checkError = () => {
+        if (countries.length) {
+            setCountriesError(false)
+        } else
+            setCountriesError(true)
+    }
+
     const helperText = useMemo(() => {
         if (countriesError) {
             return 'Countries is required'
@@ -279,6 +286,7 @@ const CountriesFieldComponent = () => {
         <FormControl variant="filled" fullWidth>
             <InputLabel required>Countries</InputLabel>
             <Select
+                onBlur={checkError}
                 error={countriesError}
                 multiple
                 labelId="eos-account"

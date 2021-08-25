@@ -22,12 +22,10 @@ const CreateListingActionComponent = () => {
         fixedAmount,
         maximumPercentLessThan,
         useEscrow,
-        setNotes,
         sliderKey,
         setSliderKey,
         setUsdAmount,
         setEosAmount,
-        setNotesError,
         setUsdAmountError,
         setEosAmountError,
         setEosAccountNameError,
@@ -133,14 +131,12 @@ const CreateListingActionComponent = () => {
                 setTitle('')
                 setImageLinks([''])
                 setDescription('')
-                setNotes('')
                 const newSliderKey = sliderKey + 1
                 setSliderKey(newSliderKey)
                 setUsdAmount('')
                 setEosAmount('')
                 setTitleError(false)
                 setDescriptionError(false)
-                setNotesError(false)
                 setUsdAmountError(false)
                 setEosAmountError(false)
                 setEosAccountNameError(false)
@@ -161,7 +157,7 @@ const CreateListingActionComponent = () => {
     }
 
     useEffect(() => {
-        if (submittingData && recaptchaResponse) createListing().then()
+        if (submittingData && recaptchaResponse) createListing()
     }, [recaptchaResponse])
 
     const handle = () => {

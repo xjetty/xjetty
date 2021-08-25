@@ -11,7 +11,7 @@ const ListingOptionsFormComponent = () => {
                 <Card>
                     <CardContent>
                         <Typography variant="h5" component="h2">
-                            Update Listing
+                            Listing Options
                         </Typography>
                         <Box my={2}>
                             <Grid container spacing={2}>

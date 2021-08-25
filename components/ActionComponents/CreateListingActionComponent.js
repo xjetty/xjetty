@@ -151,21 +151,17 @@ const CreateListingActionComponent = () => {
                 alert(data.alertMessage)
             } else
                 alert('Something went wrong')
-            setSubmittingData(false)
-            process.nextTick(() => {
-                recaptchaRef.current.reset()
-            })
         } catch (error) {
             alert(error)
-            setSubmittingData(false)
-            process.nextTick(() => {
-                recaptchaRef.current.reset()
-            })
         }
+        setSubmittingData(false)
+        process.nextTick(() => {
+            recaptchaRef.current.reset()
+        })
     }
 
     useEffect(() => {
-        if (submittingData && recaptchaResponse) createListing()
+        if (submittingData && recaptchaResponse) createListing().then()
     }, [recaptchaResponse])
 
     const handle = () => {

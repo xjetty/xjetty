@@ -36,12 +36,7 @@ const UpdateListingActionComponent = () => {
         publicListing,
         countriesError,
         imageLinks,
-        keywords,
-        setTitle,
-        setTitleError,
-        setDescription,
-        setDescriptionError,
-        setImageLinks,
+        keywords
     } = useContext(AppContext)
 
     const [submittingData, setSubmittingData] =
@@ -155,7 +150,7 @@ const UpdateListingActionComponent = () => {
             <Grid item xs={12}>
                 <Button
                     onClick={submitCaptcha}
-                    disabled={buttonDisabled}
+                    disabled={disabled}
                     variant="contained"
                     color="primary">
                     Update listing

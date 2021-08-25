@@ -283,11 +283,10 @@ const CountriesFieldComponent = () => {
     }, [countriesError])
 
     return (
-        <FormControl variant="filled" fullWidth>
+        <FormControl variant="filled" fullWidth error={countriesError}>
             <InputLabel required>Countries</InputLabel>
             <Select
                 onClose={checkError}
-                error={countriesError}
                 multiple
                 labelId="eos-account"
                 value={countries}

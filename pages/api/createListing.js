@@ -20,14 +20,19 @@ const createListing = async (req, res) => {
             const listing = await Listing.create(data)
             const listingId = listing._id
             const emailAddress = listing.emailAddress
-            const notes = listing.notes
+            const title = listing.title
+            const description = listing.description
+            const keywords = listing.keywords
+            let listingAtAGlance = `Title: ${title}<br />Description: ${insertBreaks(description)}`
+            if (keywords)
+                listingAtAGlance += `<br />Keywords: ${insertBreaks(keywords)}`
             const payload = {listingId: listingId}
             const token = jwt.sign(payload, process.env.JWT_SIGNATURE)
             let link = `https://blockcommerc.com/manager/${token}`
             if (!process.env.LIVE)
                 link = `http://localhost:3000/manager/${token}`
-            const subject = 'You created a listing!'
-            const message = `Share the link or code in your manager<br><br><a href=${link}>${link}</a><br><br>Notes: ${insertBreaks(notes)}`
+            const subject = 'You created a listing'
+            const message = `Now, all you have to do is visit your manager<br /><br /><a href=${link}>${link}</a><br /><br />Listing at a glance,<br /><br />${listingAtAGlance}`
             await sendEmail(emailAddress, subject, message)
             return res.json({success: true})
         } catch (e) {

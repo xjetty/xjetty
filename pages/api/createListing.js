@@ -32,7 +32,7 @@ const createListing = async (req, res) => {
             if (!process.env.LIVE)
                 link = `http://localhost:3000/manager/${token}`
             const subject = 'You created a listing'
-            const message = `Now, all you have to do is visit your manager<br /><br /><a href=${link}>${link}</a><br /><br />Listing at a glance,<br /><br />${listingAtAGlance}`
+            const message = `Just visit your manager at least once to confirm your listing,<br /><br /><a href=${link}>${link}</a><br /><br />Listing at a glance,<br /><br />${listingAtAGlance}`
             await sendEmail(emailAddress, subject, message)
             return res.json({success: true})
         } catch (e) {

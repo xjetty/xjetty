@@ -286,7 +286,7 @@ const CountriesFieldComponent = () => {
         <FormControl variant="filled" fullWidth>
             <InputLabel required>Countries</InputLabel>
             <Select
-                onBlur={checkError}
+                onClose={checkError}
                 error={countriesError}
                 multiple
                 labelId="eos-account"

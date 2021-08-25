@@ -17,10 +17,33 @@ const ListingSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
-    notes: {
+    title: {
         type: String,
         required: true,
         trim: true
+    },
+    imageLinks: {
+        type: Array
+    },
+    description: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    publicListing: {
+        type: Boolean
+    },
+    keywords: {
+        type: String
+    },
+    worldwide: {
+        type: Boolean
+    },
+    countries: {
+        type: Array,
+        required: function () {
+            return !this.worldwide
+        },
     },
     quantity: {
         type: Number,

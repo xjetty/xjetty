@@ -1,4 +1,4 @@
-import {Card, CardContent, Grid} from "@material-ui/core";
+import {Box, Card, CardContent, Grid, Typography} from "@material-ui/core";
 import GenerateNewCodeActionComponent from "../ActionComponents/GenerateNewCodeActionComponent";
 import React from "react";
 import HiddenActionComponent from "../ActionComponents/HiddenActionComponent";
@@ -10,17 +10,22 @@ const ListingOptionsFormComponent = () => {
             <Grid item xs={12}>
                 <Card>
                     <CardContent>
-                        <Grid container spacing={2}>
-                            <Grid item xs={12}>
-                                <GenerateNewCodeActionComponent/>
+                        <Typography variant="h5" component="h2">
+                            Update Listing
+                        </Typography>
+                        <Box my={2}>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12}>
+                                    <GenerateNewCodeActionComponent/>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <HiddenActionComponent/>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <DeleteActionComponent/>
+                                </Grid>
                             </Grid>
-                            <Grid item xs={12}>
-                                <HiddenActionComponent/>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <DeleteActionComponent/>
-                            </Grid>
-                        </Grid>
+                        </Box>
                     </CardContent>
                 </Card>
             </Grid>

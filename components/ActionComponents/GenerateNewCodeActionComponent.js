@@ -59,7 +59,7 @@ const GenerateNewCodeActionComponent = () => {
             disabled={disabled}
             onClick={handle}
             variant="contained">
-            Generate new code
+            Get new code
         </Button>
     )
 }

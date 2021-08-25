@@ -283,7 +283,7 @@ const CountriesFieldComponent = () => {
     }, [countriesError])
 
     return (
-        <FormControl variant="filled" fullWidth error={countriesError}>
+        <FormControl variant="filled" fullWidth error={countriesError} helperText={helperText}>
             <InputLabel required>Countries</InputLabel>
             <Select
                 onClose={checkError}
@@ -291,7 +291,6 @@ const CountriesFieldComponent = () => {
                 labelId="eos-account"
                 value={countries}
                 onChange={handleChange}
-                helperText={helperText}
             >
                 {countryItems.map((item) => (
                     <MenuItem value={item} key={item}>{item}</MenuItem>

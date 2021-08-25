@@ -4,6 +4,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import {AppContext} from "../../contexts/AppContext"
+import {FormHelperText} from "@material-ui/core";
 
 const countryItems = [
     "Afghanistan",
@@ -283,7 +284,7 @@ const CountriesFieldComponent = () => {
     }, [countriesError])
 
     return (
-        <FormControl variant="filled" fullWidth error={countriesError} helperText={helperText}>
+        <FormControl variant="filled" fullWidth error={countriesError}>
             <InputLabel required>Countries</InputLabel>
             <Select
                 onClose={checkError}
@@ -296,6 +297,7 @@ const CountriesFieldComponent = () => {
                     <MenuItem value={item} key={item}>{item}</MenuItem>
                 ))}
             </Select>
+            <FormHelperText>{helperText}</FormHelperText>
         </FormControl>
     )
 }

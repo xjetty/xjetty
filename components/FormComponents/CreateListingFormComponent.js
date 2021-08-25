@@ -105,12 +105,16 @@ const CreateListingFormComponent = () => {
                                 </Grid>
                                 {saleMethod === 'askingPriceAndOffers' && (
                                     <Grid item xs={12}>
-                                        <Typography gutterBottom>
-                                            Maximum percent less than
-                                        </Typography>
-                                        <Box mt={4}>
-                                            <MaximumPercentLessThanFieldComponent/>
-                                        </Box>
+                                        <Grid container spacing={4}>
+                                            <Grid item xs={12}>
+                                                <Typography gutterBottom>
+                                                    Maximum percent less than
+                                                </Typography>
+                                            </Grid>
+                                            <Grid item xs={12}>
+                                                <MaximumPercentLessThanFieldComponent/>
+                                            </Grid>
+                                        </Grid>
                                     </Grid>
                                 )}
                                 <Grid item xs={12}>

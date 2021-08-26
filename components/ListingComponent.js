@@ -27,8 +27,8 @@ import TabPanel from '@material-ui/lab/TabPanel';
 
 const useStyles = makeStyles((theme) => ({
     heading: {
-        fontSize: theme.typography.pxToRem(15),
-        fontWeight: theme.typography.fontWeightRegular
+        // fontSize: theme.typography.pxToRem(15),
+        // fontWeight: theme.typography.fontWeightRegular
     },
     media: {
         height: 100,

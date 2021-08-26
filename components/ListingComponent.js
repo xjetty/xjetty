@@ -145,7 +145,7 @@ const ListingComponent = () => {
                                                 <Carousel>
                                                     {imageLinks.map((item, index) => {
                                                         return (
-                                                            <Image key={index} src={item} alt="Image preview"/>
+                                                            <Image height={500} key={index} src={item} alt="Image preview"/>
                                                         )
                                                     })}
                                                 </Carousel>

@@ -119,7 +119,7 @@ const ListingComponent = () => {
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon/>}>
                         <Typography
-                            className={classes.heading}>
+                            className={classes.heading} variant="h5">
                             {title}
                         </Typography>
                     </AccordionSummary>

@@ -20,6 +20,7 @@ import BuyItNowFormComponent from "./FormComponents/BuyItNowFormComponent";
 import MakeOfferFormComponent from "./FormComponents/MakeOfferFormComponent";
 import CheckIcon from '@material-ui/icons/Check';
 import ClearIcon from '@material-ui/icons/Clear';
+import PublicIcon from '@material-ui/icons/Public'
 import {green, red} from "@material-ui/core/colors";
 import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
@@ -195,6 +196,16 @@ const ListingComponent = () => {
                                                 useEscrow
                                                     ? 'Escrow in use'
                                                     : 'Escrow not in use'
+                                            }
+                                        />
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListItemIcon>
+                                            <PublicIcon color="primary"/>
+                                        </ListItemIcon>
+                                        <ListItemText
+                                            primary={
+                                                'United States, Africa'
                                             }
                                         />
                                     </ListItem>

@@ -34,6 +34,7 @@ const BuyItNowActionComponent = () => {
         setEosAccount,
         addMemo,
         memoError,
+        setMemoError
     } = useContext(AppContext)
 
     const submitRecaptcha = () => {
@@ -64,6 +65,7 @@ const BuyItNowActionComponent = () => {
                 setComments('')
                 setEosAccountNameError(false)
                 setAssociativePrivateKeyError(false)
+                setMemoError(false)
                 if (!offer) {
                     setEmailAddress('')
                     setEmailAddressError(false)

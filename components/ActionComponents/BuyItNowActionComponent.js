@@ -1,4 +1,4 @@
-import {Button, Grid, LinearProgress} from '@material-ui/core'
+import {Button, CardActions, Grid, LinearProgress} from '@material-ui/core'
 import React, {useContext, useEffect, useMemo} from 'react'
 import {AppContext} from '../../contexts/AppContext'
 import axios from 'axios'
@@ -139,20 +139,24 @@ const BuyItNowActionComponent = () => {
 
     return (
         <>
-            {submittingData && (
-                <Grid item xs={12}>
-                    <LinearProgress/>
+            <CardActions>
+                <Grid container spacing={2}>
+                    {submittingData && (
+                        <Grid item xs={12}>
+                            <LinearProgress/>
+                        </Grid>
+                    )}
+                    <Grid item xs={12}>
+                        <Button
+                            onClick={submitRecaptcha}
+                            disabled={disabled}
+                            variant="contained"
+                            color="primary">
+                            Confirm and pay
+                        </Button>
+                    </Grid>
                 </Grid>
-            )}
-            <Grid item xs={12}>
-                <Button
-                    onClick={submitRecaptcha}
-                    disabled={disabled}
-                    variant="contained"
-                    color="primary">
-                    Confirm and pay
-                </Button>
-            </Grid>
+            </CardActions>
         </>
     )
 }

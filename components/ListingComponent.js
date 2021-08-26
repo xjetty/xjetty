@@ -114,22 +114,22 @@ const ListingComponent = () => {
 
     return (
         <Grid container spacing={2}>
-            <Grid item xs={12}>
-                <Accordion defaultExpanded={true}>
-                    <AccordionSummary
-                        expandIcon={<ExpandMoreIcon/>}>
-                        <Typography
-                            className={classes.heading}>
-                            {title}
-                        </Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                        <Typography>
-                            <span dangerouslySetInnerHTML={{__html: description}}/>
-                        </Typography>
-                    </AccordionDetails>
-                </Accordion>
-            </Grid>
+            {/*<Grid item xs={12}>*/}
+            {/*    <Accordion defaultExpanded={true}>*/}
+            {/*        <AccordionSummary*/}
+            {/*            expandIcon={<ExpandMoreIcon/>}>*/}
+            {/*            <Typography*/}
+            {/*                className={classes.heading}>*/}
+            {/*                {title}*/}
+            {/*            </Typography>*/}
+            {/*        </AccordionSummary>*/}
+            {/*        <AccordionDetails>*/}
+            {/*            <Typography>*/}
+            {/*                <span dangerouslySetInnerHTML={{__html: description}}/>*/}
+            {/*            </Typography>*/}
+            {/*        </AccordionDetails>*/}
+            {/*    </Accordion>*/}
+            {/*</Grid>*/}
             <Grid item xs={12}>
                 <Card>
                     <CardMedia

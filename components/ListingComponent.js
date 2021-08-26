@@ -73,7 +73,10 @@ const ListingComponent = () => {
         setEosAmountLabel,
         usdAmountValue,
         eosAmountValue,
-        eosRate
+        eosRate,
+        publicListing,
+        worldwide,
+        countries
     } = useContext(AppContext)
 
     useEffect(() => {
@@ -115,22 +118,6 @@ const ListingComponent = () => {
 
     return (
         <Grid container spacing={2}>
-            {/*<Grid item xs={12}>*/}
-            {/*    <Accordion defaultExpanded={true}>*/}
-            {/*        <AccordionSummary*/}
-            {/*            expandIcon={<ExpandMoreIcon/>}>*/}
-            {/*            <Typography*/}
-            {/*                className={classes.heading}>*/}
-            {/*                {title}*/}
-            {/*            </Typography>*/}
-            {/*        </AccordionSummary>*/}
-            {/*        <AccordionDetails>*/}
-            {/*            <Typography>*/}
-            {/*                <span dangerouslySetInnerHTML={{__html: description}}/>*/}
-            {/*            </Typography>*/}
-            {/*        </AccordionDetails>*/}
-            {/*    </Accordion>*/}
-            {/*</Grid>*/}
             <Grid item xs={12}>
                 <Card>
                     <CardMedia
@@ -199,16 +186,14 @@ const ListingComponent = () => {
                                             }
                                         />
                                     </ListItem>
-                                    <ListItem>
+                                    {publicListing && (<ListItem>
                                         <ListItemIcon>
                                             <PublicIcon color="primary"/>
                                         </ListItemIcon>
                                         <ListItemText
-                                            primary={
-                                                'United States, Africa'
-                                            }
+                                            primary={worldwide ? 'Worldwide' : countries.join(', ')}
                                         />
-                                    </ListItem>
+                                    </ListItem>)}
                                 </List>
                             </Grid>
                             <Grid item xs={12}>

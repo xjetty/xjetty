@@ -129,6 +129,13 @@ const ListingComponent = () => {
                         title="BlockCommerc Logo"
                     />
                     <CardContent>
+                        <Carousel>
+                            {imageLinks.map((item, index) => {
+                                return (
+                                    <Image key={index} src={item} alt="Image preview"/>
+                                )
+                            })}
+                        </Carousel>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <Accordion defaultExpanded={true}>
@@ -145,7 +152,7 @@ const ListingComponent = () => {
                                                 <Carousel>
                                                     {imageLinks.map((item, index) => {
                                                         return (
-                                                            <Image height={500} key={index} src={item} alt="Image preview"/>
+                                                            <Image key={index} src={item} alt="Image preview"/>
                                                         )
                                                     })}
                                                 </Carousel>

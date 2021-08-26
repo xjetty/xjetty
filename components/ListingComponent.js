@@ -199,8 +199,8 @@ const ListingComponent = () => {
                             <TabContext value={tabValue}>
                                 <AppBar position="static">
                                     <TabList onChange={handleTabChange}>
-                                        <Tab label="Buy It Now" value="1"/>
-                                        <Tab label="Make Offer" value="2"/>
+                                        <Tab label="Buy it now" value="1"/>
+                                        <Tab label="Make offer" value="2"/>
                                     </TabList>
                                 </AppBar>
                                 <TabPanel value="1">
@@ -214,7 +214,8 @@ const ListingComponent = () => {
                             <TabContext value={tabValue}>
                                 <AppBar position="static">
                                     <TabList onChange={handleTabChange}>
-                                        <Tab label="Buy It Now" value="1"/>
+                                        <Tab label="Buy it now" value="1"/>
+                                        <Tab label="Make offer" disabled/>
                                     </TabList>
                                 </AppBar>
                                 <TabPanel value="1">
@@ -225,7 +226,8 @@ const ListingComponent = () => {
                             <TabContext value={tabValue}>
                                 <AppBar position="static">
                                     <TabList onChange={handleTabChange}>
-                                        <Tab label="Make Offer" value="1"/>
+                                        <Tab label="Buy it now" disabled/>
+                                        <Tab label="Make offer" value="1"/>
                                     </TabList>
                                 </AppBar>
                                 <TabPanel value="1">

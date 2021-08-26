@@ -14,6 +14,11 @@ const getListingData = async (req, res) => {
         await connectToDb()
         const listing = await Listing.findOne({code: code})
         if (!listing) return res.json({success: false, alertMessage: 'Listing not found'})
+        const title = listing.title
+        const imageLinks = listing.imageLinks
+        const publicListing = listing.publicListing
+        const worldwide = listing.worldwide
+        const countries = listing.countries
         const fixedAmount = listing.fixedAmount
         const usdAmount = listing.usdAmount
         const eosAmount = listing.eosAmount
@@ -24,15 +29,20 @@ const getListingData = async (req, res) => {
             return res.json({success: false, alertMessage: 'Listing not available'})
         const hidden = listing.hidden
         if (hidden) return res.json({success: false, alertMessage: 'Listing hidden'})
-        const notes = insertBreaks(listing.notes)
+        const description = insertBreaks(listing.description)
         const useEscrow = listing.useEscrow
         const saleMethod = listing.saleMethod
         return res.json({
             success: true, listing: {
+                title: title,
+                imageLinks: imageLinks,
+                publicListing: publicListing,
+                worldwide: worldwide,
+                countries: countries,
                 fixedAmount: fixedAmount,
                 usdAmount: usdAmount,
                 eosAmount: eosAmount,
-                notes: notes,
+                description: description,
                 useEscrow: useEscrow,
                 saleMethod: saleMethod
             }

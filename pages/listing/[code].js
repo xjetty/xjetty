@@ -19,10 +19,15 @@ const Listing = () => {
         setFixedAmount,
         setUsdAmountValue,
         setEosAmountValue,
-        setNotes,
+        setDescription,
         setUseEscrow,
         setSaleMethod,
-        setEosAccountItems
+        setEosAccountItems,
+        setTitle,
+        setImageLinks,
+        setPublicListing,
+        setWorldwide,
+        setCountries,
     } = useContext(AppContext)
 
     useEffect(() => {
@@ -48,16 +53,26 @@ const Listing = () => {
             if (data.success) {
                 setEosAccountItems2()
                 const listing = data.listing
+                const title = listing.title
+                const imageLinks = listing.imageLinks
+                const description = listing.description
+                const publicListing = listing.publicListing
+                const worldwide = listing.worldwide
+                const countries = listing.countries
                 const fixedAmount = listing.fixedAmount
                 const usdAmount = listing.usdAmount
                 const eosAmount = listing.eosAmount
-                const notes = listing.notes
                 const useEscrow = listing.useEscrow
                 const saleMethod = listing.saleMethod
+                setTitle(title)
+                setImageLinks(imageLinks)
+                setPublicListing(publicListing)
+                setWorldwide(worldwide)
+                setCountries(countries)
                 setFixedAmount(fixedAmount)
                 setUsdAmountValue(usdAmount)
                 setEosAmountValue(eosAmount)
-                setNotes(notes)
+                setDescription(description)
                 setUseEscrow(useEscrow)
                 setSaleMethod(saleMethod)
                 setShow(true)
@@ -80,11 +95,11 @@ const Listing = () => {
 
     return (
         <>
-        <Head>
-            <title>Listing - BlockCommerc</title>
-        </Head>
-        <UpdateEosRate/>
-        {show && <ListingComponent/>}
+            <Head>
+                <title>Listing - BlockCommerc</title>
+            </Head>
+            <UpdateEosRate/>
+            {show && <ListingComponent/>}
         </>
     )
 }

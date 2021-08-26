@@ -60,7 +60,8 @@ const ListingComponent = () => {
     const classes = useStyles()
 
     const {
-        notes,
+        title,
+        description,
         saleMethod,
         fixedAmount,
         useEscrow,
@@ -119,12 +120,12 @@ const ListingComponent = () => {
                         expandIcon={<ExpandMoreIcon/>}>
                         <Typography
                             className={classes.heading}>
-                            Notes
+                            {title}
                         </Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <Typography>
-                            <span dangerouslySetInnerHTML={{__html: notes}}/>
+                            <span dangerouslySetInnerHTML={{__html: description}}/>
                         </Typography>
                     </AccordionDetails>
                 </Accordion>

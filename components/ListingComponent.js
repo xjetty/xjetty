@@ -25,6 +25,7 @@ import {green, red} from "@material-ui/core/colors";
 import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
+import Carousel from 'react-material-ui-carousel'
 
 const useStyles = makeStyles((theme) => ({
     heading: {
@@ -76,7 +77,8 @@ const ListingComponent = () => {
         eosRate,
         publicListing,
         worldwide,
-        countries
+        countries,
+        imageLinks,
     } = useContext(AppContext)
 
     useEffect(() => {
@@ -137,9 +139,20 @@ const ListingComponent = () => {
                                         </Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                        <Typography>
-                                            <span dangerouslySetInnerHTML={{__html: description}}/>
-                                        </Typography>
+                                        <Grid container spacing={2}>
+                                            <Grid item xs={12}>
+                                                <Carousel>
+                                                    {
+                                                        imageLinks.map( (item, i) => <img alt="image" key={i} src={item} /> )
+                                                    }
+                                                </Carousel>
+                                            </Grid>
+                                            <Grid item xs={12}>
+                                                <Typography>
+                                                    <span dangerouslySetInnerHTML={{__html: description}}/>
+                                                </Typography>
+                                            </Grid>
+                                        </Grid>
                                     </AccordionDetails>
                                 </Accordion>
                             </Grid>

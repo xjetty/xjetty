@@ -27,8 +27,8 @@ import TabPanel from '@material-ui/lab/TabPanel';
 
 const useStyles = makeStyles((theme) => ({
     heading: {
-        // fontSize: theme.typography.pxToRem(15),
-        // fontWeight: theme.typography.fontWeightRegular
+        fontSize: theme.typography.pxToRem(15),
+        fontWeight: theme.typography.fontWeightRegular
     },
     media: {
         height: 100,
@@ -119,7 +119,7 @@ const ListingComponent = () => {
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon/>}>
                         <Typography
-                            className={classes.heading} variant="h5">
+                            className={classes.heading}>
                             {title}
                         </Typography>
                     </AccordionSummary>
@@ -138,6 +138,20 @@ const ListingComponent = () => {
                         title="BlockCommerc Logo"
                     />
                     <CardContent>
+                        <Accordion defaultExpanded={true}>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon/>}>
+                                <Typography
+                                    className={classes.heading}>
+                                    {title}
+                                </Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <Typography>
+                                    <span dangerouslySetInnerHTML={{__html: description}}/>
+                                </Typography>
+                            </AccordionDetails>
+                        </Accordion>
                         <List>
                             {(saleMethod !== 'offersOnly' || offer) && (
                                 <>

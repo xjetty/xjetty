@@ -138,103 +138,111 @@ const ListingComponent = () => {
                         title="BlockCommerc Logo"
                     />
                     <CardContent>
-                        <Accordion defaultExpanded={true}>
-                            <AccordionSummary
-                                expandIcon={<ExpandMoreIcon/>}>
-                                <Typography
-                                    className={classes.heading}>
-                                    {title}
-                                </Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <Typography>
-                                    <span dangerouslySetInnerHTML={{__html: description}}/>
-                                </Typography>
-                            </AccordionDetails>
-                        </Accordion>
-                        <List>
-                            {(saleMethod !== 'offersOnly' || offer) && (
-                                <>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12}>
+                                <Accordion defaultExpanded={true}>
+                                    <AccordionSummary
+                                        expandIcon={<ExpandMoreIcon/>}>
+                                        <Typography
+                                            className={classes.heading}>
+                                            {title}
+                                        </Typography>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                        <Typography>
+                                            <span dangerouslySetInnerHTML={{__html: description}}/>
+                                        </Typography>
+                                    </AccordionDetails>
+                                </Accordion>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <List>
+                                    {(saleMethod !== 'offersOnly' || offer) && (
+                                        <>
+                                            <ListItem>
+                                                <ListItemText
+                                                    primary={usdAmountLabel}
+                                                    secondary={
+                                                        fixedAmount ===
+                                                        'usd'
+                                                            ? 'Fixed'
+                                                            : ''
+                                                    }
+                                                />
+                                            </ListItem>
+                                            <ListItem>
+                                                <ListItemText
+                                                    primary={eosAmountLabel}
+                                                    secondary={
+                                                        fixedAmount ===
+                                                        'eos'
+                                                            ? 'Fixed'
+                                                            : ''
+                                                    }
+                                                />
+                                            </ListItem>
+                                        </>
+                                    )}
                                     <ListItem>
+                                        <ListItemIcon>
+                                            {useEscrow ? (<MuiThemeProvider theme={greenTheme}><CheckIcon
+                                                color="primary"/></MuiThemeProvider>) : (
+                                                <MuiThemeProvider theme={redTheme}><ClearIcon
+                                                    color="primary"/></MuiThemeProvider>)}
+                                        </ListItemIcon>
                                         <ListItemText
-                                            primary={usdAmountLabel}
-                                            secondary={
-                                                fixedAmount ===
-                                                'usd'
-                                                    ? 'Fixed'
-                                                    : ''
+                                            primary={
+                                                useEscrow
+                                                    ? 'Escrow in use'
+                                                    : 'Escrow not in use'
                                             }
                                         />
                                     </ListItem>
-                                    <ListItem>
-                                        <ListItemText
-                                            primary={eosAmountLabel}
-                                            secondary={
-                                                fixedAmount ===
-                                                'eos'
-                                                    ? 'Fixed'
-                                                    : ''
-                                            }
-                                        />
-                                    </ListItem>
-                                </>
-                            )}
-                            <ListItem>
-                                <ListItemIcon>
-                                    {useEscrow ? (<MuiThemeProvider theme={greenTheme}><CheckIcon
-                                        color="primary"/></MuiThemeProvider>) : (
-                                        <MuiThemeProvider theme={redTheme}><ClearIcon
-                                            color="primary"/></MuiThemeProvider>)}
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary={
-                                        useEscrow
-                                            ? 'Escrow in use'
-                                            : 'Escrow not in use'
-                                    }
-                                />
-                            </ListItem>
-                        </List>
-                        {saleMethod === 'askingPriceAndOffers' && !offer ? (
-                            <TabContext value={tabValue}>
-                                <AppBar position="static">
-                                    <TabList onChange={handleTabChange}>
-                                        <Tab label="Buy it now" value="1"/>
-                                        <Tab label="Make offer" value="2"/>
-                                    </TabList>
-                                </AppBar>
-                                <TabPanel value="1">
-                                    <BuyItNowFormComponent/>
-                                </TabPanel>
-                                <TabPanel value="2">
-                                    <MakeOfferFormComponent/>
-                                </TabPanel>
-                            </TabContext>
-                        ) : saleMethod === 'askingPriceOnly' || offer ? (
-                            <TabContext value={tabValue}>
-                                <AppBar position="static">
-                                    <TabList onChange={handleTabChange}>
-                                        <Tab label="Buy it now" value="1"/>
-                                        <Tab label="Make offer" disabled/>
-                                    </TabList>
-                                </AppBar>
-                                <TabPanel value="1">
-                                    <BuyItNowFormComponent/>
-                                </TabPanel>
-                            </TabContext>
-                        ) : (
-                            <TabContext value={tabValue}>
-                                <AppBar position="static">
-                                    <TabList onChange={handleTabChange}>
-                                        <Tab label="Buy it now" disabled/>
-                                        <Tab label="Make offer" value="1"/>
-                                    </TabList>
-                                </AppBar>
-                                <TabPanel value="1">
-                                    <MakeOfferFormComponent/>
-                                </TabPanel>
-                            </TabContext>
-                        )}
+                                </List>
+                            </Grid>
+                            <Grid item xs={12}>
+                                {saleMethod === 'askingPriceAndOffers' && !offer ? (
+                                    <TabContext value={tabValue}>
+                                        <AppBar position="static">
+                                            <TabList onChange={handleTabChange}>
+                                                <Tab label="Buy it now" value="1"/>
+                                                <Tab label="Make offer" value="2"/>
+                                            </TabList>
+                                        </AppBar>
+                                        <TabPanel value="1">
+                                            <BuyItNowFormComponent/>
+                                        </TabPanel>
+                                        <TabPanel value="2">
+                                            <MakeOfferFormComponent/>
+                                        </TabPanel>
+                                    </TabContext>
+                                ) : saleMethod === 'askingPriceOnly' || offer ? (
+                                    <TabContext value={tabValue}>
+                                        <AppBar position="static">
+                                            <TabList onChange={handleTabChange}>
+                                                <Tab label="Buy it now" value="1"/>
+                                                <Tab label="Make offer" disabled/>
+                                            </TabList>
+                                        </AppBar>
+                                        <TabPanel value="1">
+                                            <BuyItNowFormComponent/>
+                                        </TabPanel>
+                                    </TabContext>
+                                ) : (
+                                    <TabContext value={tabValue}>
+                                        <AppBar position="static">
+                                            <TabList onChange={handleTabChange}>
+                                                <Tab label="Buy it now" disabled/>
+                                                <Tab label="Make offer" value="1"/>
+                                            </TabList>
+                                        </AppBar>
+                                        <TabPanel value="1">
+                                            <MakeOfferFormComponent/>
+                                        </TabPanel>
+                                    </TabContext>
+                                )}
+                            </Grid>
+                        </Grid>
                     </CardContent>
                 </Card>
             </Grid>

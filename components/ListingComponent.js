@@ -195,48 +195,46 @@ const ListingComponent = () => {
                                 />
                             </ListItem>
                         </List>
+                        {saleMethod === 'askingPriceAndOffers' && !offer ? (
+                            <TabContext value={tabValue}>
+                                <AppBar position="static">
+                                    <TabList onChange={handleTabChange}>
+                                        <Tab label="Buy It Now" value="1"/>
+                                        <Tab label="Make Offer" value="2"/>
+                                    </TabList>
+                                </AppBar>
+                                <TabPanel value="1">
+                                    <BuyItNowFormComponent/>
+                                </TabPanel>
+                                <TabPanel value="2">
+                                    <MakeOfferFormComponent/>
+                                </TabPanel>
+                            </TabContext>
+                        ) : saleMethod === 'askingPriceOnly' || offer ? (
+                            <TabContext value={tabValue}>
+                                <AppBar position="static">
+                                    <TabList onChange={handleTabChange}>
+                                        <Tab label="Buy It Now" value="1"/>
+                                    </TabList>
+                                </AppBar>
+                                <TabPanel value="1">
+                                    <BuyItNowFormComponent/>
+                                </TabPanel>
+                            </TabContext>
+                        ) : (
+                            <TabContext value={tabValue}>
+                                <AppBar position="static">
+                                    <TabList onChange={handleTabChange}>
+                                        <Tab label="Make Offer" value="1"/>
+                                    </TabList>
+                                </AppBar>
+                                <TabPanel value="1">
+                                    <MakeOfferFormComponent/>
+                                </TabPanel>
+                            </TabContext>
+                        )}
                     </CardContent>
                 </Card>
-            </Grid>
-            <Grid item xs={12}>
-                {saleMethod === 'askingPriceAndOffers' && !offer ? (
-                    <TabContext value={tabValue}>
-                        <AppBar position="static">
-                            <TabList onChange={handleTabChange}>
-                                <Tab label="Buy It Now" value="1"/>
-                                <Tab label="Make Offer" value="2"/>
-                            </TabList>
-                        </AppBar>
-                        <TabPanel value="1">
-                            <BuyItNowFormComponent/>
-                        </TabPanel>
-                        <TabPanel value="2">
-                            <MakeOfferFormComponent/>
-                        </TabPanel>
-                    </TabContext>
-                ) : saleMethod === 'askingPriceOnly' || offer ? (
-                    <TabContext value={tabValue}>
-                        <AppBar position="static">
-                            <TabList onChange={handleTabChange}>
-                                <Tab label="Buy It Now" value="1"/>
-                            </TabList>
-                        </AppBar>
-                        <TabPanel value="1">
-                            <BuyItNowFormComponent/>
-                        </TabPanel>
-                    </TabContext>
-                ) : (
-                    <TabContext value={tabValue}>
-                        <AppBar position="static">
-                            <TabList onChange={handleTabChange}>
-                                <Tab label="Make Offer" value="1"/>
-                            </TabList>
-                        </AppBar>
-                        <TabPanel value="1">
-                            <MakeOfferFormComponent/>
-                        </TabPanel>
-                    </TabContext>
-                )}
             </Grid>
         </Grid>
     )

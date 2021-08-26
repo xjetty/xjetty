@@ -26,6 +26,7 @@ import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
 import Carousel from 'react-material-ui-carousel'
+import Image from 'next/image'
 
 const useStyles = makeStyles((theme) => ({
     heading: {
@@ -142,9 +143,11 @@ const ListingComponent = () => {
                                         <Grid container spacing={2}>
                                             <Grid item xs={12}>
                                                 <Carousel>
-                                                    {
-                                                        imageLinks.map( (item, i) => <img alt="image" key={i} src={item} /> )
-                                                    }
+                                                    {imageLinks.map((item, index) => {
+                                                        return (
+                                                            <Image key={index} src={item} alt="Image preview"/>
+                                                        )
+                                                    })}
                                                 </Carousel>
                                             </Grid>
                                             <Grid item xs={12}>

@@ -32,6 +32,8 @@ const BuyItNowActionComponent = () => {
         setMemo,
         setEosAccountItems,
         setEosAccount,
+        addMemo,
+        memoError,
     } = useContext(AppContext)
 
     const submitRecaptcha = () => {
@@ -103,15 +105,29 @@ const BuyItNowActionComponent = () => {
 
     const disabled = useMemo(() => {
         if (eosAccount === 'New') {
-            return (
-                eosAccountNameError ||
-                associativePrivateKeyError ||
-                emailAddressError ||
-                !eosAccountName ||
-                !associativePrivateKey ||
-                !emailAddress ||
-                submittingData
-            )
+            if (addMemo) {
+                return (
+                    eosAccountNameError ||
+                    associativePrivateKeyError ||
+                    emailAddressError ||
+                    memoError ||
+                    !eosAccountName ||
+                    !associativePrivateKey ||
+                    !emailAddress ||
+                    !memo ||
+                    submittingData
+                )
+            } else {
+                return (
+                    eosAccountNameError ||
+                    associativePrivateKeyError ||
+                    emailAddressError ||
+                    !eosAccountName ||
+                    !associativePrivateKey ||
+                    !emailAddress ||
+                    submittingData
+                )
+            }
         } else {
             return (
                 emailAddressError ||
@@ -119,25 +135,23 @@ const BuyItNowActionComponent = () => {
                 submittingData
             )
         }
-    }, [eosAccountNameError, associativePrivateKeyError, emailAddressError, submittingData, eosAccount, eosAccountName, associativePrivateKey, emailAddress])
+    }, [eosAccountNameError, associativePrivateKeyError, emailAddressError, submittingData, eosAccount, eosAccountName, associativePrivateKey, emailAddress, memo, memoError, addMemo])
 
     return (
         <>
-            <Grid container spacing={2}>
-                {submittingData && (
-                    <Grid item xs={12}>
-                        <LinearProgress/>
-                    </Grid>
-                )}
+            {submittingData && (
                 <Grid item xs={12}>
-                    <Button
-                        onClick={submitRecaptcha}
-                        disabled={disabled}
-                        variant="contained"
-                        color="primary">
-                        Confirm and pay
-                    </Button>
+                    <LinearProgress/>
                 </Grid>
+            )}
+            <Grid item xs={12}>
+                <Button
+                    onClick={submitRecaptcha}
+                    disabled={disabled}
+                    variant="contained"
+                    color="primary">
+                    Confirm and pay
+                </Button>
             </Grid>
         </>
     )

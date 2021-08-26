@@ -14,39 +14,36 @@ const BuyItNowFormComponent = () => {
     const {eosAccount, addMemo} = useContext(AppContext)
     return (
         <>
-        <Grid container spacing={2}>
-            <Grid item xs={12} md={6}>
-                <EosAccountFieldComponent/>
-            </Grid>
-            {eosAccount === 'New' && (
-                <>
-                    <Grid item xs={12} md={6}>
-                        <EosAccountNameFieldComponent/>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <AssociativePrivateKeyFieldComponent/>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <AddMemoFieldComponent/>
-                    </Grid>
-                    {addMemo && (
-                        <Grid item xs={12}>
-                            <MemoFieldComponent/>
+            <Grid container spacing={2}>
+                <Grid item xs={12} md={6}>
+                    <EosAccountFieldComponent/>
+                </Grid>
+                {eosAccount === 'New' && (
+                    <>
+                        <Grid item xs={12} md={6}>
+                            <EosAccountNameFieldComponent/>
                         </Grid>
-                    )}
-                </>
-            )}
-            <Grid item xs={12}>
-                <CommentsFieldComponent/>
-            </Grid>
-            <Grid item xs={12} md={6}>
-                <EmailAddressFieldComponent/>
-            </Grid>
-            <Grid item xs={12}>
+                        <Grid item xs={12}>
+                            <AssociativePrivateKeyFieldComponent/>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <AddMemoFieldComponent/>
+                        </Grid>
+                        {addMemo && (
+                            <Grid item xs={12}>
+                                <MemoFieldComponent/>
+                            </Grid>
+                        )}
+                    </>
+                )}
+                <Grid item xs={12}>
+                    <CommentsFieldComponent/>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                    <EmailAddressFieldComponent/>
+                </Grid>
                 <BuyItNowActionComponent/>
             </Grid>
-        </Grid>
-
         </>
     )
 }

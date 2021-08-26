@@ -13,42 +13,41 @@ import AddMemoFieldComponent from "../FieldComponents/AddMemoFieldComponent";
 const BuyItNowFormComponent = () => {
     const {eosAccount, addMemo} = useContext(AppContext)
     return (
-        <Card>
-            <CardContent>
-                <Grid container spacing={2}>
+        <>
+        <Grid container spacing={2}>
+            <Grid item xs={12} md={6}>
+                <EosAccountFieldComponent/>
+            </Grid>
+            {eosAccount === 'New' && (
+                <>
                     <Grid item xs={12} md={6}>
-                        <EosAccountFieldComponent/>
+                        <EosAccountNameFieldComponent/>
                     </Grid>
-                    {eosAccount === 'New' && (
-                        <>
-                            <Grid item xs={12} md={6}>
-                                <EosAccountNameFieldComponent/>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <AssociativePrivateKeyFieldComponent/>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <AddMemoFieldComponent/>
-                            </Grid>
-                            {addMemo && (
-                                <Grid item xs={12}>
-                                    <MemoFieldComponent/>
-                                </Grid>
-                            )}
-                        </>
-                    )}
                     <Grid item xs={12}>
-                        <CommentsFieldComponent/>
+                        <AssociativePrivateKeyFieldComponent/>
                     </Grid>
-                    <Grid item xs={12} md={6}>
-                        <EmailAddressFieldComponent/>
+                    <Grid item xs={12}>
+                        <AddMemoFieldComponent/>
                     </Grid>
-                </Grid>
-            </CardContent>
-            <CardActions>
+                    {addMemo && (
+                        <Grid item xs={12}>
+                            <MemoFieldComponent/>
+                        </Grid>
+                    )}
+                </>
+            )}
+            <Grid item xs={12}>
+                <CommentsFieldComponent/>
+            </Grid>
+            <Grid item xs={12} md={6}>
+                <EmailAddressFieldComponent/>
+            </Grid>
+            <Grid item xs={12}>
                 <BuyItNowActionComponent/>
-            </CardActions>
-        </Card>
+            </Grid>
+        </Grid>
+
+        </>
     )
 }
 

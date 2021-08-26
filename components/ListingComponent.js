@@ -18,8 +18,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import {AppContext} from '../contexts/AppContext'
 import BuyItNowFormComponent from "./FormComponents/BuyItNowFormComponent";
 import MakeOfferFormComponent from "./FormComponents/MakeOfferFormComponent";
-import CheckIcon from '@material-ui/icons/Check';
-import ClearIcon from '@material-ui/icons/Clear';
+import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
+import WarningIcon from '@material-ui/icons/Warning';
 import PublicIcon from '@material-ui/icons/Public'
 import {green, red} from "@material-ui/core/colors";
 import TabContext from '@material-ui/lab/TabContext';
@@ -173,9 +173,9 @@ const ListingComponent = () => {
                                     )}
                                     <ListItem>
                                         <ListItemIcon>
-                                            {useEscrow ? (<MuiThemeProvider theme={greenTheme}><CheckIcon
+                                            {useEscrow ? (<MuiThemeProvider theme={greenTheme}><VerifiedUserIcon
                                                 color="primary"/></MuiThemeProvider>) : (
-                                                <MuiThemeProvider theme={redTheme}><ClearIcon
+                                                <MuiThemeProvider theme={redTheme}><WarningIcon
                                                     color="primary"/></MuiThemeProvider>)}
                                         </ListItemIcon>
                                         <ListItemText

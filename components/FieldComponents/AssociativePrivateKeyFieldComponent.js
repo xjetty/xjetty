@@ -34,6 +34,7 @@ const AssociativePrivateKeyFieldComponent = () => {
 
     return (
         <TextField
+            InputLabelProps={{required: true}}
             error={associativePrivateKeyError}
             helperText={helperText}
             onBlur={checkError}

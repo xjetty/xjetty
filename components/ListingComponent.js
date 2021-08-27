@@ -204,8 +204,6 @@ const ListingComponent = () => {
                                                     imageSrc={imageLinks[imageNumber]}
                                                     imageAlt="Image"
                                                 />
-                                                {/*<img alt="Image" src={imageLinks[imageNumber]}*/}
-                                                {/*     style={{width: '100%', maxWidth: '500px', height: "auto"}}/>*/}
                                             </Grid>
                                             <Grid item xs={12}>
                                                 <Divider/>
@@ -218,8 +216,11 @@ const ListingComponent = () => {
                                                 </ButtonGroup>
                                             </Grid>
                                         </Grid>) : (
-                                            <img alt="Image" src={imageLinks[0]}
-                                                 style={{width: '100%', maxWidth: '500px', height: "auto"}}/>
+                                            <Magnifier
+                                                style={{width: '100%', maxWidth: '500px', height: "auto"}}
+                                                imageSrc={imageLinks[0]}
+                                                imageAlt="Image"
+                                            />
                                         )}
                                     </AccordionDetails>
                                 </Accordion>) : ''}

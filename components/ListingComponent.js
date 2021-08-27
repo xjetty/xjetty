@@ -173,7 +173,7 @@ const ListingComponent = () => {
                                         </Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                        <Carousel>
+                                        <Carousel navButtonsAlwaysVisible style={{maxHeight: '500px', maxWidth: '500px'}}>
                                             {
                                                 imageLinks.map((item, i) => {
                                                     return (

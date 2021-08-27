@@ -75,7 +75,7 @@ function MyApp({Component, pageProps}) {
     const [publicListing, setPublicListing] = React.useState(false)
     const [displayImageLink, setDisplayImageLink] = React.useState('')
     const [title, setTitle] = React.useState('')
-    const [keywords, setKeywords] = React.useState('')
+    const [keywords, setKeywords] = React.useState([])
     const [titleError, setTitleError] = React.useState(false)
     const [imageLinks, setImageLinks] = useState([''])
     const [countries, setCountries] = useState([])

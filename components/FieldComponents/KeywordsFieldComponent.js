@@ -1,6 +1,7 @@
 import {TextField} from '@material-ui/core'
 import {useContext} from 'react'
 import {AppContext} from '../../contexts/AppContext'
+import ChipInput from 'material-ui-chip-input';
 
 const KeywordsFieldComponent = () => {
     const {keywords, setKeywords} = useContext(AppContext)
@@ -11,13 +12,12 @@ const KeywordsFieldComponent = () => {
     }
 
     return (
-        <TextField
+        <ChipInput
             value={keywords}
-            onChange={handle}
             fullWidth
+            onChange={handle}
             label="Keywords"
             variant="filled"
-            multiline
         />
     )
 }

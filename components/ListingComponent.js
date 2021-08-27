@@ -43,8 +43,8 @@ const useStyles = makeStyles((theme) => ({
         marginRight: 'auto'
     },
     imageList: {
-        // width: 500,
-        height: 450,
+        width: 500,
+        height: 500,
         // Promote the list into its own layer in Chrome. This cost memory, but helps keep FPS high.
         transform: 'translateZ(0)',
     },

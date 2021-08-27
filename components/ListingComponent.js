@@ -44,8 +44,8 @@ const useStyles = makeStyles((theme) => ({
         marginRight: 'auto'
     },
     imageList: {
-        flexWrap: 'nowrap',
-        transform: 'translateZ(0)',
+        width: 500,
+        height: 500,
     },
     title: {
         color: theme.palette.primary.light,
@@ -173,13 +173,13 @@ const ListingComponent = () => {
                                         </Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                        {imageLinks.map((item, index) => {
-                                            return (
-                                                <>
-                                                    <Image layout="responsive" src={item} alt="Image"/>
-                                                </>
-                                            )
-                                        })}
+                                        <ImageList rowHeight={160} className={classes.imageList} cols={3}>
+                                            {imageLinks.map((item) => (
+                                                <ImageListItem key={item} cols={1}>
+                                                    <img src={item} alt="Image" />
+                                                </ImageListItem>
+                                            ))}
+                                        </ImageList>
                                     </AccordionDetails>
                                 </Accordion>
                             </Grid>

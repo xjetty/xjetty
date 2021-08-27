@@ -139,7 +139,7 @@ const ListingComponent = () => {
     const prevImage = () => {
         const images = imageLinks.length
         if (imageNumber === 0) {
-            setImageNumber(images)
+            setImageNumber(images - 1)
         } else {
             setImageNumber(imageNumber - 1)
         }
@@ -147,7 +147,7 @@ const ListingComponent = () => {
 
     const nextImage = () => {
         const images = imageLinks.length
-        if (imageNumber >= images) {
+        if (imageNumber >= images - 1) {
             setImageNumber(0)
         } else {
             setImageNumber(imageNumber + 1)

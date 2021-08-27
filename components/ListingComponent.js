@@ -180,7 +180,7 @@ const ListingComponent = () => {
                                         </Typography>
                                     </AccordionDetails>
                                 </Accordion>
-                                <Accordion>
+                                {(imageLinks.length > 1 && imageLinks[0]) ? (<Accordion defaultExpanded={true}>
                                     <AccordionSummary
                                         expandIcon={<ExpandMoreIcon/>}>
                                         <Typography
@@ -189,22 +189,27 @@ const ListingComponent = () => {
                                         </Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                        <Grid container spacing={2}>
+                                        {imageLinks.length > 1 ? (<Grid container spacing={2}>
                                             <Grid item xs={12}>
-                                                <img alt="Image" src={imageLinks[imageNumber]} style={{width: '100%', maxWidth: '500px', height: "auto"}}/>
+                                                <img alt="Image" src={imageLinks[imageNumber]}
+                                                     style={{width: '100%', maxWidth: '500px', height: "auto"}}/>
                                             </Grid>
                                             <Grid item xs={12}>
                                                 <Divider/>
                                             </Grid>
                                             <Grid item xs={12}>
-                                                <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
+                                                <ButtonGroup variant="contained" color="primary"
+                                                             aria-label="contained primary button group">
                                                     <Button onClick={prevImage}>Prev</Button>
                                                     <Button onClick={nextImage}>Next</Button>
                                                 </ButtonGroup>
                                             </Grid>
-                                        </Grid>
+                                        </Grid>) : (
+                                            <img alt="Image" src={imageLinks[0]}
+                                                 style={{width: '100%', maxWidth: '500px', height: "auto"}}/>
+                                        )}
                                     </AccordionDetails>
-                                </Accordion>
+                                </Accordion>) : ''}
                             </Grid>
                             <Grid item xs={12}>
                                 <List>

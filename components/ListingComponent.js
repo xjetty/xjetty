@@ -142,7 +142,7 @@ const ListingComponent = () => {
                                     <AccordionDetails>
                                         <Grid container spacing={2}>
                                             <Grid item xs={12}>
-                                                <Carousel>
+                                                <Carousel style={{height: '500px'}}>
                                                     {imageLinks.map((item, index) => {
                                                         return (
                                                             <Paper key={index}>

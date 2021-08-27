@@ -72,10 +72,6 @@ const eosFormatter = new Intl.NumberFormat('en-US', {
 const greenTheme = createTheme({palette: {primary: green}})
 const redTheme = createTheme({palette: {primary: red}})
 
-function StarBorderIcon() {
-    return null;
-}
-
 const ListingComponent = () => {
     const classes = useStyles()
 
@@ -131,6 +127,7 @@ const ListingComponent = () => {
     }, [eosRate])
 
     const [tabValue, setTabValue] = React.useState('1')
+    const [imageNumber, setImageNumber] = React.useState(0)
 
     const handleTabChange = (event, newValue) => {
         setTabValue(newValue)
@@ -174,15 +171,18 @@ const ListingComponent = () => {
                                         <Grid container spacing={2}>
                                             <Grid item xs={12}>
                                                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                                                <img style={{maxHeight: '500px', maxWidth: '500px'}} src={imageLinks[0]}/>
+                                                <img alt="Image" style={{maxHeight: '500px', maxWidth: '500px'}}
+                                                     src={imageLinks[imageNumber]}/>
                                             </Grid>
                                             <Grid item xs={12}>
                                                 <Divider/>
                                             </Grid>
                                             <Grid item xs={12}>
-                                                <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-                                                    <Button>Prev</Button>
-                                                    <Button>Next</Button>
+                                                <ButtonGroup variant="contained" color="primary"
+                                                             aria-label="contained primary button group">
+                                                    <Button disabled={imageNumber === 0}>Prev</Button>
+                                                    <Button onClick={setImageNumber(imageNumber + 1)}
+                                                            disabled={imageNumber === imageLinks.length}>Next</Button>
                                                 </ButtonGroup>
                                             </Grid>
                                         </Grid>

@@ -25,9 +25,6 @@ import {green, red} from "@material-ui/core/colors";
 import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
-import {AutoRotatingCarousel} from 'material-auto-rotating-carousel';
-import { Slide } from 'material-auto-rotating-carousel';
-import Image from 'material-ui-image';
 
 const useStyles = makeStyles((theme) => ({
     heading: {
@@ -178,9 +175,20 @@ const ListingComponent = () => {
                                         </Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                        <Image
-                                            src={imageLinks[0]}
-                                        />
+                                        <Grid container spacing={2}>
+                                            <Grid item xs={12}>
+                                                <img alt="Image" src={imageLinks[0]} style={{width: '100%', maxWidth: '500px', height: "auto"}}/>
+                                            </Grid>
+                                            <Grid item xs={12}>
+                                                <Divider/>
+                                            </Grid>
+                                            <Grid item xs={12}>
+                                                <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
+                                                    <Button>Prev</Button>
+                                                    <Button>Next</Button>
+                                                </ButtonGroup>
+                                            </Grid>
+                                        </Grid>
                                     </AccordionDetails>
                                 </Accordion>
                             </Grid>

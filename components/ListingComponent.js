@@ -165,6 +165,7 @@ const ListingComponent = () => {
                                                 <ImageList rowHeight={200} gap={1} className={classes.imageList}>
                                                     {imageLinks.map((item, index) => (
                                                         <ImageListItem key={item} cols={2} rows={2}>
+                                                            {/* eslint-disable-next-line @next/next/no-img-element */}
                                                             <img src={item} alt="Image"/>
                                                             <ImageListItemBar
                                                                 title={`Image ${index + 1}`}

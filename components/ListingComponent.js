@@ -129,16 +129,6 @@ const ListingComponent = () => {
                         title="BlockCommerc Logo"
                     />
                     <CardContent>
-                        <Carousel>
-                            {imageLinks.map((item, index) => {
-                                return (
-                                    <Paper key={index}>
-                                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                                        <img src={item} alt="Image preview"/>
-                                    </Paper>
-                                )
-                            })}
-                        </Carousel>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <Accordion defaultExpanded={true}>
@@ -155,7 +145,9 @@ const ListingComponent = () => {
                                                 <Carousel>
                                                     {imageLinks.map((item, index) => {
                                                         return (
-                                                            <Image key={index} src={item} alt="Image preview"/>
+                                                            <Paper key={index}>
+                                                                <Image src={item} alt="Image preview"/>
+                                                            </Paper>
                                                         )
                                                     })}
                                                 </Carousel>

@@ -148,19 +148,6 @@ const ListingComponent = () => {
                     <CardContent>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
-                                <Accordion>
-                                    <AccordionSummary
-                                        expandIcon={<ExpandMoreIcon/>}>
-                                        <Typography
-                                            className={classes.heading}>
-                                            Images
-                                        </Typography>
-                                    </AccordionSummary>
-                                    <AccordionDetails>
-                                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                                        <img src={imageLinks[0]}/>
-                                    </AccordionDetails>
-                                </Accordion>
                                 <Accordion defaultExpanded={true}>
                                     <AccordionSummary
                                         expandIcon={<ExpandMoreIcon/>}>
@@ -173,6 +160,19 @@ const ListingComponent = () => {
                                         <Typography>
                                             <span dangerouslySetInnerHTML={{__html: description}}/>
                                         </Typography>
+                                    </AccordionDetails>
+                                </Accordion>
+                                <Accordion>
+                                    <AccordionSummary
+                                        expandIcon={<ExpandMoreIcon/>}>
+                                        <Typography
+                                            className={classes.heading}>
+                                            Images
+                                        </Typography>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                                        <img src={imageLinks[0]}/>
                                     </AccordionDetails>
                                 </Accordion>
                             </Grid>

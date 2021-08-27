@@ -162,6 +162,11 @@ const ListingComponent = () => {
         }
     }
 
+    const openImage = () => {
+        const image = imageLinks[imageNumber]
+        window.open(image, '_blank')
+    }
+
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -199,10 +204,10 @@ const ListingComponent = () => {
                                     <AccordionDetails>
                                         {imageLinks.length > 1 ? (<Grid container spacing={2}>
                                             <Grid item xs={12}>
-                                                <Magnifier
+                                                <img
                                                     style={{width: '100%', maxWidth: '500px', height: "auto"}}
-                                                    imageSrc={imageLinks[imageNumber]}
-                                                    imageAlt="Image"
+                                                    src={imageLinks[imageNumber]}
+                                                    alt="Image"
                                                 />
                                             </Grid>
                                             <Grid item xs={12}>
@@ -213,13 +218,14 @@ const ListingComponent = () => {
                                                              aria-label="contained primary button group">
                                                     <Button onClick={prevImage}>Prev</Button>
                                                     <Button onClick={nextImage}>Next</Button>
+                                                    <Button onClick={openImage}>Open</Button>
                                                 </ButtonGroup>
                                             </Grid>
                                         </Grid>) : (
-                                            <Magnifier
+                                            <img
                                                 style={{width: '100%', maxWidth: '500px', height: "auto"}}
-                                                imageSrc={imageLinks[0]}
-                                                imageAlt="Image"
+                                                src={imageLinks[0]}
+                                                alt="Image"
                                             />
                                         )}
                                     </AccordionDetails>

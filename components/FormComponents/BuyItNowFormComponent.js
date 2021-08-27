@@ -1,4 +1,4 @@
-import {Card, CardActions, CardContent, Grid} from '@material-ui/core'
+import {Button, Card, CardActions, CardContent, Grid} from '@material-ui/core'
 import EosAccountNameFieldComponent from '../FieldComponents/EosAccountNameFieldComponent'
 import AssociativePrivateKeyFieldComponent from '../FieldComponents/AssociativePrivateKeyFieldComponent'
 import CommentsFieldComponent from '../FieldComponents/CommentsFieldComponent'
@@ -9,6 +9,7 @@ import MemoFieldComponent from "../FieldComponents/MemoFieldComponent";
 import {AppContext} from "../../contexts/AppContext";
 import EosAccountFieldComponent from "../FieldComponents/EosAccountFieldComponent";
 import AddMemoFieldComponent from "../FieldComponents/AddMemoFieldComponent";
+import {OpenInNew} from "@material-ui/icons";
 
 const BuyItNowFormComponent = () => {
     const {eosAccount, addMemo} = useContext(AppContext)
@@ -36,6 +37,11 @@ const BuyItNowFormComponent = () => {
                         )}
                     </>
                 )}
+                <Grid item xs={12}>
+                    <Button href="https://eospowerup.io/free" target="_blank" color="primary" endIcon={<OpenInNew/>}>
+                        EOS powerup
+                    </Button>
+                </Grid>
                 <Grid item xs={12}>
                     <CommentsFieldComponent/>
                 </Grid>

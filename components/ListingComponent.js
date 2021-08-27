@@ -4,7 +4,7 @@ import {
     AccordionSummary,
     AppBar, Button, ButtonGroup,
     Card,
-    CardContent, CardMedia,
+    CardContent, CardMedia, Divider,
     Grid, IconButton, ImageListItemBar,
     List,
     ListItem, ListItemIcon,

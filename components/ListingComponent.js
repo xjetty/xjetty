@@ -133,7 +133,8 @@ const ListingComponent = () => {
                             {imageLinks.map((item, index) => {
                                 return (
                                     <Paper>
-                                        <Image key={index} src={item} alt="Image preview"/>
+                                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                                        <img key={index} src={item} alt="Image preview"/>
                                     </Paper>
                                 )
                             })}

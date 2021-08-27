@@ -172,7 +172,7 @@ const ListingComponent = () => {
                                     </AccordionSummary>
                                     <AccordionDetails>
                                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                                        <img src={imageLinks[0]}/>
+                                        <img style={{maxHeight: '500px', maxWidth: '500px'}} src={imageLinks[0]}/>
                                     </AccordionDetails>
                                 </Accordion>
                             </Grid>

@@ -25,14 +25,7 @@ import {green, red} from "@material-ui/core/colors";
 import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
-import {
-    Magnifier,
-    GlassMagnifier,
-    SideBySideMagnifier,
-    PictureInPictureMagnifier,
-    MOUSE_ACTIVATION,
-    TOUCH_ACTIVATION
-} from "react-image-magnifiers";
+import Carousel from 'react-material-ui-carousel'
 
 const useStyles = makeStyles((theme) => ({
     heading: {
@@ -202,32 +195,38 @@ const ListingComponent = () => {
                                         </Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                        <Grid container spacing={2}>
-                                            <Grid item xs={12}>
-                                                <img
-                                                    style={{width: '100%', maxWidth: '500px', height: "auto"}}
-                                                    src={imageLinks[imageNumber]}
-                                                    alt="Image"
-                                                />
-                                            </Grid>
-                                            <Grid item xs={12}>
-                                                <Divider/>
-                                            </Grid>
-                                            <Grid item xs={12}>
-                                                {imageLinks.length > 1 ? (
-                                                    <ButtonGroup variant="contained" color="primary"
-                                                                 aria-label="contained primary button group">
-                                                        <Button onClick={prevImage}>Prev</Button>
-                                                        <Button onClick={nextImage}>Next</Button>
-                                                        <Button onClick={openImage}>Open</Button>
-                                                    </ButtonGroup>) : (
-                                                    <ButtonGroup variant="contained" color="primary"
-                                                                 aria-label="contained primary button group">
-                                                        <Button onClick={openImage}>Open</Button>
-                                                    </ButtonGroup>
-                                                )}
-                                            </Grid>
-                                        </Grid>
+                                        <Carousel>
+                                            {
+                                                imageLinks.map((item, i) => <><Paper key={i}><img alt="Image"
+                                                                                                  src={item}/></Paper></>)
+                                            }
+                                        </Carousel>
+                                        {/*<Grid container spacing={2}>*/}
+                                        {/*    <Grid item xs={12}>*/}
+                                        {/*        <img*/}
+                                        {/*            style={{width: '100%', maxWidth: '500px', height: "auto"}}*/}
+                                        {/*            src={imageLinks[imageNumber]}*/}
+                                        {/*            alt="Image"*/}
+                                        {/*        />*/}
+                                        {/*    </Grid>*/}
+                                        {/*    <Grid item xs={12}>*/}
+                                        {/*        <Divider/>*/}
+                                        {/*    </Grid>*/}
+                                        {/*    <Grid item xs={12}>*/}
+                                        {/*        {imageLinks.length > 1 ? (*/}
+                                        {/*            <ButtonGroup variant="contained" color="primary"*/}
+                                        {/*                         aria-label="contained primary button group">*/}
+                                        {/*                <Button onClick={prevImage}>Prev</Button>*/}
+                                        {/*                <Button onClick={nextImage}>Next</Button>*/}
+                                        {/*                <Button onClick={openImage}>Open</Button>*/}
+                                        {/*            </ButtonGroup>) : (*/}
+                                        {/*            <ButtonGroup variant="contained" color="primary"*/}
+                                        {/*                         aria-label="contained primary button group">*/}
+                                        {/*                <Button onClick={openImage}>Open</Button>*/}
+                                        {/*            </ButtonGroup>*/}
+                                        {/*        )}*/}
+                                        {/*    </Grid>*/}
+                                        {/*</Grid>*/}
                                     </AccordionDetails>
                                 </Accordion>) : ''}
                             </Grid>

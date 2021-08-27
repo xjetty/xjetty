@@ -193,7 +193,7 @@ const ListingComponent = () => {
                                         </Typography>
                                     </AccordionDetails>
                                 </Accordion>
-                                {(imageLinks.length > 1 && imageLinks[0]) ? (<Accordion defaultExpanded={true}>
+                                {(imageLinks.length >= 1 && imageLinks[0]) ? (<Accordion defaultExpanded={true}>
                                     <AccordionSummary
                                         expandIcon={<ExpandMoreIcon/>}>
                                         <Typography
@@ -202,7 +202,7 @@ const ListingComponent = () => {
                                         </Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                        {imageLinks.length > 1 ? (<Grid container spacing={2}>
+                                        <Grid container spacing={2}>
                                             <Grid item xs={12}>
                                                 <img
                                                     style={{width: '100%', maxWidth: '500px', height: "auto"}}
@@ -214,21 +214,20 @@ const ListingComponent = () => {
                                                 <Divider/>
                                             </Grid>
                                             <Grid item xs={12}>
-                                                <ButtonGroup variant="contained" color="primary"
-                                                             aria-label="contained primary button group">
-                                                    {imageLinks.length > 1 && (<><Button
-                                                        onClick={prevImage}>Prev</Button>
-                                                        <Button onClick={nextImage}>Next</Button></>)}
-                                                    <Button onClick={openImage}>Open</Button>
-                                                </ButtonGroup>
+                                                {imageLinks.length > 1 ? (
+                                                    <ButtonGroup variant="contained" color="primary"
+                                                                 aria-label="contained primary button group">
+                                                        <Button onClick={prevImage}>Prev</Button>
+                                                        <Button onClick={nextImage}>Next</Button>
+                                                        <Button onClick={openImage}>Open</Button>
+                                                    </ButtonGroup>) : (
+                                                    <ButtonGroup variant="contained" color="primary"
+                                                                 aria-label="contained primary button group">
+                                                        <Button onClick={openImage}>Open</Button>
+                                                    </ButtonGroup>
+                                                )}
                                             </Grid>
-                                        </Grid>) : (
-                                            <img
-                                                style={{width: '100%', maxWidth: '500px', height: "auto"}}
-                                                src={imageLinks[0]}
-                                                alt="Image"
-                                            />
-                                        )}
+                                        </Grid>
                                     </AccordionDetails>
                                 </Accordion>) : ''}
                             </Grid>

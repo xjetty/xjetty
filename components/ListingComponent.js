@@ -177,7 +177,7 @@ const ListingComponent = () => {
                                         </Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                        <AutoRotatingCarousel>
+                                        <AutoRotatingCarousel open={true}>
                                             <Slide
                                                 media={<img src={imageLinks[0]} alt="Image"/>}/>
                                             <Slide

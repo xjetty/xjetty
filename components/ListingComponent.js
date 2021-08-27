@@ -28,6 +28,7 @@ import TabPanel from '@material-ui/lab/TabPanel';
 import Image from 'next/image'
 import ImageListItem from "@material-ui/core/ImageListItem";
 import {Remove} from "@material-ui/icons";
+import ImageList from "@material-ui/core/ImageList";
 
 const useStyles = makeStyles((theme) => ({
     heading: {
@@ -42,18 +43,15 @@ const useStyles = makeStyles((theme) => ({
         marginRight: 'auto'
     },
     imageList: {
-        width: 500,
-        height: 500,
-        // Promote the list into its own layer in Chrome. This cost memory, but helps keep FPS high.
+        flexWrap: 'nowrap',
         transform: 'translateZ(0)',
+    },
+    title: {
+        color: theme.palette.primary.light,
     },
     titleBar: {
         background:
-            'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
-            'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
-    },
-    icon: {
-        color: 'white',
+            'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
     },
 }))
 
@@ -174,37 +172,28 @@ const ListingComponent = () => {
                                         </Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                        <Grid container spacing={2}>
-                                            <Grid item xs={12}>
-                                                <img src={imageLinks[imageNumber]}
-                                                     style={{maxHeight: '500px', maxWidth: '500px'}}
-                                                     alt="Image"/>
-                                                {/*{imageLinks.map((item, index) => {*/}
-                                                {/*    if (imageNumber === index) {*/}
-                                                {/*        return (*/}
-                                                {/*            <>*/}
-                                                {/*                /!* eslint-disable-next-line @next/next/no-img-element *!/*/}
-                                                {/*                <img src={imageLinks[imageNumber]}*/}
-                                                {/*                     style={{maxHeight: '500px', maxWidth: '500px'}}*/}
-                                                {/*                     alt="Image"/>*/}
-                                                {/*            </>*/}
-                                                {/*        )*/}
-                                                {/*    } else*/}
-                                                {/*        return ''*/}
-                                                {/*})}*/}
-                                            </Grid>
-                                            <Grid item xs={12}>
-                                                <Divider/>
-                                            </Grid>
-                                            <Grid item xs={12}>
-                                                <ButtonGroup variant="contained" color="primary"
-                                                             aria-label="contained primary button group">
-                                                    <Button disabled={imageNumber === 0}>Prev</Button>
-                                                    <Button onClick={nextImage}
-                                                            disabled={imageNumber === imageLinks.length}>Next</Button>
-                                                </ButtonGroup>
-                                            </Grid>
-                                        </Grid>
+                                        <ImageList className={classes.imageList} cols={2.5}>
+                                            {imageLinks.map((item, index) => {
+                                                return (
+                                                    <ImageListItem key={index}>
+                                                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                                                        <img src={item} alt="Image"/>
+                                                        <ImageListItemBar
+                                                            title={`Image ${index + 1}`}
+                                                            classes={{
+                                                                root: classes.titleBar,
+                                                                title: classes.title,
+                                                            }}
+                                                            actionIcon={
+                                                                <IconButton>
+                                                                    <Remove className={classes.title}/>
+                                                                </IconButton>
+                                                            }
+                                                        />
+                                                    </ImageListItem>
+                                                )
+                                            })}
+                                        </ImageList>
                                     </AccordionDetails>
                                 </Accordion>
                             </Grid>

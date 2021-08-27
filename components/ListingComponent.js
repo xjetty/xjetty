@@ -200,6 +200,7 @@ const ListingComponent = () => {
                                         {imageLinks.length > 1 ? (<Grid container spacing={2}>
                                             <Grid item xs={12}>
                                                 <Magnifier
+                                                    style={{width: '100%', maxWidth: '500px', height: "auto"}}
                                                     imageSrc={imageLinks[imageNumber]}
                                                     imageAlt="Image"
                                                     mouseActivation={MOUSE_ACTIVATION.DOUBLE_CLICK} // Optional

@@ -216,8 +216,9 @@ const ListingComponent = () => {
                                             <Grid item xs={12}>
                                                 <ButtonGroup variant="contained" color="primary"
                                                              aria-label="contained primary button group">
-                                                    <Button onClick={prevImage}>Prev</Button>
-                                                    <Button onClick={nextImage}>Next</Button>
+                                                    {imageLinks.length > 1 && (<><Button
+                                                        onClick={prevImage}>Prev</Button>
+                                                        <Button onClick={nextImage}>Next</Button></>)}
                                                     <Button onClick={openImage}>Open</Button>
                                                 </ButtonGroup>
                                             </Grid>

@@ -177,17 +177,17 @@ const ListingComponent = () => {
                                         <Grid container spacing={2}>
                                             <Grid item xs={12}>
                                                 {imageLinks.map((item, index) => {
-                                                    // if (imageNumber === index) {
-                                                    //     return (
-                                                    //         <>
-                                                    //             {/* eslint-disable-next-line @next/next/no-img-element */}
-                                                    //             <img key={imageNumber} src={item}
-                                                    //                  style={{maxHeight: '500px', maxWidth: '500px'}}
-                                                    //                  alt="Image"/>
-                                                    //         </>
-                                                    //     )
-                                                    // } else
-                                                    //     return ''
+                                                    if (imageNumber === index) {
+                                                        return (
+                                                            <>
+                                                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                                                <img key={imageNumber} src={item}
+                                                                     style={{maxHeight: '500px', maxWidth: '500px'}}
+                                                                     alt="Image"/>
+                                                            </>
+                                                        )
+                                                    } else
+                                                        return ''
                                                 })}
                                             </Grid>
                                             <Grid item xs={12}>

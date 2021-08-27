@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     },
     imageList: {
         // width: 500,
-        // height: 450,
+        height: 450,
         // Promote the list into its own layer in Chrome. This cost memory, but helps keep FPS high.
         transform: 'translateZ(0)',
     },

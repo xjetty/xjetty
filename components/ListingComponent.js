@@ -5,7 +5,7 @@ import {
     AppBar,
     Card,
     CardContent, CardMedia,
-    Grid,
+    Grid, IconButton, ImageListItemBar,
     List,
     ListItem, ListItemIcon,
     ListItemText, MuiThemeProvider, Paper,
@@ -27,6 +27,8 @@ import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
 import Carousel from 'react-material-ui-carousel'
 import Image from 'next/image'
+import ImageList from "@material-ui/core/ImageList";
+import ImageListItem from "@material-ui/core/ImageListItem";
 
 const useStyles = makeStyles((theme) => ({
     heading: {
@@ -39,6 +41,20 @@ const useStyles = makeStyles((theme) => ({
         width: 'inherit',
         marginLeft: 'auto',
         marginRight: 'auto'
+    },
+    imageList: {
+        width: 500,
+        height: 450,
+        // Promote the list into its own layer in Chrome. This cost memory, but helps keep FPS high.
+        transform: 'translateZ(0)',
+    },
+    titleBar: {
+        background:
+            'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
+            'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+    },
+    icon: {
+        color: 'white',
     },
 }))
 
@@ -58,6 +74,10 @@ const eosFormatter = new Intl.NumberFormat('en-US', {
 
 const greenTheme = createTheme({palette: {primary: green}})
 const redTheme = createTheme({palette: {primary: red}})
+
+function StarBorderIcon() {
+    return null;
+}
 
 const ListingComponent = () => {
     const classes = useStyles()
@@ -142,15 +162,25 @@ const ListingComponent = () => {
                                     <AccordionDetails>
                                         <Grid container spacing={2}>
                                             <Grid item xs={12}>
-                                                <Carousel style={{height: '500px !important'}}>
-                                                    {imageLinks.map((item, index) => {
-                                                        return (
-                                                            <Paper key={index}>
-                                                                <Image src={item} alt="Image preview"/>
-                                                            </Paper>
-                                                        )
-                                                    })}
-                                                </Carousel>
+                                                <ImageList rowHeight={200} gap={1} className={classes.imageList}>
+                                                    {imageLinks.map((item, index) => (
+                                                        <ImageListItem key={item} cols={2} rows={2}>
+                                                            <img src={item} alt="Image"/>
+                                                            <ImageListItemBar
+                                                                title={`Image ${index + 1}`}
+                                                                position="top"
+                                                                actionIcon={
+                                                                    <IconButton aria-label={`star ${item.title}`}
+                                                                                className={classes.icon}>
+                                                                        <StarBorderIcon/>
+                                                                    </IconButton>
+                                                                }
+                                                                actionPosition="left"
+                                                                className={classes.titleBar}
+                                                            />
+                                                        </ImageListItem>
+                                                    ))}
+                                                </ImageList>
                                             </Grid>
                                             <Grid item xs={12}>
                                                 <Typography>

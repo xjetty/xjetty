@@ -27,7 +27,7 @@ import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
 import {AutoRotatingCarousel} from 'material-auto-rotating-carousel';
 
-const Slide = require('./Slide').default;
+import Slide from '@material-ui/core/Slide';
 
 const useStyles = makeStyles((theme) => ({
     heading: {

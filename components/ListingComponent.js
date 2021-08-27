@@ -29,6 +29,7 @@ import Image from 'next/image'
 import ImageListItem from "@material-ui/core/ImageListItem";
 import {Remove} from "@material-ui/icons";
 import ImageList from "@material-ui/core/ImageList";
+import Carousel from 'react-material-ui-carousel'
 
 const useStyles = makeStyles((theme) => ({
     heading: {
@@ -172,28 +173,18 @@ const ListingComponent = () => {
                                         </Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                        <ImageList className={classes.imageList} cols={2.5}>
-                                            {imageLinks.map((item, index) => {
-                                                return (
-                                                    <ImageListItem key={index}>
-                                                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                                                        <img src={item} alt="Image"/>
-                                                        <ImageListItemBar
-                                                            title={`Image ${index + 1}`}
-                                                            classes={{
-                                                                root: classes.titleBar,
-                                                                title: classes.title,
-                                                            }}
-                                                            actionIcon={
-                                                                <IconButton>
-                                                                    <Remove className={classes.title}/>
-                                                                </IconButton>
-                                                            }
-                                                        />
-                                                    </ImageListItem>
-                                                )
-                                            })}
-                                        </ImageList>
+                                        <Carousel>
+                                            {
+                                                imageLinks.map((item, i) => {
+                                                    return (
+                                                        <>
+                                                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                                                            <img alt="Image" src={item}/>
+                                                        </>
+                                                    )
+                                                })
+                                            }
+                                        </Carousel>
                                     </AccordionDetails>
                                 </Accordion>
                             </Grid>

@@ -135,6 +135,10 @@ const ListingComponent = () => {
         setTabValue(newValue)
     }
 
+    const nextImage = () => {
+        setImageNumber(imageNumber + 1)
+    }
+
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -193,7 +197,7 @@ const ListingComponent = () => {
                                                 <ButtonGroup variant="contained" color="primary"
                                                              aria-label="contained primary button group">
                                                     <Button disabled={imageNumber === 0}>Prev</Button>
-                                                    <Button onClick={setImageNumber(imageNumber + 1)}
+                                                    <Button onClick={nextImage}
                                                             disabled={imageNumber === imageLinks.length}>Next</Button>
                                                 </ButtonGroup>
                                             </Grid>

@@ -179,7 +179,7 @@ const ListingComponent = () => {
                                                     return (
                                                         <>
                                                             {/* eslint-disable-next-line @next/next/no-img-element */}
-                                                            <img style={{maxHeight: '500px', maxWidth: '500px'}} alt="Image" src={item}/>
+                                                            <img style={{height: '500px', width: '500px', backgroundSize: "contain"}} alt="Image" src={item}/>
                                                         </>
                                                     )
                                                 })

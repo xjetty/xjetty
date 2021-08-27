@@ -205,7 +205,7 @@ const ListingComponent = () => {
                                         <Grid container spacing={2}>
                                             <Grid item xs={12}>
                                                 <img
-                                                    style={{width: '100%', maxWidth: '500px', height: "auto"}}
+                                                    // style={{width: '100%', maxWidth: '500px', height: "auto"}}
                                                     src={imageLinks[imageNumber]}
                                                     alt="Image"
                                                 />

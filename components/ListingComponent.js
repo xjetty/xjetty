@@ -25,10 +25,7 @@ import {green, red} from "@material-ui/core/colors";
 import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
-import Carousel from 'react-material-ui-carousel'
 import Image from 'next/image'
-import ImageList from "@material-ui/core/ImageList";
-import ImageListItem from "@material-ui/core/ImageListItem";
 
 const useStyles = makeStyles((theme) => ({
     heading: {
@@ -151,6 +148,18 @@ const ListingComponent = () => {
                     <CardContent>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
+                                <Accordion>
+                                    <AccordionSummary
+                                        expandIcon={<ExpandMoreIcon/>}>
+                                        <Typography
+                                            className={classes.heading}>
+                                            Images
+                                        </Typography>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                        <Image src={imageLinks[0]}>
+                                    </AccordionDetails>
+                                </Accordion>
                                 <Accordion defaultExpanded={true}>
                                     <AccordionSummary
                                         expandIcon={<ExpandMoreIcon/>}>
@@ -160,35 +169,9 @@ const ListingComponent = () => {
                                         </Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                        <Grid container spacing={2}>
-                                            <Grid item xs={12}>
-                                                <ImageList gap={1} className={classes.imageList}>
-                                                    {imageLinks.map((item, index) => (
-                                                        <ImageListItem key={item} cols={2} rows={2}>
-                                                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                                                            <img src={item} alt="Image"/>
-                                                            <ImageListItemBar
-                                                                title={`Image ${index + 1}`}
-                                                                position="top"
-                                                                actionIcon={
-                                                                    <IconButton aria-label={`star ${item.title}`}
-                                                                                className={classes.icon}>
-                                                                        <StarBorderIcon/>
-                                                                    </IconButton>
-                                                                }
-                                                                actionPosition="left"
-                                                                className={classes.titleBar}
-                                                            />
-                                                        </ImageListItem>
-                                                    ))}
-                                                </ImageList>
-                                            </Grid>
-                                            <Grid item xs={12}>
-                                                <Typography>
-                                                    <span dangerouslySetInnerHTML={{__html: description}}/>
-                                                </Typography>
-                                            </Grid>
-                                        </Grid>
+                                        <Typography>
+                                            <span dangerouslySetInnerHTML={{__html: description}}/>
+                                        </Typography>
                                     </AccordionDetails>
                                 </Accordion>
                             </Grid>

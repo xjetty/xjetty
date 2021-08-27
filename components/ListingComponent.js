@@ -132,9 +132,9 @@ const ListingComponent = () => {
                         <Carousel style={{height: '500px'}}>
                             {imageLinks.map((item, index) => {
                                 return (
-                                    <Paper>
+                                    <Paper key={index}>
                                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                                        <img key={index} src={item} alt="Image preview"/>
+                                        <img src={item} alt="Image preview"/>
                                     </Paper>
                                 )
                             })}

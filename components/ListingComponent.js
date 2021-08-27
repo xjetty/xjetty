@@ -157,7 +157,7 @@ const ListingComponent = () => {
                                         </Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                        <Image src={imageLinks[0]}>
+                                        <Image src={imageLinks[0]}/>
                                     </AccordionDetails>
                                 </Accordion>
                                 <Accordion defaultExpanded={true}>

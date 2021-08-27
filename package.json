@@ -34,6 +34,7 @@
     "react-dom": "17.0.2",
     "react-draggable": "^4.4.3",
     "react-google-recaptcha": "^2.1.0",
+    "react-image-magnifiers": "^1.4.0",
     "react-material-ui-carousel": "^2.3.1",
     "react-number-format": "^4.6.4",
     "react-slick": "^0.28.1",

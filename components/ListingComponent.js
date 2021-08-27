@@ -25,6 +25,14 @@ import {green, red} from "@material-ui/core/colors";
 import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
+import {
+    Magnifier,
+    GlassMagnifier,
+    SideBySideMagnifier,
+    PictureInPictureMagnifier,
+    MOUSE_ACTIVATION,
+    TOUCH_ACTIVATION
+} from "react-image-magnifiers";
 
 const useStyles = makeStyles((theme) => ({
     heading: {
@@ -191,8 +199,14 @@ const ListingComponent = () => {
                                     <AccordionDetails>
                                         {imageLinks.length > 1 ? (<Grid container spacing={2}>
                                             <Grid item xs={12}>
-                                                <img alt="Image" src={imageLinks[imageNumber]}
-                                                     style={{width: '100%', maxWidth: '500px', height: "auto"}}/>
+                                                <Magnifier
+                                                    imageSrc={imageLinks[imageNumber]}
+                                                    imageAlt="Image"
+                                                    mouseActivation={MOUSE_ACTIVATION.DOUBLE_CLICK} // Optional
+                                                    touchActivation={TOUCH_ACTIVATION.DOUBLE_TAP} // Optional
+                                                />
+                                                {/*<img alt="Image" src={imageLinks[imageNumber]}*/}
+                                                {/*     style={{width: '100%', maxWidth: '500px', height: "auto"}}/>*/}
                                             </Grid>
                                             <Grid item xs={12}>
                                                 <Divider/>

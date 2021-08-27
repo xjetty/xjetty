@@ -43,8 +43,8 @@ const useStyles = makeStyles((theme) => ({
         marginRight: 'auto'
     },
     imageList: {
-        width: 500,
-        height: 450,
+        // width: 500,
+        // height: 450,
         // Promote the list into its own layer in Chrome. This cost memory, but helps keep FPS high.
         transform: 'translateZ(0)',
     },
@@ -162,7 +162,7 @@ const ListingComponent = () => {
                                     <AccordionDetails>
                                         <Grid container spacing={2}>
                                             <Grid item xs={12}>
-                                                <ImageList rowHeight={200} gap={1} className={classes.imageList}>
+                                                <ImageList gap={1} className={classes.imageList}>
                                                     {imageLinks.map((item, index) => (
                                                         <ImageListItem key={item} cols={2} rows={2}>
                                                             {/* eslint-disable-next-line @next/next/no-img-element */}

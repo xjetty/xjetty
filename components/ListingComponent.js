@@ -190,12 +190,12 @@ const ListingComponent = () => {
                                                 <Divider/>
                                             </Grid>
                                             <Grid item xs={12}>
-                                                <ButtonGroup variant="contained" color="primary"
-                                                             aria-label="contained primary button group">
-                                                    <Button disabled={imageNumber === 0}>Prev</Button>
-                                                    <Button onClick={setImageNumber(imageNumber + 1)}
-                                                            disabled={imageNumber === imageLinks.length}>Next</Button>
-                                                </ButtonGroup>
+                                                {/*<ButtonGroup variant="contained" color="primary"*/}
+                                                {/*             aria-label="contained primary button group">*/}
+                                                {/*    <Button disabled={imageNumber === 0}>Prev</Button>*/}
+                                                {/*    <Button onClick={setImageNumber(imageNumber + 1)}*/}
+                                                {/*            disabled={imageNumber === imageLinks.length}>Next</Button>*/}
+                                                {/*</ButtonGroup>*/}
                                             </Grid>
                                         </Grid>
                                     </AccordionDetails>

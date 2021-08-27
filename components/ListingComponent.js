@@ -173,14 +173,17 @@ const ListingComponent = () => {
                                     <AccordionDetails>
                                         <Grid container spacing={2}>
                                             <Grid item xs={12}>
+                                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                                <img style={{maxHeight: '500px', maxWidth: '500px'}} src={imageLinks[0]}/>
+                                            </Grid>
+                                            <Grid item xs={12}>
+                                                <Divider/>
+                                            </Grid>
+                                            <Grid item xs={12}>
                                                 <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
                                                     <Button>Prev</Button>
                                                     <Button>Next</Button>
                                                 </ButtonGroup>
-                                            </Grid>
-                                            <Grid item xs={12}>
-                                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                                <img style={{maxHeight: '500px', maxWidth: '500px'}} src={imageLinks[0]}/>
                                             </Grid>
                                         </Grid>
                                     </AccordionDetails>

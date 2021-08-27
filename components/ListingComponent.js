@@ -203,8 +203,6 @@ const ListingComponent = () => {
                                                     style={{width: '100%', maxWidth: '500px', height: "auto"}}
                                                     imageSrc={imageLinks[imageNumber]}
                                                     imageAlt="Image"
-                                                    mouseActivation={MOUSE_ACTIVATION.DOUBLE_CLICK} // Optional
-                                                    touchActivation={TOUCH_ACTIVATION.DOUBLE_TAP} // Optional
                                                 />
                                                 {/*<img alt="Image" src={imageLinks[imageNumber]}*/}
                                                 {/*     style={{width: '100%', maxWidth: '500px', height: "auto"}}/>*/}

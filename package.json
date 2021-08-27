@@ -37,6 +37,7 @@
     "react-material-ui-carousel": "^2.3.1",
     "react-number-format": "^4.6.4",
     "react-slick": "^0.28.1",
+    "react-swipeable-views": "^0.14.0",
     "react-text-mask": "^5.4.3",
     "url-exists": "^1.0.3",
     "url-exists-deep": "^2.1.0",

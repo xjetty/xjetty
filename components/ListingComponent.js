@@ -136,8 +136,22 @@ const ListingComponent = () => {
         setTabValue(newValue)
     }
 
+    const prevImage = () => {
+        const images = imageLinks.length
+        if (imageNumber === 0) {
+            setImageNumber(images)
+        } else {
+            setImageNumber(imageNumber - 1)
+        }
+    }
+
     const nextImage = () => {
-        setImageNumber(imageNumber + 1)
+        const images = imageLinks.length
+        if (imageNumber >= images) {
+            setImageNumber(0)
+        } else {
+            setImageNumber(imageNumber + 1)
+        }
     }
 
     return (
@@ -177,15 +191,15 @@ const ListingComponent = () => {
                                     <AccordionDetails>
                                         <Grid container spacing={2}>
                                             <Grid item xs={12}>
-                                                <img alt="Image" src={imageLinks[0]} style={{width: '100%', maxWidth: '500px', height: "auto"}}/>
+                                                <img alt="Image" src={imageLinks[imageNumber]} style={{width: '100%', maxWidth: '500px', height: "auto"}}/>
                                             </Grid>
                                             <Grid item xs={12}>
                                                 <Divider/>
                                             </Grid>
                                             <Grid item xs={12}>
                                                 <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-                                                    <Button>Prev</Button>
-                                                    <Button>Next</Button>
+                                                    <Button onClick={prevImage}>Prev</Button>
+                                                    <Button onClick={nextImage}>Next</Button>
                                                 </ButtonGroup>
                                             </Grid>
                                         </Grid>

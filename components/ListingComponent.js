@@ -157,7 +157,8 @@ const ListingComponent = () => {
                                         </Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                        <Image src={imageLinks[0]}/>
+                                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                                        <img src={imageLinks[0]}/>
                                     </AccordionDetails>
                                 </Accordion>
                                 <Accordion defaultExpanded={true}>

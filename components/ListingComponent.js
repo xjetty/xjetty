@@ -25,7 +25,9 @@ import {green, red} from "@material-ui/core/colors";
 import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
-import Slider from "react-slick";
+import {AutoRotatingCarousel} from 'material-auto-rotating-carousel';
+
+const Slide = require('./Slide').default;
 
 const useStyles = makeStyles((theme) => ({
     heading: {
@@ -176,8 +178,12 @@ const ListingComponent = () => {
                                         </Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                                        <img alt="Image" src={imageLinks[0]}/>
+                                        <AutoRotatingCarousel>
+                                            <Slide
+                                                media={<img src={imageLinks[0]} alt="Image"/>}/>
+                                            <Slide
+                                                media={<img src={imageLinks[1]} alt="Image"/>}/>
+                                        </AutoRotatingCarousel>
                                     </AccordionDetails>
                                 </Accordion>
                             </Grid>

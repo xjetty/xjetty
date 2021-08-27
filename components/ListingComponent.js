@@ -26,6 +26,8 @@ import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
 import Image from 'next/image'
+import ImageListItem from "@material-ui/core/ImageListItem";
+import {Remove} from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
     heading: {
@@ -170,9 +172,19 @@ const ListingComponent = () => {
                                     <AccordionDetails>
                                         <Grid container spacing={2}>
                                             <Grid item xs={12}>
-                                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                                <img alt="Image" style={{maxHeight: '500px', maxWidth: '500px'}}
-                                                     src={imageLinks[imageNumber]}/>
+                                                {imageLinks.map((item, index) => {
+                                                    if (imageNumber === index) {
+                                                        return (
+                                                            <>
+                                                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                                                <img src={item}
+                                                                     style={{maxHeight: '500px', maxWidth: '500px'}}
+                                                                     alt="Image"/>
+                                                            </>
+                                                        )
+                                                    } else
+                                                        return ''
+                                                })}
                                             </Grid>
                                             <Grid item xs={12}>
                                                 <Divider/>

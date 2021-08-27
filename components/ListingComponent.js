@@ -176,8 +176,7 @@ const ListingComponent = () => {
                                         {imageLinks.map((item, index) => {
                                             return (
                                                 <>
-                                                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                                                    <img src={item} alt="Image"/>
+                                                    <Image layout="responsive" src={item} alt="Image"/>
                                                 </>
                                             )
                                         })}

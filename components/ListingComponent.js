@@ -129,7 +129,7 @@ const ListingComponent = () => {
                         title="BlockCommerc Logo"
                     />
                     <CardContent>
-                        <Carousel>
+                        <Carousel style={{height: '500px'}}>
                             {imageLinks.map((item, index) => {
                                 return (
                                     <Image key={index} src={item} alt="Image preview"/>

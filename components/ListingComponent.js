@@ -25,11 +25,7 @@ import {green, red} from "@material-ui/core/colors";
 import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
-import Image from 'next/image'
-import ImageListItem from "@material-ui/core/ImageListItem";
-import {Remove} from "@material-ui/icons";
-import ImageList from "@material-ui/core/ImageList";
-import Carousel from 'react-material-ui-carousel'
+import Slider from "react-slick";
 
 const useStyles = makeStyles((theme) => ({
     heading: {
@@ -75,6 +71,13 @@ const redTheme = createTheme({palette: {primary: red}})
 
 const ListingComponent = () => {
     const classes = useStyles()
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1
+    };
 
     const {
         title,
@@ -173,14 +176,16 @@ const ListingComponent = () => {
                                         </Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                        <ImageList rowHeight={500} className={classes.imageList} cols={1}>
-                                            {imageLinks.map((item) => (
-                                                <ImageListItem key={item} cols={1}>
-                                                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                                                    <img src={item} alt="Image" />
-                                                </ImageListItem>
-                                            ))}
-                                        </ImageList>
+                                        <Slider {...settings}>
+                                            <div>
+                                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                                <img alt="Image" src={imageLinks[0]}/>
+                                            </div>
+                                            <div>
+                                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                                <img alt="Image" src={imageLinks[1]}/>
+                                            </div>
+                                        </Slider>
                                     </AccordionDetails>
                                 </Accordion>
                             </Grid>

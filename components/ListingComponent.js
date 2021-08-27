@@ -176,16 +176,8 @@ const ListingComponent = () => {
                                         </Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                        <Slider {...settings}>
-                                            <div>
-                                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                                <img alt="Image" src={imageLinks[0]}/>
-                                            </div>
-                                            <div>
-                                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                                <img alt="Image" src={imageLinks[1]}/>
-                                            </div>
-                                        </Slider>
+                                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                                        <img alt="Image" src={imageLinks[0]}/>
                                     </AccordionDetails>
                                 </Accordion>
                             </Grid>

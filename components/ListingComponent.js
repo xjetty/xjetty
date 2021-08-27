@@ -173,9 +173,10 @@ const ListingComponent = () => {
                                         </Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                        <ImageList rowHeight={160} className={classes.imageList} cols={3}>
+                                        <ImageList rowHeight={500} className={classes.imageList} cols={1}>
                                             {imageLinks.map((item) => (
                                                 <ImageListItem key={item} cols={1}>
+                                                    {/* eslint-disable-next-line @next/next/no-img-element */}
                                                     <img src={item} alt="Image" />
                                                 </ImageListItem>
                                             ))}

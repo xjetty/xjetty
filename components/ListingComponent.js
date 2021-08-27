@@ -8,7 +8,7 @@ import {
     Grid,
     List,
     ListItem, ListItemIcon,
-    ListItemText, MuiThemeProvider,
+    ListItemText, MuiThemeProvider, Paper,
     Tab,
     Typography
 } from '@material-ui/core'
@@ -132,7 +132,9 @@ const ListingComponent = () => {
                         <Carousel style={{height: '500px'}}>
                             {imageLinks.map((item, index) => {
                                 return (
-                                    <Image key={index} src={item} alt="Image preview"/>
+                                    <Paper>
+                                        <Image key={index} src={item} alt="Image preview"/>
+                                    </Paper>
                                 )
                             })}
                         </Carousel>

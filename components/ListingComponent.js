@@ -173,13 +173,13 @@ const ListingComponent = () => {
                                         </Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                        <Carousel navButtonsAlwaysVisible style={{maxHeight: '500px', maxWidth: '500px'}}>
+                                        <Carousel navButtonsAlwaysVisible autoPlay={false}>
                                             {
                                                 imageLinks.map((item, i) => {
                                                     return (
                                                         <>
                                                             {/* eslint-disable-next-line @next/next/no-img-element */}
-                                                            <img alt="Image" src={item}/>
+                                                            <img style={{maxHeight: '500px', maxWidth: '500px'}} alt="Image" src={item}/>
                                                         </>
                                                     )
                                                 })

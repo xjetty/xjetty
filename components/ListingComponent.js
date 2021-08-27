@@ -173,18 +173,14 @@ const ListingComponent = () => {
                                         </Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                        <Carousel navButtonsAlwaysVisible autoPlay={false}>
-                                            {
-                                                imageLinks.map((item, i) => {
-                                                    return (
-                                                        <>
-                                                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                                                            <img style={{height: '500px', width: 'inherit', backgroundSize: "contain"}} alt="Image" src={item}/>
-                                                        </>
-                                                    )
-                                                })
-                                            }
-                                        </Carousel>
+                                        {imageLinks.map((item, index) => {
+                                            return (
+                                                <>
+                                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                                    <img src={item} alt="Image"/>
+                                                </>
+                                            )
+                                        })}
                                     </AccordionDetails>
                                 </Accordion>
                             </Grid>

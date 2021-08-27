@@ -180,7 +180,6 @@ const ListingComponent = () => {
                                     <AccordionDetails>
                                         <Image
                                             src={imageLinks[0]}
-                                            aspectRatio={(1)}
                                         />
                                     </AccordionDetails>
                                 </Accordion>

@@ -27,6 +27,7 @@ import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
 import {AutoRotatingCarousel} from 'material-auto-rotating-carousel';
 import { Slide } from 'material-auto-rotating-carousel';
+import Image from 'material-ui-image';
 
 const useStyles = makeStyles((theme) => ({
     heading: {
@@ -177,12 +178,10 @@ const ListingComponent = () => {
                                         </Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                        <AutoRotatingCarousel open={true}>
-                                            <Slide
-                                                media={<img src={imageLinks[0]} alt="Image"/>}/>
-                                            <Slide
-                                                media={<img src={imageLinks[1]} alt="Image"/>}/>
-                                        </AutoRotatingCarousel>
+                                        <Image
+                                            src={imageLinks[0]}
+                                            aspectRatio={(1)}
+                                        />
                                     </AccordionDetails>
                                 </Accordion>
                             </Grid>

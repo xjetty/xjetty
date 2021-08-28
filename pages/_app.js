@@ -81,6 +81,7 @@ function MyApp({Component, pageProps}) {
     const [countries, setCountries] = useState([])
     const [worldwide, setWorldwide] = useState(true)
     const [countriesError, setCountriesError] = useState(false)
+    const [search, setSearch] = useState('')
     React.useEffect(() => {
         const jssStyles = document.querySelector('#jss-server-side');
         if (jssStyles)
@@ -89,6 +90,8 @@ function MyApp({Component, pageProps}) {
     return (
         <AppContext.Provider
             value={{
+                search,
+                setSearch,
                 countriesError,
                 setCountriesError,
                 worldwide,

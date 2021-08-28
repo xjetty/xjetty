@@ -69,7 +69,7 @@ const Home = () => {
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Link href="/listings">
+                                    <Link href="/public">
                                         <Button size="large" variant="contained" color="secondary">Public listings</Button>
                                     </Link>
                                 </Grid>

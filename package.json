@@ -15,6 +15,7 @@
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@sendgrid/mail": "^7.4.5",
     "axios": "^0.21.1",
+    "cookie": "^0.4.1",
     "email-validator": "^2.0.4",
     "eosjs": "^22.1.0",
     "eosjs-api": "^7.0.4",

@@ -32,6 +32,7 @@ const MessageFieldComponent = () => {
 
     return (
         <TextField
+            InputLabelProps={{required: true}}
             value={message}
             error={messageError}
             helperText={helperText}

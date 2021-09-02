@@ -53,20 +53,10 @@ const Home = () => {
                                     <GoToListingComponent/>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Typography color="textSecondary">
-                                        OR
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={12}>
                                     <Link href="/create">
                                         <Button size="large" variant="contained" color="primary">Create a
                                             listing</Button>
                                     </Link>
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <Typography color="textSecondary">
-                                        OR
-                                    </Typography>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Link href="/public">

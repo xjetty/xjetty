@@ -70,7 +70,7 @@ const Home = () => {
                 <Grid item xs={12}>
                     <Card>
                         <CardContent>
-                            <Typography>
+                            <Typography variant="h6">
                                 BlockCommerc&apos;s built-in crypto payment processor and fixed item quantities
                                 make voided crypto purchases a thing of the past and allow you to receive the
                                 exact amount you listed in USD or crypto.

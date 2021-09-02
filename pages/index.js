@@ -77,7 +77,7 @@ const Home = () => {
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12}>
                     <Card>
                         <CardContent>
                             <Typography variant="h6" color="secondary">
@@ -88,7 +88,7 @@ const Home = () => {
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12}>
                     <Card>
                         <CardContent>
                             <List subheader={<ListSubheader>Additionally,</ListSubheader>}>
@@ -120,7 +120,7 @@ const Home = () => {
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12}>
                     <Card>
                         <CardContent>
                             <List subheader={<ListSubheader>EOS</ListSubheader>}>
@@ -152,7 +152,7 @@ const Home = () => {
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12}>
                     <Card>
                         <CardContent>
                             <Grid container spacing={2}>
@@ -196,21 +196,6 @@ const Home = () => {
                         <CardActions>
                             <SendMessageActionComponent/>
                         </CardActions>
-                    </Card>
-                </Grid>
-                <Grid item xs={12}>
-                    <Card>
-                        <List>
-                            <ListItem>
-                                <ListItemIcon>
-                                    <Copyright/>
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary={`${new Date().getFullYear()} BlockCommerc`}
-                                    secondary="All Rights Reserved"
-                                />
-                            </ListItem>
-                        </List>
                     </Card>
                 </Grid>
             </Grid>

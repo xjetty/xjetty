@@ -46,7 +46,7 @@ const Home = () => {
                                         BlockCommerc
                                     </Typography>
                                     <Typography color="textSecondary">
-                                        Commerce Made Easy on the Blockchain With EOS Cryptocurrency
+                                        Blockchain Commerce With EOS
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={12} md={4}>
@@ -54,7 +54,7 @@ const Home = () => {
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Typography color="textSecondary">
-                                        or, I want to
+                                        OR
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={12}>
@@ -65,12 +65,12 @@ const Home = () => {
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Typography color="textSecondary">
-                                        or, view
+                                        OR
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Link href="/public">
-                                        <Button size="large" variant="contained" color="secondary">Public listings</Button>
+                                        <Button size="large" variant="contained" color="secondary">View public listings</Button>
                                     </Link>
                                 </Grid>
                             </Grid>

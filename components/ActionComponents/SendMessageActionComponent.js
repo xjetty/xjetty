@@ -43,10 +43,6 @@ const SendMessageActionComponent = () => {
                 setMessage('')
                 setEmailAddressError(false)
                 setMessageError(false)
-                setSubmittingData(false)
-                process.nextTick(() => {
-                    recaptchaRef.current.reset()
-                })
                 setSnackbarMessage('Message sent successfully')
                 setSnackbarOpen(true)
             } else

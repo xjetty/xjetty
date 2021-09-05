@@ -14,7 +14,7 @@ import Link from 'next/link'
 import ContactFormComponent from "../components/FormComponents/ContactFormComponent";
 import SendMessageActionComponent from "../components/ActionComponents/SendMessageActionComponent";
 import GoToListingComponent from "../components/GoToListingComponent";
-import {CheckCircle, Copyright, EmojiEvents} from '@material-ui/icons'
+import {CheckCircle, EmojiEvents} from '@material-ui/icons'
 
 const useStyles = makeStyles((theme) => ({
     media: {
@@ -25,9 +25,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = () => {
     const classes = useStyles()
-
     return (
-        <>
+        <html>
             <Head>
                 <title>Home - BlockCommerc</title>
             </Head>
@@ -46,10 +45,10 @@ const Home = () => {
                                         BlockCommerc
                                     </Typography>
                                     <Typography color="textSecondary">
-                                        Blockchain Commerce With EOS
+                                        Commerce With EOS Cryptocurrency
                                     </Typography>
                                 </Grid>
-                                <Grid item xs={12} md={4}>
+                                <Grid item xs={12} md={3}>
                                     <GoToListingComponent/>
                                 </Grid>
                                 <Grid item xs={12}>
@@ -70,10 +69,9 @@ const Home = () => {
                 <Grid item xs={12}>
                     <Card>
                         <CardContent>
-                            <Typography variant="h6">
-                                BlockCommerc&apos;s built-in crypto payment processor and fixed item quantities
-                                make voided crypto purchases a thing of the past and allow you to receive the
-                                exact amount you listed in USD or crypto.
+                            <Typography variant="subtitle1">
+                                BlockCommerc&apos;s built-in crypto payment processor and fixed item quantities make voided crypto purchases a thing of the past.
+                                Receive the exact amount you listed in USD or crypto.
                             </Typography>
                         </CardContent>
                     </Card>
@@ -87,7 +85,7 @@ const Home = () => {
                                         <CheckCircle color="secondary"/>
                                     </ListItemIcon>
                                     <ListItemText
-                                        primary="You pay no fees"
+                                        primary="Pay no fees"
                                     />
                                 </ListItem>
                                 <ListItem>
@@ -95,7 +93,7 @@ const Home = () => {
                                         <CheckCircle color="secondary"/>
                                     </ListItemIcon>
                                     <ListItemText
-                                        primary="You can take offers"
+                                        primary="Take offers"
                                     />
                                 </ListItem>
                                 <ListItem>
@@ -103,7 +101,7 @@ const Home = () => {
                                         <CheckCircle color="secondary"/>
                                     </ListItemIcon>
                                     <ListItemText
-                                        primary="And you can use an escrow"
+                                        primary="And use an escrow"
                                     />
                                 </ListItem>
                             </List>
@@ -189,7 +187,7 @@ const Home = () => {
                     </Card>
                 </Grid>
             </Grid>
-        </>
+        </html>
     )
 }
 

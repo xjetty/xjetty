@@ -1,6 +1,17 @@
 import Head from "next/head";
 import React from 'react'
-import {Button, Card, CardActions, CardContent, CardMedia, Chip, Grid, MuiThemeProvider, Typography} from "@material-ui/core";
+import {
+    Button,
+    Card,
+    CardActions,
+    CardContent,
+    CardMedia,
+    Chip,
+    Grid,
+    LinearProgress,
+    MuiThemeProvider,
+    Typography
+} from "@material-ui/core";
 import {createTheme, makeStyles} from "@material-ui/core/styles";
 import WorldwideFieldComponent from "../components/FieldComponents/WorldwideFieldComponent";
 import CountriesFieldComponent from "../components/FieldComponents/CountriesFieldComponent";
@@ -39,7 +50,6 @@ const useStyles = makeStyles((theme) => ({
         backgroundClip: 'padding-box'
     }
 }))
-
 
 const breakpointColumnsObj = {
     default: 3,
@@ -81,6 +91,7 @@ const Public = () => {
     const [page, setPage] = React.useState(1)
     const [applied, setApplied] = React.useState(true)
     const [pageLength, setPageLength] = React.useState(1)
+    const [submittingData, setSubmittingData] = React.useState(false)
 
     useEffect(() => {
         const worldwide = localStorage.getItem('worldwide')
@@ -113,12 +124,15 @@ const Public = () => {
         } catch (e) {
             alert('Lost Internet connection')
         }
+        setSubmittingData(false)
         process.nextTick(() => {
             recaptchaRef.current.reset()
         })
     }
 
     const submitRecaptcha = () => {
+        setSubmittingData(true)
+        setListings([])
         setApplied(true)
         recaptchaRef.current.execute()
     }
@@ -134,11 +148,13 @@ const Public = () => {
     }, [worldwide, countries])
 
     const disabled = useMemo(() => {
+        if (submittingData)
+            return true
         if (!worldwide) {
             return !countries.length || countriesError
         } else
             return false
-    }, [countriesError, countries, worldwide])
+    }, [countriesError, countries, worldwide, submittingData])
 
     const updateAmount = (listing) => {
         let returnThis = {}
@@ -154,8 +170,12 @@ const Public = () => {
         return returnThis
     }
 
-    const handleChange = (event, value) => {
+    const changePage = (event, value) => {
+        setSubmittingData(true)
+        setListings([])
+        setApplied(false)
         setPage(value)
+        recaptchaRef.current.execute()
     }
 
     return (
@@ -185,8 +205,15 @@ const Public = () => {
                         </Grid>
                     </CardContent>
                     <CardActions>
-                        <Button onClick={submitRecaptcha} disabled={disabled} variant="contained"
-                                color="primary">Apply</Button>
+                        <Grid container spacing={2}>
+                            {submittingData && (<Grid item xs={12}>
+                                <LinearProgress/>
+                            </Grid>)}
+                            <Grid item xs={12}>
+                                <Button onClick={submitRecaptcha} disabled={disabled} variant="contained"
+                                        color="primary">Apply</Button>
+                            </Grid>
+                        </Grid>
                     </CardActions>
                 </Card>
             </Grid>
@@ -232,9 +259,9 @@ const Public = () => {
                     ))}
                 </Masonry>
             </Grid>
-            <Grid item xs={12} container justifyContent="center">
-                <Pagination color="primary" count={pageLength} page={page} onChange={handleChange}/>
-            </Grid>
+            {listings.length > 0 && (<Grid item xs={12} container justifyContent="center">
+                <Pagination color="primary" count={pageLength} page={page} onChange={changePage}/>
+            </Grid>)}
         </Grid>
         <UpdateEosRate/>
         </html>

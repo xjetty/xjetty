@@ -2,6 +2,7 @@ import {verifyRecaptcha} from "../../server/verifyRecaptcha";
 import {getIdFromToken} from "../../server/getIdFromToken";
 import Listing from "../../models/Listing";
 import connectToDb from "../../middleware/connectToDb";
+import {cleanString} from "../../server/cleanString";
 
 const updateListing = async (req, res) => {
     const method = req.method
@@ -11,6 +12,10 @@ const updateListing = async (req, res) => {
         const recaptchaResponse = data.recaptchaResponse
         delete data.recaptchaResponse
         delete data.token
+        data.description = cleanString(data.description)
+        data.keywords = data.keywords.map(function (keyword) {
+            return keyword.toLowerCase()
+        })
         data.lastUpdatedTimestamp = Date.now()
         const recaptchaValid = verifyRecaptcha(recaptchaResponse)
         if (!recaptchaValid) return res.json({success: false})

@@ -15,6 +15,9 @@ const createListing = async (req, res) => {
         if (!recaptchaValid) return res.json({success: false})
         delete data.recaptchaResponse
         data.description = cleanString(data.description)
+        data.keywords = data.keywords.map(function (keyword) {
+            return keyword.toLowerCase()
+        })
         await connectToDb()
         try {
             const listing = await Listing.create(data)
@@ -24,8 +27,8 @@ const createListing = async (req, res) => {
             const description = listing.description
             const keywords = listing.keywords
             let listingAtAGlance = `Title: ${title}<br />Description: ${insertBreaks(description)}`
-            if (keywords)
-                listingAtAGlance += `<br />Keywords: ${insertBreaks(keywords)}`
+            if (keywords.length > 0)
+                listingAtAGlance += `<br />Keywords: ${keywords.join(', ')}`
             const payload = {listingId: listingId}
             const token = jwt.sign(payload, process.env.JWT_SIGNATURE)
             let link = `https://blockcommerc.com/manager/${token}`

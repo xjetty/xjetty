@@ -74,7 +74,7 @@ const CreateListingActionComponent = () => {
         if (!eosAccountName || eosAccountNameError)
             return true
         if (addMemo) {
-            if (!addMemo || memoError)
+            if (!memo || memoError)
                 return true
         }
         if (!emailAddress || emailAddressError)
@@ -98,6 +98,7 @@ const CreateListingActionComponent = () => {
         eosAccountName,
         eosAccountNameError,
         addMemo,
+        memo,
         memoError,
         emailAddress,
         emailAddressError

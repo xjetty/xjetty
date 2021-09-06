@@ -5,13 +5,11 @@ import axios from 'axios'
 
 const UpdateListingActionComponent = () => {
     const {
-        notesError,
         usdAmountError,
         eosAmountError,
         eosAccountNameError,
         memoError,
         addMemo,
-        notes,
         usdAmount,
         eosAmount,
         eosAccountName,
@@ -141,7 +139,7 @@ const UpdateListingActionComponent = () => {
     }
 
     return (
-        <Grid container spacing={2}>
+        <>
             {submittingData && (
                 <Grid item xs={12}>
                     <LinearProgress/>
@@ -156,7 +154,7 @@ const UpdateListingActionComponent = () => {
                     Update listing
                 </Button>
             </Grid>
-        </Grid>
+        </>
     )
 }
 

@@ -1,23 +1,47 @@
 import {TextField} from '@material-ui/core'
-import {useContext} from 'react'
+import React, {useContext, useEffect} from 'react'
 import {AppContext} from '../../contexts/AppContext'
+import {Autocomplete} from "@material-ui/lab";
 
 const KeywordsFieldComponent = () => {
     const {keywords, setKeywords} = useContext(AppContext)
+    const [keywordItems, setKeywordItems] = React.useState([])
 
-    const handle = (event) => {
-        let value = event.target.value
-        setKeywords(value)
+    const onlyUnique = (value, index, self) => {
+        return self.indexOf(value) === index
     }
 
+    const handleChange = (event, value) => {
+        setKeywords(value)
+        let newKeywordItems = [...keywordItems, value[value.length - 1]]
+        newKeywordItems = newKeywordItems.filter(onlyUnique)
+        localStorage.setItem('keywordItems', JSON.stringify(newKeywordItems))
+        setKeywordItems(newKeywordItems)
+    }
+
+    useEffect(() => {
+        const keywordItems = localStorage.getItem('keywordItems')
+        if (keywordItems)
+            setKeywordItems(JSON.parse(localStorage.getItem('keywordItems')))
+    }, [])
+
     return (
-        <TextField
-            value={keywords}
-            onChange={handle}
-            fullWidth
-            label="Keywords"
-            variant="filled"
-            multiline
+        <Autocomplete
+            freeSolo
+            openOnFocus
+            onChange={handleChange}
+            multiple
+            options={keywordItems}
+            getOptionLabel={(option) => option}
+            filterSelectedOptions
+            renderInput={(params) => (
+                <TextField
+                    {...params}
+                    variant="filled"
+                    label="Keywords"
+                    placeholder="Keyword"
+                />
+            )}
         />
     )
 }

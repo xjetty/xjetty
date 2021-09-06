@@ -34,7 +34,7 @@ const ListingSchema = new mongoose.Schema({
         type: Boolean
     },
     keywords: {
-        type: String
+        type: Array
     },
     worldwide: {
         type: Boolean

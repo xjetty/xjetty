@@ -71,45 +71,46 @@ const ManagerComponent = () => {
                             <Grid item xs={12} md={6}>
                                 <LinkFieldComponent/>
                             </Grid>
+                            <Grid item xs={12}>
+                                {(showOffers && offers.length) ? (<TabContext value={tabValue}>
+                                    <AppBar position="static">
+                                        <TabList onChange={handleTabChange}>
+                                            <Tab label="Listing options" value="1"/>
+                                            <Tab label="Update listing" value="2"/>
+                                            <Tab label={newOffers ? 'Offers (new)' : 'Offers'} value="3"/>
+                                        </TabList>
+                                    </AppBar>
+                                    <TabPanel value="1">
+                                        <ListingOptionsFormComponent/>
+                                    </TabPanel>
+                                    <TabPanel value="2">
+                                        <UpdateListingFormComponent/>
+                                    </TabPanel>
+                                    <TabPanel value="3">
+                                        <OffersTableComponent/>
+                                    </TabPanel>
+                                </TabContext>) : (
+                                    <TabContext value={tabValue}>
+                                        <AppBar position="static">
+                                            <TabList onChange={handleTabChange}>
+                                                <Tab label="Listing options" value="1"/>
+                                                <Tab label="Update listing" value="2"/>
+                                            </TabList>
+                                        </AppBar>
+                                        <TabPanel value="1">
+                                            <ListingOptionsFormComponent/>
+                                        </TabPanel>
+                                        <TabPanel value="2">
+                                            <UpdateListingFormComponent/>
+                                        </TabPanel>
+                                    </TabContext>
+                                )}
+                            </Grid>
                         </Grid>
                     </CardContent>
                 </Card>
             </Grid>
-            <Grid item xs={12}>
-                {(showOffers && offers.length) ? (<TabContext value={tabValue}>
-                    <AppBar position="static">
-                        <TabList onChange={handleTabChange}>
-                            <Tab label="Listing options" value="1"/>
-                            <Tab label="Update listing" value="2"/>
-                            <Tab label={newOffers ? 'Offers (new)' : 'Offers'} value="3"/>
-                        </TabList>
-                    </AppBar>
-                    <TabPanel value="1">
-                        <ListingOptionsFormComponent/>
-                    </TabPanel>
-                    <TabPanel value="2">
-                        <UpdateListingFormComponent/>
-                    </TabPanel>
-                    <TabPanel value="3">
-                        <OffersTableComponent/>
-                    </TabPanel>
-                </TabContext>) : (
-                    <TabContext value={tabValue}>
-                        <AppBar position="static">
-                            <TabList onChange={handleTabChange}>
-                                <Tab label="Listing options" value="1"/>
-                                <Tab label="Update listing" value="2"/>
-                            </TabList>
-                        </AppBar>
-                        <TabPanel value="1">
-                            <ListingOptionsFormComponent/>
-                        </TabPanel>
-                        <TabPanel value="2">
-                            <UpdateListingFormComponent/>
-                        </TabPanel>
-                    </TabContext>
-                )}
-            </Grid>
+
         </Grid>
     )
 }

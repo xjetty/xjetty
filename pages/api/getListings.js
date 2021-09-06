@@ -6,6 +6,7 @@ import Listing from '../../models/Listing'
 const getListings = async (req, res) => {
     const method = req.method
     if (method === 'POST') {
+        // you need to iterate through each search keyword (separated by a space btw)
         const data = req.body
         const recaptchaResponse = data.recaptchaResponse
         const recaptchaVerified = await verifyRecaptcha(recaptchaResponse)

@@ -1,6 +1,5 @@
 import Head from "next/head";
 import {
-    Box,
     Button, ButtonGroup,
     Card, CardActions,
     CardContent, CardMedia, Divider,

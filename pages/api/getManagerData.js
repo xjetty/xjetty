@@ -1,6 +1,5 @@
-import {verifyRecaptcha} from "../../server/verifyRecaptcha";
 import {getIdFromToken} from "../../server/getIdFromToken";
-import Listing from '../../models/Listing'
+import Post from '../../models/Post'
 import Offer from '../../models/Offer'
 import {updateCode} from "../../server/updateCode";
 import jwt from "jsonwebtoken";
@@ -11,48 +10,46 @@ const getManagerData = async (req, res) => {
     if (method === 'POST') {
         const data = req.body
         const token = data.token
-        const recaptchaResponse = data.recaptchaResponse
-        const recaptchaValid = verifyRecaptcha(recaptchaResponse)
-        if (!recaptchaValid) return res.json({success: false})
-        const listingId = getIdFromToken(token, 'listingId')
-        if (!listingId)
+        const postId = getIdFromToken(token, 'postId')
+        if (!postId)
             return res.json({success: false, alertMessage: 'Invalid token'})
         await connectToDb()
-        const listing = await Listing.findById(listingId)
-        if (!listing)
-            return res.json({success: false, alertMessage: 'Listing not found'})
-        let code = listing.code
+        const post = await Post.findById(postId)
+        if (!post)
+            return res.json({success: false, alertMessage: 'Post not found'})
+        let code = post.code
         if (!code)
-            code = await updateCode(listingId)
-        const title = listing.title
-        const imageLinks = listing.imageLinks
-        const description = listing.description
-        const publicListing = listing.publicListing
-        const keywords = listing.keywords
-        const worldwide = listing.worldwide
-        const countries = listing.countries
-        const fixedAmount = listing.fixedAmount
-        const usdAmount = listing.usdAmount
-        const eosAmount = listing.eosAmount
-        const quantity = listing.quantity
-        const quantitySold = listing.quantitySold
+            code = await updateCode(postId)
+        const mode = post.mode
+        const platforms = post.platforms
+        const category = post.category
+        const subcategory = post.subcategory
+        const title = post.title
+        const imageLink = post.imageLink
+        const description = post.description
+        const keywords = post.keywords
+        const fixedAmount = post.fixedAmount
+        const usdAmount = post.usdAmount
+        const eosAmount = post.eosAmount
+        const quantity = post.quantity
+        const quantitySold = post.quantitySold
         const minimumQuantity = (quantity - (quantity - quantitySold)) + 1
-        const hidden = listing.hidden
-        const useEscrow = listing.useEscrow
-        const saleMethod = listing.saleMethod
-        const eosAccountName = listing.eosAccountName
-        const maximumPercentLessThan = listing.maximumPercentLessThan
-        let link = `https://blockcommerc.com/listing/${code}`
+        const hidden = post.hidden
+        const saleMethod = post.saleMethod
+        const eosAccountName = post.eosAccountName
+        const maximumPercentLessThan = post.maximumPercentLessThan
+        let link = `https://blockcommerc.com/post/${code}`
         if (!process.env.LIVE)
-            link = `http://localhost:3000/listing/${code}`
-        const listingData = {
+            link = `http://localhost:3000/post/${code}`
+        const postData = {
+            mode: mode,
+            platforms: platforms,
+            category: category,
+            subcategory: subcategory,
             title: title,
-            imageLinks: imageLinks,
+            imageLink: imageLink,
             description: description,
-            publicListing: publicListing,
             keywords: keywords,
-            worldwide: worldwide,
-            countries: countries,
             fixedAmount: fixedAmount,
             usdAmount: usdAmount,
             eosAmount: eosAmount,
@@ -60,14 +57,13 @@ const getManagerData = async (req, res) => {
             quantitySold: quantitySold,
             minimumQuantity: minimumQuantity,
             hidden: hidden,
-            useEscrow: useEscrow,
             saleMethod: saleMethod,
             code: code,
             link: link,
             eosAccountName: eosAccountName,
             maximumPercentLessThan: maximumPercentLessThan
         }
-        const offers = await Offer.find({listingId: listingId})
+        const offers = await Offer.find({postId: postId})
         const offerData = []
         offers.forEach((offer) => {
             offerData.push({
@@ -80,7 +76,7 @@ const getManagerData = async (req, res) => {
                 createdOnTimestamp: offer.createdOnTimestamp
             })
         })
-        return res.json({success: true, listing: listingData, offers: offerData})
+        return res.json({success: true, post: postData, offers: offerData})
     } else
         return res.json({success: false})
 }

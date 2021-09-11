@@ -7,29 +7,22 @@ import {createTheme} from "@material-ui/core/styles";
 
 const amberTheme = createTheme({palette: {primary: amber}})
 
-const HiddenActionComponent = () => {
+const HiddenActionComponent = (props) => {
 
     const {
         hidden,
         setHidden,
-        recaptchaRef,
-        recaptchaResponse,
-        token,
     } = useContext(AppContext)
-
-    const [submittingData, setSubmittingData] = React.useState(false)
 
     const handle = (event) => {
         setHidden(event.target.checked)
-        setSubmittingData(true)
-        recaptchaRef.current.execute()
+        changeHidden()
     }
 
-    const setHiddenValue = async () => {
+    const changeHidden = async () => {
         try {
-            const res = await axios.post('../api/setHiddenValue', {
-                recaptchaResponse: recaptchaResponse,
-                token: token
+            const res = await axios.post('../api/changeHidden', {
+                token: props.token
             })
             const data = res.data
             if (!data.success) {
@@ -40,22 +33,13 @@ const HiddenActionComponent = () => {
             alert('Lost Internet connection')
             setHidden(!hidden)
         }
-        setSubmittingData(false)
-        process.nextTick(() => {
-            recaptchaRef.current.reset()
-        })
     }
-
-    useEffect(() => {
-        if (submittingData && recaptchaResponse)
-            setHiddenValue()
-    }, [recaptchaResponse])
 
     return (
         <FormControlLabel
             control={<React.Fragment><MuiThemeProvider theme={amberTheme}><Switch checked={hidden} onChange={handle}
                                                                                   color="primary"/></MuiThemeProvider></React.Fragment>}
-            label="Hide listing"
+            label="Hidden"
         />
     )
 }

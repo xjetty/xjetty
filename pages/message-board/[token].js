@@ -2,62 +2,45 @@ import Head from "next/head";
 import React, {useContext, useEffect} from "react";
 import MessageComponent from "../../components/MessageComponent";
 import {Grid} from "@material-ui/core";
-import {useRouter} from "next/router";
 import PostMessageFormComponent from "../../components/FormComponents/PostMessageFormComponent";
 import {AppContext} from "../../contexts/AppContext";
 import axios from "axios";
-import ListingDetailsComponent from "../../components/ListingDetailsComponent";
+import PostDetailsComponent from "../../components/PostDetailsComponent";
 import EscrowComponent from "../../components/EscrowComponent";
 
-const MessageBoard = () => {
+const MessageBoard = ({token}) => {
 
-    const router = useRouter()
-    const token = router.query.token
-
-    const {recaptchaRef, recaptchaResponse, messages, setMessages, setEscrowDetails} = useContext(AppContext)
-
+    const {messages, setMessages, setEscrowDetails} = useContext(AppContext)
     const [show, setShow] = React.useState(false)
-    const [escrow, setEscrow] = React.useState(false)
     const [user, setUser] = React.useState('')
-    const [listingDetails, setListingDetails] = React.useState({})
+    const [postDetails, setPostDetails] = React.useState({})
     const [createdOnTimestamp, setCreatedOnTimestamp] = React.useState('')
-
-    useEffect(() => {
-        recaptchaRef.current.execute()
-    }, [])
 
     const getMessageBoardData = async () => {
         try {
             const res = await axios.post('../api/getMessageBoardData', {
-                token: token,
-                recaptchaResponse: recaptchaResponse
+                token: token
             })
             const data = res.data
             if (data.success) {
                 const messageBoardData = data.messageBoardData
                 const user = messageBoardData.user
                 const messages = messageBoardData.messages
-                const listingDetails = messageBoardData.listingDetails
+                const postDetails = messageBoardData.postDetails
                 const escrowDetails = messageBoardData.escrowDetails
-                const escrow = listingDetails.useEscrow
                 const createdOnTimestamp = messages[0]['timestamp']
                 setCreatedOnTimestamp(createdOnTimestamp)
                 setMessages(messages.reverse())
-                setListingDetails(listingDetails)
+                setPostDetails(postDetails)
                 setEscrowDetails(escrowDetails)
-                setEscrow(escrow)
                 setUser(user)
                 setShow(true)
-                process.nextTick(() => {
-                    recaptchaRef.current.reset()
-                })
             } else if (data && data.alertMessage) {
                 alert(data.alertMessage)
             } else
                 alert('Something went wrong')
         } catch (e) {
-            alert(e)
-            console.log(e)
+            alert('Lost Internet connection')
         }
     }
 
@@ -79,25 +62,23 @@ const MessageBoard = () => {
     }
 
     useEffect(() => {
-        if (recaptchaResponse && !show)
-            getMessageBoardData()
-    }, [recaptchaResponse])
+        getMessageBoardData()
+    }, [])
 
     return (
-        <>
+        <html>
             <Head>
                 <title>Message Board - BlockCommerc</title>
             </Head>
             {show && (<Grid container spacing={2}>
-                {escrow ? (<Grid item xs={12}>
-                    <EscrowComponent token={token} user={user}/>
-                </Grid>) : ('')}
                 <Grid item xs={12}>
-                    <ListingDetailsComponent createdOnDatetime={getDatetime(createdOnTimestamp)}
-                                             listingDetails={listingDetails}/>
+                    <PostDetailsComponent createdOnDatetime={getDatetime(createdOnTimestamp)}
+                                          postDetails={postDetails}/>
+                    <EscrowComponent token={token} user={user}/>
                 </Grid>
                 <Grid item xs={12}>
-                    <PostMessageFormComponent subtitle={`Communicate With Your ${user === 'seller' ? 'Buyer': 'Seller'}`} token={token}/>
+                    <PostMessageFormComponent
+                        subtitle={`Communicate With Your ${user === 'seller' ? 'Buyer' : 'Seller'}`} token={token}/>
                 </Grid>
                 {messages.map((message, index) => (
                     <Grid item xs={12} key={index}>
@@ -107,8 +88,15 @@ const MessageBoard = () => {
                     </Grid>
                 ))}
             </Grid>)}
-        </>
+        </html>
     )
+}
+
+export async function getServerSideProps({params}) {
+    const token = params.token
+    return {
+        props: {token}
+    }
 }
 
 export default MessageBoard

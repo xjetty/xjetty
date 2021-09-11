@@ -1,9 +1,9 @@
-import Listing from '../models/Listing'
+import Post from '../models/Post'
 
-export async function updatePendingTransactions(listingId, add = true) {
-    const listing = await Listing.findOne({_id: listingId}, {pendingTransactions: 1})
-    const pendingTransactions = listing.pendingTransactions
+export async function updatePendingTransactions(postId, add = true) {
+    const post = await Post.findOne({_id: postId}, {pendingTransactions: 1})
+    const pendingTransactions = post.pendingTransactions
     if (add) {
-        await Listing.updateOne({_id: listingId}, {$set: {pendingTransactions: pendingTransactions + 1}})
-    } else await Listing.updateOne({_id: listingId}, {$set: {pendingTransactions: pendingTransactions - 1}})
+        await Post.updateOne({_id: postId}, {$set: {pendingTransactions: pendingTransactions + 1}})
+    } else await Post.updateOne({_id: postId}, {$set: {pendingTransactions: pendingTransactions - 1}})
 }

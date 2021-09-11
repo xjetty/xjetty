@@ -3,7 +3,7 @@ import {
     Button, ButtonGroup,
     Card, CardActions,
     CardContent, CardMedia, Divider,
-    Grid, IconButton,
+    Grid,
     List,
     ListItem, ListItemIcon,
     ListItemText, ListSubheader,
@@ -13,12 +13,12 @@ import {makeStyles} from "@material-ui/core/styles";
 import Link from 'next/link'
 import ContactFormComponent from "../components/FormComponents/ContactFormComponent";
 import SendMessageActionComponent from "../components/ActionComponents/SendMessageActionComponent";
-import GoToListingComponent from "../components/GoToListingComponent";
-import {CheckCircle, EmojiEvents, Twitter} from '@material-ui/icons'
+import GoToPostComponent from "../components/GoToPostComponent";
+import {CheckCircle} from '@material-ui/icons'
 
 const useStyles = makeStyles((theme) => ({
     media: {
-        height: theme.spacing(20),
+        height: theme.spacing(50),
         backgroundSize: 'contain'
     }
 }))
@@ -28,39 +28,39 @@ const Home = () => {
     return (
         <html>
         <Head>
-            <title>Home - BlockCommerc</title>
+            <title>Home - D2R Crypto</title>
         </Head>
         <Grid container spacing={2}>
             <Grid item xs={12}>
                 <Card>
                     <CardMedia
                         className={classes.media}
-                        image='/logo.jpg'
-                        title="BlockCommerc Logo"
+                        image='/logo.png'
+                        title="D2R Crypto Logo"
                     />
                     <CardContent>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <Typography variant="h5">
-                                    BlockCommerc
+                                    D2R Crypto
                                 </Typography>
                                 <Typography color="textSecondary">
-                                    Commerce With EOS Cryptocurrency
+                                    Trade Diablo 2 Resurrected (D2R) Items and Services for Crypto (EOS)
                                 </Typography>
                             </Grid>
                             <Grid item xs={12} md={3}>
-                                <GoToListingComponent/>
+                                <GoToPostComponent/>
                             </Grid>
                             <Grid item xs={12}>
-                                <Link href="/create">
-                                    <Button size="large" variant="contained" color="primary">Create a
-                                        listing</Button>
+                                <Link href="/posts">
+                                    <Button size="large" variant="contained" color="primary">View
+                                        posts</Button>
                                 </Link>
                             </Grid>
                             <Grid item xs={12}>
-                                <Link href="/public">
-                                    <Button size="large" variant="contained" color="secondary">View public
-                                        listings</Button>
+                                <Link href="/create">
+                                    <Button size="large" variant="contained" color="secondary">Create a
+                                        post</Button>
                                 </Link>
                             </Grid>
                         </Grid>
@@ -70,24 +70,13 @@ const Home = () => {
             <Grid item xs={12}>
                 <Card>
                     <CardContent>
-                        <Typography variant="subtitle1">
-                            BlockCommerc&apos;s built-in crypto payment processor and fixed item quantities make voided
-                            crypto purchases a thing of the past.
-                            Receive the exact amount you listed in USD or crypto.
-                        </Typography>
-                    </CardContent>
-                </Card>
-            </Grid>
-            <Grid item xs={12}>
-                <Card>
-                    <CardContent>
-                        <List subheader={<ListSubheader>Additionally,</ListSubheader>}>
+                        <List subheader={<ListSubheader>Features</ListSubheader>}>
                             <ListItem>
                                 <ListItemIcon>
                                     <CheckCircle color="secondary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Pay no fees"
+                                    primary="No accounts"
                                 />
                             </ListItem>
                             <ListItem>
@@ -95,7 +84,7 @@ const Home = () => {
                                     <CheckCircle color="secondary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Take offers"
+                                    primary="No fees"
                                 />
                             </ListItem>
                             <ListItem>
@@ -103,39 +92,15 @@ const Home = () => {
                                     <CheckCircle color="secondary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="And use an escrow"
-                                />
-                            </ListItem>
-                        </List>
-                    </CardContent>
-                </Card>
-            </Grid>
-            <Grid item xs={12}>
-                <Card>
-                    <CardContent>
-                        <List subheader={<ListSubheader>EOS</ListSubheader>}>
-                            <ListItem>
-                                <ListItemIcon>
-                                    <EmojiEvents color="primary"/>
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary="2,800 transactions per second"
+                                    primary="Offers"
                                 />
                             </ListItem>
                             <ListItem>
                                 <ListItemIcon>
-                                    <EmojiEvents color="primary"/>
+                                    <CheckCircle color="secondary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="0.5s transaction times"
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemIcon>
-                                    <EmojiEvents color="primary"/>
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary="0% transaction fees"
+                                    primary="And escrows"
                                 />
                             </ListItem>
                         </List>
@@ -193,13 +158,8 @@ const Home = () => {
             </Grid>
             <Grid item xs={12}>
                 <Typography variant="body2">
-                    Copyright &#169; {new Date().getFullYear()} BlockCommerc. All Rights Reserved.
+                    Copyright &#169; {new Date().getFullYear()} D2R Crypto. All Rights Reserved.
                 </Typography>
-            </Grid>
-            <Grid item xs={12}>
-                <IconButton href="https://twitter.com/BlockCommerc" target="_blank" color="primary">
-                    <Twitter/>
-                </IconButton>
             </Grid>
         </Grid>
         </html>

@@ -2,7 +2,7 @@ import emailValidator from "email-validator";
 
 const mongoose = require('mongoose')
 const OfferSchema = new mongoose.Schema({
-    listingId: {
+    postId: {
         type: String
     },
     emailAddress: {
@@ -34,7 +34,7 @@ const OfferSchema = new mongoose.Schema({
         }
     },
     eosAmount: {
-        type: String,
+        type: Number,
         default: null,
         required: function () {
             return this.fixedAmount === 'eos'

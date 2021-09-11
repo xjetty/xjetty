@@ -95,7 +95,6 @@ const UsdAmountFieldComponent = () => {
             InputLabelProps={{required: fixedAmount === 'usd'}}
             error={usdAmountError}
             helperText={helperText}
-            disabled={fixedAmount === 'eos'}
             onBlur={checkError}
             fullWidth
             label={
@@ -103,7 +102,7 @@ const UsdAmountFieldComponent = () => {
                     ? 'Minimum USD amount'
                     : 'USD amount'
             }
-            InputProps={{inputComponent: formatAmount}}
+            InputProps={{inputComponent: formatAmount, readOnly: fixedAmount === 'eos'}}
             value={usdAmount}
             onChange={handle}
             variant="filled"

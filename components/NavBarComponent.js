@@ -14,7 +14,7 @@ const NavBarComponent = () => {
         <AppBar>
             <Toolbar>
                 <Typography variant="h6" className={classes.title}>
-                    BlockCommerc
+                    D2R Crypto
                 </Typography>
                 <Link href="/">
                     <IconButton color="inherit">

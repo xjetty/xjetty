@@ -1,4 +1,3 @@
-import {verifyRecaptcha} from "../../server/verifyRecaptcha";
 import MessageBoard from "../../models/MessageBoard";
 import Dispute from "../../models/Dispute";
 import Escrow from '../../models/Escrow'
@@ -7,17 +6,14 @@ import connectToDb from "../../middleware/connectToDb";
 import {getDataFromToken} from "../../server/getDataFromToken";
 import {sendEmail} from "../../server/sendEmail";
 import jwt from "jsonwebtoken";
-import {insertBreaks} from "../../server/insertBreaks";
+import {getPostPreview} from "../../server/getPostPreview";
 
 const manageEscrow = async (req, res) => {
     const method = req.method
     if (method === 'POST') {
         const data = req.body
-        const recaptchaResponse = data.recaptchaResponse
-        const recaptchaValid = verifyRecaptcha(recaptchaResponse)
-        if (!recaptchaValid) return res.json({success: false})
         const token = data.token
-        const messageBoardData = getDataFromToken(token)
+        let messageBoardData = getDataFromToken(token)
         if (!messageBoardData)
             return res.json({success: false, alertMessage: 'Invalid token'})
         const messageBoardId = messageBoardData.messageBoardId
@@ -32,33 +28,50 @@ const manageEscrow = async (req, res) => {
                 return res.json({success: false})
         }
         await connectToDb()
-        const messageBoardData2 = await MessageBoard.findById(messageBoardId)
-        if (!messageBoardData2)
+        messageBoardData = await MessageBoard.findById(messageBoardId)
+        if (!messageBoardData)
             return res.json({success: false, alertMessage: 'Message board not found'})
-        const buyerEmailAddress = messageBoardData2.buyerEmailAddress
-        const sellerEmailAddress = messageBoardData2.sellerEmailAddress
-        const notes = messageBoardData2.listingDetails.notes
-        const escrow = await Escrow.find({messageBoardId: messageBoardId})
-        if (!escrow)
+        const buyerEmailAddress = messageBoardData.buyerEmailAddress
+        const sellerEmailAddress = messageBoardData.sellerEmailAddress
+        const postDetails = messageBoardData.postDetails
+        const mode = postDetails.mode
+        const platforms = postDetails.platforms
+        const category = postDetails.category
+        const subcategory = postDetails.subcategory
+        const title = postDetails.title
+        const description = postDetails.description
+        const keywords = postDetails.keywords
+        const transactionQuantity = postDetails.transactionQuantity
+        const sellerEosAccountName = postDetails.sellerEosAccountName
+        const sellerMemo = postDetails.sellerMemo
+        const buyerEosAccountName = postDetails.buyerEosAccountName
+        const buyerMemo = postDetails.buyerMemo
+        const escrowData = await Escrow.findOne({messageBoardId: messageBoardId})
+        if (!escrowData)
             return res.json({success: false, alertMessage: 'Escrow not found'})
-        const escrowId = escrow._id
-        const escrowReleased = escrow.escrowReleased
-        const escrowRefunded = escrow.escrowRefunded
-        const disputeOpened = escrow.disputeOpened
-        if (user === 'buyer') {
-            if (escrowRefunded)
-                return res.json({success: false})
-        } else {
-            if (escrowReleased)
-                return res.json({success: false})
-        }
-        const listingDetails = messageBoardData2.listingDetails
-        const transactionQuantity = listingDetails.transactionQuantity
+        const escrowId = escrowData._id
+        const escrowReleased = escrowData.escrowReleased
+        const escrowRefunded = escrowData.escrowRefunded
+        const disputeOpened = escrowData.disputeOpened
+        if (escrowReleased || escrowRefunded)
+            return res.json({success: false})
         const timestamp = Date.now()
+        const buyerPayload = {user: 'buyer', messageBoardId: messageBoardId}
+        const sellerPayload = {user: 'seller', messageBoardId: messageBoardId}
+        const buyerToken = jwt.sign(buyerPayload, process.env.JWT_SIGNATURE)
+        const sellerToken = jwt.sign(sellerPayload, process.env.JWT_SIGNATURE)
+        let linkBuyer = `https://blockcommerc.com/message-board/${buyerToken}`
+        let linkSeller = `https://blockcommerc.com/message-board/${sellerToken}`
+        if (!process.env.LIVE) {
+            linkBuyer = `http://localhost:3000/message-board/${buyerToken}`
+            linkSeller = `http://localhost:3000/message-board/${sellerToken}`
+        }
+        const buyerPostPreview = getPostPreview(mode, platforms, category, subcategory, title, description, [])
+        const sellerPostPreview = getPostPreview(mode, platforms, category, subcategory, title, description, keywords)
+        const messageSeller = `Go to your message board for review<br /><br /><a href=${linkBuyer}>${linkBuyer}</a><br /><br />${sellerPostPreview}`
+        const messageBuyer = `Go to your message board for review<br /><br /><a href=${linkSeller}>${linkSeller}</a><br /><br />${buyerPostPreview}`
+        let transactionId = ''
         if (buttonAction === 'releaseEscrow') {
-            const sellerEosAccountName = listingDetails.sellerEosAccountName
-            const sellerMemo = listingDetails.sellerMemo
-            let transactionId = ''
             try {
                 const result = await attemptTransaction(
                     transactionQuantity,
@@ -84,26 +97,11 @@ const manageEscrow = async (req, res) => {
                     transactionId: transactionId
                 }
             })
-            const buyerPayload = {user: 'buyer', messageBoardId: messageBoardId}
-            const sellerPayload = {user: 'seller', messageBoardId: messageBoardId}
-            const buyerToken = jwt.sign(buyerPayload, process.env.JWT_SIGNATURE)
-            const sellerToken = jwt.sign(sellerPayload, process.env.JWT_SIGNATURE)
-            let linkBuyer = `https://blockcommerc.com/message-board/${buyerToken}`
-            let linkSeller = `https://blockcommerc.com/message-board/${sellerToken}`
-            if (!process.env.LIVE) {
-                linkBuyer = `http://localhost:3000/message-board/${buyerToken}`
-                linkSeller = `http://localhost:3000/message-board/${sellerToken}`
-            }
-            const subjectSeller = 'You received an escrow payment'
-            const subjectBuyer = 'You released an escrow payment'
-            const messageSeller = `Go to your message board to find out more details<br><br><a href=${linkBuyer}>${linkBuyer}</a><br><br>Notes: ${insertBreaks(notes)}`
-            const messageBuyer = `Go to your message board to find out more details<br><br><a href=${linkSeller}>${linkSeller}</a><br><br>Notes: ${insertBreaks(notes)}`
+            const subjectSeller = `You received an escrow payment! - ${title}`
+            const subjectBuyer = `You released an escrow payment! - ${title}`
             await sendEmail(buyerEmailAddress, subjectSeller, messageSeller)
             await sendEmail(sellerEmailAddress, subjectBuyer, messageBuyer)
         } else if (buttonAction === 'refundEscrow') {
-            const buyerEosAccountName = listingDetails.buyerEosAccountName
-            const buyerMemo = listingDetails.buyerMemo
-            let transactionId = ''
             try {
                 const result = await attemptTransaction(
                     transactionQuantity,
@@ -129,24 +127,12 @@ const manageEscrow = async (req, res) => {
                     transactionId: transactionId
                 }
             })
-            const buyerPayload = {user: 'buyer', messageBoardId: messageBoardId}
-            const sellerPayload = {user: 'seller', messageBoardId: messageBoardId}
-            const buyerToken = jwt.sign(buyerPayload, process.env.JWT_SIGNATURE)
-            const sellerToken = jwt.sign(sellerPayload, process.env.JWT_SIGNATURE)
-            let linkBuyer = `https://blockcommerc.com/message-board/${buyerToken}`
-            let linkSeller = `https://blockcommerc.com/message-board/${sellerToken}`
-            if (!process.env.LIVE) {
-                linkBuyer = `http://localhost:3000/message-board/${buyerToken}`
-                linkSeller = `http://localhost:3000/message-board/${sellerToken}`
-            }
-            const subjectSeller = 'You refunded an escrow payment'
-            const subjectBuyer = 'You received an escrow refund'
-            const messageSeller = `Go to your message board to find out more details<br><br><a href=${linkBuyer}>${linkBuyer}</a><br><br>Notes: ${insertBreaks(notes)}`
-            const messageBuyer = `Go to your message board to find out more details<br><br><a href=${linkSeller}>${linkSeller}</a><br><br>Notes: ${insertBreaks(notes)}`
+            const subjectSeller = `You refunded an escrow payment! - ${title}`
+            const subjectBuyer = `You received an escrow refund! - ${title}`
             await sendEmail(buyerEmailAddress, subjectSeller, messageSeller)
             await sendEmail(sellerEmailAddress, subjectBuyer, messageBuyer)
         } else {
-            if (disputeOpened)
+            if (disputeOpened || escrowReleased || escrowRefunded)
                 return res.json({success: false})
             await Escrow.updateOne({_id: escrowId}, {
                 $set: {
@@ -156,7 +142,7 @@ const manageEscrow = async (req, res) => {
             })
             await Dispute.create({escrowId: escrowId})
         }
-        return res.json({success: true, timestamp: timestamp})
+        return res.json({success: true, timestamp: timestamp, transactionId: transactionId})
     } else
         return res.json({success: false})
 }

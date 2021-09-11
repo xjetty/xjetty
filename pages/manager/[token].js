@@ -1,18 +1,12 @@
 import Head from "next/head";
 import ManagerComponent from "../../components/ManagerComponent";
-import {useRouter} from "next/router";
 import React, {useContext, useEffect} from "react";
 import {AppContext} from "../../contexts/AppContext";
 import axios from "axios";
 import UpdateEosRate from "../../components/UpdateEosRate";
 
-const Manager = () => {
-    const router = useRouter()
-    const token = router.query.token
-
+const Manager = ({token}) => {
     const {
-        recaptchaRef,
-        recaptchaResponse,
         setDescription,
         setQuantity,
         setSaleMethod,
@@ -20,12 +14,10 @@ const Manager = () => {
         setUsdAmount,
         setEosAmount,
         setMaximumPercentLessThan,
-        setUseEscrow,
         setEosAccountName,
         setAddMemo,
         setMemo,
         setLink,
-        setToken,
         setHidden,
         setMinimumQuantity,
         setOffers,
@@ -33,87 +25,82 @@ const Manager = () => {
         setLinkCode,
         setDefaultQuantity,
         setTitle,
-        setImageLinks,
-        setPublicListing,
+        setImageLink,
         setKeywords,
-        setWorldwide,
-        setCountries,
-
+        setMode,
+        setPlatforms,
+        setCategory,
+        setSubcategory,
     } = useContext(AppContext)
 
     const [show, setShow] = React.useState(false)
 
-    useEffect(() => {
-        setToken(token)
-    })
-
-    useEffect(() => {
-        recaptchaRef.current.execute()
-    }, [])
-
-    const getManagerData = async () => {
+    const getManagerData = async (token) => {
         try {
             const res = await axios.post('../api/getManagerData', {
-                token: token,
-                recaptchaResponse: recaptchaResponse
+                token: token
             })
             const data = res.data
             if (data.success) {
-                const listing = data.listing
+                const post = data.post
                 const offers = data.offers
                 setOffers(offers)
-                setTitle(listing.title)
-                setImageLinks(listing.imageLinks)
-                setPublicListing(listing.publicListing)
-                setKeywords(listing.keywords)
-                setWorldwide(listing.worldwide)
-                setCountries(listing.countries)
-                setDescription(listing.description)
-                setQuantity(listing.quantity)
-                setDefaultQuantity(listing.quantity)
-                setSaleMethod(listing.saleMethod)
-                setFixedAmount(listing.fixedAmount)
-                if (listing.fixedAmount === 'usd') {
-                    setUsdAmount(listing.usdAmount)
-                } else setEosAmount(listing.eosAmount)
-                setMaximumPercentLessThan(listing.maximumPercentLessThan)
-                if (listing.saleMethod !== 'askingPriceOnly')
+                setMode(post.mode)
+                setPlatforms(post.platforms)
+                setCategory(post.category)
+                setSubcategory(post.subcategory)
+                setTitle(post.title)
+                setImageLink(post.imageLink)
+                setKeywords(post.keywords)
+                setDescription(post.description)
+                setQuantity(post.quantity)
+                setDefaultQuantity(post.quantity)
+                setSaleMethod(post.saleMethod)
+                setFixedAmount(post.fixedAmount)
+                if (post.fixedAmount === 'usd') {
+                    setUsdAmount(post.usdAmount)
+                } else setEosAmount(post.eosAmount)
+                setMaximumPercentLessThan(post.maximumPercentLessThan)
+                if (post.saleMethod !== 'askingPriceOnly')
                     setShowOffers(true)
-                setUseEscrow(listing.useEscrow)
-                setEosAccountName(listing.eosAccountName)
-                setAddMemo(listing.addMemo)
-                setMemo(listing.memo)
-                setLink(listing.link)
-                setHidden(listing.hidden)
-                setMinimumQuantity(listing.minimumQuantity)
-                setLinkCode(listing.code)
+                setEosAccountName(post.eosAccountName)
+                setAddMemo(post.addMemo)
+                setMemo(post.memo)
+                setLink(post.link)
+                setHidden(post.hidden)
+                setMinimumQuantity(post.minimumQuantity)
+                setLinkCode(post.code)
                 setShow(true)
-                process.nextTick(() => {
-                    recaptchaRef.current.reset()
-                })
             } else if (data && data.alertMessage) {
                 alert(data.alertMessage)
             } else
                 alert('Something went wrong')
         } catch (e) {
+            console.log(e)
             alert('Lost Internet connection')
         }
     }
 
     useEffect(() => {
-        if (recaptchaResponse && !show)
-            getManagerData()
-    }, [recaptchaResponse])
+        getManagerData(token)
+    }, [])
 
     return (
-        <>
+        <html>
             <Head>
                 <title>Manager - BlockCommerc</title>
             </Head>
             <UpdateEosRate/>
-            {show && <ManagerComponent/>}
-        </>
+            {show && <ManagerComponent token={token}/>}
+        </html>
     )
+}
+
+export async function getServerSideProps({params}) {
+    const token = params.token
+    return {
+        props: {token}
+    }
 }
 
 export default Manager

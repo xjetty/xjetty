@@ -1,4 +1,4 @@
-import {Card, CardContent, Typography} from "@material-ui/core";
+import {Card, CardContent, Divider, Typography} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import React from "react";
 
@@ -13,13 +13,13 @@ const MessageComponent = (props) => {
     return (
         <Card>
             <CardContent>
-                <Typography variant="h5" component="h2">
+                <Typography variant="h5">
                     {props.user}
                 </Typography>
                 <Typography className={classes.pos} color="textSecondary">
-                    @ {props.datetime}
+                    {props.datetime}
                 </Typography>
-                <Typography variant="body1" component="p">
+                <Typography variant="body1">
                     <span dangerouslySetInnerHTML={{__html: props.message.replace(/\n/g, '<br />')}}/>
                 </Typography>
             </CardContent>

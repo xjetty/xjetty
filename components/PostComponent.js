@@ -2,13 +2,13 @@ import {
     Accordion,
     AccordionDetails,
     AccordionSummary,
-    AppBar, Button, ButtonGroup,
+    AppBar, Avatar, Button,
     Card,
-    CardContent, CardMedia, Divider,
-    Grid, IconButton, ImageListItemBar,
+    CardContent, CardMedia,
+    Grid,
     List,
-    ListItem, ListItemIcon,
-    ListItemText, MuiThemeProvider, Paper,
+    ListItem, ListItemAvatar,
+    ListItemText,
     Tab,
     Typography
 } from '@material-ui/core'
@@ -18,21 +18,11 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import {AppContext} from '../contexts/AppContext'
 import BuyItNowFormComponent from "./FormComponents/BuyItNowFormComponent";
 import MakeOfferFormComponent from "./FormComponents/MakeOfferFormComponent";
-import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
-import WarningIcon from '@material-ui/icons/Warning';
-import PublicIcon from '@material-ui/icons/Public'
 import {green, red} from "@material-ui/core/colors";
 import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
-import {
-    Magnifier,
-    GlassMagnifier,
-    SideBySideMagnifier,
-    PictureInPictureMagnifier,
-    MOUSE_ACTIVATION,
-    TOUCH_ACTIVATION
-} from "react-image-magnifiers";
+import ImageLinkPreviewComponent from "./ImageLinkPreviewComponent";
 
 const useStyles = makeStyles((theme) => ({
     heading: {
@@ -40,11 +30,8 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: theme.typography.fontWeightRegular
     },
     media: {
-        height: 100,
-        backgroundSize: 'contain',
-        width: 'inherit',
-        marginLeft: 'auto',
-        marginRight: 'auto'
+        height: theme.spacing(25),
+        backgroundSize: 'contain'
     },
     imageList: {
         width: 500,
@@ -73,25 +60,17 @@ const eosFormatter = new Intl.NumberFormat('en-US', {
     maximumFractionDigits: 4
 })
 
-const greenTheme = createTheme({palette: {primary: green}})
-const redTheme = createTheme({palette: {primary: red}})
-
-const ListingComponent = () => {
+const PostComponent = ({token, code}) => {
     const classes = useStyles()
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1
-    };
-
     const {
+        mode,
+        platforms,
+        category,
+        subcategory,
         title,
         description,
         saleMethod,
         fixedAmount,
-        useEscrow,
         offer,
         usdAmountLabel,
         eosAmountLabel,
@@ -100,10 +79,7 @@ const ListingComponent = () => {
         usdAmountValue,
         eosAmountValue,
         eosRate,
-        publicListing,
-        worldwide,
-        countries,
-        imageLinks,
+        imageLink,
     } = useContext(AppContext)
 
     useEffect(() => {
@@ -138,33 +114,9 @@ const ListingComponent = () => {
     }, [eosRate])
 
     const [tabValue, setTabValue] = React.useState('1')
-    const [imageNumber, setImageNumber] = React.useState(0)
 
     const handleTabChange = (event, newValue) => {
         setTabValue(newValue)
-    }
-
-    const prevImage = () => {
-        const images = imageLinks.length
-        if (imageNumber === 0) {
-            setImageNumber(images - 1)
-        } else {
-            setImageNumber(imageNumber - 1)
-        }
-    }
-
-    const nextImage = () => {
-        const images = imageLinks.length
-        if (imageNumber >= images - 1) {
-            setImageNumber(0)
-        } else {
-            setImageNumber(imageNumber + 1)
-        }
-    }
-
-    const openImage = () => {
-        const image = imageLinks[imageNumber]
-        window.open(image, '_blank')
     }
 
     return (
@@ -173,7 +125,7 @@ const ListingComponent = () => {
                 <Card>
                     <CardMedia
                         className={classes.media}
-                        image='/logo.jpg'
+                        image='/logo.png'
                         title="BlockCommerc Logo"
                     />
                     <CardContent>
@@ -193,95 +145,74 @@ const ListingComponent = () => {
                                         </Typography>
                                     </AccordionDetails>
                                 </Accordion>
-                                {(imageLinks.length >= 1 && imageLinks[0]) ? (<Accordion defaultExpanded={true}>
+                                {imageLink && (<Accordion defaultExpanded={true}>
                                     <AccordionSummary
                                         expandIcon={<ExpandMoreIcon/>}>
                                         <Typography
                                             className={classes.heading}>
-                                            Images
+                                            Image
                                         </Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>
                                         <Grid container spacing={2}>
                                             <Grid item xs={12}>
-                                                <img
-                                                    style={{width: '100%', maxWidth: '500px', height: "auto"}}
-                                                    src={imageLinks[imageNumber]}
-                                                    alt="Image"
-                                                />
+                                                <ImageLinkPreviewComponent/>
                                             </Grid>
                                             <Grid item xs={12}>
-                                                <Divider/>
-                                            </Grid>
-                                            <Grid item xs={12}>
-                                                {imageLinks.length > 1 ? (
-                                                    <ButtonGroup variant="contained" color="primary"
-                                                                 aria-label="contained primary button group">
-                                                        <Button onClick={prevImage}>Prev</Button>
-                                                        <Button onClick={nextImage}>Next</Button>
-                                                        <Button onClick={openImage}>Open</Button>
-                                                    </ButtonGroup>) : (
-                                                    <ButtonGroup variant="contained" color="primary"
-                                                                 aria-label="contained primary button group">
-                                                        <Button onClick={openImage}>Open</Button>
-                                                    </ButtonGroup>
-                                                )}
+                                                <Button variant="contained" color="primary" href={imageLink} target="_blank">Open</Button>
                                             </Grid>
                                         </Grid>
                                     </AccordionDetails>
-                                </Accordion>) : ''}
+                                </Accordion>)}
+                                <Accordion>
+                                    <AccordionSummary
+                                        expandIcon={<ExpandMoreIcon/>}>
+                                        <Typography
+                                            className={classes.heading}>
+                                            More info
+                                        </Typography>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                        <List dense>
+                                            <ListItem>
+                                                <ListItemText primary={mode} secondary="Mode"/>
+                                            </ListItem>
+                                            <ListItem>
+                                                <ListItemText primary={platforms.join(', ')} secondary="Platforms"/>
+                                            </ListItem>
+                                            <ListItem>
+                                                <ListItemText primary={category} secondary="Category"/>
+                                            </ListItem>
+                                            {subcategory && (<ListItem>
+                                                <ListItemText primary={subcategory} secondary="Subcategory"/>
+                                            </ListItem>)}
+                                        </List>
+                                    </AccordionDetails>
+                                </Accordion>
                             </Grid>
                             <Grid item xs={12}>
                                 <List>
                                     {(saleMethod !== 'offersOnly' || offer) && (
                                         <>
-                                            <ListItem>
+                                            <ListItem divider>
+                                                {fixedAmount !== 'usd' && (<ListItemAvatar>
+                                                    <Avatar alt="EOS Logo" imgProps={{style: {objectFit: "initial"}}} src="/eos-eos-logo.svg" />
+                                                </ListItemAvatar>)}
                                                 <ListItemText
-                                                    primary={usdAmountLabel}
-                                                    secondary={
-                                                        fixedAmount ===
-                                                        'usd'
-                                                            ? 'Fixed'
-                                                            : ''
-                                                    }
+                                                    primary={fixedAmount === 'usd' ? usdAmountLabel : eosAmountLabel}
+                                                    secondary="Fixed"
                                                 />
                                             </ListItem>
                                             <ListItem>
+                                                {fixedAmount === 'usd' && (<ListItemAvatar>
+                                                    <Avatar alt="EOS Logo" imgProps={{style: {objectFit: "initial"}}} src="/eos-eos-logo.svg" />
+                                                </ListItemAvatar>)}
                                                 <ListItemText
-                                                    primary={eosAmountLabel}
-                                                    secondary={
-                                                        fixedAmount ===
-                                                        'eos'
-                                                            ? 'Fixed'
-                                                            : ''
-                                                    }
+                                                    primary={fixedAmount !== 'usd' ? usdAmountLabel : eosAmountLabel}
                                                 />
                                             </ListItem>
                                         </>
                                     )}
-                                    <ListItem>
-                                        <ListItemIcon>
-                                            {useEscrow ? (<MuiThemeProvider theme={greenTheme}><VerifiedUserIcon
-                                                color="primary"/></MuiThemeProvider>) : (
-                                                <MuiThemeProvider theme={redTheme}><WarningIcon
-                                                    color="primary"/></MuiThemeProvider>)}
-                                        </ListItemIcon>
-                                        <ListItemText
-                                            primary={
-                                                useEscrow
-                                                    ? 'Escrow in use'
-                                                    : 'Escrow not in use'
-                                            }
-                                        />
-                                    </ListItem>
-                                    {publicListing && (<ListItem>
-                                        <ListItemIcon>
-                                            <PublicIcon color="primary"/>
-                                        </ListItemIcon>
-                                        <ListItemText
-                                            primary={worldwide ? 'Worldwide' : countries.join(', ')}
-                                        />
-                                    </ListItem>)}
                                 </List>
                             </Grid>
                             <Grid item xs={12}>
@@ -294,10 +225,10 @@ const ListingComponent = () => {
                                             </TabList>
                                         </AppBar>
                                         <TabPanel value="1">
-                                            <BuyItNowFormComponent/>
+                                            <BuyItNowFormComponent token={token} code={code}/>
                                         </TabPanel>
                                         <TabPanel value="2">
-                                            <MakeOfferFormComponent/>
+                                            <MakeOfferFormComponent code={code}/>
                                         </TabPanel>
                                     </TabContext>
                                 ) : saleMethod === 'askingPriceOnly' || offer ? (
@@ -309,7 +240,7 @@ const ListingComponent = () => {
                                             </TabList>
                                         </AppBar>
                                         <TabPanel value="1">
-                                            <BuyItNowFormComponent/>
+                                            <BuyItNowFormComponent token={token} code={code}/>
                                         </TabPanel>
                                     </TabContext>
                                 ) : (
@@ -321,7 +252,7 @@ const ListingComponent = () => {
                                             </TabList>
                                         </AppBar>
                                         <TabPanel value="1">
-                                            <MakeOfferFormComponent/>
+                                            <MakeOfferFormComponent code={code}/>
                                         </TabPanel>
                                     </TabContext>
                                 )}
@@ -334,4 +265,4 @@ const ListingComponent = () => {
     )
 }
 
-export default ListingComponent
+export default PostComponent

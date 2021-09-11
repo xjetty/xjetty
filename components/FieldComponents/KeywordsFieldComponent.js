@@ -29,8 +29,10 @@ const KeywordsFieldComponent = () => {
         <Autocomplete
             freeSolo
             openOnFocus
+            value={keywords}
             onChange={handleChange}
             multiple
+            disableCloseOnSelect
             options={keywordItems}
             getOptionLabel={(option) => option}
             filterSelectedOptions

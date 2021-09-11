@@ -1,19 +1,16 @@
 import {
     Button,
-    Card, CardActions,
-    CardContent,
     Dialog, DialogActions,
     DialogContent,
     DialogContentText,
     DialogTitle,
     Grid,
-    LinearProgress, List, ListItem, ListItemIcon, ListItemText, Paper, Typography
+    LinearProgress, Paper
 } from "@material-ui/core";
-import React, {useContext, useEffect} from "react";
+import React, {useContext} from "react";
 import {AppContext} from "../../contexts/AppContext";
 import axios from "axios";
 import Draggable from "react-draggable";
-import {LockOpen, MeetingRoom, Restore} from '@material-ui/icons'
 
 function PaperComponent(props) {
     return (
@@ -31,8 +28,6 @@ const EscrowActionComponent = (props) => {
     const [buttonAction, setButtonAction] = React.useState('')
 
     const {
-        recaptchaRef,
-        recaptchaResponse,
         escrowDetails,
         setEscrowDetails,
         setSnackbarOpen,
@@ -43,20 +38,22 @@ const EscrowActionComponent = (props) => {
         try {
             const res = await axios.post('../api/manageEscrow', {
                 token: props.token,
-                recaptchaResponse: recaptchaResponse,
                 buttonAction: buttonAction
             })
             const data = res.data
             if (data.success) {
                 const escrowDetailsData = escrowDetails
                 const timestamp = data.timestamp
+                const transactionId = data.transactionId
                 if (buttonAction === 'releaseEscrow') {
                     escrowDetailsData.escrowReleased = true
                     escrowDetailsData.escrowReleasedOnTimestamp = timestamp
+                    escrowDetailsData.transactionId = transactionId
                     setSnackbarMessage('Escrow released successfully')
                 } else if (buttonAction === 'refundEscrow') {
                     escrowDetailsData.escrowRefunded = true
                     escrowDetailsData.escrowRefundedOnTimestamp = timestamp
+                    escrowDetailsData.transactionId = transactionId
                     setSnackbarMessage('Escrow refunded successfully')
                 } else {
                     escrowDetailsData.disputeOpened = true
@@ -64,6 +61,7 @@ const EscrowActionComponent = (props) => {
                     setSnackbarMessage('Dispute opened successfully')
                 }
                 setEscrowDetails(escrowDetailsData)
+                setOpen(false)
                 setSnackbarOpen(true)
             } else if (data && data.alertMessage) {
                 alert(data.alertMessage)
@@ -73,9 +71,6 @@ const EscrowActionComponent = (props) => {
             alert('Lost Internet connection')
         }
         setSubmittingData(false)
-        process.nextTick(() => {
-            recaptchaRef.current.reset()
-        })
     }
 
     const handleClose = () => {
@@ -89,7 +84,7 @@ const EscrowActionComponent = (props) => {
 
     const handleYes = () => {
         setSubmittingData(true)
-        recaptchaRef.current.execute()
+        manageEscrow()
     }
 
     const handleButton = (event, buttonAction, title) => {
@@ -98,56 +93,27 @@ const EscrowActionComponent = (props) => {
         setOpen(true)
     }
 
-    useEffect(() => {
-        if (recaptchaResponse && submittingData)
-            manageEscrow()
-    }, [recaptchaResponse])
-
     return (
         <>
-            <Card>
-                <CardContent>
-                    <Grid container spacing={2}>
+            <Grid container spacing={2}>
+                {props.user === 'buyer' ? (
+                    <>
                         <Grid item xs={12}>
-                            <Typography variant="h5" component="h2">
-                                Escrow Actions
-                            </Typography>
+                            <Button disabled={escrowDetails.escrowReleased || escrowDetails.escrowRefunded} onClick={(event) => handleButton(event, 'releaseEscrow', 'Release escrow?')}
+                                    variant="contained" color="primary">Release escrow</Button>
                         </Grid>
                         <Grid item xs={12}>
-                            {props.user === 'buyer' ? (
-                                <>
-                                    <List component="nav">
-                                        <ListItem button
-                                                  onClick={(event) => handleButton(event, 'releaseEscrow', 'Release escrow?')}>
-                                            <ListItemIcon>
-                                                <LockOpen/>
-                                            </ListItemIcon>
-                                            <ListItemText primary="Release escrow"/>
-                                        </ListItem>
-                                        <ListItem button
-                                                  onClick={(event) => handleButton(event, 'openDispute', 'Open dispute?')}>
-                                            <ListItemIcon>
-                                                <MeetingRoom/>
-                                            </ListItemIcon>
-                                            <ListItemText primary="Open dispute"/>
-                                        </ListItem>
-                                    </List>
-                                </>
-                            ) : (
-                                <List component="nav">
-                                    <ListItem button
-                                              onClick={(event) => handleButton(event, 'refundEscrow', 'Refund escrow?')}>
-                                        <ListItemIcon>
-                                            <Restore/>
-                                        </ListItemIcon>
-                                        <ListItemText primary="Refund escrow"/>
-                                    </ListItem>
-                                </List>
-                            )}
+                            <Button disabled={escrowDetails.escrowReleased || escrowDetails.escrowRefunded || escrowDetails.disputeOpened} onClick={(event) => handleButton(event, 'openDispute', 'Open dispute?')}
+                                    variant="contained" color="secondary">Open dispute</Button>
                         </Grid>
+                    </>
+                ) : (
+                    <Grid item xs={12}>
+                        <Button disabled={escrowDetails.escrowReleased || escrowDetails.escrowRefunded} onClick={(event) => handleButton(event, 'refundEscrow', 'Refund escrow?')}
+                                variant="contained" color="secondary">Refund escrow</Button>
                     </Grid>
-                </CardContent>
-            </Card>
+                )}
+            </Grid>
             <Dialog
                 open={open}
                 onClose={handleClose}
@@ -162,7 +128,7 @@ const EscrowActionComponent = (props) => {
                     <DialogContentText>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
-                                This decision is final.
+                                This cannot be undone.
                             </Grid>
                             {submittingData && (<Grid item xs={12}>
                                 <LinearProgress/>

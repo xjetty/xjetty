@@ -2,9 +2,9 @@ import {Button, Grid, LinearProgress} from '@material-ui/core'
 import React, {useContext, useEffect, useMemo} from 'react'
 import {AppContext} from '../../contexts/AppContext'
 import axios from 'axios'
-import {Alert} from "@material-ui/lab";
+import {Alert, AlertTitle} from "@material-ui/lab";
 
-const CreateListingActionComponent = () => {
+const CreatePostActionComponent = () => {
     const {
         usdAmountError,
         eosAmountError,
@@ -21,7 +21,6 @@ const CreateListingActionComponent = () => {
         saleMethod,
         fixedAmount,
         maximumPercentLessThan,
-        useEscrow,
         sliderKey,
         setSliderKey,
         setUsdAmount,
@@ -33,36 +32,50 @@ const CreateListingActionComponent = () => {
         setEmailAddressError,
         recaptchaResponse,
         recaptchaRef,
-        countries,
-        worldwide,
         title,
         titleError,
         description,
         descriptionError,
-        publicListing,
-        countriesError,
-        imageLinks,
+        imageLink,
         keywords,
         setTitle,
         setTitleError,
         setDescription,
         setDescriptionError,
-        setImageLinks,
+        setImageLink,
+        subcategoryDisabled,
+        mode,
+        platforms,
+        category,
+        subcategory,
+        modeError,
+        platformsError,
+        categoryError,
+        subcategoryError,
+        setCategory,
+        setSubcategory,
+        setKeywords,
     } = useContext(AppContext)
 
     const [submittingData, setSubmittingData] = React.useState(false)
-    const [listingCreated, setListingCreated] = React.useState(false)
+    const [postCreated, setPostCreated] = React.useState(false)
 
     const disabled = useMemo(() => {
         if (submittingData) return true
+        if (!mode || modeError)
+            return true
+        if (!platforms || platformsError)
+            return true
+        if (!category || categoryError)
+            return true
+        if (!subcategoryDisabled) {
+            if (!subcategory || subcategoryError)
+                return true
+        }
         if (!title || titleError)
             return true
         if (!description || descriptionError)
             return true
-        if (publicListing && !worldwide) {
-            if (!countries.length || countriesError)
-                return true
-        }
         if (fixedAmount === 'usd') {
             if (!usdAmount || usdAmountError)
                 return true
@@ -82,14 +95,19 @@ const CreateListingActionComponent = () => {
         return false
     }, [
         submittingData,
+        mode,
+        modeError,
+        platforms,
+        platformsError,
+        category,
+        categoryError,
+        subcategoryDisabled,
+        subcategory,
+        subcategoryError,
         title,
         titleError,
         description,
         descriptionError,
-        publicListing,
-        worldwide,
-        countries,
-        countriesError,
         fixedAmount,
         usdAmount,
         usdAmountError,
@@ -104,23 +122,23 @@ const CreateListingActionComponent = () => {
         emailAddressError
     ])
 
-    const createListing = async () => {
+    const createPost = async () => {
         try {
-            const res = await axios.post('api/createListing', {
+            const res = await axios.post('api/createPost', {
+                mode: mode,
+                platforms: platforms,
+                category: category,
+                subcategory: subcategory,
+                imageLink: imageLink,
                 title: title,
-                imageLinks: imageLinks,
                 description: description,
-                publicListing: publicListing,
                 keywords: keywords,
-                worldwide: worldwide,
-                countries: countries,
                 quantity: quantity,
                 saleMethod: saleMethod,
+                maximumPercentLessThan: maximumPercentLessThan,
                 fixedAmount: fixedAmount,
                 usdAmount: usdAmount,
                 eosAmount: eosAmount,
-                maximumPercentLessThan: maximumPercentLessThan,
-                useEscrow: useEscrow,
                 eosAccountName: eosAccountName,
                 addMemo: addMemo,
                 memo: memo,
@@ -129,13 +147,16 @@ const CreateListingActionComponent = () => {
             })
             const data = res.data
             if (data.success) {
+                setImageLink('')
                 setTitle('')
-                setImageLinks([''])
                 setDescription('')
                 const newSliderKey = sliderKey + 1
                 setSliderKey(newSliderKey)
                 setUsdAmount('')
                 setEosAmount('')
+                setCategory(null)
+                setSubcategory(null)
+                setKeywords([])
                 setTitleError(false)
                 setDescriptionError(false)
                 setUsdAmountError(false)
@@ -143,7 +164,7 @@ const CreateListingActionComponent = () => {
                 setEosAccountNameError(false)
                 setMemoError(false)
                 setEmailAddressError(false)
-                setListingCreated(true)
+                setPostCreated(true)
             } else if (data && data.alertMessage) {
                 alert(data.alertMessage)
             } else
@@ -158,11 +179,11 @@ const CreateListingActionComponent = () => {
     }
 
     useEffect(() => {
-        if (submittingData && recaptchaResponse) createListing()
+        if (submittingData && recaptchaResponse) createPost()
     }, [recaptchaResponse])
 
     const handle = () => {
-        setListingCreated(false)
+        setPostCreated(false)
         setSubmittingData(true)
         recaptchaRef.current.execute()
     }
@@ -174,11 +195,12 @@ const CreateListingActionComponent = () => {
                     <LinearProgress/>
                 </Grid>
             )}
-            {listingCreated && (
+            {postCreated && (
                 <Grid item xs={12}>
-                    <Alert severity="success">
-                        Success! You created a listing. A link to your manager can be found in your email. To confirm
-                        your listing, just visit your manager at least once.
+                    <Alert severity="success" variant="filled">
+                        <AlertTitle>Success!</AlertTitle>
+                        Now did you get the email? You will have to visit your manager at least once to confirm your
+                        post.
                     </Alert>
                 </Grid>
             )}
@@ -189,11 +211,11 @@ const CreateListingActionComponent = () => {
                     disabled={disabled}
                     variant="contained"
                     color="primary">
-                    Create listing
+                    Create post
                 </Button>
             </Grid>
         </Grid>
     )
 }
 
-export default CreateListingActionComponent
+export default CreatePostActionComponent

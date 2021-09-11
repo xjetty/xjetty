@@ -4,12 +4,12 @@ import {createTheme} from "@material-ui/core/styles";
 
 const redTheme = createTheme({palette: {primary: red}})
 
-const DeleteActionComponent = () => {
+const DeleteActionComponent = (props) => {
     return (
         <MuiThemeProvider theme={redTheme}>
             <Button
                 variant="contained" color="primary">
-                Delete listing
+                Delete
             </Button>
         </MuiThemeProvider>
     )

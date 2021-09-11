@@ -1,12 +1,11 @@
 import {verifyRecaptcha} from '../../server/verifyRecaptcha'
 import connectToDb from "../../middleware/connectToDb";
 import cookie from 'cookie'
-import Listing from '../../models/Listing'
+import Listing from '../../models/Post'
 
-const getListings = async (req, res) => {
+const getPosts = async (req, res) => {
     const method = req.method
     if (method === 'POST') {
-        // you need to iterate through each search keyword (separated by a space btw)
         const data = req.body
         const recaptchaResponse = data.recaptchaResponse
         const recaptchaVerified = await verifyRecaptcha(recaptchaResponse)
@@ -32,9 +31,11 @@ const getListings = async (req, res) => {
             worldwide = cookie.parse(req.headers.worldwide)
             countries = cookie.parse(req.headers.countries)
         }
+        search = search.trim().toLowerCase()
+        search = search.replace(/\s\s+/g, ' ')
         let listings = []
         if (worldwide) {
-            if (search.trim()) {
+            if (search) {
                 listings = await Listing.find({
                     hidden: false,
                     code: {$ne: null},
@@ -42,7 +43,7 @@ const getListings = async (req, res) => {
                     worldwide: true,
                     $or: [{title: {'$regex': search, '$options': 'i'}},
                         {description: {'$regex': search, '$options': 'i'}},
-                        {keywords: {'$regex': search, '$options': 'i'}}]
+                        {keywords: {$all: [search]}}]
                 })
             } else {
                 listings = await Listing.find({
@@ -53,7 +54,7 @@ const getListings = async (req, res) => {
                 })
             }
         } else {
-            if (search.trim()) {
+            if (search) {
                 listings = await Listing.find({
                     hidden: false,
                     code: {$ne: null},
@@ -61,7 +62,7 @@ const getListings = async (req, res) => {
                     countries: {$in: countries},
                     $or: [{title: {'$regex': search, '$options': 'i'}},
                         {description: {'$regex': search, '$options': 'i'}},
-                        {keywords: {'$regex': search, '$options': 'i'}}]
+                        {keywords: {$all: [search]}}]
                 })
             } else {
                 listings = await Listing.find({
@@ -87,4 +88,4 @@ const getListings = async (req, res) => {
         return res.json({success: false})
 }
 
-export default getListings
+export default getPosts

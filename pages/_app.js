@@ -1,6 +1,6 @@
 import '../styles/globals.css'
 import {createTheme} from '@material-ui/core/styles'
-import {blue, red} from "@material-ui/core/colors";
+import {blue, deepPurple, red} from "@material-ui/core/colors";
 import {AppContext} from "../contexts/AppContext";
 import React, {useState} from "react"
 import {CssBaseline, ThemeProvider} from "@material-ui/core";
@@ -8,7 +8,7 @@ import LayoutComponent from "../components/LayoutComponent";
 
 const theme = createTheme({
     palette: {
-        primary: blue,
+        primary: deepPurple,
         secondary: red
     }
 })
@@ -82,6 +82,16 @@ function MyApp({Component, pageProps}) {
     const [worldwide, setWorldwide] = useState(true)
     const [countriesError, setCountriesError] = useState(false)
     const [search, setSearch] = useState('')
+    const [mode, setMode] = useState(null)
+    const [modeError, setModeError] = useState(false)
+    const [platforms, setPlatforms] = useState([])
+    const [platformsError, setPlatformsError] = useState(false)
+    const [category, setCategory] = useState(null)
+    const [categoryError, setCategoryError] = useState(false)
+    const [subcategory, setSubcategory] = useState(null)
+    const [subcategoryError, setSubcategoryError] = useState(false)
+    const [imageLink, setImageLink] = useState('')
+    const [subcategoryDisabled, setSubcategoryDisabled] = useState(true)
     React.useEffect(() => {
         const jssStyles = document.querySelector('#jss-server-side');
         if (jssStyles)
@@ -90,6 +100,27 @@ function MyApp({Component, pageProps}) {
     return (
         <AppContext.Provider
             value={{
+                mode,
+                setMode,
+                modeError,
+                setModeError,
+                platforms,
+                setPlatforms,
+                platformsError,
+                setPlatformsError,
+                category,
+                setCategory,
+                categoryError,
+                setCategoryError,
+                subcategory,
+                setSubcategory,
+                subcategoryError,
+                setSubcategoryError,
+                imageLink,
+                setImageLink,
+                subcategoryDisabled,
+                setSubcategoryDisabled,
+
                 search,
                 setSearch,
                 countriesError,

@@ -1,6 +1,6 @@
 import NumberFormat from 'react-number-format'
-import {TextField} from '@material-ui/core'
-import {useContext, useEffect, useMemo} from 'react'
+import {Avatar, InputAdornment, TextField} from '@material-ui/core'
+import React, {useContext, useEffect, useMemo} from 'react'
 import {AppContext} from '../../contexts/AppContext'
 
 const formatAmount = (props) => {
@@ -93,14 +93,19 @@ const EosAmountFieldComponent = () => {
             error={eosAmountError}
             helperText={helperText}
             onBlur={checkError}
-            disabled={fixedAmount !== 'eos'}
             fullWidth
             label={
                 saleMethod === 'offersOnly'
                     ? 'Minimum EOS amount'
                     : 'EOS amount'
             }
-            InputProps={{inputComponent: formatAmount}}
+            InputProps={{
+                inputComponent: formatAmount, endAdornment: (
+                    <InputAdornment position="end">
+                        <Avatar alt="EOS Logo" imgProps={{style: {objectFit: "initial"}}} src="/eos-logo.svg"/>
+                    </InputAdornment>
+                ), readOnly: fixedAmount !== 'eos'
+            }}
             value={eosAmount}
             onChange={handle}
             variant="filled"

@@ -1,12 +1,13 @@
-import {useRouter} from "next/router";
+import Head from "next/head";
 import React, {useContext, useEffect} from "react";
+import PostComponent from "../../components/PostComponent";
 import {AppContext} from "../../contexts/AppContext";
 import axios from "axios";
-import Head from "next/head";
-import PostComponent from "../../components/PostComponent";
 import UpdateEosRate from "../../components/UpdateEosRate";
 
-const Offer = ({token}) => {
+const Post = ({code}) => {
+
+    const [show, setShow] = React.useState(false)
 
     const {
         setFixedAmount,
@@ -20,26 +21,22 @@ const Offer = ({token}) => {
         setMode,
         setPlatforms,
         setCategory,
-        setSubcategory,
-        setEmailAddress,
-        setOffer
+        setSubcategory
     } = useContext(AppContext)
 
-    const [show, setShow] = React.useState(false)
-
     useEffect(() => {
-        setOffer(true)
-    })
+        getPostData()
+    }, [])
 
     const setEosAccountItems2 = () => {
         if (localStorage.getItem('eosAccountItems'))
             setEosAccountItems(JSON.parse(localStorage.getItem('eosAccountItems')))
     }
 
-    const getOfferData = async () => {
+    const getPostData = async () => {
         try {
-            const res = await axios.post('../api/getOfferData', {
-                token: token
+            const res = await axios.post('../api/getPostData', {
+                code: code
             })
             const data = res.data
             if (data.success) {
@@ -55,7 +52,6 @@ const Offer = ({token}) => {
                 const fixedAmount = post.fixedAmount
                 const usdAmount = post.usdAmount
                 const eosAmount = post.eosAmount
-                const emailAddress = post.emailAddress
                 const saleMethod = post.saleMethod
                 setMode(mode)
                 setPlatforms(platforms)
@@ -68,7 +64,6 @@ const Offer = ({token}) => {
                 setEosAmountValue(eosAmount)
                 setDescription(description)
                 setSaleMethod(saleMethod)
-                setEmailAddress(emailAddress)
                 setShow(true)
             } else if (data && data.alertMessage) {
                 alert(data.alertMessage)
@@ -79,27 +74,22 @@ const Offer = ({token}) => {
         }
     }
 
-    useEffect(() => {
-        getOfferData()
-    }, [])
-
     return (
-        <>
-        <Head>
-            <title>Offer - BlockCommerc</title>
-        </Head>
+        <html>
+            <Head>
+                <title>Post - BlockCommerc</title>
+            </Head>
             <UpdateEosRate/>
-        {show && <PostComponent token={token}/>}
-        </>
+            {show && <PostComponent code={code}/>}
+        </html>
     )
-
 }
 
 export async function getServerSideProps({params}) {
-    const token = params.token
+    const code = params.code
     return {
-        props: {token}
+        props: {code}
     }
 }
 
-export default Offer
+export default Post

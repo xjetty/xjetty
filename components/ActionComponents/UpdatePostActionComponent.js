@@ -1,10 +1,19 @@
 import {Button, Grid, LinearProgress} from '@material-ui/core'
-import React, {useContext, useEffect, useMemo} from 'react'
+import React, {useContext, useMemo} from 'react'
 import {AppContext} from '../../contexts/AppContext'
 import axios from 'axios'
 
-const UpdateListingActionComponent = () => {
+const UpdatePostActionComponent = (props) => {
     const {
+        mode,
+        modeError,
+        platforms,
+        platformsError,
+        category,
+        categoryError,
+        subcategory,
+        subcategoryError,
+        subcategoryDisabled,
         usdAmountError,
         eosAmountError,
         eosAccountNameError,
@@ -18,38 +27,35 @@ const UpdateListingActionComponent = () => {
         saleMethod,
         fixedAmount,
         maximumPercentLessThan,
-        useEscrow,
-        recaptchaResponse,
-        recaptchaRef,
-        token,
         setSnackbarOpen,
         setSnackbarMessage,
         setShowOffers,
-        countries,
-        worldwide,
         title,
         titleError,
         description,
         descriptionError,
-        publicListing,
-        countriesError,
-        imageLinks,
+        imageLink,
         keywords
     } = useContext(AppContext)
 
-    const [submittingData, setSubmittingData] =
-        React.useState(false)
+    const [submittingData, setSubmittingData] = React.useState(false)
 
     const disabled = useMemo(() => {
         if (submittingData) return true
+        if (!mode || modeError)
+            return true
+        if (!platforms || platformsError)
+            return true
+        if (!category || categoryError)
+            return true
+        if (!subcategoryDisabled) {
+            if (!subcategory || subcategoryError)
+                return true
+        }
         if (!title || titleError)
             return true
         if (!description || descriptionError)
             return true
-        if (publicListing && !worldwide) {
-            if (!countries.length || countriesError)
-                return true
-        }
         if (fixedAmount === 'usd') {
             if (!usdAmount || usdAmountError)
                 return true
@@ -61,20 +67,25 @@ const UpdateListingActionComponent = () => {
         if (!eosAccountName || eosAccountNameError)
             return true
         if (addMemo) {
-            if (!addMemo || memoError)
+            if (!memo || memoError)
                 return true
         }
         return false
     }, [
         submittingData,
+        mode,
+        modeError,
+        platforms,
+        platformsError,
+        category,
+        categoryError,
+        subcategoryDisabled,
+        subcategory,
+        subcategoryError,
         title,
         titleError,
         description,
         descriptionError,
-        publicListing,
-        worldwide,
-        countries,
-        countriesError,
         fixedAmount,
         usdAmount,
         usdAmountError,
@@ -83,31 +94,32 @@ const UpdateListingActionComponent = () => {
         eosAccountName,
         eosAccountNameError,
         addMemo,
-        memoError
+        memo,
+        memoError,
     ])
 
-    const updateListing = async () => {
+    const updatePost = async () => {
+        setSubmittingData(true)
         try {
-            const res = await axios.post('../api/updateListing', {
+            const res = await axios.post('../api/updatePost', {
+                mode: mode,
+                platforms: platforms,
+                category: category,
+                subcategory: subcategory,
+                imageLink: imageLink,
                 title: title,
-                imageLinks: imageLinks,
                 description: description,
-                publicListing: publicListing,
                 keywords: keywords,
-                worldwide: worldwide,
-                countries: countries,
                 quantity: quantity,
                 saleMethod: saleMethod,
+                maximumPercentLessThan: maximumPercentLessThan,
                 fixedAmount: fixedAmount,
                 usdAmount: usdAmount,
                 eosAmount: eosAmount,
-                maximumPercentLessThan: maximumPercentLessThan,
-                useEscrow: useEscrow,
                 eosAccountName: eosAccountName,
                 addMemo: addMemo,
                 memo: memo,
-                recaptchaResponse: recaptchaResponse,
-                token: token
+                token: props.token
             })
             const data = res.data
             if (data.success) {
@@ -115,7 +127,7 @@ const UpdateListingActionComponent = () => {
                     setShowOffers(true)
                 } else
                     setShowOffers(false)
-                setSnackbarMessage('Listing updated successfully')
+                setSnackbarMessage('Post updated successfully')
                 setSnackbarOpen(true)
             } else
                 alert('Something went wrong')
@@ -123,19 +135,6 @@ const UpdateListingActionComponent = () => {
             alert('Lost Internet connection')
         }
         setSubmittingData(false)
-        process.nextTick(() => {
-            recaptchaRef.current.reset()
-        })
-    }
-
-    useEffect(() => {
-        if (submittingData && recaptchaResponse)
-            updateListing()
-    }, [recaptchaResponse])
-
-    const submitCaptcha = () => {
-        setSubmittingData(true)
-        recaptchaRef.current.execute()
     }
 
     return (
@@ -147,15 +146,15 @@ const UpdateListingActionComponent = () => {
             )}
             <Grid item xs={12}>
                 <Button
-                    onClick={submitCaptcha}
+                    onClick={updatePost}
                     disabled={disabled}
                     variant="contained"
                     color="primary">
-                    Update listing
+                    Update post
                 </Button>
             </Grid>
         </>
     )
 }
 
-export default UpdateListingActionComponent
+export default UpdatePostActionComponent

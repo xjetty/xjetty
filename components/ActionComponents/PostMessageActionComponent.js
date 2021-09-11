@@ -4,7 +4,6 @@ import {AppContext} from "../../contexts/AppContext";
 import axios from "axios";
 
 const PostMessageActionComponent = (props) => {
-
     const [submittingData, setSubmittingData] = React.useState(false)
     const {
         recaptchaRef,

@@ -1,9 +1,11 @@
-import {Card, CardContent, Grid, List, ListItem, ListItemText, TextField, Typography} from "@material-ui/core";
+import {Grid, IconButton, InputAdornment, List, ListItem, ListItemText, TextField, Typography} from "@material-ui/core";
 import React, {useContext} from "react";
 import {AppContext} from "../contexts/AppContext";
+import {FileCopy} from "@material-ui/icons";
+import OpenInNew from "@material-ui/icons/OpenInNew";
 
 const EscrowDetailsComponent = () => {
-    const {escrowDetails} = useContext(AppContext)
+    const {escrowDetails, setSnackbarMessage, setSnackbarOpen} = useContext(AppContext)
     const datetimeOptions = {
         day: 'numeric',
         month: 'long',
@@ -15,74 +17,87 @@ const EscrowDetailsComponent = () => {
     const getDatetime = (timestamp) => {
         return new Date(timestamp).toLocaleString('en-US', datetimeOptions)
     }
+    const copy = () => {
+        let textField = document.createElement('textarea')
+        textField.innerText = escrowDetails.transactionId
+        document.body.appendChild(textField)
+        textField.select()
+        document.execCommand('copy')
+        textField.remove()
+        setSnackbarMessage('Copied to clipboard')
+        setSnackbarOpen(true)
+    }
     return (
         <>
-            <Card>
-                <CardContent>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <Typography variant="h5">
-                                Escrow Details
-                            </Typography>
-                        </Grid>
-                        {escrowDetails.transactionId && (<Grid item xs={12} md={6}>
-                            <TextField
-                                value={escrowDetails.transactionId}
-                                fullWidth
-                                label="Escrow transaction ID"
-                                variant="filled"
-                                InputProps={{
-                                    readOnly: true,
-                                }}
-                            />
-                        </Grid>)}
-                        {escrowDetails.escrowReleased && (<Grid item xs={12} md={6}>
-                            <TextField
-                                value={getDatetime(escrowDetails.escrowReleasedOnTimestamp)}
-                                fullWidth
-                                label="Escrow released"
-                                variant="filled"
-                                InputProps={{
-                                    readOnly: true,
-                                }}
-                            />
-                        </Grid>)}
-                        {escrowDetails.escrowRefunded && (<Grid item xs={12} md={6}>
-                            <TextField
-                                value={getDatetime(escrowDetails.escrowRefundedOnTimestamp)}
-                                fullWidth
-                                label="Escrow refunded"
-                                variant="filled"
-                                InputProps={{
-                                    readOnly: true,
-                                }}
-                            />
-                        </Grid>)}
-                        {escrowDetails.disputeOpened && (<Grid item xs={12} md={6}>
-                            <TextField
-                                value={getDatetime(escrowDetails.disputeOpenedOnTimestamp)}
-                                fullWidth
-                                label="Dispute opened"
-                                variant="filled"
-                                InputProps={{
-                                    readOnly: true,
-                                }}
-                            />
-                        </Grid>)}
-                        {escrowDetails.disputeResolved && (<Grid item xs={12} md={6}>
-                            <TextField
-                                value={getDatetime(escrowDetails.disputeResolvedOnTimestamp)}
-                                fullWidth
-                                label="Dispute resolved"
-                                variant="filled"
-                                InputProps={{
-                                    readOnly: true,
-                                }}
-                            />
-                        </Grid>)}
-                    </Grid>
-                </CardContent>
-            </Card>
+            <Grid container spacing={2}>
+                <Grid item xs={12}>
+                    <TextField
+                        value={escrowDetails.transactionId ? escrowDetails.transactionId : 'N/A'}
+                        fullWidth
+                        label="Transaction ID"
+                        variant="filled"
+                        InputProps={{
+                            readOnly: true,
+                            endAdornment: (
+                                <InputAdornment position="end">
+                                    <IconButton onClick={copy}>
+                                        <FileCopy/>
+                                    </IconButton>
+                                    <IconButton
+                                        href={`https://bloks.io/transaction/${escrowDetails.transactionId}`}
+                                        target="_blank">
+                                        <OpenInNew/>
+                                    </IconButton>
+                                </InputAdornment>
+                            )
+                        }}
+                    />
+                </Grid>
+                <Grid item xs={12} md={6}>
+                    <TextField
+                        value={escrowDetails.escrowReleased ? getDatetime(escrowDetails.escrowReleasedOnTimestamp) : 'N/A'}
+                        fullWidth
+                        label="Escrow released on"
+                        variant="filled"
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                    />
+                </Grid>
+                <Grid item xs={12} md={6}>
+                    <TextField
+                        value={escrowDetails.escrowRefunded ? getDatetime(escrowDetails.escrowRefundedOnTimestamp) : 'N/A'}
+                        fullWidth
+                        label="Escrow refunded on"
+                        variant="filled"
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                    />
+                </Grid>
+                <Grid item xs={12} md={6}>
+                    <TextField
+                        value={escrowDetails.disputeOpened ? getDatetime(escrowDetails.disputeOpenedOnTimestamp) : 'N/A'}
+                        fullWidth
+                        label="Dispute opened on"
+                        variant="filled"
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                    />
+                </Grid>
+                <Grid item xs={12} md={6}>
+                    <TextField
+                        value={escrowDetails.disputeResolved ? getDatetime(escrowDetails.disputeResolvedOnTimestamp) : 'N/A'}
+                        fullWidth
+                        label="Dispute resolved on"
+                        variant="filled"
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                    />
+                </Grid>
+            </Grid>
         </>
     )
 }

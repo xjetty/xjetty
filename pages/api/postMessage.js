@@ -5,6 +5,7 @@ import {sendEmail} from "../../server/sendEmail";
 import {getDataFromToken} from "../../server/getDataFromToken";
 import connectToDb from "../../middleware/connectToDb";
 import {cleanString} from "../../server/cleanString";
+import {getPostPreview} from "../../server/getPostPreview";
 
 const postMessage = async (req, res) => {
     const method = req.method
@@ -14,7 +15,7 @@ const postMessage = async (req, res) => {
         const recaptchaValid = verifyRecaptcha(recaptchaResponse)
         if (!recaptchaValid) return res.json({success: false})
         const token = data.token
-        const messageBoardData = getDataFromToken(token)
+        let messageBoardData = getDataFromToken(token)
         if (!messageBoardData)
             return res.json({success: false, alertMessage: 'Invalid token'})
         const user = messageBoardData.user
@@ -23,36 +24,43 @@ const postMessage = async (req, res) => {
         if (!message)
             return res.json({success: false})
         await connectToDb()
-        const messageBoardData2 = await MessageBoard.findById(messageBoardId)
-        if (!messageBoardData2)
+        messageBoardData = await MessageBoard.findById(messageBoardId)
+        if (!messageBoardData)
             return res.json({success: false, alertMessage: 'Message board not found'})
-        const messages = messageBoardData2.messages
+        const sellerEmailAddress = messageBoardData.sellerEmailAddress
+        const buyerEmailAddress = messageBoardData.buyerEmailAddress
+        const postDetails = messageBoardData.postDetails
+        const mode = postDetails.mode
+        const platforms = postDetails.platforms
+        const category = postDetails.category
+        const subcategory = postDetails.subcategory
+        const title = postDetails.title
+        const description = postDetails.description
+        const keywords = postDetails.keywords
+        let postPreview = ''
+        let emailAddress = ''
+        if (user === 'seller') {
+            emailAddress = sellerEmailAddress
+            postPreview = getPostPreview(mode, platforms, category, subcategory, title, description, keywords)
+        } else {
+            emailAddress = buyerEmailAddress
+            postPreview = getPostPreview(mode, platforms, category, subcategory, title, description, [])
+        }
+        const payload = {user: user, messageBoardId: messageBoardId}
+        const messageBoardDataToken = jwt.sign(payload, process.env.JWT_SIGNATURE)
+        let link = `https://blockcommerc.com/message-board/${messageBoardDataToken}`
+        if (!process.env.LIVE)
+            link = `http://localhost:3000/message-board/${messageBoardDataToken}`
+        const subject = `You have a new message! - ${title}`
+        const emailMessage = `Go to your message board to read your message<br /><br /><a href=${link}>${link}</a><br /><br />${postPreview}`
+        const messages = messageBoardData.messages
         const newMessage = {
             user: user,
             message: message,
             timestamp: Date.now()
         }
-        messages.push(newMessage)
-        await MessageBoard.updateOne({_id: messageBoardId}, {$set: {messages: messages}})
-        const sellerEmailAddress = messageBoardData2.sellerEmailAddress
-        const buyerEmailAddress = messageBoardData2.buyerEmailAddress
-        if (user === 'seller') {
-            const payload = {user: 'buyer', messageBoardId: messageBoardId}
-            const token = jwt.sign(payload, process.env.JWT_SIGNATURE)
-            let link = `https://blockcommerc.com/message-board/${token}`
-            if (!process.env.LIVE)
-                link = `http://localhost:3000/message-board/${token}`
-            const message = `Go to your message board to read your new message<br><br><a href=${link}>${link}</a>`
-            await sendEmail(buyerEmailAddress, 'You have a new message', message)
-        } else {
-            const payload = {user: 'seller', messageBoardId: messageBoardId}
-            const token = jwt.sign(payload, process.env.JWT_SIGNATURE)
-            let link = `https://blockcommerc.com/message-board/${token}`
-            if (!process.env.LIVE)
-                link = `http://localhost:3000/message-board/${token}`
-            const message = `Go to your message board to read your new message<br><br><a href=${link}>${link}</a>`
-            await sendEmail(sellerEmailAddress, 'You have a new message', message)
-        }
+        await MessageBoard.updateOne({_id: messageBoardId}, {$set: {messages: [...messages, newMessage]}})
+        await sendEmail(emailAddress, subject, emailMessage)
         return res.json({success: true, message: newMessage})
     } else
         return res.json({success: false})

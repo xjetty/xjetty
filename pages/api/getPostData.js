@@ -1,29 +1,14 @@
 import Post from '../../models/Post'
-import Offer from '../../models/Offer'
-import {getIdFromToken} from "../../server/getIdFromToken";
 import connectToDb from "../../middleware/connectToDb";
 import {insertBreaks} from "../../server/insertBreaks";
 
-const getOfferData = async (req, res) => {
+const getPostData = async (req, res) => {
     const method = req.method
     if (method === 'POST') {
         const data = req.body
-        const token = data.token
-        const offerId = getIdFromToken(token, 'offerId')
-        if (!offerId)
-            return res.json({success: false, alertMessage: 'Invalid token'})
+        const code = data.code.toUpperCase()
         await connectToDb()
-        const offer = await Offer.findById(offerId)
-        if (!offer)
-            return res.json({success: false, alertMessage: 'Offer not found'})
-        if (offer.status !== 'Accepted')
-            return res.json({success: false})
-        const fixedAmount = offer.fixedAmount
-        const usdAmount = offer.usdAmount
-        const eosAmount = offer.eosAmount
-        const postId = offer.postId
-        const emailAddress = offer.emailAddress
-        const post = await Post.findById(postId)
+        const post = await Post.findOne({code: code})
         if (!post) return res.json({success: false, alertMessage: 'Post not found'})
         const mode = post.mode
         const platforms = post.platforms
@@ -31,6 +16,9 @@ const getOfferData = async (req, res) => {
         const subcategory = post.subcategory
         const title = post.title
         const imageLink = post.imageLink
+        const fixedAmount = post.fixedAmount
+        const usdAmount = post.usdAmount
+        const eosAmount = post.eosAmount
         const quantity = post.quantity
         const quantitySold = post.quantitySold
         const quantityAvailable = quantity - quantitySold
@@ -40,8 +28,6 @@ const getOfferData = async (req, res) => {
         if (hidden) return res.json({success: false, alertMessage: 'Post hidden'})
         const description = insertBreaks(post.description)
         const saleMethod = post.saleMethod
-        if (saleMethod === 'askingPriceOnly')
-            return res.json({success: false, alertMessage: 'Offers not accepted'})
         return res.json({
             success: true, post: {
                 mode: mode,
@@ -54,12 +40,11 @@ const getOfferData = async (req, res) => {
                 usdAmount: usdAmount,
                 eosAmount: eosAmount,
                 description: description,
-                saleMethod: saleMethod,
-                emailAddress: emailAddress
+                saleMethod: saleMethod
             }
         })
     } else
         return res.json({success: false})
 }
 
-export default getOfferData
+export default getPostData

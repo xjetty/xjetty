@@ -6,8 +6,8 @@ import {
 } from '@material-ui/core'
 import React, {useContext, useEffect} from 'react'
 import LinkFieldComponent from './FieldComponents/LinkFieldComponent'
-import ListingOptionsFormComponent from "./FormComponents/ListingOptionsFormComponent";
-import UpdateListingFormComponent from "./FormComponents/UpdateListingFormComponent";
+import PostOptionsFormComponent from "./FormComponents/PostOptionsFormComponent";
+import UpdatePostFormComponent from "./FormComponents/UpdatePostFormComponent";
 import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
@@ -15,14 +15,12 @@ import {makeStyles} from "@material-ui/core/styles";
 import {AppContext} from "../contexts/AppContext";
 import OffersTableComponent from "./OffersTableComponent";
 import CodeFieldComponent from "./FieldComponents/CodeFieldComponent";
+import CreateUpdateFormPostComponent from "./FormComponents/CreateUpdateFormPostComponent";
 
 const useStyles = makeStyles((theme) => ({
     media: {
-        height: 100,
-        backgroundSize: 'contain',
-        width: 'inherit',
-        marginLeft: 'auto',
-        marginRight: 'auto'
+        height: theme.spacing(25),
+        backgroundSize: 'contain'
     },
     heading: {
         fontSize: theme.typography.pxToRem(15),
@@ -35,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const ManagerComponent = () => {
+const ManagerComponent = ({token}) => {
     const classes = useStyles()
     const {offers, showOffers} = useContext(AppContext)
     const [tabValue, setTabValue] = React.useState('1')
@@ -60,8 +58,8 @@ const ManagerComponent = () => {
                 <Card>
                     <CardMedia
                         className={classes.media}
-                        image='/logo.jpg'
-                        title="BlockCommerc Logo"
+                        image='/logo.png'
+                        title="D2R Crypto Logo"
                     />
                     <CardContent>
                         <Grid container spacing={2}>
@@ -75,33 +73,33 @@ const ManagerComponent = () => {
                                 {(showOffers && offers.length) ? (<TabContext value={tabValue}>
                                     <AppBar position="static">
                                         <TabList onChange={handleTabChange}>
-                                            <Tab label="Listing options" value="1"/>
-                                            <Tab label="Update listing" value="2"/>
+                                            <Tab label="Post options" value="1"/>
+                                            <Tab label="Update Post" value="2"/>
                                             <Tab label={newOffers ? 'Offers (new)' : 'Offers'} value="3"/>
                                         </TabList>
                                     </AppBar>
                                     <TabPanel value="1">
-                                        <ListingOptionsFormComponent/>
+                                        <PostOptionsFormComponent token={token}/>
                                     </TabPanel>
                                     <TabPanel value="2">
-                                        <UpdateListingFormComponent/>
+                                        <CreateUpdateFormPostComponent create={false} token={token}/>
                                     </TabPanel>
                                     <TabPanel value="3">
-                                        <OffersTableComponent/>
+                                        <OffersTableComponent token={token}/>
                                     </TabPanel>
                                 </TabContext>) : (
                                     <TabContext value={tabValue}>
                                         <AppBar position="static">
                                             <TabList onChange={handleTabChange}>
-                                                <Tab label="Listing options" value="1"/>
-                                                <Tab label="Update listing" value="2"/>
+                                                <Tab label="Post options" value="1"/>
+                                                <Tab label="Update Post" value="2"/>
                                             </TabList>
                                         </AppBar>
                                         <TabPanel value="1">
-                                            <ListingOptionsFormComponent/>
+                                            <PostOptionsFormComponent token={token}/>
                                         </TabPanel>
                                         <TabPanel value="2">
-                                            <UpdateListingFormComponent/>
+                                            <CreateUpdateFormPostComponent create={false} token={token}/>
                                         </TabPanel>
                                     </TabContext>
                                 )}

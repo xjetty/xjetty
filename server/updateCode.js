@@ -1,5 +1,5 @@
 import randomstring from 'randomstring'
-import Listing from '../models/Listing'
+import Post from '../models/Post'
 
 export async function updateCode(id) {
     let randomString = ''
@@ -10,9 +10,9 @@ export async function updateCode(id) {
             readable: true,
             capitalization: 'uppercase'
         })
-        code = await Listing.findOne({code: randomString})
+        code = await Post.findOne({code: randomString})
         if (!code) break
     }
-    await Listing.updateOne({_id: id}, {$set: {code: randomString, lastUpdatedOnTimestamp: Date.now()}})
+    await Post.updateOne({_id: id}, {$set: {code: randomString, lastUpdatedOnTimestamp: Date.now()}})
     return randomString
 }

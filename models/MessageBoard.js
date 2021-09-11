@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const MessageBoardSchema = new mongoose.Schema({
-    listingDetails: {
+    postDetails: {
         type: Object
     },
     messages: {

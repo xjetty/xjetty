@@ -1,46 +1,45 @@
-import {AppBar, Card, CardContent, Tab} from "@material-ui/core";
-import React, {useContext} from "react";
-import TabContext from "@material-ui/lab/TabContext";
-import TabList from "@material-ui/lab/TabList";
-import TabPanel from "@material-ui/lab/TabPanel";
+import {
+    Accordion,
+    AccordionDetails,
+    AccordionSummary,
+    Typography
+} from "@material-ui/core";
+import React from "react";
 import EscrowActionComponent from "./ActionComponents/EscrowActionComponent";
 import EscrowDetailsComponent from "./EscrowDetailsComponent";
-import {AppContext} from "../contexts/AppContext";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import {makeStyles} from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+    heading: {
+        fontSize: theme.typography.pxToRem(15),
+        flexBasis: '33.33%',
+        flexShrink: 0
+    }
+}))
 
 const EscrowComponent = (props) => {
-    const [tabValue, setTabValue] = React.useState('1')
-    const {escrowDetails} = useContext(AppContext)
-    const handleTabChange = (event, newValue) => {
-        setTabValue(newValue)
-    }
+    const classes = useStyles()
     return (
         <>
-            {(props.user === 'buyer' && (!escrowDetails.disputeOpened && !escrowDetails.escrowReleased && !escrowDetails.escrowRefunded)) || (escrowDetails.user === 'buyer' && (escrowDetails.disputeOpened && !escrowDetails.escrowReleased && !escrowDetails.escrowRefunded)) || (props.user === 'seller' && (!escrowDetails.escrowRefunded && !escrowDetails.escrowReleased)) ? (
-                <TabContext value={tabValue}>
-                    <AppBar position="static">
-                        <TabList onChange={handleTabChange}>
-                            <Tab label="Escrow actions" value="1"/>
-                            <Tab label="Escrow details" value="2"/>
-                        </TabList>
-                    </AppBar>
-                    <TabPanel value="1">
-                        <EscrowActionComponent user={props.user} token={props.token}/>
-                    </TabPanel>
-                    <TabPanel value="2">
-                        <EscrowDetailsComponent/>
-                    </TabPanel>
-                </TabContext>) : (
-                <TabContext value={tabValue}>
-                    <AppBar position="static">
-                        <TabList onChange={handleTabChange}>
-                            <Tab label="Escrow details" value="1"/>
-                        </TabList>
-                    </AppBar>
-                    <TabPanel value="1">
-                        <EscrowDetailsComponent/>
-                    </TabPanel>
-                </TabContext>
-            )}
+            <Accordion defaultExpanded={true}>
+                <AccordionSummary
+                    expandIcon={<ExpandMoreIcon/>}>
+                    <Typography className={classes.heading}>Escrow actions</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <EscrowActionComponent user={props.user} token={props.token}/>
+                </AccordionDetails>
+            </Accordion>
+            <Accordion>
+                <AccordionSummary
+                    expandIcon={<ExpandMoreIcon/>}>
+                    <Typography className={classes.heading}>Escrow details</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <EscrowDetailsComponent/>
+                </AccordionDetails>
+            </Accordion>
         </>
     )
 }

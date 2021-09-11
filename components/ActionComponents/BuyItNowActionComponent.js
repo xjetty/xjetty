@@ -1,16 +1,15 @@
 import {Button, Grid, LinearProgress} from '@material-ui/core'
-import React, {useContext, useEffect, useMemo} from 'react'
+import React, {useContext, useMemo} from 'react'
 import {AppContext} from '../../contexts/AppContext'
 import axios from 'axios'
 
-const BuyItNowActionComponent = () => {
+const BuyItNowActionComponent = (props) => {
     const [submittingData, setSubmittingData] = React.useState(false)
 
     const {
         eosAccountNameError,
         associativePrivateKeyError,
         emailAddressError,
-        recaptchaRef,
         eosAccountName,
         associativePrivateKey,
         comments,
@@ -22,10 +21,7 @@ const BuyItNowActionComponent = () => {
         setAssociativePrivateKeyError,
         setEmailAddressError,
         emailAddress,
-        code,
-        recaptchaResponse,
         offer,
-        token,
         memo,
         pageTimestamp,
         eosAccount,
@@ -37,12 +33,8 @@ const BuyItNowActionComponent = () => {
         setMemoError
     } = useContext(AppContext)
 
-    const submitRecaptcha = () => {
-        setSubmittingData(true)
-        recaptchaRef.current.execute()
-    }
-
     const buyItNow = async () => {
+        setSubmittingData(true)
         try {
             const res = await axios.post('../api/buyItNow', {
                 eosAccount: eosAccount,
@@ -52,10 +44,9 @@ const BuyItNowActionComponent = () => {
                 comments: comments,
                 emailAddress: emailAddress,
                 offer: offer,
-                recaptchaResponse: recaptchaResponse,
                 pageTimestamp: pageTimestamp,
-                code: code,
-                token: token
+                code: props.code,
+                token: props.token
             })
             const data = res.data
             if (data.success) {
@@ -88,24 +79,15 @@ const BuyItNowActionComponent = () => {
             } else
                 alert('Something went wrong')
             setSubmittingData(false)
-            process.nextTick(() => {
-                recaptchaRef.current.reset()
-            })
         } catch (error) {
             alert('Lost Internet connection')
             setSubmittingData(false)
-            process.nextTick(() => {
-                recaptchaRef.current.reset()
-            })
         }
     }
 
-    useEffect(() => {
-        if (submittingData && recaptchaResponse)
-            buyItNow()
-    }, [recaptchaResponse])
-
     const disabled = useMemo(() => {
+        if (submittingData)
+            return true
         if (eosAccount === 'New') {
             if (addMemo) {
                 return (
@@ -116,8 +98,7 @@ const BuyItNowActionComponent = () => {
                     !eosAccountName ||
                     !associativePrivateKey ||
                     !emailAddress ||
-                    !memo ||
-                    submittingData
+                    !memo
                 )
             } else {
                 return (
@@ -126,15 +107,13 @@ const BuyItNowActionComponent = () => {
                     emailAddressError ||
                     !eosAccountName ||
                     !associativePrivateKey ||
-                    !emailAddress ||
-                    submittingData
+                    !emailAddress
                 )
             }
         } else {
             return (
                 emailAddressError ||
-                !emailAddress ||
-                submittingData
+                !emailAddress
             )
         }
     }, [eosAccountNameError, associativePrivateKeyError, emailAddressError, submittingData, eosAccount, eosAccountName, associativePrivateKey, emailAddress, memo, memoError, addMemo])
@@ -148,7 +127,7 @@ const BuyItNowActionComponent = () => {
             )}
             <Grid item xs={12}>
                 <Button
-                    onClick={submitRecaptcha}
+                    onClick={buyItNow}
                     disabled={disabled}
                     variant="contained"
                     color="primary">

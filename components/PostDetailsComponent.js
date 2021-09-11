@@ -32,16 +32,12 @@ const datetimeOptions = {
     timeZoneName: 'short'
 }
 
-const getDatetime = (timestamp) => {
-    return new Date(timestamp).toLocaleString('en-US', datetimeOptions)
-}
-
-const ListingDetailsComponent = (props) => {
+const PostDetailsComponent = (props) => {
     const classes = useStyles()
     const {setSnackbarMessage, setSnackbarOpen} = useContext(AppContext)
     const copy = () => {
         let textField = document.createElement('textarea')
-        textField.innerText = props.listingDetails.transactionId
+        textField.innerText = props.postDetails.transactionId
         document.body.appendChild(textField)
         textField.select()
         document.execCommand('copy')
@@ -54,7 +50,7 @@ const ListingDetailsComponent = (props) => {
             <Accordion>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon/>}>
-                    <Typography className={classes.heading}>Purchase</Typography>
+                    <Typography className={classes.heading}>Proof of purchase</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                     <Grid container spacing={2}>
@@ -62,7 +58,62 @@ const ListingDetailsComponent = (props) => {
                             <TextField
                                 value={props.createdOnDatetime}
                                 fullWidth
-                                label="Datetime"
+                                label="Purchased on"
+                                variant="filled"
+                                InputProps={{
+                                    readOnly: true,
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                            <TextField
+                                value={props.postDetails.mode}
+                                fullWidth
+                                label="Mode"
+                                variant="filled"
+                                InputProps={{
+                                    readOnly: true,
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                            <TextField
+                                value={props.postDetails.platforms.join(', ')}
+                                fullWidth
+                                label="Platforms"
+                                variant="filled"
+                                InputProps={{
+                                    readOnly: true,
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                            <TextField
+                                value={props.postDetails.category}
+                                fullWidth
+                                label="Category"
+                                variant="filled"
+                                InputProps={{
+                                    readOnly: true,
+                                }}
+                            />
+                        </Grid>
+                        {props.postDetails.subcategory && (<Grid item xs={12} md={6}>
+                            <TextField
+                                value={props.postDetails.subcategory}
+                                fullWidth
+                                label="Subcategory"
+                                variant="filled"
+                                InputProps={{
+                                    readOnly: true,
+                                }}
+                            />
+                        </Grid>)}
+                        <Grid item xs={12}>
+                            <TextField
+                                value={props.postDetails.title}
+                                fullWidth
+                                label="Title"
                                 variant="filled"
                                 InputProps={{
                                     readOnly: true,
@@ -71,10 +122,10 @@ const ListingDetailsComponent = (props) => {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
-                                value={props.listingDetails.notes}
+                                value={props.postDetails.description}
                                 fullWidth
-                                label="Notes"
                                 multiline
+                                label="Description"
                                 variant="filled"
                                 InputProps={{
                                     readOnly: true,
@@ -83,7 +134,7 @@ const ListingDetailsComponent = (props) => {
                         </Grid>
                         <Grid item xs={12} md={6}>
                             <TextField
-                                value={props.listingDetails.fixedAmount.toUpperCase()}
+                                value={props.postDetails.fixedAmount.toUpperCase()}
                                 fullWidth
                                 label="Fixed amount"
                                 variant="filled"
@@ -94,7 +145,7 @@ const ListingDetailsComponent = (props) => {
                         </Grid>
                         <Grid item xs={12} md={6}>
                             <TextField
-                                value={props.listingDetails.usdAmount}
+                                value={props.postDetails.usdAmount}
                                 fullWidth
                                 label="USD amount"
                                 variant="filled"
@@ -105,7 +156,7 @@ const ListingDetailsComponent = (props) => {
                         </Grid>
                         <Grid item xs={12} md={6}>
                             <TextField
-                                value={`${props.listingDetails.eosAmount} EOS`}
+                                value={`${props.postDetails.eosAmount} EOS`}
                                 fullWidth
                                 label="EOS amount"
                                 variant="filled"
@@ -114,20 +165,9 @@ const ListingDetailsComponent = (props) => {
                                 }}
                             />
                         </Grid>
-                        <Grid item xs={12} md={6}>
-                            <TextField
-                                value={props.listingDetails.useEscrow ? 'Used' : 'Not used'}
-                                fullWidth
-                                label="Escrow"
-                                variant="filled"
-                                InputProps={{
-                                    readOnly: true,
-                                }}
-                            />
-                        </Grid>
                         <Grid item xs={12}>
                             <TextField
-                                value={props.listingDetails.transactionId}
+                                value={props.postDetails.transactionId}
                                 fullWidth
                                 label="Transaction ID"
                                 variant="filled"
@@ -139,7 +179,7 @@ const ListingDetailsComponent = (props) => {
                                                 <FileCopy/>
                                             </IconButton>
                                             <IconButton
-                                                href={`https://bloks.io/transaction/${props.listingDetails.transactionId}`}
+                                                href={`https://bloks.io/transaction/${props.postDetails.transactionId}`}
                                                 target="_blank">
                                                 <OpenInNew/>
                                             </IconButton>
@@ -149,54 +189,10 @@ const ListingDetailsComponent = (props) => {
                             />
                         </Grid>
                     </Grid>
-                    {/*<List>*/}
-                    {/*    <ListItem>*/}
-                    {/*        <ListItemText*/}
-                    {/*            primary={props.listingDetails.transactionId}*/}
-                    {/*            secondary="Transaction ID"*/}
-                    {/*        />*/}
-                    {/*        <ListItemSecondaryAction>*/}
-                    {/*            <IconButton href={`https://bloks.io/transaction/${props.listingDetails.transactionId}`}*/}
-                    {/*                        target="_blank" edge="end">*/}
-                    {/*                <OpenInNew/>*/}
-                    {/*            </IconButton>*/}
-                    {/*        </ListItemSecondaryAction>*/}
-                    {/*    </ListItem>*/}
-                    {/*    <ListItem>*/}
-                    {/*        <ListItemText*/}
-                    {/*            primary={props.listingDetails.fixedAmount.toUpperCase()}*/}
-                    {/*            secondary="Fixed Amount"*/}
-                    {/*        />*/}
-                    {/*    </ListItem>*/}
-                    {/*    <ListItem>*/}
-                    {/*        <ListItemText*/}
-                    {/*            primary={props.listingDetails.usdAmount}*/}
-                    {/*            secondary="USD Amount"*/}
-                    {/*        />*/}
-                    {/*    </ListItem>*/}
-                    {/*    <ListItem>*/}
-                    {/*        <ListItemText*/}
-                    {/*            primary={`${props.listingDetails.eosAmount} EOS`}*/}
-                    {/*            secondary="EOS Amount"*/}
-                    {/*        />*/}
-                    {/*    </ListItem>*/}
-                    {/*    <ListItem>*/}
-                    {/*        <ListItemText*/}
-                    {/*            primary={props.listingDetails.useEscrow ? 'Used' : 'Not used'}*/}
-                    {/*            secondary="Escrow"*/}
-                    {/*        />*/}
-                    {/*    </ListItem>*/}
-                    {/*    <ListItem>*/}
-                    {/*        <ListItemText*/}
-                    {/*            primary={props.listingDetails.notes}*/}
-                    {/*            secondary="Notes"*/}
-                    {/*        />*/}
-                    {/*    </ListItem>*/}
-                    {/*</List>*/}
                 </AccordionDetails>
             </Accordion>
         </>
     )
 }
 
-export default ListingDetailsComponent
+export default PostDetailsComponent

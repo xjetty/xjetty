@@ -1,5 +1,6 @@
 import Head from "next/head";
 import {
+    Box,
     Button, ButtonGroup,
     Card, CardActions,
     CardContent, CardMedia, Divider,
@@ -20,6 +21,11 @@ const useStyles = makeStyles((theme) => ({
     media: {
         height: theme.spacing(50),
         backgroundSize: 'contain'
+    },
+    buttons: {
+        '& > *': {
+            marginRight: theme.spacing(2),
+        }
     }
 }))
 
@@ -32,7 +38,7 @@ const Home = () => {
         </Head>
         <Grid container spacing={2}>
             <Grid item xs={12}>
-                <Card>
+                <Card variant="outlined">
                     <CardMedia
                         className={classes.media}
                         image='/logo.png'
@@ -52,23 +58,23 @@ const Home = () => {
                                 <GoToPostComponent/>
                             </Grid>
                             <Grid item xs={12}>
-                                <Link href="/posts">
-                                    <Button size="large" variant="contained" color="primary">View
-                                        posts</Button>
-                                </Link>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Link href="/create">
-                                    <Button size="large" variant="contained" color="secondary">Create a
-                                        post</Button>
-                                </Link>
+                                <div className={classes.buttons}>
+                                    <Link href="/posts">
+                                        <Button size="large" variant="contained" color="primary">View
+                                            posts</Button>
+                                    </Link>
+                                    <Link href="/create">
+                                        <Button size="large" variant="outlined" color="secondary">Create a
+                                            post</Button>
+                                    </Link>
+                                </div>
                             </Grid>
                         </Grid>
                     </CardContent>
                 </Card>
             </Grid>
             <Grid item xs={12}>
-                <Card>
+                <Card variant="outlined">
                     <CardContent>
                         <List subheader={<ListSubheader>Features</ListSubheader>}>
                             <ListItem>
@@ -76,7 +82,7 @@ const Home = () => {
                                     <CheckCircle color="secondary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="No accounts"
+                                    primary="Built-in crypto payment processor"
                                 />
                             </ListItem>
                             <ListItem>
@@ -84,7 +90,7 @@ const Home = () => {
                                     <CheckCircle color="secondary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="No fees"
+                                    primary="Fixed item quantities"
                                 />
                             </ListItem>
                             <ListItem>
@@ -92,7 +98,7 @@ const Home = () => {
                                     <CheckCircle color="secondary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Offers"
+                                    primary="USD or crypto fixed amounts"
                                 />
                             </ListItem>
                             <ListItem>
@@ -100,7 +106,31 @@ const Home = () => {
                                     <CheckCircle color="secondary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="And escrows"
+                                    primary="Multiple sale methods, including offers"
+                                />
+                            </ListItem>
+                            <ListItem>
+                                <ListItemIcon>
+                                    <CheckCircle color="secondary"/>
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary="Does not require an account"
+                                />
+                            </ListItem>
+                            <ListItem>
+                                <ListItemIcon>
+                                    <CheckCircle color="secondary"/>
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary="No fee of any kind"
+                                />
+                            </ListItem>
+                            <ListItem>
+                                <ListItemIcon>
+                                    <CheckCircle color="secondary"/>
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary="An escrow for security"
                                 />
                             </ListItem>
                         </List>
@@ -108,7 +138,7 @@ const Home = () => {
                 </Card>
             </Grid>
             <Grid item xs={12}>
-                <Card>
+                <Card variant="outlined">
                     <CardContent>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
@@ -119,16 +149,16 @@ const Home = () => {
                             <Grid item xs={12}>
                                 <ButtonGroup
                                     orientation="vertical"
-                                    variant="contained"
+                                    variant="outlined"
                                     color="primary"
                                 >
-                                    <Button variant="contained" href="https://exodus.com"
+                                    <Button href="https://exodus.com"
                                             target="_blank">Exodus</Button>
-                                    <Button variant="contained" href="https://getwombat.io/"
+                                    <Button href="https://getwombat.io/"
                                             target="_blank">Wombat</Button>
-                                    <Button variant="contained" href="https://greymass.com/en/anchor/"
+                                    <Button href="https://greymass.com/en/anchor/"
                                             target="_blank">Anchor</Button>
-                                    <Button variant="contained" href="https://guarda.com/"
+                                    <Button href="https://guarda.com/"
                                             target="_blank">Guarda</Button>
                                 </ButtonGroup>
                             </Grid>
@@ -137,7 +167,7 @@ const Home = () => {
                 </Card>
             </Grid>
             <Grid item xs={12}>
-                <Card>
+                <Card variant="outlined">
                     <CardContent>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>

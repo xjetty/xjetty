@@ -7,7 +7,6 @@ import {
 import React, {useContext, useEffect} from 'react'
 import LinkFieldComponent from './FieldComponents/LinkFieldComponent'
 import PostOptionsFormComponent from "./FormComponents/PostOptionsFormComponent";
-import UpdatePostFormComponent from "./FormComponents/UpdatePostFormComponent";
 import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';

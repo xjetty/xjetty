@@ -8,7 +8,7 @@ export async function sendEmail(emailAddress, subject, message) {
         port: 465,
         host: "smtp.gmail.com",
         auth: {
-            user: getEmail(),
+            user: await getEmail(),
             pass: 'Snapshooter1'
         },
         secure: true

@@ -2,7 +2,8 @@ import EmailsIndex from '../models/EmailsIndex'
 
 export async function getEmail() {
     let indexNumber = 0
-    const emailsIndex = await EmailsIndex.find()[0]
+    let emailsIndex = await EmailsIndex.find()
+    emailsIndex = emailsIndex[0]
     let id = ''
     if (!emailsIndex) {
         const getId = await EmailsIndex.create({index: indexNumber})

@@ -16,6 +16,7 @@ module.exports = {
         ESCROW_ASSOCIATIVE_PRIVATE_KEY:
             '5KD6WKJ2ctuZKpYedyZjE9TcFAC79HfSzLZR5FBFs671sN5z9hY',
         ESCROW_MEMO: '',
-        LIVE: false
+        LIVE: false,
+        EMAILS:"d2rcrypto1@gmail.com, d2rcrypto2@gmail.com, d2rcrypto3@gmail.com, d2rcrypto4@gmail.com"
     }
 }

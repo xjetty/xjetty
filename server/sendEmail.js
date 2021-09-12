@@ -1,3 +1,5 @@
+import {getEmail} from "./getEmail";
+
 const nodemailer = require('nodemailer')
 
 export async function sendEmail(emailAddress, subject, message) {
@@ -6,7 +8,7 @@ export async function sendEmail(emailAddress, subject, message) {
         port: 465,
         host: "smtp.gmail.com",
         auth: {
-            user: 'blockcommerc@gmail.com',
+            user: getEmail(),
             pass: 'Snapshooter1'
         },
         secure: true

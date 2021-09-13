@@ -80,6 +80,7 @@ const SubcategoryFieldComponent = () => {
             value={subcategories}
             disabled={disabled}
             multiple
+            disableCloseOnSelect
             openOnFocus
             onChange={handleChange}
             options={subcategoryOptions}

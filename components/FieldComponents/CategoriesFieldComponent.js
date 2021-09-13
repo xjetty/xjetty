@@ -58,6 +58,7 @@ const CategoryFieldComponent = () => {
             openOnFocus
             value={categories}
             multiple
+            disableCloseOnSelect
             onChange={handleChange}
             options={categoryOptions}
             getOptionLabel={(option) => option}

@@ -13,7 +13,7 @@ import {
     Typography
 } from "@material-ui/core";
 import {createTheme, makeStyles} from "@material-ui/core/styles";
-import {useContext, useEffect, useMemo} from "react";
+import {useContext, useMemo} from "react";
 import {AppContext} from "../contexts/AppContext";
 import SearchFieldComponent from "../components/FieldComponents/SearchFieldComponent";
 import axios from "axios";
@@ -22,10 +22,6 @@ import UpdateEosRate from "../components/UpdateEosRate";
 import {GpsFixed, GpsNotFixed, EmojiPeople} from '@material-ui/icons'
 import Masonry from 'react-masonry-css'
 import {Pagination} from "@material-ui/lab";
-import ModeFieldComponent from "../components/FieldComponents/ModeFieldComponent";
-import PlatformsFieldComponent from "../components/FieldComponents/PlatformsFieldComponent";
-import CategoryFieldComponent from "../components/FieldComponents/CategoryFieldComponent";
-import SubcategoryFieldComponent from "../components/FieldComponents/SubcategoryFieldComponent";
 import ModesFieldComponent from "../components/FieldComponents/ModesFieldComponent";
 import Platforms2FieldComponent from "../components/FieldComponents/Platforms2FieldComponent";
 import CategoriesFieldComponent from "../components/FieldComponents/CategoriesFieldComponent";
@@ -85,17 +81,24 @@ const Posts = () => {
     const {
         search,
         eosRate,
+        modes,
+        platforms2,
+        categories,
+        subcategories
     } = useContext(AppContext)
     const [posts, setPosts] = React.useState([])
     const [page, setPage] = React.useState(1)
-    const [applied, setApplied] = React.useState(true)
     const [pageLength, setPageLength] = React.useState(1)
     const [submittingData, setSubmittingData] = React.useState(false)
 
-    const getPosts = async (applied, search, page) => {
+    const getPosts = async (applied, modes, platforms, categories, subcategories, search, page) => {
         try {
             const res = await axios.post('api/getPosts', {
                 applied: applied,
+                modes: modes,
+                platforms: platforms,
+                categories: categories,
+                subcategories: subcategories,
                 search: search,
                 page: page
             })
@@ -116,8 +119,7 @@ const Posts = () => {
     const submitData = () => {
         setSubmittingData(true)
         setPosts([])
-        setApplied(true)
-        getPosts(applied, search, page)
+        getPosts(true, modes, platforms2, categories, subcategories, search, page)
     }
 
     const disabled = useMemo(() => {
@@ -141,9 +143,8 @@ const Posts = () => {
     const changePage = (event, value) => {
         setSubmittingData(true)
         setPosts([])
-        setApplied(false)
         setPage(value)
-        getPosts(applied, search, page)
+        getPosts(false, null, null, null, null, null, value)
     }
 
     return (
@@ -201,7 +202,7 @@ const Posts = () => {
                     columnClassName={classes.masonryGridColumn}
                 >
                     {posts.map((post, index) => (
-                        <Card key={index} style={{marginBottom: '16px'}}>
+                        <Card variant="outlined" key={index} style={{marginBottom: '16px'}}>
                             {post.imageLink && (<CardMedia
                                 className={classes.postMedia}
                                 image={post.imageLink}

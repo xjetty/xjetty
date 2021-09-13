@@ -9,7 +9,7 @@ const DeleteActionComponent = (props) => {
         <MuiThemeProvider theme={redTheme}>
             <Button
                 variant="contained" color="primary">
-                Delete
+                Delete post
             </Button>
         </MuiThemeProvider>
     )

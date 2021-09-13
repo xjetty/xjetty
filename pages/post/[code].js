@@ -21,7 +21,8 @@ const Post = ({code}) => {
         setMode,
         setPlatforms,
         setCategory,
-        setSubcategory
+        setSubcategory,
+        setMinAmount,
     } = useContext(AppContext)
 
     useEffect(() => {
@@ -64,6 +65,7 @@ const Post = ({code}) => {
                 setEosAmountValue(eosAmount)
                 setDescription(description)
                 setSaleMethod(saleMethod)
+                setMinAmount(false)
                 setShow(true)
             } else if (data && data.alertMessage) {
                 alert(data.alertMessage)

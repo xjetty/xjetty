@@ -89,9 +89,8 @@ const eosFormatter = new Intl.NumberFormat('en-US', {
     maximumFractionDigits: 4
 })
 
-const OffersTableComponent = () => {
+const OffersTableComponent = ({token}) => {
     const {
-        token,
         offers,
         eosRate,
         recaptchaRef,
@@ -285,16 +284,11 @@ const OffersTableComponent = () => {
         <>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
-                    <Card>
-                        <CardContent>
-                            {rows.length ? (<MUIDataTable
-                                title={"Offers"}
-                                data={rows}
-                                columns={columns}
-                                options={options}
-                            />) : null}
-                        </CardContent>
-                    </Card>
+                    {rows.length ? (<MUIDataTable
+                        data={rows}
+                        columns={columns}
+                        options={options}
+                    />) : null}
                 </Grid>
             </Grid>
             <Dialog

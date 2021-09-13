@@ -3,7 +3,7 @@ import React, {useContext, useEffect, useMemo} from "react";
 import {AppContext} from "../../contexts/AppContext";
 import axios from "axios";
 
-const MakeOfferActionComponent = () => {
+const MakeOfferActionComponent = ({code}) => {
 
     const {
         recaptchaRef,
@@ -13,7 +13,6 @@ const MakeOfferActionComponent = () => {
         usdAmount,
         eosAmount,
         emailAddress,
-        code,
         recaptchaResponse,
         pageTimestamp,
         setUsdAmount,

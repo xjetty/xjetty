@@ -92,6 +92,7 @@ function MyApp({Component, pageProps}) {
     const [subcategoryError, setSubcategoryError] = useState(false)
     const [imageLink, setImageLink] = useState('')
     const [subcategoryDisabled, setSubcategoryDisabled] = useState(true)
+    const [minAmount, setMinAmount] = useState(true)
     React.useEffect(() => {
         const jssStyles = document.querySelector('#jss-server-side');
         if (jssStyles)
@@ -120,6 +121,8 @@ function MyApp({Component, pageProps}) {
                 setImageLink,
                 subcategoryDisabled,
                 setSubcategoryDisabled,
+                minAmount,
+                setMinAmount,
 
                 search,
                 setSearch,

@@ -80,7 +80,7 @@ const createPost = async (req, res) => {
             if (!process.env.LIVE)
                 link = `http://localhost:3000/manager/${token}`
             const subject = `You created a post! - ${title}`
-            const message = `Just visit your manager at least once to confirm your post.<br /><br /><a href=${link}>${link}</a><br /><br />Post preview:<br /><br />${postPreview}`
+            const message = `Just visit your manager at least once to confirm your post.<br /><br /><a href=${link}>${link}</a><br /><br />${postPreview}`
             await sendEmail(emailAddress, subject, message)
             return res.json({success: true})
         } catch (e) {

@@ -56,7 +56,7 @@ const CategoryFieldComponent = () => {
         } else
             setCategoryError(true)
         setCategory(value)
-        setSubcategory('')
+        setSubcategory(null)
     }
 
     const checkError = (event, reason) => {

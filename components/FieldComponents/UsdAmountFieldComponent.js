@@ -37,7 +37,8 @@ const UsdAmountFieldComponent = () => {
         setEosAmount,
         saleMethod,
         eosRate,
-        usdAmountValue
+        usdAmountValue,
+        minAmount,
     } = useContext(AppContext)
 
     const handle = (event) => {
@@ -77,7 +78,7 @@ const UsdAmountFieldComponent = () => {
     }, [usdAmountError, saleMethod, usdAmount])
 
     const checkError = () => {
-        if (!usdAmount)
+        if (!usdAmount && fixedAmount === 'usd')
             setUsdAmountError(true)
     }
 
@@ -98,7 +99,7 @@ const UsdAmountFieldComponent = () => {
             onBlur={checkError}
             fullWidth
             label={
-                saleMethod === 'offersOnly'
+                (saleMethod === 'offersOnly' && minAmount)
                     ? 'Minimum USD amount'
                     : 'USD amount'
             }

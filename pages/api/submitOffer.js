@@ -3,7 +3,6 @@ import Post from '../../models/Post'
 import Offer from '../../models/Offer'
 import jwt from 'jsonwebtoken'
 import {sendEmail} from "../../server/sendEmail";
-import {insertBreaks} from "../../server/insertBreaks";
 import {getPostPreview} from "../../server/getPostPreview";
 
 const submitOffer = async (req, res) => {

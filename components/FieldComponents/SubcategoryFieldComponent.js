@@ -11,7 +11,6 @@ const SubcategoryFieldComponent = () => {
         setSubcategory,
         subcategoryError,
         setSubcategoryError,
-        subcategoryDisabled,
         setSubcategoryDisabled
     } = useContext(AppContext)
 

@@ -36,7 +36,8 @@ const EosAmountFieldComponent = () => {
         setUsdAmount,
         saleMethod,
         eosRate,
-        eosAmountValue
+        eosAmountValue,
+        minAmount,
     } = useContext(AppContext)
 
     const handle = (event) => {
@@ -74,7 +75,7 @@ const EosAmountFieldComponent = () => {
     }, [eosAmountError, saleMethod, eosAmount])
 
     const checkError = () => {
-        if (!eosAmount)
+        if (!eosAmount && fixedAmount === 'eos')
             setEosAmountError(true)
     }
 
@@ -95,7 +96,7 @@ const EosAmountFieldComponent = () => {
             onBlur={checkError}
             fullWidth
             label={
-                saleMethod === 'offersOnly'
+                (saleMethod === 'offersOnly' && minAmount)
                     ? 'Minimum EOS amount'
                     : 'EOS amount'
             }

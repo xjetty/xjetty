@@ -54,7 +54,7 @@ const ManagerComponent = ({token}) => {
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>
-                <Card>
+                <Card variant="outlined">
                     <CardMedia
                         className={classes.media}
                         image='/logo.png'

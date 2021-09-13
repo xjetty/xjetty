@@ -23,6 +23,7 @@ import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
 import ImageLinkPreviewComponent from "./ImageLinkPreviewComponent";
+import {OpenInNew} from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
     heading: {
@@ -60,7 +61,7 @@ const eosFormatter = new Intl.NumberFormat('en-US', {
     maximumFractionDigits: 4
 })
 
-const PostComponent = ({token, code}) => {
+const PostComponent = ({code}) => {
     const classes = useStyles()
     const {
         mode,
@@ -122,7 +123,7 @@ const PostComponent = ({token, code}) => {
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>
-                <Card>
+                <Card variant="outlined">
                     <CardMedia
                         className={classes.media}
                         image='/logo.png'
@@ -159,7 +160,7 @@ const PostComponent = ({token, code}) => {
                                                 <ImageLinkPreviewComponent/>
                                             </Grid>
                                             <Grid item xs={12}>
-                                                <Button variant="contained" color="primary" href={imageLink} target="_blank">Open</Button>
+                                                <Button color="primary" href={imageLink} target="_blank" endIcon={<OpenInNew/>}>Open image</Button>
                                             </Grid>
                                         </Grid>
                                     </AccordionDetails>
@@ -173,7 +174,7 @@ const PostComponent = ({token, code}) => {
                                         </Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                        <List dense>
+                                        <List>
                                             <ListItem>
                                                 <ListItemText primary={mode} secondary="Mode"/>
                                             </ListItem>
@@ -190,31 +191,31 @@ const PostComponent = ({token, code}) => {
                                     </AccordionDetails>
                                 </Accordion>
                             </Grid>
-                            <Grid item xs={12}>
+                            {(saleMethod !== 'offersOnly' || offer) && (<Grid item xs={12}>
                                 <List>
-                                    {(saleMethod !== 'offersOnly' || offer) && (
-                                        <>
-                                            <ListItem divider>
-                                                {fixedAmount !== 'usd' && (<ListItemAvatar>
-                                                    <Avatar alt="EOS Logo" imgProps={{style: {objectFit: "initial"}}} src="/eos-eos-logo.svg" />
-                                                </ListItemAvatar>)}
-                                                <ListItemText
-                                                    primary={fixedAmount === 'usd' ? usdAmountLabel : eosAmountLabel}
-                                                    secondary="Fixed"
-                                                />
-                                            </ListItem>
-                                            <ListItem>
-                                                {fixedAmount === 'usd' && (<ListItemAvatar>
-                                                    <Avatar alt="EOS Logo" imgProps={{style: {objectFit: "initial"}}} src="/eos-eos-logo.svg" />
-                                                </ListItemAvatar>)}
-                                                <ListItemText
-                                                    primary={fixedAmount !== 'usd' ? usdAmountLabel : eosAmountLabel}
-                                                />
-                                            </ListItem>
-                                        </>
-                                    )}
+                                    <>
+                                        <ListItem divider>
+                                            {fixedAmount !== 'usd' && (<ListItemAvatar>
+                                                <Avatar alt="EOS Logo" imgProps={{style: {objectFit: "initial"}}}
+                                                        src="/eos-eos-logo.svg"/>
+                                            </ListItemAvatar>)}
+                                            <ListItemText
+                                                primary={fixedAmount === 'usd' ? usdAmountLabel : eosAmountLabel}
+                                                secondary="Fixed"
+                                            />
+                                        </ListItem>
+                                        <ListItem>
+                                            {fixedAmount === 'usd' && (<ListItemAvatar>
+                                                <Avatar alt="EOS Logo" imgProps={{style: {objectFit: "initial"}}}
+                                                        src="/eos-logo.svg"/>
+                                            </ListItemAvatar>)}
+                                            <ListItemText
+                                                primary={fixedAmount !== 'usd' ? usdAmountLabel : eosAmountLabel}
+                                            />
+                                        </ListItem>
+                                    </>
                                 </List>
-                            </Grid>
+                            </Grid>)}
                             <Grid item xs={12}>
                                 {saleMethod === 'askingPriceAndOffers' && !offer ? (
                                     <TabContext value={tabValue}>
@@ -225,7 +226,7 @@ const PostComponent = ({token, code}) => {
                                             </TabList>
                                         </AppBar>
                                         <TabPanel value="1">
-                                            <BuyItNowFormComponent token={token} code={code}/>
+                                            <BuyItNowFormComponent code={code}/>
                                         </TabPanel>
                                         <TabPanel value="2">
                                             <MakeOfferFormComponent code={code}/>
@@ -240,7 +241,7 @@ const PostComponent = ({token, code}) => {
                                             </TabList>
                                         </AppBar>
                                         <TabPanel value="1">
-                                            <BuyItNowFormComponent token={token} code={code}/>
+                                            <BuyItNowFormComponent code={code}/>
                                         </TabPanel>
                                     </TabContext>
                                 ) : (

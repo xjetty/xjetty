@@ -29,6 +29,7 @@ import SubcategoryFieldComponent from "../components/FieldComponents/Subcategory
 import ModesFieldComponent from "../components/FieldComponents/ModesFieldComponent";
 import Platforms2FieldComponent from "../components/FieldComponents/Platforms2FieldComponent";
 import CategoriesFieldComponent from "../components/FieldComponents/CategoriesFieldComponent";
+import SubcategoriesFieldComponent from "../components/FieldComponents/SubcategoriesFieldComponent";
 
 const useStyles = makeStyles((theme) => ({
     media: {
@@ -170,7 +171,7 @@ const Posts = () => {
                                 <CategoriesFieldComponent/>
                             </Grid>
                             <Grid item xs={12} md={6}>
-                                <SubcategoryFieldComponent/>
+                                <SubcategoriesFieldComponent/>
                             </Grid>
                             <Grid item xs={12}>
                                 <Divider/>

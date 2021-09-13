@@ -2,11 +2,9 @@ import jwt from "jsonwebtoken";
 import {getIdsFromTokens} from "../../server/getIdsFromTokens";
 import Offer from '../../models/Offer'
 import Post from '../../models/Post'
-import Listing from '../../models/Post'
 import {sendEmail} from "../../server/sendEmail";
 import connectToDb from "../../middleware/connectToDb";
 import {getIdFromToken} from "../../server/getIdFromToken";
-import {insertBreaks} from "../../server/insertBreaks";
 import {getPostPreview} from "../../server/getPostPreview";
 
 const acceptOrDeclineOffers = async (req, res) => {
@@ -51,7 +49,7 @@ const acceptOrDeclineOffers = async (req, res) => {
                     let link = `https://blockcommerc.com/offer/${token}`
                     if (!process.env.LIVE)
                         link = `http://localhost:3000/offer/${token}`
-                    const message = `Confirm and pay for your offer<br /><br /><a href=${link}>${link}</a><br /><br />${postPreview}`
+                    const message = `Confirm and pay for your offer.<br /><br /><a href=${link}>${link}</a><br /><br />${postPreview}`
                     await sendEmail(emailAddress, subject, message)
                 }
             }

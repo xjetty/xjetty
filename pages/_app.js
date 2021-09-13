@@ -93,6 +93,10 @@ function MyApp({Component, pageProps}) {
     const [imageLink, setImageLink] = useState('')
     const [subcategoryDisabled, setSubcategoryDisabled] = useState(true)
     const [minAmount, setMinAmount] = useState(true)
+    const [modes, setModes] = useState([])
+    const [platforms2, setPlatforms2] = useState([])
+    const [categories, setCategories] = useState([])
+    const [subcategories, setSubcategories] = useState([])
     React.useEffect(() => {
         const jssStyles = document.querySelector('#jss-server-side');
         if (jssStyles)
@@ -123,6 +127,14 @@ function MyApp({Component, pageProps}) {
                 setSubcategoryDisabled,
                 minAmount,
                 setMinAmount,
+                modes,
+                setModes,
+                platforms2,
+                setPlatforms2,
+                categories,
+                setCategories,
+                subcategories,
+                setSubcategories,
 
                 search,
                 setSearch,

@@ -6,15 +6,13 @@ import {
     CardActions,
     CardContent,
     CardMedia,
-    Chip,
+    Chip, Divider,
     Grid,
     LinearProgress,
     MuiThemeProvider,
     Typography
 } from "@material-ui/core";
 import {createTheme, makeStyles} from "@material-ui/core/styles";
-import WorldwideFieldComponent from "../components/FieldComponents/WorldwideFieldComponent";
-import CountriesFieldComponent from "../components/FieldComponents/CountriesFieldComponent";
 import {useContext, useEffect, useMemo} from "react";
 import {AppContext} from "../contexts/AppContext";
 import SearchFieldComponent from "../components/FieldComponents/SearchFieldComponent";
@@ -24,13 +22,20 @@ import UpdateEosRate from "../components/UpdateEosRate";
 import {GpsFixed, GpsNotFixed, EmojiPeople} from '@material-ui/icons'
 import Masonry from 'react-masonry-css'
 import {Pagination} from "@material-ui/lab";
+import ModeFieldComponent from "../components/FieldComponents/ModeFieldComponent";
+import PlatformsFieldComponent from "../components/FieldComponents/PlatformsFieldComponent";
+import CategoryFieldComponent from "../components/FieldComponents/CategoryFieldComponent";
+import SubcategoryFieldComponent from "../components/FieldComponents/SubcategoryFieldComponent";
+import ModesFieldComponent from "../components/FieldComponents/ModesFieldComponent";
+import Platforms2FieldComponent from "../components/FieldComponents/Platforms2FieldComponent";
+import CategoriesFieldComponent from "../components/FieldComponents/CategoriesFieldComponent";
 
 const useStyles = makeStyles((theme) => ({
     media: {
-        height: theme.spacing(15),
+        height: theme.spacing(25),
         backgroundSize: 'contain'
     },
-    listingMedia: {
+    postMedia: {
         height: theme.spacing(30),
         backgroundSize: 'contain'
     },
@@ -74,48 +79,28 @@ const eosFormatter = new Intl.NumberFormat('en-US', {
 
 const redTheme = createTheme({palette: {primary: red}})
 
-const Public = () => {
+const Posts = () => {
     const classes = useStyles()
     const {
-        worldwide,
         search,
-        countries,
-        setCountries,
-        setWorldwide,
-        countriesError,
-        recaptchaRef,
-        recaptchaResponse,
         eosRate,
     } = useContext(AppContext)
-    const [listings, setListings] = React.useState([])
+    const [posts, setPosts] = React.useState([])
     const [page, setPage] = React.useState(1)
     const [applied, setApplied] = React.useState(true)
     const [pageLength, setPageLength] = React.useState(1)
     const [submittingData, setSubmittingData] = React.useState(false)
 
-    useEffect(() => {
-        const worldwide = localStorage.getItem('worldwide')
-        const countries = localStorage.getItem('countries')
-        if (worldwide && countries) {
-            setWorldwide(JSON.parse(worldwide))
-            setCountries(JSON.parse(countries))
-        }
-        recaptchaRef.current.execute()
-    }, [])
-
-    const getListings = async (applied, search, worldwide, countries, page) => {
+    const getPosts = async (applied, search, page) => {
         try {
-            const res = await axios.post('api/getListings', {
+            const res = await axios.post('api/getPosts', {
                 applied: applied,
                 search: search,
-                worldwide: worldwide,
-                countries: countries,
-                page: page,
-                recaptchaResponse: recaptchaResponse
+                page: page
             })
             const data = res.data
             if (data.success) {
-                setListings(data.listings)
+                setPosts(data.posts)
                 setPageLength(data.pageLength)
             } else if (data && data.alertMessage) {
                 alert(data.alertMessage)
@@ -125,46 +110,28 @@ const Public = () => {
             alert('Lost Internet connection')
         }
         setSubmittingData(false)
-        process.nextTick(() => {
-            recaptchaRef.current.reset()
-        })
     }
 
-    const submitRecaptcha = () => {
+    const submitData = () => {
         setSubmittingData(true)
-        setListings([])
+        setPosts([])
         setApplied(true)
-        recaptchaRef.current.execute()
+        getPosts(applied, search, page)
     }
-
-    useEffect(() => {
-        if (recaptchaResponse)
-            getListings(applied, search, worldwide, countries, page)
-    }, [recaptchaResponse])
-
-    useEffect(() => {
-        localStorage.setItem('worldwide', worldwide)
-        localStorage.setItem('countries', JSON.stringify(countries))
-    }, [worldwide, countries])
 
     const disabled = useMemo(() => {
-        if (submittingData)
-            return true
-        if (!worldwide) {
-            return !countries.length || countriesError
-        } else
-            return false
-    }, [countriesError, countries, worldwide, submittingData])
+        return submittingData
+    }, [submittingData])
 
-    const updateAmount = (listing) => {
+    const updateAmount = (post) => {
         let returnThis = {}
-        if (listing.fixedAmount === 'usd') {
-            const fixedAmount = `${usdFormatter.format(listing.usdAmount)} USD`
-            const notFixedAmount = `${eosFormatter.format(listing.usdAmount / eosRate).replace('$', '')} EOS`
+        if (post.fixedAmount === 'usd') {
+            const fixedAmount = `${usdFormatter.format(post.usdAmount)} USD`
+            const notFixedAmount = `${eosFormatter.format(post.usdAmount / eosRate).replace('$', '')} EOS`
             returnThis = {fixedAmount: fixedAmount, notFixedAmount: notFixedAmount}
         } else {
-            const fixedAmount = `${eosFormatter.format(listing.eosAmount).replace('$', '')} EOS`
-            const notFixedAmount = `${usdFormatter.format(listing.eosAmount * eosRate)} USD`
+            const fixedAmount = `${eosFormatter.format(post.eosAmount).replace('$', '')} EOS`
+            const notFixedAmount = `${usdFormatter.format(post.eosAmount * eosRate)} USD`
             returnThis = {fixedAmount: fixedAmount, notFixedAmount: notFixedAmount}
         }
         return returnThis
@@ -172,10 +139,10 @@ const Public = () => {
 
     const changePage = (event, value) => {
         setSubmittingData(true)
-        setListings([])
+        setPosts([])
         setApplied(false)
         setPage(value)
-        recaptchaRef.current.execute()
+        getPosts(applied, search, page)
     }
 
     return (
@@ -185,20 +152,29 @@ const Public = () => {
         </Head>
         <Grid container spacing={2}>
             <Grid item xs={12}>
-                <Card>
+                <Card variant="outlined">
                     <CardMedia
                         className={classes.media}
-                        image='/logo.jpg'
-                        title="BlockCommerc Logo"
+                        image='/logo.png'
+                        title="D2R Crypto Logo"
                     />
                     <CardContent>
                         <Grid container spacing={2}>
-                            <Grid item xs={12}>
-                                <WorldwideFieldComponent/>
+                            <Grid item xs={12} md={6}>
+                                <ModesFieldComponent/>
                             </Grid>
-                            {!worldwide && (<Grid item xs={12}>
-                                <CountriesFieldComponent/>
-                            </Grid>)}
+                            <Grid item xs={12} md={6}>
+                                <Platforms2FieldComponent/>
+                            </Grid>
+                            <Grid item xs={12} md={6}>
+                                <CategoriesFieldComponent/>
+                            </Grid>
+                            <Grid item xs={12} md={6}>
+                                <SubcategoryFieldComponent/>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Divider/>
+                            </Grid>
                             <Grid item xs={12}>
                                 <SearchFieldComponent/>
                             </Grid>
@@ -210,7 +186,7 @@ const Public = () => {
                                 <LinearProgress/>
                             </Grid>)}
                             <Grid item xs={12}>
-                                <Button onClick={submitRecaptcha} disabled={disabled} variant="contained"
+                                <Button onClick={submitData} disabled={disabled} variant="contained"
                                         color="primary">Apply</Button>
                             </Grid>
                         </Grid>
@@ -223,27 +199,27 @@ const Public = () => {
                     className={classes.masonryGrid}
                     columnClassName={classes.masonryGridColumn}
                 >
-                    {listings.map((listing, index) => (
+                    {posts.map((post, index) => (
                         <Card key={index} style={{marginBottom: '16px'}}>
-                            {listing.imageLinks[0] && (<CardMedia
-                                className={classes.listingMedia}
-                                image={listing.imageLinks[0]}
+                            {post.imageLink && (<CardMedia
+                                className={classes.postMedia}
+                                image={post.imageLink}
                             />)}
                             <CardContent>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12}>
                                         <Typography>
-                                            {listing.title}
+                                            {post.title}
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12}>
                                         <div className={classes.chip} key={eosRate}>
-                                            {listing.saleMethod !== 'offersOnly' && (<><Chip
-                                                label={updateAmount(listing).fixedAmount}
+                                            {post.saleMethod !== 'offersOnly' && (<><Chip
+                                                label={updateAmount(post).fixedAmount}
                                                 icon={<GpsFixed/>}/>
-                                                <Chip label={updateAmount(listing).notFixedAmount}
+                                                <Chip label={updateAmount(post).notFixedAmount}
                                                       icon={<GpsNotFixed/>}/></>)}
-                                            {listing.saleMethod !== 'askingPriceOnly' && (
+                                            {post.saleMethod !== 'askingPriceOnly' && (
                                                 <MuiThemeProvider theme={redTheme}><Chip label="Accepting offers"
                                                                                          icon={<EmojiPeople/>}
                                                                                          color="primary"/></MuiThemeProvider>)}
@@ -252,14 +228,14 @@ const Public = () => {
                                 </Grid>
                             </CardContent>
                             <CardActions>
-                                <Button href={`/listing/${listing.code}`} target="_blank" variant="contained"
-                                        color="primary">Go to listing</Button>
+                                <Button href={`/post/${post.code}`} target="_blank" variant="contained"
+                                        color="primary">Go to post</Button>
                             </CardActions>
                         </Card>
                     ))}
                 </Masonry>
             </Grid>
-            {listings.length > 0 && (<Grid item xs={12} container justifyContent="center">
+            {posts.length > 0 && (<Grid item xs={12} container justifyContent="center">
                 <Pagination color="primary" count={pageLength} page={page} onChange={changePage}/>
             </Grid>)}
         </Grid>
@@ -268,4 +244,4 @@ const Public = () => {
     )
 }
 
-export default Public
+export default Posts

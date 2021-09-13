@@ -1,4 +1,3 @@
-import {verifyRecaptcha} from '../../server/verifyRecaptcha'
 import connectToDb from "../../middleware/connectToDb";
 import cookie from 'cookie'
 import Listing from '../../models/Post'
@@ -7,9 +6,6 @@ const getPosts = async (req, res) => {
     const method = req.method
     if (method === 'POST') {
         const data = req.body
-        const recaptchaResponse = data.recaptchaResponse
-        const recaptchaVerified = await verifyRecaptcha(recaptchaResponse)
-        if (!recaptchaVerified) return res.json({success: false})
         await connectToDb()
         const applied = data.applied
         let search = data.search

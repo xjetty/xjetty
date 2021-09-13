@@ -43,10 +43,10 @@ const submitOffer = async (req, res) => {
         const offerUsdAmount = parseFloat(data.usdAmount)
         const offerEosAmount = parseFloat(data.eosAmount)
         if (fixedAmount === 'usd') {
-            if (offerUsdAmount >= usdAmount)
+            if (offerUsdAmount >= usdAmount && saleMethod !== 'offersOnly')
                 return res.json({success: false})
         } else {
-            if (offerEosAmount >= eosAmount)
+            if (offerEosAmount >= eosAmount && saleMethod !== 'offersOnly')
                 return res.json({success: false})
         }
         const offerEmailAddress = data.emailAddress
@@ -57,7 +57,7 @@ const submitOffer = async (req, res) => {
         if (!process.env.LIVE)
             link = `http://localhost:3000/manager/${token}`
         const subject = `You got an offer! - ${title}`
-        const message = `You can choose to accept your offer in your manager<br /><br /><a href=${link}>${link}</a><br /><br />${postPreview}`
+        const message = `You can choose to accept your offer in your manager.<br /><br /><a href=${link}>${link}</a><br /><br />${postPreview}`
         if (saleMethod === 'askingPriceAndOffers') {
             if (fixedAmount === 'usd') {
                 const minimumAmount = usdAmount * (maximumPercentLessThan / 100)

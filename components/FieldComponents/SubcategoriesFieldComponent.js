@@ -54,7 +54,7 @@ const SubcategoryFieldComponent = () => {
                 const data = categoryAndSubcategoryOptions.find(x => x.category === value).subcategories
                 subcategories = [...subcategories, ...data]
             })
-            return subcategories
+            return [...new Set(subcategories)]
         } else
             return []
     }, [categories])

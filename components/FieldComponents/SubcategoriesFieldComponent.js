@@ -88,7 +88,6 @@ const SubcategoryFieldComponent = () => {
             filterSelectedOptions
             renderInput={(params) => (
                 <TextField
-                    required={!disabled}
                     {...params}
                     variant="filled"
                     label="Subcategories"

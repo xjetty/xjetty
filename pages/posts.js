@@ -148,7 +148,7 @@ const Posts = () => {
     return (
         <html>
         <Head>
-            <title>Public Listings - BlockCommerc</title>
+            <title>Posts - D2R Crypto</title>
         </Head>
         <Grid container spacing={2}>
             <Grid item xs={12}>

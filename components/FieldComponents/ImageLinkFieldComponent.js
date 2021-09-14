@@ -17,6 +17,7 @@ const TitleFieldComponent = () => {
             fullWidth
             label="Image link"
             variant="filled"
+            placeholder="Direct link"
         />
     )
 }

@@ -88,6 +88,7 @@ function MyApp({Component, pageProps}) {
     const [platforms2, setPlatforms2] = useState([])
     const [categories, setCategories] = useState([])
     const [subcategories, setSubcategories] = useState([])
+    const [hideRecaptcha, setHideRecaptcha] = useState(false)
     const categoryAndSubcategoryOptions = [
         {category: 'Amulets', subcategories: ['Magic', 'Rare', 'Unique']},
         {category: 'Belts', subcategories: ['Rare', 'Unique']},
@@ -131,6 +132,8 @@ function MyApp({Component, pageProps}) {
     return (
         <AppContext.Provider
             value={{
+                hideRecaptcha,
+                setHideRecaptcha,
                 mode,
                 setMode,
                 modeError,

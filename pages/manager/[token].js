@@ -31,6 +31,7 @@ const Manager = ({token}) => {
         setPlatforms,
         setCategory,
         setSubcategory,
+        setHideRecaptcha,
     } = useContext(AppContext)
 
     const [show, setShow] = React.useState(false)
@@ -82,6 +83,7 @@ const Manager = ({token}) => {
     }
 
     useEffect(() => {
+        setHideRecaptcha(true)
         getManagerData(token)
     }, [])
 

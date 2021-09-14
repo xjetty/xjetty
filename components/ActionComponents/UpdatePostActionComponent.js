@@ -3,7 +3,7 @@ import React, {useContext, useMemo} from 'react'
 import {AppContext} from '../../contexts/AppContext'
 import axios from 'axios'
 
-const UpdatePostActionComponent = (props) => {
+const UpdatePostActionComponent = ({token}) => {
     const {
         mode,
         modeError,
@@ -22,6 +22,7 @@ const UpdatePostActionComponent = (props) => {
         usdAmount,
         eosAmount,
         eosAccountName,
+        description,
         memo,
         quantity,
         saleMethod,
@@ -32,8 +33,6 @@ const UpdatePostActionComponent = (props) => {
         setShowOffers,
         title,
         titleError,
-        description,
-        descriptionError,
         imageLink,
         keywords
     } = useContext(AppContext)
@@ -53,8 +52,6 @@ const UpdatePostActionComponent = (props) => {
                 return true
         }
         if (!title || titleError)
-            return true
-        if (!description || descriptionError)
             return true
         if (fixedAmount === 'usd') {
             if (!usdAmount || usdAmountError)
@@ -84,8 +81,6 @@ const UpdatePostActionComponent = (props) => {
         subcategoryError,
         title,
         titleError,
-        description,
-        descriptionError,
         fixedAmount,
         usdAmount,
         usdAmountError,
@@ -119,7 +114,7 @@ const UpdatePostActionComponent = (props) => {
                 eosAccountName: eosAccountName,
                 addMemo: addMemo,
                 memo: memo,
-                token: props.token
+                token: token
             })
             const data = res.data
             if (data.success) {
@@ -141,7 +136,7 @@ const UpdatePostActionComponent = (props) => {
         <>
             {submittingData && (
                 <Grid item xs={12}>
-                    <LinearProgress/>
+                    <LinearProgress color="secondary"/>
                 </Grid>
             )}
             <Grid item xs={12}>
@@ -149,7 +144,7 @@ const UpdatePostActionComponent = (props) => {
                     onClick={updatePost}
                     disabled={disabled}
                     variant="contained"
-                    color="primary">
+                    color="secondary">
                     Update post
                 </Button>
             </Grid>

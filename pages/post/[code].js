@@ -79,7 +79,7 @@ const Post = ({code}) => {
     return (
         <html>
             <Head>
-                <title>Post - BlockCommerc</title>
+                <title>Post - D2R Crypto</title>
             </Head>
             <UpdateEosRate/>
             {show && <PostComponent code={code}/>}

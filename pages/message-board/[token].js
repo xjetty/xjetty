@@ -68,7 +68,7 @@ const MessageBoard = ({token}) => {
     return (
         <html>
             <Head>
-                <title>Message Board - BlockCommerc</title>
+                <title>Message Board - D2R Crypto</title>
             </Head>
             {show && (<Grid container spacing={2}>
                 <Grid item xs={12}>

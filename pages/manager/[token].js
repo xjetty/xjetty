@@ -88,7 +88,7 @@ const Manager = ({token}) => {
     return (
         <html>
             <Head>
-                <title>Manager - BlockCommerc</title>
+                <title>Manager - D2R Crypto</title>
             </Head>
             <UpdateEosRate/>
             {show && <ManagerComponent token={token}/>}

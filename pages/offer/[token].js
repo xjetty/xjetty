@@ -86,7 +86,7 @@ const Offer = ({token}) => {
     return (
         <>
         <Head>
-            <title>Offer - BlockCommerc</title>
+            <title>Offer - D2R Crypto</title>
         </Head>
             <UpdateEosRate/>
         {show && <PostComponent token={token}/>}

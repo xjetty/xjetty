@@ -146,7 +146,7 @@ const PostComponent = ({code}) => {
                                         </Typography>
                                     </AccordionDetails>
                                 </Accordion>
-                                <Accordion>
+                                {description && (<Accordion>
                                     <AccordionSummary
                                         expandIcon={<ExpandMoreIcon/>}>
                                         <Typography
@@ -159,7 +159,7 @@ const PostComponent = ({code}) => {
                                             <span dangerouslySetInnerHTML={{__html: description}}/>
                                         </Typography>
                                     </AccordionDetails>
-                                </Accordion>
+                                </Accordion>)}
                                 {imageLink && (<Accordion defaultExpanded={true}>
                                     <AccordionSummary
                                         expandIcon={<ExpandMoreIcon/>}>

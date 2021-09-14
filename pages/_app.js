@@ -1,6 +1,6 @@
 import '../styles/globals.css'
 import {createTheme} from '@material-ui/core/styles'
-import {blue, deepPurple, red} from "@material-ui/core/colors";
+import {deepPurple, red} from "@material-ui/core/colors";
 import {AppContext} from "../contexts/AppContext";
 import React, {useState} from "react"
 import {CssBaseline, ThemeProvider} from "@material-ui/core";
@@ -8,8 +8,8 @@ import LayoutComponent from "../components/LayoutComponent";
 
 const theme = createTheme({
     palette: {
-        primary: red,
-        secondary: deepPurple,
+        primary: deepPurple,
+        secondary: red,
         type: 'dark'
     }
 })
@@ -26,7 +26,6 @@ function MyApp({Component, pageProps}) {
     const [eosAmountError, setEosAmountError] = React.useState(false)
     const [maximumPercentLessThan, setMaximumPercentLessThan] =
         React.useState(25)
-    const [useEscrow, setUseEscrow] = React.useState(false)
     const [eosAccountName, setEosAccountName] = React.useState('')
     const [eosAccountNameError, setEosAccountNameError] = React.useState(false)
     const [addMemo, setAddMemo] = React.useState(false)
@@ -39,10 +38,7 @@ function MyApp({Component, pageProps}) {
     const [link, setLink] = React.useState('')
     const [snackbarOpen, setSnackbarOpen] = React.useState(false)
     const [snackbarMessage, setSnackbarMessage] = React.useState('')
-    const [token, setToken] = React.useState('')
     const [hidden, setHidden] = React.useState(false)
-    const [generateNewLinkBtnDisabled, setGenerateNewLinkBtnDisabled] =
-        React.useState(false)
     const [associativePrivateKey, setAssociativePrivateKey] = React.useState('')
     const [associativePrivateKeyError, setAssociativePrivateKeyError] =
         React.useState(false)
@@ -53,7 +49,6 @@ function MyApp({Component, pageProps}) {
     const [eosAmountLabel, setEosAmountLabel] = React.useState('')
     const [usdAmountValue, setUsdAmountValue] = React.useState('')
     const [eosAmountValue, setEosAmountValue] = React.useState('')
-    const [showListing, setShowListing] = React.useState(false)
     const [submittingData, setSubmittingData] = React.useState(false)
     const [minimumQuantity, setMinimumQuantity] = React.useState(1)
     const [code, setCode] = React.useState('')
@@ -74,14 +69,9 @@ function MyApp({Component, pageProps}) {
     const [showOffers, setShowOffers] = React.useState(false)
     const [escrowDetails, setEscrowDetails] = React.useState({})
     const [publicListing, setPublicListing] = React.useState(false)
-    const [displayImageLink, setDisplayImageLink] = React.useState('')
     const [title, setTitle] = React.useState('')
     const [keywords, setKeywords] = React.useState([])
     const [titleError, setTitleError] = React.useState(false)
-    const [imageLinks, setImageLinks] = useState([''])
-    const [countries, setCountries] = useState([])
-    const [worldwide, setWorldwide] = useState(true)
-    const [countriesError, setCountriesError] = useState(false)
     const [search, setSearch] = useState('')
     const [mode, setMode] = useState(null)
     const [modeError, setModeError] = useState(false)
@@ -136,25 +126,14 @@ function MyApp({Component, pageProps}) {
                 setCategories,
                 subcategories,
                 setSubcategories,
-
                 search,
                 setSearch,
-                countriesError,
-                setCountriesError,
-                worldwide,
-                setWorldwide,
-                countries,
-                setCountries,
-                imageLinks,
-                setImageLinks,
                 titleError,
                 setTitleError,
                 keywords,
                 setKeywords,
                 title,
                 setTitle,
-                displayImageLink,
-                setDisplayImageLink,
                 publicListing,
                 setPublicListing,
                 dialogOpen,
@@ -185,8 +164,6 @@ function MyApp({Component, pageProps}) {
                 setEosAmountError,
                 maximumPercentLessThan,
                 setMaximumPercentLessThan,
-                useEscrow,
-                setUseEscrow,
                 eosAccountName,
                 setEosAccountName,
                 eosAccountNameError,
@@ -211,12 +188,8 @@ function MyApp({Component, pageProps}) {
                 setSnackbarOpen,
                 snackbarMessage,
                 setSnackbarMessage,
-                token,
-                setToken,
                 hidden,
                 setHidden,
-                generateNewLinkBtnDisabled,
-                setGenerateNewLinkBtnDisabled,
                 associativePrivateKey,
                 setAssociativePrivateKey,
                 associativePrivateKeyError,
@@ -235,8 +208,6 @@ function MyApp({Component, pageProps}) {
                 setEosAmountValue,
                 usdAmountValue,
                 setUsdAmountValue,
-                showListing,
-                setShowListing,
                 submittingData,
                 setSubmittingData,
                 minimumQuantity,

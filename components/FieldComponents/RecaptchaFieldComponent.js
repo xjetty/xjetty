@@ -9,7 +9,7 @@ const RecaptchaComponent = () => {
         setRecaptchaResponse(recaptchaResponse)
     }
 
-    if (hideRecaptcha) {
+    if (!hideRecaptcha) {
         return <ReCAPTCHA
             ref={recaptchaRef}
             size="invisible"

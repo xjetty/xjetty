@@ -80,6 +80,18 @@ const getPosts = async (req, res) => {
             return ((quantitySold + pendingTransactions) < quantity)
         })
         posts = posts.reverse()
+        posts = posts.map(function (value) {
+            return {
+                imageLink: value.imageLink,
+                title: value.title,
+                createdOnTimestamp: value.createdOnTimestamp,
+                fixedAmount: value.fixedAmount,
+                usdAmount: value.usdAmount,
+                eosAmount: value.eosAmount,
+                saleMethod: value.saleMethod,
+                code: value.code
+            }
+        })
         const pageLength = Math.ceil(posts.length / 64)
         posts = posts.slice((page - 1) * 64, 64)
         return res.json({success: true, posts: posts, pageLength: pageLength})

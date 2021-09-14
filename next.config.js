@@ -7,8 +7,8 @@ module.exports = {
         MONGO_URI:
             'mongodb+srv://user:Snapshooter!23@blockcommercapp.bslzk.mongodb.net/BlockCommercApp?retryWrites=true&w=majority',
         JWT_SIGNATURE: 'crypto4ever',
-        RECAPTCHA_SITE_KEY: '6Le-jL0bAAAAALtVFAZwX-GB2KHwl8wUmGP7T_VE',
-        RECAPTCHA_SECRET_KEY: '6Le-jL0bAAAAAJowKEnL-rWbiWaLaY8ibNr260XT',
+        RECAPTCHA_SITE_KEY: '6LcESmYcAAAAAEChpBIeMxRPribXsbfa9rzFyn2z',
+        RECAPTCHA_SECRET_KEY: '6LcESmYcAAAAAJgdOjJToKIcFYOk6mMTLRjoyvem',
         LISTING_CODE_LENGTH: 5,
         EOS_NODE_SERVER_MAIN: 'https://eos.greymass.com/',
         EOS_NODE_SERVER_BACKUP: 'https://api.eosn.io/',

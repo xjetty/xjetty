@@ -59,7 +59,7 @@ const Home = () => {
                             <Grid item xs={12}>
                                 <div className={classes.buttons}>
                                     <Link href="/posts">
-                                        <Button size="large" variant="contained" color="primary">View
+                                        <Button size="large" variant="contained" color="primary">Browse
                                             posts</Button>
                                     </Link>
                                     <Link href="/create">

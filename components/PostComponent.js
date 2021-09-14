@@ -137,7 +137,21 @@ const PostComponent = ({code}) => {
                                         expandIcon={<ExpandMoreIcon/>}>
                                         <Typography
                                             className={classes.heading}>
+                                            Title
+                                        </Typography>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                        <Typography>
                                             {title}
+                                        </Typography>
+                                    </AccordionDetails>
+                                </Accordion>
+                                <Accordion>
+                                    <AccordionSummary
+                                        expandIcon={<ExpandMoreIcon/>}>
+                                        <Typography
+                                            className={classes.heading}>
+                                            Description
                                         </Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>
@@ -170,7 +184,7 @@ const PostComponent = ({code}) => {
                                         expandIcon={<ExpandMoreIcon/>}>
                                         <Typography
                                             className={classes.heading}>
-                                            More info
+                                            Specifics
                                         </Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>

@@ -3,7 +3,7 @@ import {
     Button, ButtonGroup,
     Card, CardActions,
     CardContent, CardMedia, Divider,
-    Grid,
+    Grid, IconButton,
     List,
     ListItem, ListItemIcon,
     ListItemText, ListSubheader,
@@ -14,7 +14,7 @@ import Link from 'next/link'
 import ContactFormComponent from "../components/FormComponents/ContactFormComponent";
 import SendMessageActionComponent from "../components/ActionComponents/SendMessageActionComponent";
 import GoToPostComponent from "../components/GoToPostComponent";
-import {CheckCircle} from '@material-ui/icons'
+import {CheckCircle, Twitter} from '@material-ui/icons'
 
 const useStyles = makeStyles((theme) => ({
     media: {
@@ -189,6 +189,11 @@ const Home = () => {
                 <Typography variant="body2">
                     Copyright &#169; {new Date().getFullYear()} D2R Crypto. All Rights Reserved.
                 </Typography>
+            </Grid>
+            <Grid item xs={12}>
+                <IconButton href="https://twitter.com/d2rcrypto" target="_blank" color="primary">
+                    <Twitter/>
+                </IconButton>
             </Grid>
         </Grid>
         </html>

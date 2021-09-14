@@ -1,18 +1,8 @@
-import React, {useContext, useEffect, useMemo} from 'react'
-import InputLabel from '@material-ui/core/InputLabel'
-import MenuItem from '@material-ui/core/MenuItem'
-import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
+import React, {useContext, useMemo} from 'react'
 import {AppContext} from "../../contexts/AppContext"
-import {FormHelperText, TextField} from "@material-ui/core";
+import {TextField} from "@material-ui/core";
 import {Autocomplete} from "@material-ui/lab";
-
-const platformOptions = [
-    'PC',
-    'PlayStation',
-    'Xbox',
-    'Nintendo'
-]
+import {platformOptions} from '../../platformOptions'
 
 const CountriesFieldComponent = () => {
     const {platforms, setPlatforms, platformsError, setPlatformsError} = useContext(AppContext)

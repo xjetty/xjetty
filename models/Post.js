@@ -1,43 +1,10 @@
 import {verifyEosAccountName} from '../server/verifyEosAccountName'
 import emailValidator from 'email-validator'
+import {categoryAndSubcategoryOptions} from '../categoryAndSubcategoryOptions'
+import {modeOptions} from '../modeOptions'
+import {platformOptions} from "../platformOptions";
 
 const ip = require('ip')
-
-const categoryAndSubcategoryOptions = [
-    {category: 'Amulets', subcategories: ['Magic', 'Rare', 'Unique']},
-    {category: 'Belts', subcategories: ['Rare', 'Unique']},
-    {category: 'Body Armor', subcategories: ['Magic', 'Rare', 'Unique']},
-    {category: 'Boots', subcategories: ['Rare', 'Unique']},
-    {
-        category: 'Grand Charms',
-        subcategories: ['Magic', 'Amazon Skills', 'Assassin Skills', 'Barbarian Skills', 'Druid Skills', 'Necromancer Skills', 'Paladin Skills', 'Sorcerer Skills', 'Gheed\'s Fortune']
-    },
-    {
-        category: 'Large Charms',
-        subcategories: ['Magic', 'Amazon Hellfire Torch', 'Assassin Hellfire Torch', 'Barbarian Hellfire Torch', 'Druid Hellfire Torch', 'Necromancer Hellfire Torch', 'Paladin Hellfire Torch', 'Sorcerer Hellfire Torch']
-    },
-    {category: 'Small Charms', subcategories: ['Magic', 'Annihilus']},
-    {category: 'Gems', subcategories: []},
-    {category: 'Gloves', subcategories: ['Magic', 'Rare', 'Unique']},
-    {category: 'Helms', subcategories: ['Magic', 'Rare', 'Unique']},
-    {category: 'Jewels', subcategories: ['Magic', 'Rare', 'Unique']},
-    {category: 'Rings', subcategories: ['Magic', 'Rare', 'Unique']},
-    {
-        category: 'Runes',
-        subcategories: ['Amn', 'Sol', 'Shael', 'Dol', 'Hel', 'Io', 'Lum', 'Ko', 'Fal', 'Lem', 'Pul', 'Um', 'Mal', 'Ist', 'Gul', 'Vex', 'Ohm', 'Lo', 'Sur', 'Ber', 'Jah', 'Cham', 'Zod']
-    },
-    {
-        category: 'Runewords',
-        subcategories: ['Beast', 'Bramble', 'Breath of the Dying', 'Call to Arms', 'Chains of Honor', 'Death', 'Destruction', 'Doom', 'Dragon', 'Dream', 'Duress', 'Enigma', 'Exile', 'Faith', 'Fortitude', 'Grief', 'Hand of Justice', 'Heart of the Oak', 'Infinity', 'Insight', 'Last Wish', 'Phoenix', 'Pride', 'Spirit']
-    },
-    {category: 'Set Items', subcategories: []},
-    {category: 'Socketed Items', subcategories: []},
-    {category: 'Shields', subcategories: ['Magic', 'Rare', 'Unique']},
-    {category: 'Essences and Tokens', subcategories: []},
-    {category: 'Weapons', subcategories: ['Magic', 'Rare', 'Unique']},
-    {category: 'Miscellaneous', subcategories: []},
-    {category: 'Services', subcategories: []}
-]
 
 const categoryOptions = categoryAndSubcategoryOptions.map(x => x.category)
 
@@ -46,30 +13,15 @@ const PostSchema = new mongoose.Schema({
     mode: {
         type: String,
         required: true,
-        enum: [
-            'Standard',
-            // 'Standard Ladder',
-            'Hardcore',
-            // 'Hardcore Ladder',
-            'Standard Expansion',
-            // 'Standard Expansion Ladder',
-            'Hardcore Expansion',
-            // 'Hardcore Expansion Ladder'
-        ]
+        enum: modeOptions
     },
     platforms: {
         type: Array,
         required: true,
         validator: function (value) {
             let error = false
-            const platformValues = [
-                'PC',
-                'PlayStation',
-                'Xbox',
-                'Nintendo'
-            ]
             value.forEach(function (value) {
-                if (!platformValues.includes(value))
+                if (!platformOptions.includes(value))
                     error = true
             })
             return error

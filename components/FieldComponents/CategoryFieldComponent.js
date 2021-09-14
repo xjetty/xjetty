@@ -1,7 +1,8 @@
-import React, {useContext, useEffect, useMemo, useState} from 'react'
+import React, {useContext, useMemo} from 'react'
 import {AppContext} from "../../contexts/AppContext"
 import {TextField} from "@material-ui/core";
 import {Autocomplete} from "@material-ui/lab";
+import {categoryAndSubcategoryOptions} from '../../categoryAndSubcategoryOptions'
 
 const CategoryFieldComponent = () => {
     const {
@@ -9,8 +10,7 @@ const CategoryFieldComponent = () => {
         setCategory,
         categoryError,
         setCategoryError,
-        setSubcategory,
-        categoryAndSubcategoryOptions
+        setSubcategory
     } = useContext(AppContext)
 
     const categoryOptions = categoryAndSubcategoryOptions.map(x => x.category)

@@ -37,7 +37,7 @@ const Home = () => {
         </Head>
         <Grid container spacing={2}>
             <Grid item xs={12}>
-                <Card variant="outlined">
+                <Card>
                     <CardMedia
                         className={classes.media}
                         image='/logo.png'
@@ -59,11 +59,11 @@ const Home = () => {
                             <Grid item xs={12}>
                                 <div className={classes.buttons}>
                                     <Link href="/posts">
-                                        <Button size="large" variant="contained" color="primary">Browse
+                                        <Button size="large" variant="contained" color="secondary">Browse
                                             posts</Button>
                                     </Link>
                                     <Link href="/create">
-                                        <Button size="large" variant="outlined" color="secondary">Create a
+                                        <Button size="large" variant="outlined" color="primary">Create a
                                             post</Button>
                                     </Link>
                                 </div>
@@ -73,12 +73,12 @@ const Home = () => {
                 </Card>
             </Grid>
             <Grid item xs={12}>
-                <Card variant="outlined">
+                <Card>
                     <CardContent>
                         <List subheader={<ListSubheader>Features</ListSubheader>}>
                             <ListItem>
                                 <ListItemIcon>
-                                    <CheckCircle color="secondary"/>
+                                    <CheckCircle color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
                                     primary="Built-in crypto payment processor"
@@ -86,7 +86,7 @@ const Home = () => {
                             </ListItem>
                             <ListItem>
                                 <ListItemIcon>
-                                    <CheckCircle color="secondary"/>
+                                    <CheckCircle color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
                                     primary="Fixed item quantities"
@@ -94,7 +94,7 @@ const Home = () => {
                             </ListItem>
                             <ListItem>
                                 <ListItemIcon>
-                                    <CheckCircle color="secondary"/>
+                                    <CheckCircle color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
                                     primary="USD or crypto fixed amounts"
@@ -102,7 +102,7 @@ const Home = () => {
                             </ListItem>
                             <ListItem>
                                 <ListItemIcon>
-                                    <CheckCircle color="secondary"/>
+                                    <CheckCircle color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
                                     primary="Multiple sale methods, including offers"
@@ -110,7 +110,7 @@ const Home = () => {
                             </ListItem>
                             <ListItem>
                                 <ListItemIcon>
-                                    <CheckCircle color="secondary"/>
+                                    <CheckCircle color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
                                     primary="Does not require an account"
@@ -118,7 +118,7 @@ const Home = () => {
                             </ListItem>
                             <ListItem>
                                 <ListItemIcon>
-                                    <CheckCircle color="secondary"/>
+                                    <CheckCircle color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
                                     primary="No fee of any kind"
@@ -126,7 +126,7 @@ const Home = () => {
                             </ListItem>
                             <ListItem>
                                 <ListItemIcon>
-                                    <CheckCircle color="secondary"/>
+                                    <CheckCircle color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
                                     primary="An escrow for security"
@@ -137,7 +137,7 @@ const Home = () => {
                 </Card>
             </Grid>
             <Grid item xs={12}>
-                <Card variant="outlined">
+                <Card>
                     <CardContent>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
@@ -166,7 +166,7 @@ const Home = () => {
                 </Card>
             </Grid>
             <Grid item xs={12}>
-                <Card variant="outlined">
+                <Card>
                     <CardContent>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>

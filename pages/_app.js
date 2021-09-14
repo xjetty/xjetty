@@ -8,8 +8,8 @@ import LayoutComponent from "../components/LayoutComponent";
 
 const theme = createTheme({
     palette: {
-        primary: deepPurple,
-        secondary: red,
+        primary: {main: red[500]},
+        secondary: {main: deepPurple[500]},
         type: 'dark'
     }
 })

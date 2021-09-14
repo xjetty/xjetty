@@ -49,7 +49,7 @@ const GoToPostComponent = () => {
             }}
             label="I have a code"
             placeholder="Code"
-            variant="filled"
+            variant="outlined"
         />
     )
 }

@@ -79,7 +79,7 @@ const getPosts = async (req, res) => {
             const pendingTransactions = post.pendingTransactions
             return ((quantitySold + pendingTransactions) < quantity)
         })
-
+        posts = posts.reverse()
         const pageLength = Math.ceil(posts.length / 64)
         posts = posts.slice((page - 1) * 64, 64)
         return res.json({success: true, posts: posts, pageLength: pageLength})

@@ -19,7 +19,7 @@ import SearchFieldComponent from "../components/FieldComponents/SearchFieldCompo
 import axios from "axios";
 import {red} from "@material-ui/core/colors";
 import UpdateEosRate from "../components/UpdateEosRate";
-import {GpsFixed, GpsNotFixed, EmojiPeople} from '@material-ui/icons'
+import {GpsFixed, GpsNotFixed, EmojiPeople, OpenInNew} from '@material-ui/icons'
 import Masonry from 'react-masonry-css'
 import {Pagination} from "@material-ui/lab";
 import ModesFieldComponent from "../components/FieldComponents/ModesFieldComponent";
@@ -126,8 +126,12 @@ const Posts = () => {
     }, [])
 
     const disabled = useMemo(() => {
-        return submittingData
-    }, [submittingData])
+        if (submittingData)
+            return true
+        if (modes.length === 0 && platforms2.length === 0 && categories.length === 0 && subcategories.length === 0 && !search.trim())
+            return true
+        return false
+    }, [submittingData, modes, platforms2, categories, subcategories, search])
 
     const updateAmount = (post) => {
         let returnThis = {}
@@ -144,10 +148,25 @@ const Posts = () => {
     }
 
     const changePage = (event, value) => {
-        setSubmittingData(true)
-        setPosts([])
-        setPage(value)
-        getPosts(false, null, null, null, null, null, value)
+        if (page !== value) {
+            setSubmittingData(true)
+            setPosts([])
+            setPage(value)
+            getPosts(false, [], [], [], [], '', value)
+        }
+    }
+
+    const datetimeOptions = {
+        day: 'numeric',
+        month: 'long',
+        weekday: 'short',
+        hour: 'numeric',
+        minute: 'numeric',
+        timeZoneName: 'short'
+    }
+
+    const getDatetime = (timestamp) => {
+        return new Date(timestamp).toLocaleString('en-US', datetimeOptions)
     }
 
     return (
@@ -213,8 +232,11 @@ const Posts = () => {
                             <CardContent>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12}>
-                                        <Typography>
+                                        <Typography variant="h6">
                                             {post.title}
+                                        </Typography>
+                                        <Typography color="textSecondary">
+                                            {getDatetime(post.createdOnTimestamp)}
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12}>
@@ -225,7 +247,7 @@ const Posts = () => {
                                                 <Chip label={updateAmount(post).notFixedAmount}
                                                       icon={<GpsNotFixed/>}/></>)}
                                             {post.saleMethod !== 'askingPriceOnly' && (
-                                                <MuiThemeProvider theme={redTheme}><Chip label="Accepting offers"
+                                                <MuiThemeProvider theme={redTheme}><Chip label="Taking offers"
                                                                                          icon={<EmojiPeople/>}
                                                                                          color="primary"/></MuiThemeProvider>)}
                                         </div>
@@ -234,7 +256,7 @@ const Posts = () => {
                             </CardContent>
                             <CardActions>
                                 <Button href={`/post/${post.code}`} target="_blank" variant="contained"
-                                        color="primary">Go to post</Button>
+                                        color="primary" endIcon={<OpenInNew/>}>Open post</Button>
                             </CardActions>
                         </Card>
                     ))}

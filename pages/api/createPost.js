@@ -79,7 +79,7 @@ const createPost = async (req, res) => {
             const postPreview = getPostPreview(mode, platforms, category, subcategory, title, description, keywords)
             const payload = {postId: postId}
             const token = jwt.sign(payload, process.env.JWT_SIGNATURE)
-            let link = `https://blockcommerc.com/manager/${token}`
+            let link = `https://d2rcrypto.com/manager/${token}`
             if (getLocalhost())
                 link = `http://localhost:3010/manager/${token}`
             const subject = `You created a post! - ${title}`

@@ -1,9 +1,9 @@
 import {getIdFromToken} from "../../server/getIdFromToken";
 import Post from '../../models/Post'
 import Offer from '../../models/Offer'
-import {generateCode} from "../../server/generateCode";
 import jwt from "jsonwebtoken";
 import connectToDb from "../../middleware/connectToDb";
+import {getLocalhost} from "../../server/getLocalhost";
 
 const getManagerData = async (req, res) => {
     const method = req.method
@@ -35,8 +35,9 @@ const getManagerData = async (req, res) => {
         const saleMethod = post.saleMethod
         const eosAccountName = post.eosAccountName
         const maximumPercentLessThan = post.maximumPercentLessThan
-        let link = `https://blockcommerc.com/post/${code}`
-        if (!process.env.LIVE)
+        const code = post.code
+        let link = `https://d2rcrypto.com/post/${code}`
+        if (getLocalhost())
             link = `http://localhost:3000/post/${code}`
         const postData = {
             mode: mode,

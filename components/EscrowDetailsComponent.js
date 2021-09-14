@@ -35,7 +35,7 @@ const EscrowDetailsComponent = () => {
                         value={escrowDetails.transactionId ? escrowDetails.transactionId : 'N/A'}
                         fullWidth
                         label="Transaction ID"
-                        variant="filled"
+                        variant="outlined"
                         InputProps={{
                             readOnly: true,
                             endAdornment: (
@@ -58,7 +58,7 @@ const EscrowDetailsComponent = () => {
                         value={escrowDetails.escrowReleased ? getDatetime(escrowDetails.escrowReleasedOnTimestamp) : 'N/A'}
                         fullWidth
                         label="Escrow released on"
-                        variant="filled"
+                        variant="outlined"
                         InputProps={{
                             readOnly: true,
                         }}
@@ -69,7 +69,7 @@ const EscrowDetailsComponent = () => {
                         value={escrowDetails.escrowRefunded ? getDatetime(escrowDetails.escrowRefundedOnTimestamp) : 'N/A'}
                         fullWidth
                         label="Escrow refunded on"
-                        variant="filled"
+                        variant="outlined"
                         InputProps={{
                             readOnly: true,
                         }}
@@ -80,7 +80,7 @@ const EscrowDetailsComponent = () => {
                         value={escrowDetails.disputeOpened ? getDatetime(escrowDetails.disputeOpenedOnTimestamp) : 'N/A'}
                         fullWidth
                         label="Dispute opened on"
-                        variant="filled"
+                        variant="outlined"
                         InputProps={{
                             readOnly: true,
                         }}
@@ -91,7 +91,7 @@ const EscrowDetailsComponent = () => {
                         value={escrowDetails.disputeResolved ? getDatetime(escrowDetails.disputeResolvedOnTimestamp) : 'N/A'}
                         fullWidth
                         label="Dispute resolved on"
-                        variant="filled"
+                        variant="outlined"
                         InputProps={{
                             readOnly: true,
                         }}

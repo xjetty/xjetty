@@ -55,7 +55,7 @@ const EmailAddressFieldComponent = () => {
             onBlur={checkError}
             fullWidth
             label="Email address"
-            variant="filled"
+            variant="outlined"
         />
     )
 }

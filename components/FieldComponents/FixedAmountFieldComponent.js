@@ -19,8 +19,8 @@ const FixedAmountFieldComponent = () => {
         <FormControl component="fieldset">
             <FormLabel component="legend">Fixed amount</FormLabel>
             <RadioGroup value={fixedAmount} onChange={handle}>
-                <FormControlLabel value="usd" control={<Radio />} label="USD" />
-                <FormControlLabel value="eos" control={<Radio />} label="EOS" />
+                <FormControlLabel value="usd" control={<Radio color="primary"/>} label="USD" />
+                <FormControlLabel value="eos" control={<Radio color="primary"/>} label="EOS" />
             </RadioGroup>
         </FormControl>
     )

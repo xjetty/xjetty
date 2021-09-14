@@ -33,7 +33,7 @@ const LinkFieldComponent = () => {
             value={link}
             fullWidth
             label="Link"
-            variant="filled"
+            variant="outlined"
         />
     )
 }

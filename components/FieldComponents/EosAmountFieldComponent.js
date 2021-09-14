@@ -43,14 +43,16 @@ const EosAmountFieldComponent = () => {
     const handle = (event) => {
         const value = event.target.value
         const valueFloat = parseFloat(value)
-        if (!value) {
-            setEosAmountError(true)
-        } else if (valueFloat <= 0) {
-            setEosAmountError(true)
-        } else if (saleMethod === 'askingPriceAndOffers' && fixedAmount === 'eos' && eosAmountValue && valueFloat >= eosAmountValue) {
-            setEosAmountError(true)
-        } else
-            setEosAmountError(false)
+        if (fixedAmount === 'eos') {
+            if (!value) {
+                setEosAmountError(true)
+            } else if (valueFloat <= 0) {
+                setEosAmountError(true)
+            } else if (saleMethod === 'askingPriceAndOffers' && fixedAmount === 'eos' && eosAmountValue && valueFloat >= eosAmountValue) {
+                setEosAmountError(true)
+            } else
+                setEosAmountError(false)
+        }
         setEosAmount(value)
         if (fixedAmount === 'eos') {
             if (value) {
@@ -61,7 +63,7 @@ const EosAmountFieldComponent = () => {
     }
 
     const helperText = useMemo(() => {
-        if (eosAmountError) {
+        if (eosAmountError && fixedAmount === 'eos') {
             if (!eosAmount) {
                 if (saleMethod === 'offersOnly') {
                     return 'Minimum EOS amount is required'
@@ -109,7 +111,7 @@ const EosAmountFieldComponent = () => {
             }}
             value={eosAmount}
             onChange={handle}
-            variant="filled"
+            variant="outlined"
         />
     )
 }

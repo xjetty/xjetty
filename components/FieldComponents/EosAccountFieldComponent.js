@@ -13,7 +13,7 @@ const EosAccountFieldComponent = () => {
     }
 
     return (
-        <FormControl variant="filled" fullWidth>
+        <FormControl variant="outlined" fullWidth>
             <InputLabel id="eos-account">EOS account</InputLabel>
             <Select
                 labelId="eos-account"

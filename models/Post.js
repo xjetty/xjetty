@@ -85,7 +85,7 @@ const PostSchema = new mongoose.Schema({
     },
     code: {
         type: String,
-        default: null
+        required: true
     },
     hidden: {
         type: Boolean,
@@ -105,7 +105,6 @@ const PostSchema = new mongoose.Schema({
     },
     description: {
         type: String,
-        required: true,
         trim: true
     },
     keywords: {

@@ -34,7 +34,7 @@ const ModesFieldComponent = () => {
             renderInput={(params) => (
                 <TextField
                     {...params}
-                    variant="filled"
+                    variant="outlined"
                     label="Modes"
                 />
             )}

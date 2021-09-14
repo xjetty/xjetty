@@ -11,7 +11,7 @@ const AddMemoFieldComponent = () => {
 
     return (
         <FormControlLabel
-            control={<Switch checked={addMemo} onChange={handle} />}
+            control={<Switch color="primary" checked={addMemo} onChange={handle} />}
             label="Add memo"
         />
     )

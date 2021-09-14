@@ -1,7 +1,7 @@
 import {getIdFromToken} from "../../server/getIdFromToken";
 import Post from '../../models/Post'
 import Offer from '../../models/Offer'
-import {updateCode} from "../../server/updateCode";
+import {generateCode} from "../../server/generateCode";
 import jwt from "jsonwebtoken";
 import connectToDb from "../../middleware/connectToDb";
 
@@ -17,9 +17,6 @@ const getManagerData = async (req, res) => {
         const post = await Post.findById(postId)
         if (!post)
             return res.json({success: false, alertMessage: 'Post not found'})
-        let code = post.code
-        if (!code)
-            code = await updateCode(postId)
         const mode = post.mode
         const platforms = post.platforms
         const category = post.category

@@ -42,7 +42,7 @@ const AssociativePrivateKeyFieldComponent = () => {
             onChange={handle}
             fullWidth
             label="Associative private key"
-            variant="filled"
+            variant="outlined"
             multiline
         />
     )

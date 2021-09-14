@@ -21,17 +21,17 @@ const SaleMethodFieldComponent = () => {
             <RadioGroup value={saleMethod} onChange={handle}>
                 <FormControlLabel
                     value="askingPriceOnly"
-                    control={<Radio />}
+                    control={<Radio color="primary"/>}
                     label="Asking price only"
                 />
                 <FormControlLabel
                     value="askingPriceAndOffers"
-                    control={<Radio />}
+                    control={<Radio color="primary"/>}
                     label="Asking price and offers"
                 />
                 <FormControlLabel
                     value="offersOnly"
-                    control={<Radio />}
+                    control={<Radio color="primary"/>}
                     label="Offers only"
                 />
             </RadioGroup>

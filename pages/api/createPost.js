@@ -5,6 +5,8 @@ import {sendEmail} from '../../server/sendEmail'
 import connectToDb from "../../middleware/connectToDb";
 import {cleanString} from "../../server/cleanString";
 import {getPostPreview} from "../../server/getPostPreview";
+import {getLocalhost} from "../../server/getLocalhost";
+import {generateCode} from "../../server/generateCode";
 
 const categoryAndSubcategoryOptions = [
     {category: 'Amulets', subcategories: ['Magic', 'Rare', 'Unique']},
@@ -63,6 +65,7 @@ const createPost = async (req, res) => {
         }
         await connectToDb()
         try {
+            data.code = await generateCode()
             const post = await Post.create(data)
             const postId = post._id
             const mode = post.mode
@@ -77,10 +80,10 @@ const createPost = async (req, res) => {
             const payload = {postId: postId}
             const token = jwt.sign(payload, process.env.JWT_SIGNATURE)
             let link = `https://blockcommerc.com/manager/${token}`
-            if (!process.env.LIVE)
-                link = `http://localhost:3000/manager/${token}`
+            if (getLocalhost())
+                link = `http://localhost:3010/manager/${token}`
             const subject = `You created a post! - ${title}`
-            const message = `Just visit your manager at least once to confirm your post.<br /><br /><a href=${link}>${link}</a><br /><br />${postPreview}`
+            const message = `You can view your post by visiting your manager.<br /><br /><a href=${link}>${link}</a><br /><br />${postPreview}`
             await sendEmail(emailAddress, subject, message)
             return res.json({success: true})
         } catch (e) {

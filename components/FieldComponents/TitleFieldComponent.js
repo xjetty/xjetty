@@ -36,7 +36,7 @@ const TitleFieldComponent = () => {
             onBlur={checkError}
             fullWidth
             label="Title"
-            variant="filled"
+            variant="outlined"
             helperText={helperText}
         />
     )

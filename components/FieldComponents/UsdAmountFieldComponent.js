@@ -44,14 +44,16 @@ const UsdAmountFieldComponent = () => {
     const handle = (event) => {
         const value = event.target.value
         const valueFloat = parseFloat(value)
-        if (!value) {
-            setUsdAmountError(true)
-        } else if (valueFloat <= 0) {
-            setUsdAmountError(true)
-        } else if (saleMethod === 'askingPriceAndOffers' && fixedAmount === 'usd' && usdAmountValue && valueFloat >= usdAmountValue) {
-            setUsdAmountError(true)
-        } else
-            setUsdAmountError(false)
+        if (fixedAmount === 'usd') {
+            if (!value) {
+                setUsdAmountError(true)
+            } else if (valueFloat <= 0) {
+                setUsdAmountError(true)
+            } else if (saleMethod === 'askingPriceAndOffers' && fixedAmount === 'usd' && usdAmountValue && valueFloat >= usdAmountValue) {
+                setUsdAmountError(true)
+            } else
+                setUsdAmountError(false)
+        }
         setUsdAmount(value)
         if (fixedAmount === 'usd') {
             if (value) {
@@ -62,7 +64,7 @@ const UsdAmountFieldComponent = () => {
     }
 
     const helperText = useMemo(() => {
-        if (usdAmountError) {
+        if (usdAmountError && fixedAmount === 'usd') {
             if (!usdAmount) {
                 if (saleMethod === 'offersOnly') {
                     return 'Minimum USD amount is required'
@@ -106,7 +108,7 @@ const UsdAmountFieldComponent = () => {
             InputProps={{inputComponent: formatAmount, readOnly: fixedAmount === 'eos'}}
             value={usdAmount}
             onChange={handle}
-            variant="filled"
+            variant="outlined"
         />
     )
 }

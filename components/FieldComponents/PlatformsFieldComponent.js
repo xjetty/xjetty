@@ -57,7 +57,7 @@ const CountriesFieldComponent = () => {
                     required
                     error={platformsError}
                     helperText={helperText}
-                    variant="filled"
+                    variant="outlined"
                     label="Platforms"
                     placeholder="Platform"
                 />

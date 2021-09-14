@@ -30,7 +30,7 @@ const Platforms2FieldComponent = () => {
             renderInput={(params) => (
                 <TextField
                     {...params}
-                    variant="filled"
+                    variant="outlined"
                     label="Platforms"
                     placeholder="Platform"
                 />

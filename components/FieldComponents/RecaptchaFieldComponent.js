@@ -13,6 +13,7 @@ const RecaptchaComponent = () => {
         <ReCAPTCHA
             ref={recaptchaRef}
             size="invisible"
+            theme="dark"
             sitekey={process.env.RECAPTCHA_SITE_KEY}
             onChange={handle}
         />

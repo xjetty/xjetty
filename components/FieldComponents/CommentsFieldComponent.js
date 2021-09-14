@@ -16,7 +16,7 @@ const CommentsFieldComponent = () => {
             onChange={handle}
             fullWidth
             label="Comments"
-            variant="filled"
+            variant="outlined"
             multiline
         />
     )

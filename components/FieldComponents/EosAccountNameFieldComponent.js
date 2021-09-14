@@ -90,7 +90,7 @@ const EosAccountNameFieldComponent = () => {
             InputProps={{inputComponent: mask}}
             fullWidth
             label="EOS account name"
-            variant="filled"
+            variant="outlined"
         />
     )
 }

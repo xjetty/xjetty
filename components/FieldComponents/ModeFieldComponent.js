@@ -55,7 +55,7 @@ const ModeFieldComponent = () => {
                     {...params}
                     error={modeError}
                     helperText={helperText}
-                    variant="filled"
+                    variant="outlined"
                     label="Mode"
                 />
             )}

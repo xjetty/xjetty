@@ -12,11 +12,13 @@ const KeywordsFieldComponent = () => {
     }
 
     const handleChange = (event, value) => {
+        if (value.length > 0) {
+            let newKeywordItems = [...keywordItems, value[value.length - 1]]
+            newKeywordItems = newKeywordItems.filter(onlyUnique)
+            localStorage.setItem('keywordItems', JSON.stringify(newKeywordItems))
+            setKeywordItems(newKeywordItems)
+        }
         setKeywords(value)
-        let newKeywordItems = [...keywordItems, value[value.length - 1]]
-        newKeywordItems = newKeywordItems.filter(onlyUnique)
-        localStorage.setItem('keywordItems', JSON.stringify(newKeywordItems))
-        setKeywordItems(newKeywordItems)
     }
 
     useEffect(() => {
@@ -39,7 +41,7 @@ const KeywordsFieldComponent = () => {
             renderInput={(params) => (
                 <TextField
                     {...params}
-                    variant="filled"
+                    variant="outlined"
                     label="Keywords"
                     placeholder="Keyword"
                 />

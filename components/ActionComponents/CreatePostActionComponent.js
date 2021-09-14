@@ -35,7 +35,6 @@ const CreatePostActionComponent = () => {
         title,
         titleError,
         description,
-        descriptionError,
         imageLink,
         keywords,
         setTitle,
@@ -74,8 +73,6 @@ const CreatePostActionComponent = () => {
         }
         if (!title || titleError)
             return true
-        if (!description || descriptionError)
-            return true
         if (fixedAmount === 'usd') {
             if (!usdAmount || usdAmountError)
                 return true
@@ -106,8 +103,6 @@ const CreatePostActionComponent = () => {
         subcategoryError,
         title,
         titleError,
-        description,
-        descriptionError,
         fixedAmount,
         usdAmount,
         usdAmountError,
@@ -158,7 +153,6 @@ const CreatePostActionComponent = () => {
                 setSubcategory(null)
                 setKeywords([])
                 setTitleError(false)
-                setDescriptionError(false)
                 setUsdAmountError(false)
                 setEosAmountError(false)
                 setEosAccountNameError(false)
@@ -192,15 +186,14 @@ const CreatePostActionComponent = () => {
         <Grid container spacing={2}>
             {submittingData && (
                 <Grid item xs={12}>
-                    <LinearProgress/>
+                    <LinearProgress color="secondary"/>
                 </Grid>
             )}
             {postCreated && (
                 <Grid item xs={12}>
-                    <Alert severity="success" variant="filled">
-                        <AlertTitle>Success!</AlertTitle>
-                        Now did you get the email? You will have to visit your manager at least once to confirm your
-                        post.
+                    <Alert severity="success">
+                        <AlertTitle>Success</AlertTitle>
+                        Your post was created. A link to your manager was sent to your email.
                     </Alert>
                 </Grid>
             )}
@@ -210,7 +203,7 @@ const CreatePostActionComponent = () => {
                     onClick={handle}
                     disabled={disabled}
                     variant="contained"
-                    color="primary">
+                    color="secondary">
                     Create post
                 </Button>
             </Grid>

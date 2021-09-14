@@ -38,7 +38,7 @@ const MemoFieldComponent = () => {
             fullWidth
             label="Memo"
             multiline
-            variant="filled"
+            variant="outlined"
         />
     )
 }

@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React from 'react'
+import React, {useEffect} from 'react'
 import {
     Button,
     Card,
@@ -33,8 +33,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundSize: 'contain'
     },
     postMedia: {
-        height: theme.spacing(30),
-        backgroundSize: 'contain'
+        height: theme.spacing(30)
     },
     chip: {
         '& > *': {
@@ -121,6 +120,10 @@ const Posts = () => {
         setPosts([])
         getPosts(true, modes, platforms2, categories, subcategories, search, page)
     }
+
+    useEffect(() => {
+        getPosts(true, [], [], [], [], '', 1)
+    }, [])
 
     const disabled = useMemo(() => {
         return submittingData

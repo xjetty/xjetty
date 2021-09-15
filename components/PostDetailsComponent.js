@@ -50,7 +50,7 @@ const PostDetailsComponent = (props) => {
             <Accordion>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon/>}>
-                    <Typography className={classes.heading}>Proof of purchase</Typography>
+                    <Typography className={classes.heading}>Receipt</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                     <Grid container spacing={2}>

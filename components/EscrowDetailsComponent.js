@@ -32,7 +32,8 @@ const EscrowDetailsComponent = () => {
             <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <TextField
-                        value={escrowDetails.transactionId ? escrowDetails.transactionId : 'N/A'}
+                        value={escrowDetails.transactionId ? escrowDetails.transactionId : ''}
+                        disabled={!escrowDetails.transactionId}
                         fullWidth
                         label="Transaction ID"
                         variant="outlined"
@@ -55,7 +56,8 @@ const EscrowDetailsComponent = () => {
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <TextField
-                        value={escrowDetails.escrowReleased ? getDatetime(escrowDetails.escrowReleasedOnTimestamp) : 'N/A'}
+                        value={escrowDetails.escrowReleased ? getDatetime(escrowDetails.escrowReleasedOnTimestamp) : ''}
+                        disabled={!escrowDetails.escrowReleased}
                         fullWidth
                         label="Escrow released on"
                         variant="outlined"
@@ -66,7 +68,8 @@ const EscrowDetailsComponent = () => {
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <TextField
-                        value={escrowDetails.escrowRefunded ? getDatetime(escrowDetails.escrowRefundedOnTimestamp) : 'N/A'}
+                        value={escrowDetails.escrowRefunded ? getDatetime(escrowDetails.escrowRefundedOnTimestamp) : ''}
+                        disabled={!escrowDetails.escrowRefunded}
                         fullWidth
                         label="Escrow refunded on"
                         variant="outlined"
@@ -77,7 +80,8 @@ const EscrowDetailsComponent = () => {
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <TextField
-                        value={escrowDetails.disputeOpened ? getDatetime(escrowDetails.disputeOpenedOnTimestamp) : 'N/A'}
+                        value={escrowDetails.disputeOpened ? getDatetime(escrowDetails.disputeOpenedOnTimestamp) : ''}
+                        disabled={!escrowDetails.disputeOpened}
                         fullWidth
                         label="Dispute opened on"
                         variant="outlined"
@@ -88,7 +92,8 @@ const EscrowDetailsComponent = () => {
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <TextField
-                        value={escrowDetails.disputeResolved ? getDatetime(escrowDetails.disputeResolvedOnTimestamp) : 'N/A'}
+                        value={escrowDetails.disputeResolved ? getDatetime(escrowDetails.disputeResolvedOnTimestamp) : ''}
+                        disabled={!escrowDetails.disputeResolved}
                         fullWidth
                         label="Dispute resolved on"
                         variant="outlined"

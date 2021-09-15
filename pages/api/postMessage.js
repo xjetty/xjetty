@@ -53,7 +53,7 @@ const postMessage = async (req, res) => {
         if (getLocalhost())
             link = `http://localhost:3010/message-board/${messageBoardDataToken}`
         const subject = `You have a new message! - ${title}`
-        const emailMessage = `Go to your message board to read your message<br /><br /><a href=${link}>${link}</a><br /><br />${postPreview}`
+        const emailMessage = `Go to your message board to read your message.<br /><br /><a href=${link}>${link}</a><br /><br />${postPreview}`
         const messages = messageBoardData.messages
         const newMessage = {
             user: user,

@@ -122,7 +122,8 @@ const PostDetailsComponent = (props) => {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
-                                value={props.postDetails.description}
+                                value={props.postDetails.description ? props.postDetails.description : ''}
+                                disabled={!props.postDetails.description}
                                 fullWidth
                                 multiline
                                 label="Description"

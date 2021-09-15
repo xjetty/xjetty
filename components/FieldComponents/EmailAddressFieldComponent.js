@@ -46,7 +46,9 @@ const EmailAddressFieldComponent = () => {
     return (
         <TextField
             InputLabelProps={{required: true}}
-            autocomplete="email"
+            inputProps={{
+                autoComplete: 'email'
+            }}
             disabled={offer}
             error={emailAddressError}
             helperText={helperText}

@@ -1,4 +1,4 @@
-import {Divider, Grid, Typography} from "@material-ui/core";
+import {Button, Divider, Grid, Typography} from "@material-ui/core";
 import ModeFieldComponent from "../FieldComponents/ModeFieldComponent";
 import PlatformsFieldComponent from "../FieldComponents/PlatformsFieldComponent";
 import CategoryFieldComponent from "../FieldComponents/CategoryFieldComponent";
@@ -22,9 +22,13 @@ import EmailAddressFieldComponent from "../FieldComponents/EmailAddressFieldComp
 import React, {useContext} from "react";
 import {AppContext} from "../../contexts/AppContext";
 import UpdatePostActionComponent from "../ActionComponents/UpdatePostActionComponent";
+import {Delete} from "@material-ui/icons";
 
 const CreateUpdateFormPostComponent = ({create, token}) => {
     const {saleMethod, addMemo, imageLink} = useContext(AppContext)
+    const clearKeywordStorage = () => {
+
+    }
     return (
         <Grid container spacing={2}>
             <Grid item xs={12} md={6}>
@@ -59,6 +63,11 @@ const CreateUpdateFormPostComponent = ({create, token}) => {
             </Grid>
             <Grid item xs={12}>
                 <KeywordsFieldComponent/>
+            </Grid>
+            <Grid item xs={12}>
+                <Button onClick={clearKeywordStorage} variant="text" color="primary" endIcon={<Delete/>}>
+                    Clear keyword storage
+                </Button>
             </Grid>
             <Grid item xs={12}>
                 <Divider/>

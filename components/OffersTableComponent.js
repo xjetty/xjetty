@@ -26,7 +26,7 @@ const columns = [
     },
     {
         name: "statusUpdatedOn",
-        label: "Status Updated On",
+        label: "Decision Made On",
         options: {
             filter: false,
             sort: true,

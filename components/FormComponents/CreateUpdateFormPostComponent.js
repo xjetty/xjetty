@@ -25,9 +25,14 @@ import UpdatePostActionComponent from "../ActionComponents/UpdatePostActionCompo
 import {Delete} from "@material-ui/icons";
 
 const CreateUpdateFormPostComponent = ({create, token}) => {
-    const {saleMethod, addMemo, imageLink} = useContext(AppContext)
+    const {saleMethod, addMemo, imageLink, setKeywordItems, setSnackbarMessage, setSnackbarOpen} = useContext(AppContext)
     const clearKeywordStorage = () => {
-
+        const keywordItems = localStorage.getItem('keywordItems')
+        if (keywordItems)
+            localStorage.setItem('keywordItems', JSON.stringify([]))
+        setKeywordItems([])
+        setSnackbarMessage('Keyword storage cleared')
+        setSnackbarOpen(true)
     }
     return (
         <Grid container spacing={2}>

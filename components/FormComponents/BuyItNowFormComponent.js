@@ -1,4 +1,4 @@
-import {Button, Card, CardActions, Divider, Grid} from '@material-ui/core'
+import {Button, Divider, Grid} from '@material-ui/core'
 import EosAccountNameFieldComponent from '../FieldComponents/EosAccountNameFieldComponent'
 import AssociativePrivateKeyFieldComponent from '../FieldComponents/AssociativePrivateKeyFieldComponent'
 import CommentsFieldComponent from '../FieldComponents/CommentsFieldComponent'
@@ -10,6 +10,7 @@ import {AppContext} from "../../contexts/AppContext";
 import EosAccountFieldComponent from "../FieldComponents/EosAccountFieldComponent";
 import AddMemoFieldComponent from "../FieldComponents/AddMemoFieldComponent";
 import {OpenInNew} from "@material-ui/icons";
+import ClearEosAccountStorageComponent from "../ClearEosAccountStorageComponent";
 
 const BuyItNowFormComponent = ({token, code}) => {
     const {eosAccount, addMemo} = useContext(AppContext)
@@ -18,6 +19,9 @@ const BuyItNowFormComponent = ({token, code}) => {
             <Grid container spacing={2}>
                 <Grid item xs={12} md={6}>
                     <EosAccountFieldComponent/>
+                </Grid>
+                <Grid item xs={12}>
+                    <ClearEosAccountStorageComponent/>
                 </Grid>
                 {eosAccount === 'New' && (
                     <>

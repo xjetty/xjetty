@@ -9,16 +9,16 @@ const ClearKeywordStorageComponent = () => {
         setSnackbarMessage,
         setSnackbarOpen
     } = useContext(AppContext)
-    const clearKeywordStorage = () => {
+    const clear = () => {
         const keywordItems = localStorage.getItem('keywordItems')
         if (keywordItems)
-            localStorage.setItem('keywordItems', JSON.stringify([]))
+            localStorage.removeItem('keywordItems')
         setKeywordItems([])
         setSnackbarMessage('Keyword storage cleared')
         setSnackbarOpen(true)
     }
     return (
-        <Button onClick={clearKeywordStorage} variant="text" color="primary" endIcon={<Delete/>}>
+        <Button onClick={clear} variant="text" color="primary" endIcon={<Delete/>}>
             Clear keyword storage
         </Button>
     )

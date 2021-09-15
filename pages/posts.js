@@ -261,7 +261,7 @@ const Posts = () => {
                             </CardContent>
                             <CardActions>
                                 <Button href={`/post/${post.code}`} target="_blank" variant="contained"
-                                        color="primary" endIcon={<OpenInNew/>}>Open post</Button>
+                                        color="secondary" endIcon={<OpenInNew/>}>Open post</Button>
                             </CardActions>
                         </Card>
                     ))}

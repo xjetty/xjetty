@@ -3,6 +3,7 @@ import Offer from '../../models/Offer'
 import {getIdFromToken} from "../../server/getIdFromToken";
 import connectToDb from "../../middleware/connectToDb";
 import {insertBreaks} from "../../server/insertBreaks";
+import {getLocalhost} from "../../server/getLocalhost";
 
 const getOfferData = async (req, res) => {
     const method = req.method
@@ -30,6 +31,10 @@ const getOfferData = async (req, res) => {
         const category = post.category
         const subcategory = post.subcategory
         const title = post.title
+        const code = post.code
+        let link = `https://d2rcrypto.com/${code}`
+        if (getLocalhost())
+            link = `https://localhost:3010/${code}`
         const imageLink = post.imageLink
         const quantity = post.quantity
         const quantitySold = post.quantitySold
@@ -49,6 +54,7 @@ const getOfferData = async (req, res) => {
                 category: category,
                 subcategory: subcategory,
                 title: title,
+                link: link,
                 imageLink: imageLink,
                 fixedAmount: fixedAmount,
                 usdAmount: usdAmount,

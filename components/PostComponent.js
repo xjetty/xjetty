@@ -82,6 +82,7 @@ const PostComponent = ({code}) => {
         imageLink,
         createdOnTimestamp,
         lastUpdatedOnTimestamp,
+        link
     } = useContext(AppContext)
 
     useEffect(() => {
@@ -188,7 +189,8 @@ const PostComponent = ({code}) => {
                                                 <ImageLinkPreviewComponent/>
                                             </Grid>
                                             <Grid item xs={12}>
-                                                <Button color="primary" href={imageLink} target="_blank" endIcon={<OpenInNew/>}>Open image</Button>
+                                                <Button color="primary" href={imageLink} target="_blank"
+                                                        endIcon={<OpenInNew/>}>Open image</Button>
                                             </Grid>
                                         </Grid>
                                     </AccordionDetails>
@@ -286,9 +288,10 @@ const PostComponent = ({code}) => {
                                     </TabContext>
                                 )}
                             </Grid>
-                            {!offer && (<><Grid item xs={12}>
+                            <Grid item xs={12}>
                                 <Divider/>
                             </Grid>
+                            {!offer ? (<>
                                 <Grid item xs={12}>
                                     Created on {getDatetime(createdOnTimestamp)}
                                 </Grid>
@@ -296,7 +299,11 @@ const PostComponent = ({code}) => {
                                     <Typography>
                                         Last updated on {getDatetime(lastUpdatedOnTimestamp)}
                                     </Typography>
-                                </Grid>)}</>)}
+                                </Grid>)}</>) : (
+                                <Grid item xs={12}>
+                                    <a href={link}>{link}</a>
+                                </Grid>
+                            )}
                         </Grid>
                     </CardContent>
                 </Card>

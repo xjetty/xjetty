@@ -23,6 +23,7 @@ const Offer = ({token}) => {
         setEmailAddress,
         setOffer,
         setHideRecaptcha,
+        setLink,
     } = useContext(AppContext)
 
     const [show, setShow] = React.useState(false)
@@ -57,6 +58,7 @@ const Offer = ({token}) => {
                 const eosAmount = post.eosAmount
                 const emailAddress = post.emailAddress
                 const saleMethod = post.saleMethod
+                const link = post.link
                 setMode(mode)
                 setPlatforms(platforms)
                 setCategory(category)
@@ -69,6 +71,7 @@ const Offer = ({token}) => {
                 setDescription(description)
                 setSaleMethod(saleMethod)
                 setEmailAddress(emailAddress)
+                setLink(link)
                 setShow(true)
             } else if (data && data.alertMessage) {
                 alert(data.alertMessage)

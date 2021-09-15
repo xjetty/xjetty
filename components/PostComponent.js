@@ -301,7 +301,7 @@ const PostComponent = ({code}) => {
                                     </Typography>
                                 </Grid>)}</>) : (
                                 <Grid item xs={12}>
-                                    <a href={link}>{link}</a>
+                                    <Button href={link} variant="text" color="primary" endIcon={<OpenInNew/>}>Open post</Button>
                                 </Grid>
                             )}
                         </Grid>

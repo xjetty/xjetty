@@ -3,7 +3,7 @@ import React, {useContext, useMemo} from 'react'
 import {AppContext} from '../../contexts/AppContext'
 import axios from 'axios'
 
-const BuyItNowActionComponent = (props) => {
+const BuyItNowActionComponent = ({code, token}) => {
     const [submittingData, setSubmittingData] = React.useState(false)
 
     const {
@@ -45,8 +45,8 @@ const BuyItNowActionComponent = (props) => {
                 emailAddress: emailAddress,
                 offer: offer,
                 pageTimestamp: pageTimestamp,
-                code: props.code,
-                token: props.token
+                code: code,
+                token: token
             })
             const data = res.data
             if (data.success) {
@@ -71,6 +71,7 @@ const BuyItNowActionComponent = (props) => {
                     } else
                         eosAccountItems = [eosAccountItem]
                     localStorage.setItem('eosAccountItems', JSON.stringify(eosAccountItems))
+                    localStorage.setItem('eosAccountToken', JSON.stringify(eosAccountToken))
                     setEosAccountItems(eosAccountItems)
                     setEosAccount(eosAccountToken)
                 }

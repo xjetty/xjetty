@@ -26,6 +26,7 @@ const Post = ({code}) => {
         setCreatedOnTimestamp,
         setLastUpdatedOnTimestamp,
         setHideRecaptcha,
+        setEosAccount,
     } = useContext(AppContext)
 
     useEffect(() => {
@@ -33,8 +34,12 @@ const Post = ({code}) => {
     }, [])
 
     const setEosAccountItems2 = () => {
-        if (localStorage.getItem('eosAccountItems'))
+        const eosAccountItems = localStorage.getItem('eosAccountItems')
+        const eosAccountToken = localStorage.getItem('eosAccountToken')
+        if (eosAccountItems)
             setEosAccountItems(JSON.parse(localStorage.getItem('eosAccountItems')))
+        if (eosAccountToken)
+            setEosAccount(JSON.parse(localStorage.getItem('eosAccountToken')))
     }
 
     const getPostData = async () => {

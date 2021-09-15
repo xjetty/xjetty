@@ -92,6 +92,7 @@ const MakeOfferActionComponent = ({code}) => {
                 )}
                 <Grid item xs={12}>
                     <Button
+                        key={disabled}
                         onClick={submitRecaptcha}
                         disabled={disabled}
                         variant="contained"

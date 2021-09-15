@@ -141,6 +141,7 @@ const UpdatePostActionComponent = ({token}) => {
             )}
             <Grid item xs={12}>
                 <Button
+                    key={disabled}
                     onClick={updatePost}
                     disabled={disabled}
                     variant="contained"

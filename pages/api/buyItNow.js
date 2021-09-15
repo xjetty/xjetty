@@ -117,8 +117,10 @@ const buyItNow = async (req, res) => {
         const eosRate = await getEosRate()
         const transactionQuantity = getTransactionQuantity(fixedAmount, usdAmount, eosAmount, eosRate, eosFormatter)
         const transactionPrepared = await prepareTransaction(postId)
-        if (!transactionPrepared.success)
+        if (!transactionPrepared.success) {
+            await updatePendingTransactions(postId, false)
             return res.json({success: false, alertMessage: transactionPrepared.alertMessage})
+        }
         let transactionId = ''
         try {
             const result = await attemptTransaction(
@@ -130,12 +132,15 @@ const buyItNow = async (req, res) => {
                 true
             )
             if (result.json && result.json.code) {
+                await updatePendingTransactions(postId, false)
                 const errorMessage = result.json.error.details[0].message
                 return res.json({success: false, alertMessage: errorMessage})
             } else if (!result) {
+                await updatePendingTransactions(postId, false)
                 return res.json({success: false, reason: 'result not valid'})
             } else transactionId = result.transaction_id
         } catch (error) {
+            await updatePendingTransactions(postId, false)
             return res.json({success: false, alertMessage: 'Invalid associative private key'})
         }
         await increaseQuantitySold(postId)
@@ -209,11 +214,12 @@ const buyItNow = async (req, res) => {
             linkSeller = `http://localhost:3010/message-board/${sellerToken}`
         }
 
-        const postPreview = getPostPreview(mode, platforms, category, subcategory, title, description, keywords)
-        const subjectSeller = `You made a sale! - ${title}`
-        const subjectBuyer = `You made a purchase! - ${title}`
-        const messageSeller = `Go to your message board for review<br /><br /><a href=${linkBuyer}>${linkBuyer}</a><br /><br />${postPreview}`
-        const messageBuyer = `Go to your message board for review<br /><br /><a href=${linkSeller}>${linkSeller}</a><br /><br />${postPreview}`
+        const postPreviewSeller = getPostPreview(mode, platforms, category, subcategory, title, description, keywords)
+        const postPreviewBuyer = getPostPreview(mode, platforms, category, subcategory, title, description, [])
+        const subjectSeller = `You made a trade! - ${title}`
+        const subjectBuyer = `You made a trade! - ${title}`
+        const messageSeller = `Go to your message board for review.<br /><br /><a href=${linkBuyer}>${linkBuyer}</a><br /><br />${postPreviewBuyer}`
+        const messageBuyer = `Go to your message board for review.<br /><br /><a href=${linkSeller}>${linkSeller}</a><br /><br />${postPreviewSeller}`
         await sendEmail(buyerEmailAddress, subjectSeller, messageSeller)
         await sendEmail(sellerEmailAddress, subjectBuyer, messageBuyer)
         return res.json({success: true, eosAccountToken: eosAccountToken, eosAccountName: eosAccountName})

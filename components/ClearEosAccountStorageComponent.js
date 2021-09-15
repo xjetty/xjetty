@@ -24,7 +24,7 @@ const ClearEosAccountStorageComponent = () => {
     }
     return (
         <Button onClick={clear} variant="text" color="primary" endIcon={<Delete/>}>
-            Clear keyword storage
+            Clear eos account storage
         </Button>
     )
 }

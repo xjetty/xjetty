@@ -218,8 +218,8 @@ const buyItNow = async (req, res) => {
         const postPreviewBuyer = getPostPreview(mode, platforms, category, subcategory, title, description, [])
         const subjectSeller = `You made a trade! - ${title}`
         const subjectBuyer = `You made a trade! - ${title}`
-        const messageSeller = `Go to your message board for review.<br /><br /><a href=${linkBuyer}>${linkBuyer}</a><br /><br />${postPreviewBuyer}`
-        const messageBuyer = `Go to your message board for review.<br /><br /><a href=${linkSeller}>${linkSeller}</a><br /><br />${postPreviewSeller}`
+        const messageSeller = `Go to your message board for review.<br /><br /><a href=${linkBuyer}>${linkBuyer}</a><br /><br />${postPreviewBuyer}<br /><br />${transactionId}`
+        const messageBuyer = `Go to your message board for review.<br /><br /><a href=${linkSeller}>${linkSeller}</a><br /><br />${postPreviewSeller}<br /><br />${transactionId}`
         await sendEmail(buyerEmailAddress, subjectSeller, messageSeller)
         await sendEmail(sellerEmailAddress, subjectBuyer, messageBuyer)
         return res.json({success: true, eosAccountToken: eosAccountToken, eosAccountName: eosAccountName})

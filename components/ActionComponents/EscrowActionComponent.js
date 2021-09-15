@@ -99,18 +99,22 @@ const EscrowActionComponent = (props) => {
                 {props.user === 'buyer' ? (
                     <>
                         <Grid item xs={12}>
-                            <Button disabled={escrowDetails.escrowReleased || escrowDetails.escrowRefunded} onClick={(event) => handleButton(event, 'releaseEscrow', 'Release escrow?')}
-                                    variant="contained" color="primary">Release escrow</Button>
+                            <Button disabled={escrowDetails.escrowReleased || escrowDetails.escrowRefunded}
+                                    onClick={(event) => handleButton(event, 'releaseEscrow', 'Release escrow?')}
+                                    variant="contained" color="secondary">Release escrow</Button>
                         </Grid>
                         <Grid item xs={12}>
-                            <Button disabled={escrowDetails.escrowReleased || escrowDetails.escrowRefunded || escrowDetails.disputeOpened} onClick={(event) => handleButton(event, 'openDispute', 'Open dispute?')}
-                                    variant="contained" color="secondary">Open dispute</Button>
+                            <Button
+                                disabled={escrowDetails.escrowReleased || escrowDetails.escrowRefunded || escrowDetails.disputeOpened}
+                                onClick={(event) => handleButton(event, 'openDispute', 'Open dispute?')}
+                                variant="outlined" color="primary">Open dispute</Button>
                         </Grid>
                     </>
                 ) : (
                     <Grid item xs={12}>
-                        <Button disabled={escrowDetails.escrowReleased || escrowDetails.escrowRefunded} onClick={(event) => handleButton(event, 'refundEscrow', 'Refund escrow?')}
-                                variant="contained" color="secondary">Refund escrow</Button>
+                        <Button disabled={escrowDetails.escrowReleased || escrowDetails.escrowRefunded}
+                                onClick={(event) => handleButton(event, 'refundEscrow', 'Refund escrow?')}
+                                variant="outlined" color="secondary">Refund escrow</Button>
                     </Grid>
                 )}
             </Grid>
@@ -128,7 +132,7 @@ const EscrowActionComponent = (props) => {
                     <DialogContentText>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
-                                This cannot be undone.
+                                This action cannot be undone.
                             </Grid>
                             {submittingData && (<Grid item xs={12}>
                                 <LinearProgress/>

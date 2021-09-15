@@ -69,8 +69,8 @@ const manageEscrow = async (req, res) => {
         }
         const buyerPostPreview = getPostPreview(mode, platforms, category, subcategory, title, description, [])
         const sellerPostPreview = getPostPreview(mode, platforms, category, subcategory, title, description, keywords)
-        const messageSeller = `Go to your message board for review<br /><br /><a href=${linkBuyer}>${linkBuyer}</a><br /><br />${sellerPostPreview}`
-        const messageBuyer = `Go to your message board for review<br /><br /><a href=${linkSeller}>${linkSeller}</a><br /><br />${buyerPostPreview}`
+        const messageSeller = `Go to your message board for review.<br /><br /><a href=${linkBuyer}>${linkBuyer}</a><br /><br />${sellerPostPreview}`
+        const messageBuyer = `Go to your message board for review<.br /><br /><a href=${linkSeller}>${linkSeller}</a><br /><br />${buyerPostPreview}`
         let transactionId = ''
         if (buttonAction === 'releaseEscrow') {
             try {

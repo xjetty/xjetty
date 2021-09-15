@@ -293,7 +293,7 @@ const OffersTableComponent = ({token}) => {
                     <DialogContentText>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
-                                This decision is final.
+                                This decision cannot be reversed.
                             </Grid>
                             {submittingData && (<Grid item xs={12}>
                                 <LinearProgress/>

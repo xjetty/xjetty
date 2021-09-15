@@ -42,7 +42,7 @@ const acceptOrDeclineOffers = async (req, res) => {
             return res.json({success: false})
         const timestamp = Date.now()
         for (const offer of offers) {
-            if (offerIds.includes(offer._id.toString()) && offer.status === 'Accept or Decline') {
+            if (offerIds.includes(offer._id.toString()) && offer.status === 'Choose to accept or decline this offer') {
                 await Offer.updateOne({_id: offer._id}, {$set: {status: status, statusUpdatedOnTimestamp: timestamp}})
                 if (status === 'Accepted') {
                     const emailAddress = offer.emailAddress

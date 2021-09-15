@@ -40,7 +40,7 @@ const ManagerComponent = ({token}) => {
     useEffect(() => {
         let newOffersValue = false
         offers.every(value => {
-            if (value.status === 'Accept or Decline') {
+            if (value.status === 'Choose to accept or decline this offer') {
                 newOffersValue = true
                 return false
             } else

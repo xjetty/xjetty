@@ -25,6 +25,7 @@ const Post = ({code}) => {
         setMinAmount,
         setCreatedOnTimestamp,
         setLastUpdatedOnTimestamp,
+        setHideRecaptcha,
     } = useContext(AppContext)
 
     useEffect(() => {
@@ -56,6 +57,8 @@ const Post = ({code}) => {
                 const usdAmount = post.usdAmount
                 const eosAmount = post.eosAmount
                 const saleMethod = post.saleMethod
+                if (saleMethod === 'askingPriceOnly')
+                    setHideRecaptcha(true)
                 const createdOnTimestamp = post.createdOnTimestamp
                 const lastUpdatedOnTimestamp = post.lastUpdatedOnTimestamp
                 setMode(mode)

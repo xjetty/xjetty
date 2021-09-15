@@ -19,6 +19,7 @@ const EosAccountFieldComponent = () => {
                 labelId="eos-account"
                 value={eosAccount}
                 onChange={handle}
+                label="EOS account"
             >
                 <MenuItem value={'New'}>New</MenuItem>
                 {eosAccountItems.map((item, index) => (

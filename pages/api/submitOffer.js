@@ -4,6 +4,7 @@ import Offer from '../../models/Offer'
 import jwt from 'jsonwebtoken'
 import {sendEmail} from "../../server/sendEmail";
 import {getPostPreview} from "../../server/getPostPreview";
+import {getLocalhost} from "../../server/getLocalhost";
 
 const submitOffer = async (req, res) => {
     const method = req.method
@@ -53,9 +54,9 @@ const submitOffer = async (req, res) => {
         const payload = {postId: postId}
         const JWT_SIGNATURE = process.env.JWT_SIGNATURE
         const token = jwt.sign(payload, JWT_SIGNATURE)
-        let link = `https://blockcommerc.com/manager/${token}`
-        if (!process.env.LIVE)
-            link = `http://localhost:3000/manager/${token}`
+        let link = `https://d2rcrypto.com/manager/${token}`
+        if (getLocalhost())
+            link = `http://localhost:3010/manager/${token}`
         const subject = `You got an offer! - ${title}`
         const message = `You can choose to accept your offer in your manager.<br /><br /><a href=${link}>${link}</a><br /><br />${postPreview}`
         if (saleMethod === 'askingPriceAndOffers') {

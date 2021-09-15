@@ -18,6 +18,7 @@ import {getDataFromToken} from "../../server/getDataFromToken";
 import {validateEosAccountName} from "../../server/validateEosAccountName";
 import Escrow from '../../models/Escrow'
 import {getPostPreview} from "../../server/getPostPreview";
+import {getLocalhost} from "../../server/getLocalhost";
 
 const buyItNow = async (req, res) => {
     const eosFormatter = new Intl.NumberFormat('en-US', {
@@ -201,11 +202,11 @@ const buyItNow = async (req, res) => {
         const JWT_SIGNATURE = process.env.JWT_SIGNATURE
         const buyerToken = jwt.sign(buyerPayload, JWT_SIGNATURE)
         const sellerToken = jwt.sign(sellerPayload, JWT_SIGNATURE)
-        let linkBuyer = `https://blockcommerc.com/message-board/${buyerToken}`
-        let linkSeller = `https://blockcommerc.com/message-board/${sellerToken}`
-        if (!process.env.LIVE) {
-            linkBuyer = `http://localhost:3000/message-board/${buyerToken}`
-            linkSeller = `http://localhost:3000/message-board/${sellerToken}`
+        let linkBuyer = `https://d2rcrypto.com/message-board/${buyerToken}`
+        let linkSeller = `https://d2rcrypto.com/message-board/${sellerToken}`
+        if (getLocalhost()) {
+            linkBuyer = `http://localhost:3010/message-board/${buyerToken}`
+            linkSeller = `http://localhost:3010/message-board/${sellerToken}`
         }
 
         const postPreview = getPostPreview(mode, platforms, category, subcategory, title, description, keywords)

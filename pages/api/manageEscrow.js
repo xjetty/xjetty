@@ -7,6 +7,7 @@ import {getDataFromToken} from "../../server/getDataFromToken";
 import {sendEmail} from "../../server/sendEmail";
 import jwt from "jsonwebtoken";
 import {getPostPreview} from "../../server/getPostPreview";
+import {getLocalhost} from "../../server/getLocalhost";
 
 const manageEscrow = async (req, res) => {
     const method = req.method
@@ -60,11 +61,11 @@ const manageEscrow = async (req, res) => {
         const sellerPayload = {user: 'seller', messageBoardId: messageBoardId}
         const buyerToken = jwt.sign(buyerPayload, process.env.JWT_SIGNATURE)
         const sellerToken = jwt.sign(sellerPayload, process.env.JWT_SIGNATURE)
-        let linkBuyer = `https://blockcommerc.com/message-board/${buyerToken}`
-        let linkSeller = `https://blockcommerc.com/message-board/${sellerToken}`
-        if (!process.env.LIVE) {
-            linkBuyer = `http://localhost:3000/message-board/${buyerToken}`
-            linkSeller = `http://localhost:3000/message-board/${sellerToken}`
+        let linkBuyer = `https://d2rcrypto.com/message-board/${buyerToken}`
+        let linkSeller = `https://d2rcrypto.com/message-board/${sellerToken}`
+        if (getLocalhost()) {
+            linkBuyer = `http://localhost:3010/message-board/${buyerToken}`
+            linkSeller = `http://localhost:3010/message-board/${sellerToken}`
         }
         const buyerPostPreview = getPostPreview(mode, platforms, category, subcategory, title, description, [])
         const sellerPostPreview = getPostPreview(mode, platforms, category, subcategory, title, description, keywords)

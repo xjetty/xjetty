@@ -38,7 +38,7 @@ const getManagerData = async (req, res) => {
         const code = post.code
         let link = `https://d2rcrypto.com/post/${code}`
         if (getLocalhost())
-            link = `http://localhost:3000/post/${code}`
+            link = `http://localhost:3010/post/${code}`
         const postData = {
             mode: mode,
             platforms: platforms,

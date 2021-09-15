@@ -6,6 +6,7 @@ import {sendEmail} from "../../server/sendEmail";
 import connectToDb from "../../middleware/connectToDb";
 import {getIdFromToken} from "../../server/getIdFromToken";
 import {getPostPreview} from "../../server/getPostPreview";
+import {getLocalhost} from "../../server/getLocalhost";
 
 const acceptOrDeclineOffers = async (req, res) => {
     const method = req.method
@@ -46,9 +47,9 @@ const acceptOrDeclineOffers = async (req, res) => {
                 if (status === 'Accepted') {
                     const emailAddress = offer.emailAddress
                     const token = jwt.sign({offerId: offer._id}, process.env.JWT_SIGNATURE)
-                    let link = `https://blockcommerc.com/offer/${token}`
-                    if (!process.env.LIVE)
-                        link = `http://localhost:3000/offer/${token}`
+                    let link = `https://d2rcrypto.com/offer/${token}`
+                    if (getLocalhost())
+                        link = `http://localhost:3010/offer/${token}`
                     const message = `Confirm and pay for your offer.<br /><br /><a href=${link}>${link}</a><br /><br />${postPreview}`
                     await sendEmail(emailAddress, subject, message)
                 }

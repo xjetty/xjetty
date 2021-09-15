@@ -3,8 +3,7 @@ import {useContext, useEffect} from "react";
 import {AppContext} from "../contexts/AppContext";
 import Draggable from 'react-draggable';
 import {
-    Button,
-    Card, CardContent,
+    Button, ButtonGroup,
     Dialog,
     DialogActions,
     DialogContent,
@@ -14,7 +13,7 @@ import {
 } from "@material-ui/core";
 import axios from "axios";
 import MUIDataTable from 'mui-datatables'
-import {ThumbDown, ThumbUp, CheckCircle, Cancel} from "@material-ui/icons";
+import {ThumbDown, ThumbUp} from "@material-ui/icons";
 
 const columns = [
     {
@@ -93,8 +92,6 @@ const OffersTableComponent = ({token}) => {
     const {
         offers,
         eosRate,
-        recaptchaRef,
-        recaptchaResponse,
         setSnackbarOpen,
         setSnackbarMessage,
     } = useContext(AppContext)
@@ -119,18 +116,22 @@ const OffersTableComponent = ({token}) => {
         // eslint-disable-next-line react/display-name
         customToolbarSelect: () => {
             return (
-                <div style={{marginRight: '24px'}}>
-                    <Tooltip title={'Accept'}>
-                        <IconButton onClick={acceptOffer}>
-                            <ThumbUp/>
-                        </IconButton>
-                    </Tooltip>
-                    <Tooltip title={'Decline'}>
-                        <IconButton onClick={declineOffer}>
-                            <ThumbDown/>
-                        </IconButton>
-                    </Tooltip>
-                </div>
+                <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
+                    <Button>Accept</Button>
+                    <Button>Decline</Button>
+                </ButtonGroup>
+                // <div style={{marginRight: '24px'}}>
+                //     <Tooltip title={'Accept'}>
+                //         <IconButton onClick={acceptOffer}>
+                //             <ThumbUp/>
+                //         </IconButton>
+                //     </Tooltip>
+                //     <Tooltip title={'Decline'}>
+                //         <IconButton onClick={declineOffer}>
+                //             <ThumbDown/>
+                //         </IconButton>
+                //     </Tooltip>
+                // </div>
             )
         },
     }
@@ -227,7 +228,7 @@ const OffersTableComponent = ({token}) => {
 
     const handleYes = () => {
         setSubmittingData(true)
-        recaptchaRef.current.execute()
+        acceptOrDeclineOffers()
     }
 
     const acceptOrDeclineOffers = async () => {
@@ -235,8 +236,7 @@ const OffersTableComponent = ({token}) => {
             const res = await axios.post('../api/acceptOrDeclineOffers', {
                 decision: decision,
                 offerTokens: offerTokens,
-                token: token,
-                recaptchaResponse: recaptchaResponse
+                token: token
             })
             const data = res.data
             if (data.success) {
@@ -265,15 +265,7 @@ const OffersTableComponent = ({token}) => {
             alert('Lost Internet connection')
         }
         setSubmittingData(false)
-        process.nextTick(() => {
-            recaptchaRef.current.reset()
-        })
     }
-
-    useEffect(() => {
-        if (submittingData && recaptchaResponse)
-            acceptOrDeclineOffers()
-    }, [recaptchaResponse])
 
     const handleClose = () => {
         if (!submittingData)

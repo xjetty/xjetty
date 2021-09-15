@@ -286,7 +286,7 @@ const PostComponent = ({code}) => {
                                     </TabContext>
                                 )}
                             </Grid>
-                            {offer && (<><Grid item xs={12}>
+                            {!offer && (<><Grid item xs={12}>
                                 <Divider/>
                             </Grid>
                                 <Grid item xs={12}>

@@ -163,7 +163,7 @@ const OffersTableComponent = ({token}) => {
                     eosAmount = eosFormatter.format(eosAmountValue).replace('$', '')
                 }
                 const statusUpdatedOnTimestamp = offer.statusUpdatedOnTimestamp
-                let statusUpdatedOnDatetime = 'Never'
+                let statusUpdatedOnDatetime = 'Waiting on your decision'
                 if (statusUpdatedOnTimestamp)
                     statusUpdatedOnDatetime = getDatetime(statusUpdatedOnTimestamp)
                 rowData.push({

@@ -3,7 +3,7 @@ import {useContext, useEffect} from "react";
 import {AppContext} from "../contexts/AppContext";
 import Draggable from 'react-draggable';
 import {
-    Button, ButtonGroup,
+    Button,
     Dialog,
     DialogActions,
     DialogContent,
@@ -13,7 +13,7 @@ import {
 } from "@material-ui/core";
 import axios from "axios";
 import MUIDataTable from 'mui-datatables'
-import {ThumbDown, ThumbUp} from "@material-ui/icons";
+import {Cancel, CheckCircle} from "@material-ui/icons";
 
 const columns = [
     {
@@ -116,22 +116,18 @@ const OffersTableComponent = ({token}) => {
         // eslint-disable-next-line react/display-name
         customToolbarSelect: () => {
             return (
-                <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-                    <Button>Accept</Button>
-                    <Button>Decline</Button>
-                </ButtonGroup>
-                // <div style={{marginRight: '24px'}}>
-                //     <Tooltip title={'Accept'}>
-                //         <IconButton onClick={acceptOffer}>
-                //             <ThumbUp/>
-                //         </IconButton>
-                //     </Tooltip>
-                //     <Tooltip title={'Decline'}>
-                //         <IconButton onClick={declineOffer}>
-                //             <ThumbDown/>
-                //         </IconButton>
-                //     </Tooltip>
-                // </div>
+                <div style={{marginRight: '24px'}}>
+                    <Tooltip title={'Accept'}>
+                        <IconButton onClick={acceptOffer}>
+                            <CheckCircle/>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title={'Decline'}>
+                        <IconButton onClick={declineOffer}>
+                            <Cancel/>
+                        </IconButton>
+                    </Tooltip>
+                </div>
             )
         },
     }

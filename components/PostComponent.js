@@ -4,7 +4,7 @@ import {
     AccordionSummary,
     AppBar, Avatar, Button,
     Card,
-    CardContent, CardMedia,
+    CardContent, CardMedia, Divider,
     Grid,
     List,
     ListItem, ListItemAvatar,
@@ -13,12 +13,11 @@ import {
     Typography
 } from '@material-ui/core'
 import React, {useContext, useEffect} from 'react'
-import {createTheme, makeStyles} from '@material-ui/core/styles'
+import {makeStyles} from '@material-ui/core/styles'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import {AppContext} from '../contexts/AppContext'
 import BuyItNowFormComponent from "./FormComponents/BuyItNowFormComponent";
 import MakeOfferFormComponent from "./FormComponents/MakeOfferFormComponent";
-import {green, red} from "@material-ui/core/colors";
 import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
@@ -81,6 +80,8 @@ const PostComponent = ({code}) => {
         eosAmountValue,
         eosRate,
         imageLink,
+        createdOnTimestamp,
+        lastUpdatedOnTimestamp,
     } = useContext(AppContext)
 
     useEffect(() => {
@@ -113,6 +114,19 @@ const PostComponent = ({code}) => {
                 `${usdFormatter.format(eosAmountValue * eosRate)} USD`
             )
     }, [eosRate])
+
+    const datetimeOptions = {
+        day: 'numeric',
+        month: 'long',
+        weekday: 'short',
+        hour: 'numeric',
+        minute: 'numeric',
+        timeZoneName: 'short'
+    }
+
+    const getDatetime = (timestamp) => {
+        return new Date(timestamp).toLocaleString('en-US', datetimeOptions)
+    }
 
     const [tabValue, setTabValue] = React.useState('1')
 
@@ -272,6 +286,17 @@ const PostComponent = ({code}) => {
                                     </TabContext>
                                 )}
                             </Grid>
+                            <Grid item xs={12}>
+                                <Divider/>
+                            </Grid>
+                            <Grid item xs={12}>
+                                Created on {getDatetime(createdOnTimestamp)}
+                            </Grid>
+                            {createdOnTimestamp !== lastUpdatedOnTimestamp && (<Grid item xs={12}>
+                                <Typography>
+                                    Last updated on {getDatetime(lastUpdatedOnTimestamp)}
+                                </Typography>
+                            </Grid>)}
                         </Grid>
                     </CardContent>
                 </Card>

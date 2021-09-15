@@ -23,6 +23,8 @@ const Post = ({code}) => {
         setCategory,
         setSubcategory,
         setMinAmount,
+        setCreatedOnTimestamp,
+        setLastUpdatedOnTimestamp,
     } = useContext(AppContext)
 
     useEffect(() => {
@@ -54,6 +56,8 @@ const Post = ({code}) => {
                 const usdAmount = post.usdAmount
                 const eosAmount = post.eosAmount
                 const saleMethod = post.saleMethod
+                const createdOnTimestamp = post.createdOnTimestamp
+                const lastUpdatedOnTimestamp = post.lastUpdatedOnTimestamp
                 setMode(mode)
                 setPlatforms(platforms)
                 setCategory(category)
@@ -65,6 +69,8 @@ const Post = ({code}) => {
                 setEosAmountValue(eosAmount)
                 setDescription(description)
                 setSaleMethod(saleMethod)
+                setCreatedOnTimestamp(createdOnTimestamp)
+                setLastUpdatedOnTimestamp(lastUpdatedOnTimestamp)
                 setMinAmount(false)
                 setShow(true)
             } else if (data && data.alertMessage) {

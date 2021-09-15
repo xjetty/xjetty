@@ -28,6 +28,8 @@ const getPostData = async (req, res) => {
         if (hidden) return res.json({success: false, alertMessage: 'Post hidden'})
         const description = insertBreaks(post.description)
         const saleMethod = post.saleMethod
+        const createdOnTimestamp = post.createdOnTimestamp
+        const lastUpdatedOnTimestamp = post.lastUpdatedOnTimestamp
         return res.json({
             success: true, post: {
                 mode: mode,
@@ -40,7 +42,9 @@ const getPostData = async (req, res) => {
                 usdAmount: usdAmount,
                 eosAmount: eosAmount,
                 description: description,
-                saleMethod: saleMethod
+                saleMethod: saleMethod,
+                createdOnTimestamp: createdOnTimestamp,
+                lastUpdatedOnTimestamp: lastUpdatedOnTimestamp
             }
         })
     } else

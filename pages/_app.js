@@ -89,6 +89,8 @@ function MyApp({Component, pageProps}) {
     const [categories, setCategories] = useState([])
     const [subcategories, setSubcategories] = useState([])
     const [hideRecaptcha, setHideRecaptcha] = useState(false)
+    const [createdOnTimestamp, setCreatedOnTimestamp] = useState('')
+    const [lastUpdatedOnTimestamp, setLastUpdatedOnTimestamp] = useState('')
     React.useEffect(() => {
         const jssStyles = document.querySelector('#jss-server-side');
         if (jssStyles)
@@ -239,7 +241,11 @@ function MyApp({Component, pageProps}) {
                 showOffers,
                 setShowOffers,
                 escrowDetails,
-                setEscrowDetails
+                setEscrowDetails,
+                createdOnTimestamp,
+                setCreatedOnTimestamp,
+                lastUpdatedOnTimestamp,
+                setLastUpdatedOnTimestamp
             }}>
             <ThemeProvider theme={theme}>
                 <CssBaseline/>

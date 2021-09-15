@@ -49,7 +49,7 @@ const OfferSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        default: 'Choose to accept or decline this offer'
+        default: 'Pending decision'
     },
     statusUpdatedOnTimestamp: {
         type: Number,

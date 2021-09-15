@@ -18,7 +18,7 @@ import {Cancel, CheckCircle} from "@material-ui/icons";
 const columns = [
     {
         name: "status",
-        label: "Decision",
+        label: "Status",
         options: {
             filter: true,
             sort: true,
@@ -26,7 +26,7 @@ const columns = [
     },
     {
         name: "statusUpdatedOn",
-        label: "Decision Made On",
+        label: "Status Updated On",
         options: {
             filter: false,
             sort: true,
@@ -107,7 +107,7 @@ const OffersTableComponent = ({token}) => {
         filterType: 'checkbox',
         elevation: 0,
         isRowSelectable: (dataIndex) => {
-            return rows[dataIndex].status === 'Choose to accept or decline this offer'
+            return rows[dataIndex].status === 'Pending decision'
         },
         onRowSelectionChange: (currentRowsSelected, allRowsSelected, rowsSelected) => {
             setRowsSelected(rowsSelected)
@@ -163,7 +163,7 @@ const OffersTableComponent = ({token}) => {
                     eosAmount = eosFormatter.format(eosAmountValue).replace('$', '')
                 }
                 const statusUpdatedOnTimestamp = offer.statusUpdatedOnTimestamp
-                let statusUpdatedOnDatetime = 'Waiting on your decision...'
+                let statusUpdatedOnDatetime = 'Pending decision'
                 if (statusUpdatedOnTimestamp)
                     statusUpdatedOnDatetime = getDatetime(statusUpdatedOnTimestamp)
                 rowData.push({

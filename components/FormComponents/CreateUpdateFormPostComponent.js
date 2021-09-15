@@ -1,4 +1,4 @@
-import {Button, Divider, Grid, Typography} from "@material-ui/core";
+import {Divider, Grid, Typography} from "@material-ui/core";
 import ModeFieldComponent from "../FieldComponents/ModeFieldComponent";
 import PlatformsFieldComponent from "../FieldComponents/PlatformsFieldComponent";
 import CategoryFieldComponent from "../FieldComponents/CategoryFieldComponent";
@@ -22,18 +22,14 @@ import EmailAddressFieldComponent from "../FieldComponents/EmailAddressFieldComp
 import React, {useContext} from "react";
 import {AppContext} from "../../contexts/AppContext";
 import UpdatePostActionComponent from "../ActionComponents/UpdatePostActionComponent";
-import {Delete} from "@material-ui/icons";
+import ClearKeywordStorageComponent from "../ClearKeywordStorageComponent";
 
 const CreateUpdateFormPostComponent = ({create, token}) => {
-    const {saleMethod, addMemo, imageLink, setKeywordItems, setSnackbarMessage, setSnackbarOpen} = useContext(AppContext)
-    const clearKeywordStorage = () => {
-        const keywordItems = localStorage.getItem('keywordItems')
-        if (keywordItems)
-            localStorage.setItem('keywordItems', JSON.stringify([]))
-        setKeywordItems([])
-        setSnackbarMessage('Keyword storage cleared')
-        setSnackbarOpen(true)
-    }
+    const {
+        saleMethod,
+        addMemo,
+        imageLink
+    } = useContext(AppContext)
     return (
         <Grid container spacing={2}>
             <Grid item xs={12} md={6}>
@@ -70,9 +66,7 @@ const CreateUpdateFormPostComponent = ({create, token}) => {
                 <KeywordsFieldComponent/>
             </Grid>
             <Grid item xs={12}>
-                <Button onClick={clearKeywordStorage} variant="text" color="primary" endIcon={<Delete/>}>
-                    Clear keyword storage
-                </Button>
+                <ClearKeywordStorageComponent/>
             </Grid>
             <Grid item xs={12}>
                 <Divider/>

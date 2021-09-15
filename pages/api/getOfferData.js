@@ -32,9 +32,9 @@ const getOfferData = async (req, res) => {
         const subcategory = post.subcategory
         const title = post.title
         const code = post.code
-        let link = `https://d2rcrypto.com/${code}`
+        let link = `https://d2rcrypto.com/post/${code}`
         if (getLocalhost())
-            link = `https://localhost:3010/${code}`
+            link = `https://localhost:3010/post/${code}`
         const imageLink = post.imageLink
         const quantity = post.quantity
         const quantitySold = post.quantitySold

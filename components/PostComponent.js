@@ -293,7 +293,9 @@ const PostComponent = ({code}) => {
                             </Grid>
                             {!offer ? (<>
                                 <Grid item xs={12}>
-                                    Created on {getDatetime(createdOnTimestamp)}
+                                    <Typography>
+                                        Created on {getDatetime(createdOnTimestamp)}
+                                    </Typography>
                                 </Grid>
                                 {createdOnTimestamp !== lastUpdatedOnTimestamp && (<Grid item xs={12}>
                                     <Typography>
@@ -301,7 +303,8 @@ const PostComponent = ({code}) => {
                                     </Typography>
                                 </Grid>)}</>) : (
                                 <Grid item xs={12}>
-                                    <Button href={link} target="_blank" variant="contained" color="secondary" endIcon={<OpenInNew/>}>Open post</Button>
+                                    <Button href={link} target="_blank" variant="contained" color="secondary"
+                                            endIcon={<OpenInNew/>}>Open post</Button>
                                 </Grid>
                             )}
                         </Grid>

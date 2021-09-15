@@ -48,7 +48,7 @@ const createPost = async (req, res) => {
             if (getLocalhost())
                 link = `http://localhost:3010/manager/${token}`
             const subject = `You created a post! - ${title}`
-            const message = `You can view your post by visiting your manager.<br /><br /><a href=${link}>${link}</a><br /><br />${postPreview}`
+            const message = `You can review your post by visiting your manager.<br /><br /><a href=${link}>${link}</a><br /><br />${postPreview}`
             await sendEmail(emailAddress, subject, message)
             return res.json({success: true})
         } catch (e) {

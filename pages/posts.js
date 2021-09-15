@@ -176,7 +176,7 @@ const Posts = () => {
         </Head>
         <Grid container spacing={2}>
             <Grid item xs={12}>
-                <Card variant="outlined">
+                <Card>
                     <CardMedia
                         className={classes.media}
                         image='/logo.png'
@@ -229,7 +229,7 @@ const Posts = () => {
                     columnClassName={classes.masonryGridColumn}
                 >
                     {posts.map((post, index) => (
-                        <Card variant="outlined" key={index} style={{marginBottom: '16px'}}>
+                        <Card key={index} style={{marginBottom: '16px'}}>
                             {post.imageLink && (<CardMedia
                                 className={classes.postMedia}
                                 image={post.imageLink}

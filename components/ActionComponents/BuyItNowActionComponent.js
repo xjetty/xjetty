@@ -2,9 +2,11 @@ import {Button, Grid, LinearProgress} from '@material-ui/core'
 import React, {useContext, useMemo} from 'react'
 import {AppContext} from '../../contexts/AppContext'
 import axios from 'axios'
+import {Alert, AlertTitle} from "@material-ui/lab";
 
 const BuyItNowActionComponent = ({code, token}) => {
     const [submittingData, setSubmittingData] = React.useState(false)
+    const [postCreated, setPostCreated] = React.useState(false)
 
     const {
         eosAccountNameError,
@@ -30,11 +32,12 @@ const BuyItNowActionComponent = ({code, token}) => {
         setEosAccount,
         addMemo,
         memoError,
-        setMemoError
+        setMemoError,
     } = useContext(AppContext)
 
     const buyItNow = async () => {
         setSubmittingData(true)
+        setPostCreated(false)
         try {
             const res = await axios.post('../api/buyItNow', {
                 eosAccount: eosAccount,
@@ -75,6 +78,7 @@ const BuyItNowActionComponent = ({code, token}) => {
                     setEosAccountItems(eosAccountItems)
                     setEosAccount(eosAccountToken)
                 }
+                setPostCreated(true)
             } else if (data && data.alertMessage) {
                 alert(data.alertMessage)
             } else
@@ -124,6 +128,14 @@ const BuyItNowActionComponent = ({code, token}) => {
             {submittingData && (
                 <Grid item xs={12}>
                     <LinearProgress color="secondary"/>
+                </Grid>
+            )}
+            {postCreated && (
+                <Grid item xs={12}>
+                    <Alert severity="success">
+                        <AlertTitle>Success</AlertTitle>
+                        Your transaction went through. A link to your message board was sent to your email.
+                    </Alert>
                 </Grid>
             )}
             <Grid item xs={12}>

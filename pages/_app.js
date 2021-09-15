@@ -71,6 +71,7 @@ function MyApp({Component, pageProps}) {
     const [publicListing, setPublicListing] = React.useState(false)
     const [title, setTitle] = React.useState('')
     const [keywords, setKeywords] = React.useState([])
+    const [keywordItems, setKeywordItems] = React.useState([])
     const [titleError, setTitleError] = React.useState(false)
     const [search, setSearch] = useState('')
     const [mode, setMode] = useState(null)
@@ -245,7 +246,9 @@ function MyApp({Component, pageProps}) {
                 createdOnTimestamp,
                 setCreatedOnTimestamp,
                 lastUpdatedOnTimestamp,
-                setLastUpdatedOnTimestamp
+                setLastUpdatedOnTimestamp,
+                keywordItems,
+                setKeywordItems,
             }}>
             <ThemeProvider theme={theme}>
                 <CssBaseline/>

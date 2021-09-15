@@ -4,8 +4,7 @@ import {AppContext} from '../../contexts/AppContext'
 import {Autocomplete} from "@material-ui/lab";
 
 const KeywordsFieldComponent = () => {
-    const {keywords, setKeywords} = useContext(AppContext)
-    const [keywordItems, setKeywordItems] = React.useState([])
+    const {keywords, setKeywords, keywordItems, setKeywordItems} = useContext(AppContext)
 
     const onlyUnique = (value, index, self) => {
         return self.indexOf(value) === index

@@ -286,17 +286,17 @@ const PostComponent = ({code}) => {
                                     </TabContext>
                                 )}
                             </Grid>
-                            <Grid item xs={12}>
+                            {offer && (<><Grid item xs={12}>
                                 <Divider/>
                             </Grid>
-                            <Grid item xs={12}>
-                                Created on {getDatetime(createdOnTimestamp)}
-                            </Grid>
-                            {createdOnTimestamp !== lastUpdatedOnTimestamp && (<Grid item xs={12}>
-                                <Typography>
-                                    Last updated on {getDatetime(lastUpdatedOnTimestamp)}
-                                </Typography>
-                            </Grid>)}
+                                <Grid item xs={12}>
+                                    Created on {getDatetime(createdOnTimestamp)}
+                                </Grid>
+                                {createdOnTimestamp !== lastUpdatedOnTimestamp && (<Grid item xs={12}>
+                                    <Typography>
+                                        Last updated on {getDatetime(lastUpdatedOnTimestamp)}
+                                    </Typography>
+                                </Grid>)}</>)}
                         </Grid>
                     </CardContent>
                 </Card>

@@ -1,4 +1,3 @@
-import {useRouter} from "next/router";
 import React, {useContext, useEffect} from "react";
 import {AppContext} from "../../contexts/AppContext";
 import axios from "axios";
@@ -22,7 +21,8 @@ const Offer = ({token}) => {
         setCategory,
         setSubcategory,
         setEmailAddress,
-        setOffer
+        setOffer,
+        setHideRecaptcha,
     } = useContext(AppContext)
 
     const [show, setShow] = React.useState(false)
@@ -80,6 +80,7 @@ const Offer = ({token}) => {
     }
 
     useEffect(() => {
+        setHideRecaptcha(true)
         getOfferData()
     }, [])
 

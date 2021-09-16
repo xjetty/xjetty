@@ -50,7 +50,7 @@ const Home = () => {
                                 <Typography variant="h5">
                                     D2R Crypto
                                 </Typography>
-                                <Typography color="textSecondary">
+                                <Typography color="textSecondary" component="h1">
                                     Trade Diablo 2 Resurrected (D2R) Items and Services for Crypto (EOS)
                                 </Typography>
                             </Grid>

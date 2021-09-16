@@ -33,7 +33,8 @@ const Home = () => {
     return (
         <html>
         <Head>
-            <title>Home - D2R Crypto</title>
+            <title>Home - D2R Crypto, D2R Items, Diablo 2 Resurrected Items, D2R Store, D2R Trading, Buy D2R Items, D2R Items for Sale, Diablo 2 Resurrected Items for Sale</title>
+            <meta name="description" content="Trade Diablo 2 Resurrected D2R items and services for crypto. Earn crypto in your own D2R store. Use crypto you earn to buy D2R items you don't have."/>
         </Head>
         <Grid container spacing={2}>
             <Grid item xs={12}>

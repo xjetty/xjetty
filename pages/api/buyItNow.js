@@ -216,8 +216,8 @@ const buyItNow = async (req, res) => {
 
         const postPreviewSeller = getPostPreview(mode, platforms, category, subcategory, title, description, keywords)
         const postPreviewBuyer = getPostPreview(mode, platforms, category, subcategory, title, description, [])
-        const subjectSeller = `You made a trade! - ${title}`
-        const subjectBuyer = `You made a trade! - ${title}`
+        const subjectSeller = `You made a sale! - ${title}`
+        const subjectBuyer = `You made a purchase! - ${title}`
         const messageSeller = `Go to your message board for review.<br /><br /><a href=${linkBuyer}>${linkBuyer}</a><br /><br />${postPreviewBuyer}<br /><br />${transactionId}`
         const messageBuyer = `Go to your message board for review.<br /><br /><a href=${linkSeller}>${linkSeller}</a><br /><br />${postPreviewSeller}<br /><br />${transactionId}`
         await sendEmail(buyerEmailAddress, subjectSeller, messageSeller)

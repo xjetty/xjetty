@@ -114,7 +114,7 @@ const EscrowActionComponent = (props) => {
                     <Grid item xs={12}>
                         <Button disabled={escrowDetails.escrowReleased || escrowDetails.escrowRefunded}
                                 onClick={(event) => handleButton(event, 'refundEscrow', 'Refund escrow?')}
-                                variant="outlined" color="secondary">Refund escrow</Button>
+                                variant="outlined" color="primary">Refund escrow</Button>
                     </Grid>
                 )}
             </Grid>

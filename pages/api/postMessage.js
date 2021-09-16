@@ -5,7 +5,7 @@ import {sendEmail} from "../../server/sendEmail";
 import {getDataFromToken} from "../../server/getDataFromToken";
 import connectToDb from "../../middleware/connectToDb";
 import {cleanString} from "../../server/cleanString";
-import {getPostPreview} from "../../server/getPostPreview";
+import {getListingPreview} from "../../server/getListingPreview";
 import {getLocalhost} from "../../server/getLocalhost";
 
 const postMessage = async (req, res) => {
@@ -42,16 +42,16 @@ const postMessage = async (req, res) => {
         let emailAddress = ''
         if (user === 'seller') {
             emailAddress = sellerEmailAddress
-            postPreview = getPostPreview(mode, platforms, category, subcategory, title, description, keywords)
+            postPreview = getListingPreview(mode, platforms, category, subcategory, title, description, keywords)
         } else {
             emailAddress = buyerEmailAddress
-            postPreview = getPostPreview(mode, platforms, category, subcategory, title, description, [])
+            postPreview = getListingPreview(mode, platforms, category, subcategory, title, description, [])
         }
         const payload = {user: user, messageBoardId: messageBoardId}
         const messageBoardDataToken = jwt.sign(payload, process.env.JWT_SIGNATURE)
-        let link = `https://d2rcrypto.com/message-board/${messageBoardDataToken}`
+        let link = `https://blockcommerc.com/message-board/${messageBoardDataToken}`
         if (getLocalhost())
-            link = `http://localhost:3010/message-board/${messageBoardDataToken}`
+            link = `http://localhost:3015/message-board/${messageBoardDataToken}`
         const subject = `You have a new message! - ${title}`
         const emailMessage = `Go to your message board to read your message.<br /><br /><a href=${link}>${link}</a><br /><br />${postPreview}`
         const messages = messageBoardData.messages

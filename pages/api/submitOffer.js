@@ -1,9 +1,9 @@
 import {verifyRecaptcha} from '../../server/verifyRecaptcha'
-import Post from '../../models/Post'
+import Post from '../../models/Listing'
 import Offer from '../../models/Offer'
 import jwt from 'jsonwebtoken'
 import {sendEmail} from "../../server/sendEmail";
-import {getPostPreview} from "../../server/getPostPreview";
+import {getListingPreview} from "../../server/getListingPreview";
 import {getLocalhost} from "../../server/getLocalhost";
 
 const submitOffer = async (req, res) => {
@@ -38,7 +38,7 @@ const submitOffer = async (req, res) => {
         const title = post.title
         const description = post.description
         const keywords = post.keywords
-        const postPreview = getPostPreview(mode, platforms, category, subcategory, title, description, keywords)
+        const postPreview = getListingPreview(mode, platforms, category, subcategory, title, description, keywords)
         const sellerEmailAddress = post.emailAddress
         const maximumPercentLessThan = post.maximumPercentLessThan
         const offerUsdAmount = parseFloat(data.usdAmount)
@@ -54,9 +54,9 @@ const submitOffer = async (req, res) => {
         const payload = {postId: postId}
         const JWT_SIGNATURE = process.env.JWT_SIGNATURE
         const token = jwt.sign(payload, JWT_SIGNATURE)
-        let link = `https://d2rcrypto.com/manager/${token}`
+        let link = `https://blockcommerc.com/manager/${token}`
         if (getLocalhost())
-            link = `http://localhost:3010/manager/${token}`
+            link = `http://localhost:3015/manager/${token}`
         const subject = `You got an offer! - ${title}`
         const message = `You can choose to accept your offer in your manager.<br /><br /><a href=${link}>${link}</a><br /><br />${postPreview}`
         if (saleMethod === 'askingPriceAndOffers') {

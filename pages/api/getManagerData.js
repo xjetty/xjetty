@@ -1,5 +1,5 @@
 import {getIdFromToken} from "../../server/getIdFromToken";
-import Post from '../../models/Post'
+import Listing from '../../models/Listing'
 import Offer from '../../models/Offer'
 import jwt from "jsonwebtoken";
 import connectToDb from "../../middleware/connectToDb";
@@ -10,42 +10,40 @@ const getManagerData = async (req, res) => {
     if (method === 'POST') {
         const data = req.body
         const token = data.token
-        const postId = getIdFromToken(token, 'postId')
-        if (!postId)
+        const listingId = getIdFromToken(token, 'listingId')
+        if (!listingId)
             return res.json({success: false, alertMessage: 'Invalid token'})
         await connectToDb()
-        const post = await Post.findById(postId)
-        if (!post)
-            return res.json({success: false, alertMessage: 'Post not found'})
-        const mode = post.mode
-        const platforms = post.platforms
-        const category = post.category
-        const subcategory = post.subcategory
-        const title = post.title
-        const imageLink = post.imageLink
-        const description = post.description
-        const keywords = post.keywords
-        const fixedAmount = post.fixedAmount
-        const usdAmount = post.usdAmount
-        const eosAmount = post.eosAmount
-        const quantity = post.quantity
-        const quantitySold = post.quantitySold
+        const listing = await Listing.findById(listingId)
+        if (!listing)
+            return res.json({success: false, alertMessage: 'Listing not found'})
+        const publicListing = listing.publicListing
+        const worldwide = listing.worldwide
+        const countries = listing.countries
+        const title = listing.title
+        const imageLinks = listing.imageLinks
+        const description = listing.description
+        const keywords = listing.keywords
+        const fixedAmount = listing.fixedAmount
+        const usdAmount = listing.usdAmount
+        const eosAmount = listing.eosAmount
+        const quantity = listing.quantity
+        const quantitySold = listing.quantitySold
         const minimumQuantity = (quantity - (quantity - quantitySold)) + 1
-        const hidden = post.hidden
-        const saleMethod = post.saleMethod
-        const eosAccountName = post.eosAccountName
-        const maximumPercentLessThan = post.maximumPercentLessThan
-        const code = post.code
-        let link = `https://d2rcrypto.com/post/${code}`
-        if (getLocalhost())
-            link = `http://localhost:3010/post/${code}`
-        const postData = {
-            mode: mode,
-            platforms: platforms,
-            category: category,
-            subcategory: subcategory,
+        const hidden = listing.hidden
+        const saleMethod = listing.saleMethod
+        const eosAccountName = listing.eosAccountName
+        const maximumPercentLessThan = listing.maximumPercentLessThan
+        const code = listing.code
+        let link = `https://blockcommerc.com/listing/${code}`
+        if (getLocalhost(req.socket.remoteAddress))
+            link = `http://localhost:3015/listing/${code}`
+        const listingData = {
+            publicListing: publicListing,
+            worldwide: worldwide,
+            countries: countries,
             title: title,
-            imageLink: imageLink,
+            imageLinks: imageLinks,
             description: description,
             keywords: keywords,
             fixedAmount: fixedAmount,
@@ -61,7 +59,7 @@ const getManagerData = async (req, res) => {
             eosAccountName: eosAccountName,
             maximumPercentLessThan: maximumPercentLessThan
         }
-        const offers = await Offer.find({postId: postId})
+        const offers = await Offer.find({listingId: listingId})
         const offerData = []
         offers.forEach((offer) => {
             offerData.push({
@@ -74,7 +72,7 @@ const getManagerData = async (req, res) => {
                 createdOnTimestamp: offer.createdOnTimestamp
             })
         })
-        return res.json({success: true, post: postData, offers: offerData})
+        return res.json({success: true, listing: listingData, offers: offerData})
     } else
         return res.json({success: false})
 }

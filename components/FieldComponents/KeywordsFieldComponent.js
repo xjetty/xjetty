@@ -40,7 +40,7 @@ const KeywordsFieldComponent = () => {
             renderInput={(params) => (
                 <TextField
                     {...params}
-                    variant="outlined"
+                    variant="filled"
                     label="Keywords"
                     placeholder="Keyword"
                 />

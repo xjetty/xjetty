@@ -1,12 +1,12 @@
-import EmailsIndex from '../models/EmailsIndex'
+import BlockcommercEmailIndexNumber from '../models/BlockcommercEmailIndexNumber'
 
 export async function getEmail() {
     let indexNumber = 0
-    let emailsIndex = await EmailsIndex.find()
+    let emailsIndex = await BlockcommercEmailIndexNumber.find()
     emailsIndex = emailsIndex[0]
     let id = ''
     if (!emailsIndex) {
-        const getId = await EmailsIndex.create({index: indexNumber})
+        const getId = await BlockcommercEmailIndexNumber.create({index: indexNumber})
         id = getId._id
     } else {
         indexNumber = emailsIndex.index
@@ -16,13 +16,12 @@ export async function getEmail() {
     emails = emails.split(', ')
     const emailIndices = emails.length - 1
     let email = ''
+    let newIndexNumber = 0
     if (indexNumber <= emailIndices) {
         email = emails[indexNumber]
     } else
         email = emails[0]
-    let newIndexNumber = indexNumber + 1
-    if (newIndexNumber > emailIndices)
-        newIndexNumber = 0
-    await EmailsIndex.updateOne({_id: id}, {$set: {index: newIndexNumber}})
+    newIndexNumber = indexNumber + 1
+    await BlockcommercEmailIndexNumber.updateOne({_id: id}, {$set: {index: newIndexNumber}})
     return email
 }

@@ -1,6 +1,6 @@
 import connectToDb from "../../middleware/connectToDb";
 import cookie from 'cookie'
-import Post from '../../models/Post'
+import Post from '../../models/Listing'
 
 const getPosts = async (req, res) => {
     const method = req.method

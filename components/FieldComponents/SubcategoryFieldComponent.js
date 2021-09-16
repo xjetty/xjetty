@@ -76,7 +76,7 @@ const SubcategoryFieldComponent = () => {
                     {...params}
                     error={subcategoryError}
                     helperText={helperText}
-                    variant="outlined"
+                    variant="filled"
                     label="Subcategory"
                 />
             )}

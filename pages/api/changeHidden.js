@@ -1,5 +1,5 @@
 import {getIdFromToken} from "../../server/getIdFromToken";
-import Post from "../../models/Post";
+import Post from "../../models/Listing";
 import connectToDb from "../../middleware/connectToDb";
 
 const changeHidden = async (req, res) => {

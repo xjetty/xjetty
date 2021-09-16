@@ -3,17 +3,9 @@ import React, {useContext, useMemo} from 'react'
 import {AppContext} from '../../contexts/AppContext'
 import axios from 'axios'
 
-const UpdatePostActionComponent = ({token}) => {
+const UpdateListingActionComponent = ({token}) => {
+
     const {
-        mode,
-        modeError,
-        platforms,
-        platformsError,
-        category,
-        categoryError,
-        subcategory,
-        subcategoryError,
-        subcategoryDisabled,
         usdAmountError,
         eosAmountError,
         eosAccountNameError,
@@ -22,37 +14,37 @@ const UpdatePostActionComponent = ({token}) => {
         usdAmount,
         eosAmount,
         eosAccountName,
-        description,
         memo,
         quantity,
         saleMethod,
         fixedAmount,
         maximumPercentLessThan,
-        setSnackbarOpen,
-        setSnackbarMessage,
-        setShowOffers,
         title,
         titleError,
-        imageLink,
-        keywords
+        description,
+        imageLinks,
+        keywords,
+        publicListing,
+        worldwide,
+        countries,
+        countriesError,
+        setShowOffers,
+        setSnackbarMessage,
+        setSnackbarOpen,
     } = useContext(AppContext)
 
     const [submittingData, setSubmittingData] = React.useState(false)
 
     const disabled = useMemo(() => {
         if (submittingData) return true
-        if (!mode || modeError)
-            return true
-        if (!platforms || platformsError)
-            return true
-        if (!category || categoryError)
-            return true
-        if (!subcategoryDisabled) {
-            if (!subcategory || subcategoryError)
-                return true
-        }
         if (!title || titleError)
             return true
+        if (publicListing) {
+            if (!worldwide) {
+                if (countries.length === 0 || countriesError)
+                    return true
+            }
+        }
         if (fixedAmount === 'usd') {
             if (!usdAmount || usdAmountError)
                 return true
@@ -70,17 +62,12 @@ const UpdatePostActionComponent = ({token}) => {
         return false
     }, [
         submittingData,
-        mode,
-        modeError,
-        platforms,
-        platformsError,
-        category,
-        categoryError,
-        subcategoryDisabled,
-        subcategory,
-        subcategoryError,
         title,
         titleError,
+        publicListing,
+        worldwide,
+        countries,
+        countriesError,
         fixedAmount,
         usdAmount,
         usdAmountError,
@@ -90,18 +77,17 @@ const UpdatePostActionComponent = ({token}) => {
         eosAccountNameError,
         addMemo,
         memo,
-        memoError,
+        memoError
     ])
 
     const updatePost = async () => {
         setSubmittingData(true)
         try {
-            const res = await axios.post('../api/updatePost', {
-                mode: mode,
-                platforms: platforms,
-                category: category,
-                subcategory: subcategory,
-                imageLink: imageLink,
+            const res = await axios.post('../api/updateListing', {
+                publicListing: publicListing,
+                worldwide: worldwide,
+                countries: countries,
+                imageLinks: imageLinks,
                 title: title,
                 description: description,
                 keywords: keywords,
@@ -136,7 +122,7 @@ const UpdatePostActionComponent = ({token}) => {
         <>
             {submittingData && (
                 <Grid item xs={12}>
-                    <LinearProgress color="secondary"/>
+                    <LinearProgress/>
                 </Grid>
             )}
             <Grid item xs={12}>
@@ -145,12 +131,12 @@ const UpdatePostActionComponent = ({token}) => {
                     onClick={updatePost}
                     disabled={disabled}
                     variant="contained"
-                    color="secondary">
-                    Update post
+                    color="primary">
+                    Update listing
                 </Button>
             </Grid>
         </>
     )
 }
 
-export default UpdatePostActionComponent
+export default UpdateListingActionComponent

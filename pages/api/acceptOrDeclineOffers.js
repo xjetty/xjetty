@@ -1,11 +1,11 @@
 import jwt from "jsonwebtoken";
 import {getIdsFromTokens} from "../../server/getIdsFromTokens";
 import Offer from '../../models/Offer'
-import Post from '../../models/Post'
+import Post from '../../models/Listing'
 import {sendEmail} from "../../server/sendEmail";
 import connectToDb from "../../middleware/connectToDb";
 import {getIdFromToken} from "../../server/getIdFromToken";
-import {getPostPreview} from "../../server/getPostPreview";
+import {getListingPreview} from "../../server/getListingPreview";
 import {getLocalhost} from "../../server/getLocalhost";
 
 const acceptOrDeclineOffers = async (req, res) => {
@@ -23,7 +23,7 @@ const acceptOrDeclineOffers = async (req, res) => {
         const subcategory = post.subcategory
         const title = post.title
         const description = post.description
-        const postPreview = getPostPreview(mode, platforms, category, subcategory, title, description, [])
+        const postPreview = getListingPreview(mode, platforms, category, subcategory, title, description, [])
         const subject = `Your offer was accepted! - ${title}`
         const offerTokens = data.offerTokens
         const decision = data.decision
@@ -47,9 +47,9 @@ const acceptOrDeclineOffers = async (req, res) => {
                 if (status === 'Accepted') {
                     const emailAddress = offer.emailAddress
                     const token = jwt.sign({offerId: offer._id}, process.env.JWT_SIGNATURE)
-                    let link = `https://d2rcrypto.com/offer/${token}`
+                    let link = `https://blockcommerc.com/offer/${token}`
                     if (getLocalhost())
-                        link = `http://localhost:3010/offer/${token}`
+                        link = `http://localhost:3015/offer/${token}`
                     const message = `Confirm and pay for your offer.<br /><br /><a href=${link}>${link}</a><br /><br />${postPreview}`
                     await sendEmail(emailAddress, subject, message)
                 }

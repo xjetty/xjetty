@@ -1,7 +1,7 @@
 import {Box, Card, CardActions, CardContent, CardMedia, Grid, Typography} from "@material-ui/core";
-import CreatePostActionComponent from "../ActionComponents/CreatePostActionComponent";
+import CreateListingActionComponent from "../ActionComponents/CreateListingActionComponent";
 import {makeStyles} from "@material-ui/core/styles";
-import CreateUpdateFormPostComponent from "./CreateUpdateFormPostComponent";
+import CreateUpdateListingFormComponent from "./CreateUpdateListingFormComponent";
 
 const useStyles = makeStyles((theme) => ({
     media: {
@@ -10,31 +10,31 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const CreatePostFormComponent = () => {
+const CreateListingFormComponent = () => {
     const classes = useStyles()
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>
-                <Card>
+                <Card variant="outlined">
                     <CardMedia
                         className={classes.media}
-                        image='/logo.png'
-                        title="D2R Crypto Logo"
+                        image='/logo.jpg'
+                        title="BlockCommerc Logo"
                     />
                     <CardContent>
-                        <Typography variant="h5" component="h2">
-                            Create a Post
+                        <Typography variant="h5">
+                            Create a Listing
                         </Typography>
                         <Box my={2}>
-                            <CreateUpdateFormPostComponent create={true}/>
+                            <CreateUpdateListingFormComponent create={true}/>
                         </Box>
                     </CardContent>
                     <CardActions>
-                        <CreatePostActionComponent/>
+                        <CreateListingActionComponent/>
                     </CardActions>
                 </Card>
             </Grid>
         </Grid>
     )
 }
-export default CreatePostFormComponent
+export default CreateListingFormComponent

@@ -1,5 +1,4 @@
-const os = require('os')
-
-export function getLocalhost() {
-    return os.hostname().indexOf('local') > -1
+export function getLocalhost(remoteAddress) {
+    console.log(remoteAddress)
+    return remoteAddress === '127.0.0.1' || remoteAddress === 'localhost'
 }

@@ -25,13 +25,12 @@ const Manager = ({token}) => {
         setLinkCode,
         setDefaultQuantity,
         setTitle,
-        setImageLink,
+        setImageLinks,
         setKeywords,
-        setMode,
-        setPlatforms,
-        setCategory,
-        setSubcategory,
         setHideRecaptcha,
+        setPublicListing,
+        setWorldwide,
+        setCountries,
     } = useContext(AppContext)
 
     const [show, setShow] = React.useState(false)
@@ -43,34 +42,33 @@ const Manager = ({token}) => {
             })
             const data = res.data
             if (data.success) {
-                const post = data.post
+                const listing = data.listing
                 const offers = data.offers
                 setOffers(offers)
-                setMode(post.mode)
-                setPlatforms(post.platforms)
-                setCategory(post.category)
-                setSubcategory(post.subcategory)
-                setTitle(post.title)
-                setImageLink(post.imageLink)
-                setKeywords(post.keywords)
-                setDescription(post.description)
-                setQuantity(post.quantity)
-                setDefaultQuantity(post.quantity)
-                setSaleMethod(post.saleMethod)
-                setFixedAmount(post.fixedAmount)
-                if (post.fixedAmount === 'usd') {
-                    setUsdAmount(post.usdAmount)
-                } else setEosAmount(post.eosAmount)
-                setMaximumPercentLessThan(post.maximumPercentLessThan)
-                if (post.saleMethod !== 'askingPriceOnly')
+                setPublicListing(listing.publicListing)
+                setWorldwide(listing.worldwide)
+                setCountries(listing.countries)
+                setTitle(listing.title)
+                setImageLinks(listing.imageLinks)
+                setKeywords(listing.keywords)
+                setDescription(listing.description)
+                setQuantity(listing.quantity)
+                setDefaultQuantity(listing.quantity)
+                setSaleMethod(listing.saleMethod)
+                setFixedAmount(listing.fixedAmount)
+                if (listing.fixedAmount === 'usd') {
+                    setUsdAmount(listing.usdAmount)
+                } else setEosAmount(listing.eosAmount)
+                setMaximumPercentLessThan(listing.maximumPercentLessThan)
+                if (listing.saleMethod !== 'askingPriceOnly')
                     setShowOffers(true)
-                setEosAccountName(post.eosAccountName)
-                setAddMemo(post.addMemo)
-                setMemo(post.memo)
-                setLink(post.link)
-                setHidden(post.hidden)
-                setMinimumQuantity(post.minimumQuantity)
-                setLinkCode(post.code)
+                setEosAccountName(listing.eosAccountName)
+                setAddMemo(listing.addMemo)
+                setMemo(listing.memo)
+                setLink(listing.link)
+                setHidden(listing.hidden)
+                setMinimumQuantity(listing.minimumQuantity)
+                setLinkCode(listing.code)
                 setShow(true)
             } else if (data && data.alertMessage) {
                 alert(data.alertMessage)
@@ -90,7 +88,7 @@ const Manager = ({token}) => {
     return (
         <html>
             <Head>
-                <title>Manager - D2R Crypto</title>
+                <title>Manager - BlockCommerc</title>
                 <meta name="robots" content="noindex"/>
             </Head>
             <UpdateEosRate/>

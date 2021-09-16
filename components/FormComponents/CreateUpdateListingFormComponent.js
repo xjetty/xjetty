@@ -1,5 +1,8 @@
 import {Divider, Grid, Typography} from "@material-ui/core";
+import ImageLinkPreviewComponent from "../ImageLinkPreviewComponent";
+import TitleFieldComponent from "../FieldComponents/TitleFieldComponent";
 import DescriptionFieldComponent from "../FieldComponents/DescriptionFieldComponent";
+import KeywordsFieldComponent from "../FieldComponents/KeywordsFieldComponent";
 import QuantityFieldComponent from "../FieldComponents/QuantityFieldComponent";
 import SaleMethodFieldComponent from "../FieldComponents/SaleMethodFieldComponent";
 import FixedAmountFieldComponent from "../FieldComponents/FixedAmountFieldComponent";
@@ -9,57 +12,55 @@ import MaximumPercentLessThanFieldComponent from "../FieldComponents/MaximumPerc
 import EosAccountNameFieldComponent from "../FieldComponents/EosAccountNameFieldComponent";
 import AddMemoFieldComponent from "../FieldComponents/AddMemoFieldComponent";
 import MemoFieldComponent from "../FieldComponents/MemoFieldComponent";
+import EmailAddressFieldComponent from "../FieldComponents/EmailAddressFieldComponent";
 import React, {useContext} from "react";
-import UpdatePostActionComponent from "../ActionComponents/UpdatePostActionComponent";
 import {AppContext} from "../../contexts/AppContext";
-import TitleFieldComponent from "../FieldComponents/TitleFieldComponent";
-import ImageLinkPreviewComponent from "../ImageLinkPreviewComponent";
-import KeywordsFieldComponent from "../FieldComponents/KeywordsFieldComponent";
-import ModeFieldComponent from "../FieldComponents/ModeFieldComponent";
-import PlatformsFieldComponent from "../FieldComponents/PlatformsFieldComponent";
-import CategoryFieldComponent from "../FieldComponents/CategoryFieldComponent";
-import SubcategoryFieldComponent from "../FieldComponents/SubcategoryFieldComponent";
-import GetImageLinkButton from "../GetImageLinkButton";
-import ImageLinkFieldComponent from "../FieldComponents/ImageLinkFieldComponent";
+import UpdateListingActionComponent from "../ActionComponents/UpdateListingActionComponent";
+import ClearKeywordStorageComponent from "../ClearKeywordStorageComponent";
+import PublicListingFieldComponent from "../FieldComponents/PublicListingFieldComponent";
+import WorldwideFieldComponent from "../FieldComponents/WorldwideFieldComponent";
+import CountriesFieldComponent from "../FieldComponents/CountriesFieldComponent";
+import ImageLinksFieldComponent from "../FieldComponents/ImageLinksFieldComponent";
 
-const UpdatePostFormComponent = (props) => {
+const CreateUpdateListingFormComponent = ({create, token}) => {
+    const {
+        saleMethod,
+        addMemo,
+        publicListing,
+        worldwide,
 
-    const {saleMethod, addMemo, imageLink} = useContext(AppContext)
-
+    } = useContext(AppContext)
     return (
         <Grid container spacing={2}>
-            <Grid item xs={12} md={6}>
-                <ModeFieldComponent/>
+            <Grid item xs={12}>
+                <PublicListingFieldComponent/>
             </Grid>
-            <Grid item xs={12} md={6}>
-                <PlatformsFieldComponent/>
-            </Grid>
-            <Grid item xs={12} md={6}>
-                <CategoryFieldComponent/>
-            </Grid>
-            <Grid item xs={12} md={6}>
-                <SubcategoryFieldComponent/>
-            </Grid>
+            {publicListing && (
+                <>
+                    <Grid item xs={12}>
+                        <KeywordsFieldComponent/>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <ClearKeywordStorageComponent/>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <WorldwideFieldComponent/>
+                    </Grid>
+                    {!worldwide && (<Grid item xs={12}>
+                        <CountriesFieldComponent/>
+                    </Grid>)}
+                </>
+            )}
             <Grid item xs={12}>
                 <Divider/>
             </Grid>
-            {!imageLink.trim() && (<Grid item xs={12}>
-                <GetImageLinkButton/>
-            </Grid>)}
-            {imageLink.trim() && (<Grid item xs={12}>
-                <ImageLinkPreviewComponent/>
-            </Grid>)}
-            <Grid item xs={12}>
-                <ImageLinkFieldComponent/>
-            </Grid>
+            <ImageLinkPreviewComponent/>
+            <ImageLinksFieldComponent/>
             <Grid item xs={12}>
                 <TitleFieldComponent/>
             </Grid>
             <Grid item xs={12}>
                 <DescriptionFieldComponent/>
-            </Grid>
-            <Grid item xs={12}>
-                <KeywordsFieldComponent/>
             </Grid>
             <Grid item xs={12}>
                 <Divider/>
@@ -116,8 +117,15 @@ const UpdatePostFormComponent = (props) => {
                     <MemoFieldComponent/>
                 </Grid>
             )}
+            {create && (<><Grid item xs={12}>
+                <Divider/>
+            </Grid>
+                <Grid item xs={12} md={6}>
+                    <EmailAddressFieldComponent/>
+                </Grid></>)}
+            {!create && (<UpdateListingActionComponent token={token}/>)}
         </Grid>
     )
 }
 
-export default UpdatePostFormComponent
+export default CreateUpdateListingFormComponent

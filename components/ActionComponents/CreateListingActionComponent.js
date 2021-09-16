@@ -4,7 +4,7 @@ import {AppContext} from '../../contexts/AppContext'
 import axios from 'axios'
 import {Alert, AlertTitle} from "@material-ui/lab";
 
-const CreatePostActionComponent = () => {
+const CreateListingActionComponent = () => {
     const {
         usdAmountError,
         eosAmountError,
@@ -27,52 +27,37 @@ const CreatePostActionComponent = () => {
         setEosAmount,
         setUsdAmountError,
         setEosAmountError,
-        setEosAccountNameError,
-        setMemoError,
-        setEmailAddressError,
         recaptchaResponse,
         recaptchaRef,
         title,
         titleError,
         description,
-        imageLink,
+        imageLinks,
         keywords,
         setTitle,
         setTitleError,
         setDescription,
-        setDescriptionError,
-        setImageLink,
-        subcategoryDisabled,
-        mode,
-        platforms,
-        category,
-        subcategory,
-        modeError,
-        platformsError,
-        categoryError,
-        subcategoryError,
-        setCategory,
-        setSubcategory,
+        setImageLinks,
+        publicListing,
+        worldwide,
+        countries,
+        countriesError,
         setKeywords,
     } = useContext(AppContext)
 
     const [submittingData, setSubmittingData] = React.useState(false)
-    const [postCreated, setPostCreated] = React.useState(false)
+    const [listingCreated, setListingCreated] = React.useState(false)
 
     const disabled = useMemo(() => {
         if (submittingData) return true
-        if (!mode || modeError)
-            return true
-        if (!platforms || platformsError)
-            return true
-        if (!category || categoryError)
-            return true
-        if (!subcategoryDisabled) {
-            if (!subcategory || subcategoryError)
-                return true
-        }
         if (!title || titleError)
             return true
+        if (publicListing) {
+            if (!worldwide) {
+                if (countries.length === 0 || countriesError)
+                    return true
+            }
+        }
         if (fixedAmount === 'usd') {
             if (!usdAmount || usdAmountError)
                 return true
@@ -92,17 +77,12 @@ const CreatePostActionComponent = () => {
         return false
     }, [
         submittingData,
-        mode,
-        modeError,
-        platforms,
-        platformsError,
-        category,
-        categoryError,
-        subcategoryDisabled,
-        subcategory,
-        subcategoryError,
         title,
         titleError,
+        publicListing,
+        worldwide,
+        countries,
+        countriesError,
         fixedAmount,
         usdAmount,
         usdAmountError,
@@ -119,12 +99,11 @@ const CreatePostActionComponent = () => {
 
     const createPost = async () => {
         try {
-            const res = await axios.post('api/createPost', {
-                mode: mode,
-                platforms: platforms,
-                category: category,
-                subcategory: subcategory,
-                imageLink: imageLink,
+            const res = await axios.post('api/createListing', {
+                publicListing: publicListing,
+                worldwide: worldwide,
+                countries: countries,
+                imageLinks: imageLinks,
                 title: title,
                 description: description,
                 keywords: keywords,
@@ -142,23 +121,18 @@ const CreatePostActionComponent = () => {
             })
             const data = res.data
             if (data.success) {
-                setImageLink('')
+                setImageLinks([''])
                 setTitle('')
                 setDescription('')
                 const newSliderKey = sliderKey + 1
                 setSliderKey(newSliderKey)
                 setUsdAmount('')
                 setEosAmount('')
-                setCategory(null)
-                setSubcategory(null)
                 setKeywords([])
                 setTitleError(false)
                 setUsdAmountError(false)
                 setEosAmountError(false)
-                setEosAccountNameError(false)
-                setMemoError(false)
-                setEmailAddressError(false)
-                setPostCreated(true)
+                setListingCreated(true)
             } else if (data && data.alertMessage) {
                 alert(data.alertMessage)
             } else
@@ -177,7 +151,7 @@ const CreatePostActionComponent = () => {
     }, [recaptchaResponse])
 
     const handle = () => {
-        setPostCreated(false)
+        setListingCreated(false)
         setSubmittingData(true)
         recaptchaRef.current.execute()
     }
@@ -186,14 +160,14 @@ const CreatePostActionComponent = () => {
         <Grid container spacing={2}>
             {submittingData && (
                 <Grid item xs={12}>
-                    <LinearProgress color="secondary"/>
+                    <LinearProgress/>
                 </Grid>
             )}
-            {postCreated && (
+            {listingCreated && (
                 <Grid item xs={12}>
                     <Alert severity="success">
                         <AlertTitle>Success</AlertTitle>
-                        Your post was created. A link to your manager was sent to your email.
+                        Your listing was created. A link to your manager was sent to your email.
                     </Alert>
                 </Grid>
             )}
@@ -203,12 +177,12 @@ const CreatePostActionComponent = () => {
                     onClick={handle}
                     disabled={disabled}
                     variant="contained"
-                    color="secondary">
-                    Create post
+                    color="primary">
+                    Create listing
                 </Button>
             </Grid>
         </Grid>
     )
 }
 
-export default CreatePostActionComponent
+export default CreateListingActionComponent

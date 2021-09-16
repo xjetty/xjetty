@@ -3,7 +3,7 @@ import React from "react";
 import HiddenActionComponent from "../ActionComponents/HiddenActionComponent";
 import DeleteActionComponent from "../ActionComponents/DeleteActionComponent";
 
-const PostOptionsFormComponent = (props) => {
+const ListingOptionsFormComponent = (props) => {
     return (
        <>
            <Grid container spacing={2}>
@@ -18,4 +18,4 @@ const PostOptionsFormComponent = (props) => {
     )
 }
 
-export default PostOptionsFormComponent
+export default ListingOptionsFormComponent

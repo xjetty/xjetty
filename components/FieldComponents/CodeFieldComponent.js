@@ -33,7 +33,7 @@ const CodeFieldComponent = () => {
             value={linkCode}
             fullWidth
             label="Code"
-            variant="outlined"
+            variant="filled"
         />
     )
 }

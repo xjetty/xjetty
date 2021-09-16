@@ -2,7 +2,7 @@ import React, {useContext, useEffect} from "react";
 import {AppContext} from "../../contexts/AppContext";
 import axios from "axios";
 import Head from "next/head";
-import PostComponent from "../../components/PostComponent";
+import ListingComponent from "../../components/ListingComponent";
 import UpdateEosRate from "../../components/UpdateEosRate";
 
 const Offer = ({token}) => {
@@ -90,11 +90,11 @@ const Offer = ({token}) => {
     return (
         <>
         <Head>
-            <title>Offer - D2R Crypto</title>
+            <title>Offer - BlockCommerc</title>
             <meta name="robots" content="noindex"/>
         </Head>
             <UpdateEosRate/>
-        {show && <PostComponent token={token}/>}
+        {show && <ListingComponent token={token}/>}
         </>
     )
 

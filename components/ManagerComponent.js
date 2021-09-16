@@ -6,7 +6,7 @@ import {
 } from '@material-ui/core'
 import React, {useContext, useEffect} from 'react'
 import LinkFieldComponent from './FieldComponents/LinkFieldComponent'
-import PostOptionsFormComponent from "./FormComponents/PostOptionsFormComponent";
+import ListingOptionsFormComponent from "./FormComponents/ListingOptionsFormComponent";
 import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
@@ -14,7 +14,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import {AppContext} from "../contexts/AppContext";
 import OffersTableComponent from "./OffersTableComponent";
 import CodeFieldComponent from "./FieldComponents/CodeFieldComponent";
-import CreateUpdateFormPostComponent from "./FormComponents/CreateUpdateFormPostComponent";
+import CreateUpdateListingFormComponent from "./FormComponents/CreateUpdateListingFormComponent";
 
 const useStyles = makeStyles((theme) => ({
     media: {
@@ -54,11 +54,11 @@ const ManagerComponent = ({token}) => {
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>
-                <Card>
+                <Card variant="outlined">
                     <CardMedia
                         className={classes.media}
-                        image='/logo.png'
-                        title="D2R Crypto Logo"
+                        image='/logo.jpg'
+                        title="BlockCommerc Logo"
                     />
                     <CardContent>
                         <Grid container spacing={2}>
@@ -78,10 +78,10 @@ const ManagerComponent = ({token}) => {
                                         </TabList>
                                     </AppBar>
                                     <TabPanel value="1">
-                                        <PostOptionsFormComponent token={token}/>
+                                        <ListingOptionsFormComponent token={token}/>
                                     </TabPanel>
                                     <TabPanel value="2">
-                                        <CreateUpdateFormPostComponent create={false} token={token}/>
+                                        <CreateUpdateListingFormComponent create={false} token={token}/>
                                     </TabPanel>
                                     <TabPanel value="3">
                                         <OffersTableComponent token={token}/>
@@ -90,15 +90,15 @@ const ManagerComponent = ({token}) => {
                                     <TabContext value={tabValue}>
                                         <AppBar position="static">
                                             <TabList onChange={handleTabChange}>
-                                                <Tab label="Post options" value="1"/>
-                                                <Tab label="Update Post" value="2"/>
+                                                <Tab label="Listing options" value="1"/>
+                                                <Tab label="Update listing" value="2"/>
                                             </TabList>
                                         </AppBar>
                                         <TabPanel value="1">
-                                            <PostOptionsFormComponent token={token}/>
+                                            <ListingOptionsFormComponent token={token}/>
                                         </TabPanel>
                                         <TabPanel value="2">
-                                            <CreateUpdateFormPostComponent create={false} token={token}/>
+                                            <CreateUpdateListingFormComponent create={false} token={token}/>
                                         </TabPanel>
                                     </TabContext>
                                 )}
@@ -107,7 +107,6 @@ const ManagerComponent = ({token}) => {
                     </CardContent>
                 </Card>
             </Grid>
-
         </Grid>
     )
 }

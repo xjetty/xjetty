@@ -1,20 +1,17 @@
 module.exports = {
-    images: {
-        domains: ['i.postimg.cc'],
-    },
     reactStrictMode: true,
     env: {
         MONGO_URI:
             'mongodb+srv://user:Snapshooter!23@blockcommercapp.bslzk.mongodb.net/BlockCommercApp?retryWrites=true&w=majority',
-        JWT_SIGNATURE: 'mxeYF1abt8n8EkeJrF8m',
-        RECAPTCHA_SITE_KEY: '6LcESmYcAAAAAEChpBIeMxRPribXsbfa9rzFyn2z',
-        RECAPTCHA_SECRET_KEY: '6LcESmYcAAAAAJgdOjJToKIcFYOk6mMTLRjoyvem',
+        JWT_SIGNATURE: 'fn2HmaJdLr9UKIoSfgYr',
+        RECAPTCHA_SITE_KEY: '6Le-jL0bAAAAALtVFAZwX-GB2KHwl8wUmGP7T_VE',
+        RECAPTCHA_SECRET_KEY: '6Le-jL0bAAAAAJowKEnL-rWbiWaLaY8ibNr260XT',
         EOS_NODE_SERVER_MAIN: 'https://eos.greymass.com/',
         EOS_NODE_SERVER_BACKUP: 'https://api.eosn.io/',
-        ESCROW_EOS_ACCOUNT_NAME: 'd2rcryptoapp',
+        ESCROW_EOS_ACCOUNT_NAME: 'blockcommerc',
         ESCROW_ASSOCIATIVE_PRIVATE_KEY:
-            '5JgqYUwXtcrjqSyFQKrZCjYPJmctXgva4HeTwsN8D65cgNef4Jm',
+            '5KD6WKJ2ctuZKpYedyZjE9TcFAC79HfSzLZR5FBFs671sN5z9hY',
         ESCROW_MEMO: '',
-        EMAILS:"d2rcrypto1@gmail.com, d2rcrypto2@gmail.com, d2rcrypto3@gmail.com, d2rcrypto4@gmail.com, d2rcrypto5@gmail.com"
+        EMAILS: "blockcommerc1@gmail.com, blockcommerc2@gmail.com, blockcommerc3@gmail.com"
     }
 }

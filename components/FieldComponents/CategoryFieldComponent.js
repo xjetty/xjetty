@@ -54,7 +54,7 @@ const CategoryFieldComponent = () => {
                     {...params}
                     error={categoryError}
                     helperText={helperText}
-                    variant="outlined"
+                    variant="filled"
                     label="Category"
                 />
             )}

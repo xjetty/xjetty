@@ -1,4 +1,4 @@
-import Post from '../../models/Post'
+import Post from '../../models/Listing'
 import MessageBoard from '../../models/MessageBoard'
 import Offer from '../../models/Offer'
 import {getEosRate} from '../../server/getEosRate'
@@ -17,7 +17,7 @@ import {cleanString} from "../../server/cleanString";
 import {getDataFromToken} from "../../server/getDataFromToken";
 import {validateEosAccountName} from "../../server/validateEosAccountName";
 import Escrow from '../../models/Escrow'
-import {getPostPreview} from "../../server/getPostPreview";
+import {getListingPreview} from "../../server/getListingPreview";
 import {getLocalhost} from "../../server/getLocalhost";
 
 const buyItNow = async (req, res) => {
@@ -207,15 +207,15 @@ const buyItNow = async (req, res) => {
         const JWT_SIGNATURE = process.env.JWT_SIGNATURE
         const buyerToken = jwt.sign(buyerPayload, JWT_SIGNATURE)
         const sellerToken = jwt.sign(sellerPayload, JWT_SIGNATURE)
-        let linkBuyer = `https://d2rcrypto.com/message-board/${buyerToken}`
-        let linkSeller = `https://d2rcrypto.com/message-board/${sellerToken}`
+        let linkBuyer = `https://blockcommerc.com/message-board/${buyerToken}`
+        let linkSeller = `https://blockcommerc.com/message-board/${sellerToken}`
         if (getLocalhost()) {
-            linkBuyer = `http://localhost:3010/message-board/${buyerToken}`
-            linkSeller = `http://localhost:3010/message-board/${sellerToken}`
+            linkBuyer = `http://localhost:3015/message-board/${buyerToken}`
+            linkSeller = `http://localhost:3015/message-board/${sellerToken}`
         }
 
-        const postPreviewSeller = getPostPreview(mode, platforms, category, subcategory, title, description, keywords)
-        const postPreviewBuyer = getPostPreview(mode, platforms, category, subcategory, title, description, [])
+        const postPreviewSeller = getListingPreview(mode, platforms, category, subcategory, title, description, keywords)
+        const postPreviewBuyer = getListingPreview(mode, platforms, category, subcategory, title, description, [])
         const subjectSeller = `You made a sale! - ${title}`
         const subjectBuyer = `You made a purchase! - ${title}`
         const messageSeller = `Go to your message board for review.<br /><br /><a href=${linkBuyer}>${linkBuyer}</a><br /><br />${postPreviewBuyer}<br /><br />${transactionId}`

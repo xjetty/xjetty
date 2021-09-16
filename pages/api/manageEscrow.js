@@ -6,7 +6,7 @@ import connectToDb from "../../middleware/connectToDb";
 import {getDataFromToken} from "../../server/getDataFromToken";
 import {sendEmail} from "../../server/sendEmail";
 import jwt from "jsonwebtoken";
-import {getPostPreview} from "../../server/getPostPreview";
+import {getListingPreview} from "../../server/getListingPreview";
 import {getLocalhost} from "../../server/getLocalhost";
 
 const manageEscrow = async (req, res) => {
@@ -61,14 +61,14 @@ const manageEscrow = async (req, res) => {
         const sellerPayload = {user: 'seller', messageBoardId: messageBoardId}
         const buyerToken = jwt.sign(buyerPayload, process.env.JWT_SIGNATURE)
         const sellerToken = jwt.sign(sellerPayload, process.env.JWT_SIGNATURE)
-        let linkBuyer = `https://d2rcrypto.com/message-board/${buyerToken}`
-        let linkSeller = `https://d2rcrypto.com/message-board/${sellerToken}`
+        let linkBuyer = `https://blockcommerc.com/message-board/${buyerToken}`
+        let linkSeller = `https://blockcommerc.com/message-board/${sellerToken}`
         if (getLocalhost()) {
-            linkBuyer = `http://localhost:3010/message-board/${buyerToken}`
-            linkSeller = `http://localhost:3010/message-board/${sellerToken}`
+            linkBuyer = `http://localhost:3015/message-board/${buyerToken}`
+            linkSeller = `http://localhost:3015/message-board/${sellerToken}`
         }
-        const buyerPostPreview = getPostPreview(mode, platforms, category, subcategory, title, description, [])
-        const sellerPostPreview = getPostPreview(mode, platforms, category, subcategory, title, description, keywords)
+        const buyerPostPreview = getListingPreview(mode, platforms, category, subcategory, title, description, [])
+        const sellerPostPreview = getListingPreview(mode, platforms, category, subcategory, title, description, keywords)
         const messageSeller = `Go to your message board for review.<br /><br /><a href=${linkBuyer}>${linkBuyer}</a><br /><br />${sellerPostPreview}`
         const messageBuyer = `Go to your message board for review.<br /><br /><a href=${linkSeller}>${linkSeller}</a><br /><br />${buyerPostPreview}`
         let transactionId = ''

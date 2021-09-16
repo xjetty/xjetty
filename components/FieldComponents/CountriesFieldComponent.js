@@ -2,55 +2,58 @@ import React, {useContext, useMemo} from 'react'
 import {AppContext} from "../../contexts/AppContext"
 import {TextField} from "@material-ui/core";
 import {Autocomplete} from "@material-ui/lab";
-import {modeOptions} from '../../modeOptions'
+import {countryOptions} from '../../countryOptions'
 
-const ModeFieldComponent = () => {
-    const {mode, setMode, modeError, setModeError} = useContext(AppContext)
+const CountriesFieldComponent = () => {
+    const {countries, setCountries, countriesError, setCountriesError} = useContext(AppContext)
 
     const handleChange = (event, value) => {
-        if (value) {
-            setModeError(false)
+        if (value.length > 0) {
+            setCountriesError(false)
         } else
-            setModeError(true)
-        setMode(value)
+            setCountriesError(true)
+        setCountries(value)
     }
 
     const checkError = (event, reason) => {
         if (reason === 'blur') {
-            if (mode) {
-                setModeError(false)
+            if (countries.length > 0) {
+                setCountriesError(false)
             } else
-                setModeError(true)
+                setCountriesError(true)
         }
     }
 
     const helperText = useMemo(() => {
-        if (modeError) {
-            return 'Mode is required'
+        if (countriesError) {
+            return 'Countries is required'
         } else return ''
-    }, [modeError])
+    }, [countriesError])
 
     return (
         <Autocomplete
-            value={mode}
             openOnFocus
             onClose={checkError}
             onChange={handleChange}
-            options={modeOptions}
+            multiple
+            value={countries}
+            disableCloseOnSelect
+            options={countryOptions}
             getOptionLabel={(option) => option}
             filterSelectedOptions
             renderInput={(params) => (
                 <TextField
-                    required
                     {...params}
-                    error={modeError}
+                    required
+                    error={countriesError}
                     helperText={helperText}
                     variant="filled"
-                    label="Mode"
+                    label="Countries"
+                    placeholder="Country"
                 />
             )}
         />
     )
 }
 
-export default ModeFieldComponent
+export default CountriesFieldComponent

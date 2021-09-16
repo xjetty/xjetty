@@ -1,11 +1,11 @@
 import Head from "next/head";
 import React, {useContext, useEffect} from "react";
-import PostComponent from "../../components/PostComponent";
+import ListingComponent from "../../components/ListingComponent";
 import {AppContext} from "../../contexts/AppContext";
 import axios from "axios";
 import UpdateEosRate from "../../components/UpdateEosRate";
 
-const Post = ({code}) => {
+const Listing = ({code}) => {
 
     const [show, setShow] = React.useState(false)
 
@@ -17,20 +17,19 @@ const Post = ({code}) => {
         setSaleMethod,
         setEosAccountItems,
         setTitle,
-        setImageLink,
-        setMode,
-        setPlatforms,
-        setCategory,
-        setSubcategory,
+        setImageLinks,
         setMinAmount,
         setCreatedOnTimestamp,
         setLastUpdatedOnTimestamp,
         setHideRecaptcha,
         setEosAccount,
+        setPublicListing,
+        setWorldwide,
+        setCountries,
     } = useContext(AppContext)
 
     useEffect(() => {
-        getPostData()
+        getListingData()
     }, [])
 
     const setEosAccountItems2 = () => {
@@ -42,21 +41,20 @@ const Post = ({code}) => {
             setEosAccount(JSON.parse(localStorage.getItem('eosAccountToken')))
     }
 
-    const getPostData = async () => {
+    const getListingData = async () => {
         try {
-            const res = await axios.post('../api/getPostData', {
+            const res = await axios.post('../api/getListingData', {
                 code: code
             })
             const data = res.data
             if (data.success) {
                 setEosAccountItems2()
                 const post = data.post
-                const mode = post.mode
-                const platforms = post.platforms
-                const category = post.category
-                const subcategory = post.subcategory
+                const publicListing = post.publicListing
+                const worldwide = post.worldwide
+                const countries = post.countries
                 const title = post.title
-                const imageLink = post.imageLink
+                const imageLinks = post.imageLinks
                 const description = post.description
                 const fixedAmount = post.fixedAmount
                 const usdAmount = post.usdAmount
@@ -66,12 +64,11 @@ const Post = ({code}) => {
                     setHideRecaptcha(true)
                 const createdOnTimestamp = post.createdOnTimestamp
                 const lastUpdatedOnTimestamp = post.lastUpdatedOnTimestamp
-                setMode(mode)
-                setPlatforms(platforms)
-                setCategory(category)
-                setSubcategory(subcategory)
+                setPublicListing(publicListing)
+                setWorldwide(worldwide)
+                setCountries(countries)
                 setTitle(title)
-                setImageLink(imageLink)
+                setImageLinks(imageLinks)
                 setFixedAmount(fixedAmount)
                 setUsdAmountValue(usdAmount)
                 setEosAmountValue(eosAmount)
@@ -93,11 +90,11 @@ const Post = ({code}) => {
     return (
         <html>
             <Head>
-                <title>Post - D2R Crypto</title>
+                <title>Listing - BlockCommerc</title>
                 <meta name="robots" content="noindex"/>
             </Head>
             <UpdateEosRate/>
-            {show && <PostComponent code={code}/>}
+            {show && <ListingComponent code={code}/>}
         </html>
     )
 }
@@ -109,4 +106,4 @@ export async function getServerSideProps({params}) {
     }
 }
 
-export default Post
+export default Listing

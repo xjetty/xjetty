@@ -2,7 +2,7 @@ import emailValidator from "email-validator";
 
 const mongoose = require('mongoose')
 const OfferSchema = new mongoose.Schema({
-    postId: {
+    listingId: {
         type: String
     },
     emailAddress: {

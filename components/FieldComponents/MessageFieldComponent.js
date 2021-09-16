@@ -40,7 +40,7 @@ const MessageFieldComponent = () => {
             fullWidth
             label="Message"
             onBlur={checkError}
-            variant="outlined"
+            variant="filled"
             multiline
         />
     )

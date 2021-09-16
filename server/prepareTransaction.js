@@ -1,4 +1,4 @@
-import Post from '../models/Post'
+import Post from '../models/Listing'
 import {updatePendingTransactions} from './updatePendingTransactions'
 
 export async function prepareTransaction(postId) {

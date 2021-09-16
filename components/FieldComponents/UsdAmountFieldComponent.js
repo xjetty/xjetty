@@ -108,7 +108,7 @@ const UsdAmountFieldComponent = () => {
             InputProps={{inputComponent: formatAmount, readOnly: fixedAmount === 'eos'}}
             value={usdAmount}
             onChange={handle}
-            variant="outlined"
+            variant="filled"
         />
     )
 }

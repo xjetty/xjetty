@@ -18,7 +18,7 @@ const ClearKeywordStorageComponent = () => {
         setSnackbarOpen(true)
     }
     return (
-        <Button onClick={clear} variant="text" color="primary" endIcon={<Delete/>}>
+        <Button onClick={clear} variant="text" color="secondary" endIcon={<Delete/>}>
             Clear keyword storage
         </Button>
     )

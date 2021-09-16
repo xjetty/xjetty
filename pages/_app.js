@@ -1,6 +1,6 @@
 import '../styles/globals.css'
 import {createTheme} from '@material-ui/core/styles'
-import {deepPurple, red} from "@material-ui/core/colors";
+import {blue, red} from "@material-ui/core/colors";
 import {AppContext} from "../contexts/AppContext";
 import React, {useState} from "react"
 import {CssBaseline, ThemeProvider} from "@material-ui/core";
@@ -8,9 +8,8 @@ import LayoutComponent from "../components/LayoutComponent";
 
 const theme = createTheme({
     palette: {
-        primary: {main: red[500]},
-        secondary: {main: deepPurple[500]},
-        type: 'dark'
+        primary: {main: blue[500]},
+        secondary: {main: red[500]},
     }
 })
 
@@ -68,7 +67,7 @@ function MyApp({Component, pageProps}) {
     const [eosAccountItems, setEosAccountItems] = React.useState([])
     const [showOffers, setShowOffers] = React.useState(false)
     const [escrowDetails, setEscrowDetails] = React.useState({})
-    const [publicListing, setPublicListing] = React.useState(false)
+    const [publicListing, setPublicListing] = React.useState(true)
     const [title, setTitle] = React.useState('')
     const [keywords, setKeywords] = React.useState([])
     const [keywordItems, setKeywordItems] = React.useState([])
@@ -92,6 +91,12 @@ function MyApp({Component, pageProps}) {
     const [hideRecaptcha, setHideRecaptcha] = useState(false)
     const [createdOnTimestamp, setCreatedOnTimestamp] = useState('')
     const [lastUpdatedOnTimestamp, setLastUpdatedOnTimestamp] = useState('')
+
+    const [countries, setCountries] = useState([])
+    const [countriesError, setCountriesError] = useState(false)
+    const [worldwide, setWorldwide] = useState(true)
+    const [imageLinks, setImageLinks] = useState([''])
+
     React.useEffect(() => {
         const jssStyles = document.querySelector('#jss-server-side');
         if (jssStyles)
@@ -100,6 +105,15 @@ function MyApp({Component, pageProps}) {
     return (
         <AppContext.Provider
             value={{
+                countries,
+                setCountries,
+                countriesError,
+                setCountriesError,
+                worldwide,
+                setWorldwide,
+                imageLinks,
+                setImageLinks,
+
                 hideRecaptcha,
                 setHideRecaptcha,
                 mode,

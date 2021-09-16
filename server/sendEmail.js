@@ -6,7 +6,7 @@ export async function sendEmail(emailAddress, subject, message) {
     const user = await getEmail()
     const transporter = nodemailer.createTransport({
         port: 465,
-        host: "smtp.gmail.com",
+        host: 'smtp.gmail.com',
         auth: {
             user: user,
             pass: 'Snapshooter1'
@@ -22,7 +22,7 @@ export async function sendEmail(emailAddress, subject, message) {
         })
     })
     const mailData = {
-        from: `D2R Crypto <${user}>`,
+        from: `BlockCommerc <${user}>`,
         to: emailAddress,
         subject: subject,
         html: message

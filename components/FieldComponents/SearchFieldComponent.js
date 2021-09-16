@@ -16,7 +16,7 @@ const CommentsFieldComponent = () => {
             onChange={handle}
             fullWidth
             label="Search"
-            variant="outlined"
+            variant="filled"
         />
     )
 }

@@ -59,7 +59,7 @@ const PostDetailsComponent = (props) => {
                                 value={props.createdOnDatetime}
                                 fullWidth
                                 label="Purchased on"
-                                variant="outlined"
+                                variant="filled"
                                 InputProps={{
                                     readOnly: true,
                                 }}
@@ -70,7 +70,7 @@ const PostDetailsComponent = (props) => {
                                 value={props.postDetails.mode}
                                 fullWidth
                                 label="Mode"
-                                variant="outlined"
+                                variant="filled"
                                 InputProps={{
                                     readOnly: true,
                                 }}
@@ -81,7 +81,7 @@ const PostDetailsComponent = (props) => {
                                 value={props.postDetails.platforms.join(', ')}
                                 fullWidth
                                 label="Platforms"
-                                variant="outlined"
+                                variant="filled"
                                 InputProps={{
                                     readOnly: true,
                                 }}
@@ -92,7 +92,7 @@ const PostDetailsComponent = (props) => {
                                 value={props.postDetails.category}
                                 fullWidth
                                 label="Category"
-                                variant="outlined"
+                                variant="filled"
                                 InputProps={{
                                     readOnly: true,
                                 }}
@@ -103,7 +103,7 @@ const PostDetailsComponent = (props) => {
                                 value={props.postDetails.subcategory}
                                 fullWidth
                                 label="Subcategory"
-                                variant="outlined"
+                                variant="filled"
                                 InputProps={{
                                     readOnly: true,
                                 }}
@@ -114,7 +114,7 @@ const PostDetailsComponent = (props) => {
                                 value={props.postDetails.title}
                                 fullWidth
                                 label="Title"
-                                variant="outlined"
+                                variant="filled"
                                 InputProps={{
                                     readOnly: true,
                                 }}
@@ -127,7 +127,7 @@ const PostDetailsComponent = (props) => {
                                 fullWidth
                                 multiline
                                 label="Description"
-                                variant="outlined"
+                                variant="filled"
                                 InputProps={{
                                     readOnly: true,
                                 }}
@@ -138,7 +138,7 @@ const PostDetailsComponent = (props) => {
                                 value={props.postDetails.fixedAmount.toUpperCase()}
                                 fullWidth
                                 label="Fixed amount"
-                                variant="outlined"
+                                variant="filled"
                                 InputProps={{
                                     readOnly: true,
                                 }}
@@ -149,7 +149,7 @@ const PostDetailsComponent = (props) => {
                                 value={props.postDetails.usdAmount}
                                 fullWidth
                                 label="USD amount"
-                                variant="outlined"
+                                variant="filled"
                                 InputProps={{
                                     readOnly: true,
                                 }}
@@ -160,7 +160,7 @@ const PostDetailsComponent = (props) => {
                                 value={`${props.postDetails.eosAmount} EOS`}
                                 fullWidth
                                 label="EOS amount"
-                                variant="outlined"
+                                variant="filled"
                                 InputProps={{
                                     readOnly: true,
                                 }}
@@ -171,7 +171,7 @@ const PostDetailsComponent = (props) => {
                                 value={props.postDetails.transactionId}
                                 fullWidth
                                 label="Transaction ID"
-                                variant="outlined"
+                                variant="filled"
                                 InputProps={{
                                     readOnly: true,
                                     endAdornment: (

@@ -1,39 +1,33 @@
+const mongoose = require('mongoose')
 import {verifyEosAccountName} from '../server/verifyEosAccountName'
 import emailValidator from 'email-validator'
-import {categoryAndSubcategoryOptions} from '../categoryAndSubcategoryOptions'
-import {modeOptions} from '../modeOptions'
-import {platformOptions} from "../platformOptions";
+import {countryOptions} from "../countryOptions";
 
 const ip = require('ip')
 
-const categoryOptions = categoryAndSubcategoryOptions.map(x => x.category)
-
-const mongoose = require('mongoose')
-const PostSchema = new mongoose.Schema({
-    mode: {
-        type: String,
-        required: true,
-        enum: modeOptions
+const ListingSchema = new mongoose.Schema({
+    publicListing: {
+        type: Boolean,
+        required: true
     },
-    platforms: {
+    worldwide: {
+        type: Boolean,
+        required: true
+    },
+    countries: {
         type: Array,
-        required: true,
-        validator: function (value) {
-            let error = false
-            value.forEach(function (value) {
-                if (!platformOptions.includes(value))
-                    error = true
-            })
-            return error
+        required: function () {
+            return !this.worldwide
         },
-    },
-    category: {
-        type: String,
-        required: true,
-        enum: categoryOptions
-    },
-    subcategory: {
-        type: String,
+        validator: function (value) {
+            if (!this.worldwide) {
+                value.forEach(function (value) {
+                    if (!countryOptions.includes(value))
+                        return false
+                })
+            }
+            return true
+        }
     },
     code: {
         type: String,
@@ -52,8 +46,8 @@ const PostSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    imageLink: {
-        type: String
+    imageLinks: {
+        type: Array
     },
     description: {
         type: String,
@@ -153,4 +147,4 @@ const PostSchema = new mongoose.Schema({
 })
 
 module.exports =
-    mongoose.models.Post || mongoose.model('Post', PostSchema)
+    mongoose.models.Listing || mongoose.model('Listing', ListingSchema)

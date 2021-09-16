@@ -17,7 +17,7 @@ const DescriptionFieldComponent = () => {
             fullWidth
             label="Description"
             multiline
-            variant="outlined"
+            variant="filled"
         />
     )
 }

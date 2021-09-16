@@ -39,7 +39,7 @@ const HiddenActionComponent = (props) => {
         <FormControlLabel
             control={<React.Fragment><MuiThemeProvider theme={amberTheme}><Switch checked={hidden} onChange={handle}
                                                                                   color="primary"/></MuiThemeProvider></React.Fragment>}
-            label="Hide post"
+            label="Hide listing"
         />
     )
 }

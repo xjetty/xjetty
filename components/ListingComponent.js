@@ -2,7 +2,7 @@ import {
     Accordion,
     AccordionDetails,
     AccordionSummary,
-    AppBar, Avatar, Button,
+    AppBar, Avatar, Button, ButtonGroup,
     Card,
     CardContent, CardMedia, Divider,
     Grid,
@@ -60,13 +60,9 @@ const eosFormatter = new Intl.NumberFormat('en-US', {
     maximumFractionDigits: 4
 })
 
-const PostComponent = ({code}) => {
+const ListingComponent = ({code}) => {
     const classes = useStyles()
     const {
-        mode,
-        platforms,
-        category,
-        subcategory,
         title,
         description,
         saleMethod,
@@ -79,9 +75,12 @@ const PostComponent = ({code}) => {
         usdAmountValue,
         eosAmountValue,
         eosRate,
-        imageLink,
+        imageLinks,
         createdOnTimestamp,
         lastUpdatedOnTimestamp,
+        publicListing,
+        worldwide,
+        countries,
         link
     } = useContext(AppContext)
 
@@ -130,9 +129,33 @@ const PostComponent = ({code}) => {
     }
 
     const [tabValue, setTabValue] = React.useState('1')
+    const [imageNumber, setImageNumber] = React.useState(0)
 
     const handleTabChange = (event, newValue) => {
         setTabValue(newValue)
+    }
+
+    const prevImage = () => {
+        const images = imageLinks.length
+        if (imageNumber === 0) {
+            setImageNumber(images - 1)
+        } else {
+            setImageNumber(imageNumber - 1)
+        }
+    }
+
+    const nextImage = () => {
+        const images = imageLinks.length
+        if (imageNumber >= images - 1) {
+            setImageNumber(0)
+        } else {
+            setImageNumber(imageNumber + 1)
+        }
+    }
+
+    const openImage = () => {
+        const image = imageLinks[imageNumber]
+        window.open(image, '_blank')
     }
 
     return (
@@ -141,7 +164,7 @@ const PostComponent = ({code}) => {
                 <Card>
                     <CardMedia
                         className={classes.media}
-                        image='/logo.png'
+                        image='/logo.jpg'
                         title="BlockCommerc Logo"
                     />
                     <CardContent>
@@ -175,51 +198,43 @@ const PostComponent = ({code}) => {
                                         </Typography>
                                     </AccordionDetails>
                                 </Accordion>)}
-                                {imageLink && (<Accordion defaultExpanded={true}>
+                                {(imageLinks.length >= 1 && imageLinks[0]) ? (<Accordion defaultExpanded={true}>
                                     <AccordionSummary
                                         expandIcon={<ExpandMoreIcon/>}>
                                         <Typography
                                             className={classes.heading}>
-                                            Image
+                                            Images
                                         </Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>
                                         <Grid container spacing={2}>
                                             <Grid item xs={12}>
-                                                <ImageLinkPreviewComponent/>
+                                                <img
+                                                    style={{width: '100%', maxWidth: '500px', height: "auto"}}
+                                                    src={imageLinks[imageNumber]}
+                                                    alt="Image"
+                                                />
                                             </Grid>
                                             <Grid item xs={12}>
-                                                <Button color="primary" href={imageLink} target="_blank"
-                                                        endIcon={<OpenInNew/>}>Open image</Button>
+                                                <Divider/>
+                                            </Grid>
+                                            <Grid item xs={12}>
+                                                {imageLinks.length > 1 ? (
+                                                    <ButtonGroup variant="contained" color="primary"
+                                                                 aria-label="contained primary button group">
+                                                        <Button onClick={prevImage}>Prev</Button>
+                                                        <Button onClick={nextImage}>Next</Button>
+                                                        <Button onClick={openImage}>Open</Button>
+                                                    </ButtonGroup>) : (
+                                                    <ButtonGroup variant="contained" color="primary"
+                                                                 aria-label="contained primary button group">
+                                                        <Button onClick={openImage}>Open</Button>
+                                                    </ButtonGroup>
+                                                )}
                                             </Grid>
                                         </Grid>
                                     </AccordionDetails>
-                                </Accordion>)}
-                                <Accordion>
-                                    <AccordionSummary
-                                        expandIcon={<ExpandMoreIcon/>}>
-                                        <Typography
-                                            className={classes.heading}>
-                                            Specifics
-                                        </Typography>
-                                    </AccordionSummary>
-                                    <AccordionDetails>
-                                        <List>
-                                            <ListItem>
-                                                <ListItemText primary={mode} secondary="Mode"/>
-                                            </ListItem>
-                                            <ListItem>
-                                                <ListItemText primary={platforms.join(', ')} secondary="Platforms"/>
-                                            </ListItem>
-                                            <ListItem>
-                                                <ListItemText primary={category} secondary="Category"/>
-                                            </ListItem>
-                                            {subcategory && (<ListItem>
-                                                <ListItemText primary={subcategory} secondary="Subcategory"/>
-                                            </ListItem>)}
-                                        </List>
-                                    </AccordionDetails>
-                                </Accordion>
+                                </Accordion>) : ''}
                             </Grid>
                             {(saleMethod !== 'offersOnly' || offer) && (<Grid item xs={12}>
                                 <List>
@@ -227,7 +242,7 @@ const PostComponent = ({code}) => {
                                         <ListItem divider>
                                             {fixedAmount !== 'usd' && (<ListItemAvatar>
                                                 <Avatar alt="EOS Logo" imgProps={{style: {objectFit: "initial"}}}
-                                                        src="/eos-eos-logo.svg"/>
+                                                        src="/eos-logo.svg"/>
                                             </ListItemAvatar>)}
                                             <ListItemText
                                                 primary={fixedAmount === 'usd' ? usdAmountLabel : eosAmountLabel}
@@ -315,4 +330,4 @@ const PostComponent = ({code}) => {
     )
 }
 
-export default PostComponent
+export default ListingComponent

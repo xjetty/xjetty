@@ -41,7 +41,7 @@ const GoToPostComponent = () => {
                     <InputAdornment position="end">
                         {/* eslint-disable-next-line @next/next/link-passhref */}
                         {code.length === 5 &&
-                        <IconButton href={'https://d2rcrypto.com/post/' + code} target="_blank">
+                        <IconButton href={'https://blockcommerc.com/listing/' + code} target="_blank">
                             <Send/>
                         </IconButton>}
                     </InputAdornment>
@@ -49,7 +49,7 @@ const GoToPostComponent = () => {
             }}
             label="I have a code"
             placeholder="Code"
-            variant="outlined"
+            variant="filled"
         />
     )
 }

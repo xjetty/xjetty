@@ -1,4 +1,4 @@
-import Post from '../../models/Post'
+import Post from '../../models/Listing'
 import Offer from '../../models/Offer'
 import {getIdFromToken} from "../../server/getIdFromToken";
 import connectToDb from "../../middleware/connectToDb";
@@ -32,9 +32,9 @@ const getOfferData = async (req, res) => {
         const subcategory = post.subcategory
         const title = post.title
         const code = post.code
-        let link = `https://d2rcrypto.com/post/${code}`
+        let link = `https://blockcommerc.com/post/${code}`
         if (getLocalhost())
-            link = `https://localhost:3010/post/${code}`
+            link = `https://localhost:3015/post/${code}`
         const imageLink = post.imageLink
         const quantity = post.quantity
         const quantitySold = post.quantitySold

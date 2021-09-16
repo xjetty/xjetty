@@ -111,7 +111,7 @@ const EosAmountFieldComponent = () => {
             }}
             value={eosAmount}
             onChange={handle}
-            variant="outlined"
+            variant="filled"
         />
     )
 }

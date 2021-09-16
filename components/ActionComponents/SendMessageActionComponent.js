@@ -64,10 +64,10 @@ const SendMessageActionComponent = () => {
     return (
         <Grid container spacing={2}>
             {submittingData && (<Grid item xs={12}>
-                <LinearProgress color="secondary"/>
+                <LinearProgress/>
             </Grid>)}
             <Grid item xs={12}>
-                <Button onClick={submitRecaptcha} disabled={disabled} variant="contained" color="secondary" key={disabled}>Send message</Button>
+                <Button onClick={submitRecaptcha} disabled={disabled} variant="contained" color="primary" key={disabled}>Send message</Button>
             </Grid>
         </Grid>
     )

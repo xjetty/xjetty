@@ -172,7 +172,7 @@ const Posts = () => {
     return (
         <html>
         <Head>
-            <title>Posts - D2R Crypto</title>
+            <title>Posts - BlockCommerc</title>
             <meta name="robots" content="noindex"/>
         </Head>
         <Grid container spacing={2}>
@@ -181,7 +181,7 @@ const Posts = () => {
                     <CardMedia
                         className={classes.media}
                         image='/logo.png'
-                        title="D2R Crypto Logo"
+                        title="BlockCommerc Logo"
                     />
                     <CardContent>
                         <Grid container spacing={2}>

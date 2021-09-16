@@ -36,7 +36,7 @@ const EscrowDetailsComponent = () => {
                         disabled={!escrowDetails.transactionId}
                         fullWidth
                         label="Transaction ID"
-                        variant="outlined"
+                        variant="filled"
                         InputProps={{
                             readOnly: true,
                             endAdornment: (
@@ -60,7 +60,7 @@ const EscrowDetailsComponent = () => {
                         disabled={!escrowDetails.escrowReleased}
                         fullWidth
                         label="Escrow released on"
-                        variant="outlined"
+                        variant="filled"
                         InputProps={{
                             readOnly: true,
                         }}
@@ -72,7 +72,7 @@ const EscrowDetailsComponent = () => {
                         disabled={!escrowDetails.escrowRefunded}
                         fullWidth
                         label="Escrow refunded on"
-                        variant="outlined"
+                        variant="filled"
                         InputProps={{
                             readOnly: true,
                         }}
@@ -84,7 +84,7 @@ const EscrowDetailsComponent = () => {
                         disabled={!escrowDetails.disputeOpened}
                         fullWidth
                         label="Dispute opened on"
-                        variant="outlined"
+                        variant="filled"
                         InputProps={{
                             readOnly: true,
                         }}
@@ -96,7 +96,7 @@ const EscrowDetailsComponent = () => {
                         disabled={!escrowDetails.disputeResolved}
                         fullWidth
                         label="Dispute resolved on"
-                        variant="outlined"
+                        variant="filled"
                         InputProps={{
                             readOnly: true,
                         }}

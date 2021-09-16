@@ -1,16 +1,16 @@
 import Head from "next/head";
-import CreatePostFormComponent from "../components/FormComponents/CreatePostFormComponent";
+import CreateListingFormComponent from "../components/FormComponents/CreateListingFormComponent";
 import UpdateEosRate from "../components/UpdateEosRate";
 
 const Create = () => {
     return (
         <html>
             <Head>
-                <title>Create a Post - D2R Crypto</title>
+                <title>Create a Post - BlockCommerc</title>
                 <meta name="robots" content="noindex"/>
             </Head>
             <UpdateEosRate/>
-            <CreatePostFormComponent/>
+            <CreateListingFormComponent/>
         </html>
     )
 }

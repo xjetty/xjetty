@@ -1,5 +1,5 @@
 import randomstring from 'randomstring'
-import Post from '../models/Post'
+import Listing from '../models/Listing'
 
 export async function generateCode() {
     let randomString = ''
@@ -10,7 +10,7 @@ export async function generateCode() {
             readable: true,
             capitalization: 'uppercase'
         })
-        code = await Post.findOne({code: randomString})
+        code = await Listing.findOne({code: randomString})
         if (!code) break
     }
     return randomString

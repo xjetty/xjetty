@@ -16,7 +16,7 @@ const TitleFieldComponent = () => {
             onChange={handle}
             fullWidth
             label="Image link"
-            variant="outlined"
+            variant="filled"
             placeholder="Direct link"
         />
     )

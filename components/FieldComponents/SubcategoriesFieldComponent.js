@@ -54,7 +54,7 @@ const SubcategoryFieldComponent = () => {
             renderInput={(params) => (
                 <TextField
                     {...params}
-                    variant="outlined"
+                    variant="filled"
                     label="Subcategories"
                 />
             )}

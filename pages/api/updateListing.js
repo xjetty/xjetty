@@ -1,10 +1,9 @@
 import {getIdFromToken} from "../../server/getIdFromToken";
-import Post from "../../models/Post";
+import Listing from "../../models/Listing";
 import connectToDb from "../../middleware/connectToDb";
 import {cleanString} from "../../server/cleanString";
-import {categoryAndSubcategoryOptions} from '../../categoryAndSubcategoryOptions'
 
-const updatePost = async (req, res) => {
+const updateListing = async (req, res) => {
     const method = req.method
     if (method === 'POST') {
         const data = req.body
@@ -15,21 +14,14 @@ const updatePost = async (req, res) => {
             return keyword.toLowerCase()
         })
         data.lastUpdatedTimestamp = Date.now()
-        const postId = getIdFromToken(token, 'postId')
-        if (!postId)
+        const listingId = getIdFromToken(token, 'listingId')
+        if (!listingId)
             return res.json({success: false})
-        if (!data.category)
-            return res.json({success: false})
-        const subcategories = categoryAndSubcategoryOptions.find(x => x.category === data.category).subcategories
-        if (subcategories.length > 0) {
-            if (!subcategories.includes(data.subcategory))
-                return res.json({success: false})
-        }
         await connectToDb()
-        await Post.updateOne({_id: postId}, {$set: data})
+        await Listing.updateOne({_id: listingId}, {$set: data})
         return res.json({success: true})
     } else
         return res.json({success: false})
 }
 
-export default updatePost
+export default updateListing

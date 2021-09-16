@@ -114,7 +114,7 @@ const Home = () => {
                                     <CheckCircle color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Does not require an account"
+                                    primary="Does not require sign up"
                                 />
                             </ListItem>
                             <ListItem>

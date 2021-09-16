@@ -91,6 +91,7 @@ const Offer = ({token}) => {
         <>
         <Head>
             <title>Offer - D2R Crypto</title>
+            <meta name="robots" content="noindex"/>
         </Head>
             <UpdateEosRate/>
         {show && <PostComponent token={token}/>}

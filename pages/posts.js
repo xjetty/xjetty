@@ -173,6 +173,7 @@ const Posts = () => {
         <html>
         <Head>
             <title>Posts - D2R Crypto</title>
+            <meta name="robots" content="noindex"/>
         </Head>
         <Grid container spacing={2}>
             <Grid item xs={12}>

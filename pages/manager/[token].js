@@ -91,6 +91,7 @@ const Manager = ({token}) => {
         <html>
             <Head>
                 <title>Manager - D2R Crypto</title>
+                <meta name="robots" content="noindex"/>
             </Head>
             <UpdateEosRate/>
             {show && <ManagerComponent token={token}/>}

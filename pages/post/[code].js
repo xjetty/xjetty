@@ -94,6 +94,7 @@ const Post = ({code}) => {
         <html>
             <Head>
                 <title>Post - D2R Crypto</title>
+                <meta name="robots" content="noindex"/>
             </Head>
             <UpdateEosRate/>
             {show && <PostComponent code={code}/>}

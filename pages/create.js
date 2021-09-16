@@ -7,6 +7,7 @@ const Create = () => {
         <html>
             <Head>
                 <title>Create a Post - D2R Crypto</title>
+                <meta name="robots" content="noindex"/>
             </Head>
             <UpdateEosRate/>
             <CreatePostFormComponent/>

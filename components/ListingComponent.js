@@ -237,16 +237,46 @@ const ListingComponent = ({code}) => {
                                             </Grid>
                                         </Grid>
                                     </AccordionDetails>
-                                </Accordion>): ('')}
+                                </Accordion>) : ('')}
+                                <Accordion>
+                                    <AccordionSummary
+                                        expandIcon={<ExpandMoreIcon/>}>
+                                        <Typography
+                                            className={classes.heading}>
+                                            Specifics
+                                        </Typography>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                        <Typography>
+                                            <List disablePadding>
+                                                <ListItem disableGutters>
+                                                    <ListItemIcon>
+                                                        <Create/>
+                                                    </ListItemIcon>
+                                                    <ListItemText
+                                                        primary={getDatetime(createdOnTimestamp)}
+                                                    />
+                                                </ListItem>
+                                                {createdOnTimestamp !== lastUpdatedOnTimestamp && (
+                                                    <ListItem disableGutters>
+                                                        <ListItemIcon>
+                                                            <Update/>
+                                                        </ListItemIcon>
+                                                        <ListItemText
+                                                            primary={getDatetime(lastUpdatedOnTimestamp)}
+                                                        />
+                                                    </ListItem>)}
+                                            </List>
+                                        </Typography>
+                                    </AccordionDetails>
+                                </Accordion>
                             </Grid>
                             {(saleMethod !== 'offersOnly' || offer) ? (<Grid item xs={12}>
                                 <List>
                                     <>
                                         {publicListing && (<ListItem>
                                             <ListItemIcon>
-                                                <MuiThemeProvider theme={greenTheme}>
-                                                    <Public color="primary"/>
-                                                </MuiThemeProvider>
+                                                <Public color="secondary"/>
                                             </ListItemIcon>
                                             <ListItemText
                                                 primary={worldwide ? 'Worldwide' : countries.join(', ')}
@@ -326,33 +356,16 @@ const ListingComponent = ({code}) => {
                                     </TabContext>
                                 )}
                             </Grid>
-                            <Grid item xs={12}>
-                                <Divider/>
-                            </Grid>
-                            {!offer ? (
-                                <List dense>
-                                    <ListItem>
-                                        <ListItemIcon>
-                                            <Create/>
-                                        </ListItemIcon>
-                                        <ListItemText
-                                            primary={getDatetime(createdOnTimestamp)}
-                                        />
-                                    </ListItem>
-                                    {createdOnTimestamp !== lastUpdatedOnTimestamp && (<ListItem>
-                                        <ListItemIcon>
-                                            <Update/>
-                                        </ListItemIcon>
-                                        <ListItemText
-                                            primary={getDatetime(lastUpdatedOnTimestamp)}
-                                        />
-                                    </ListItem>)}
-                                </List>
-                            ) : (
-                                <Grid item xs={12}>
-                                    <Button href={link} target="_blank" variant="outlined" color="secondary"
-                                            endIcon={<OpenInNew/>}>Open post</Button>
-                                </Grid>
+                            {offer && (
+                                <>
+                                    <Grid item xs={12}>
+                                        <Divider/>
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <Button href={link} target="_blank" variant="outlined" color="secondary"
+                                                endIcon={<OpenInNew/>}>Open post</Button>
+                                    </Grid>
+                                </>
                             )}
                         </Grid>
                     </CardContent>

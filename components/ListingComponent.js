@@ -8,12 +8,12 @@ import {
     Grid,
     List,
     ListItem, ListItemAvatar, ListItemIcon,
-    ListItemText,
+    ListItemText, MuiThemeProvider,
     Tab,
     Typography
 } from '@material-ui/core'
 import React, {useContext, useEffect} from 'react'
-import {makeStyles} from '@material-ui/core/styles'
+import {createTheme, makeStyles} from '@material-ui/core/styles'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import {AppContext} from '../contexts/AppContext'
 import BuyItNowFormComponent from "./FormComponents/BuyItNowFormComponent";
@@ -21,8 +21,9 @@ import MakeOfferFormComponent from "./FormComponents/MakeOfferFormComponent";
 import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
-import {OpenInNew} from "@material-ui/icons";
+import {Create, OpenInNew, Update} from "@material-ui/icons";
 import {Public} from "@material-ui/icons";
+import {green} from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
     heading: {
@@ -59,6 +60,8 @@ const eosFormatter = new Intl.NumberFormat('en-US', {
     minimumFractionDigits: 4,
     maximumFractionDigits: 4
 })
+
+const greenTheme = createTheme({palette: {primary: green}})
 
 const ListingComponent = ({code}) => {
     const classes = useStyles()
@@ -184,7 +187,7 @@ const ListingComponent = ({code}) => {
                                         </Typography>
                                     </AccordionDetails>
                                 </Accordion>
-                                {description && (<Accordion>
+                                {description && (<Accordion defaultExpanded={true}>
                                     <AccordionSummary
                                         expandIcon={<ExpandMoreIcon/>}>
                                         <Typography
@@ -241,7 +244,9 @@ const ListingComponent = ({code}) => {
                                     <>
                                         {publicListing && (<ListItem>
                                             <ListItemIcon>
-                                                <Public color="primary"/>
+                                                <MuiThemeProvider theme={greenTheme}>
+                                                    <Public color="primary"/>
+                                                </MuiThemeProvider>
                                             </ListItemIcon>
                                             <ListItemText
                                                 primary={worldwide ? 'Worldwide' : countries.join(', ')}
@@ -271,7 +276,9 @@ const ListingComponent = ({code}) => {
                                 </List>
                             </Grid>) : publicListing ? (<List><ListItem>
                                 <ListItemIcon>
-                                    <Public color="primary"/>
+                                    <MuiThemeProvider theme={greenTheme}>
+                                        <Public color="primary"/>
+                                    </MuiThemeProvider>
                                 </ListItemIcon>
                                 <ListItemText
                                     primary={worldwide ? 'Worldwide' : countries.join(', ')}
@@ -322,19 +329,28 @@ const ListingComponent = ({code}) => {
                             <Grid item xs={12}>
                                 <Divider/>
                             </Grid>
-                            {!offer ? (<>
+                            {!offer ? (
+                                <List dense>
+                                    <ListItem>
+                                        <ListItemIcon>
+                                            <Create/>
+                                        </ListItemIcon>
+                                        <ListItemText
+                                            primary={getDatetime(createdOnTimestamp)}
+                                        />
+                                    </ListItem>
+                                    {createdOnTimestamp !== lastUpdatedOnTimestamp && (<ListItem>
+                                        <ListItemIcon>
+                                            <Update/>
+                                        </ListItemIcon>
+                                        <ListItemText
+                                            primary={getDatetime(lastUpdatedOnTimestamp)}
+                                        />
+                                    </ListItem>)}
+                                </List>
+                            ) : (
                                 <Grid item xs={12}>
-                                    <Typography>
-                                        Created on {getDatetime(createdOnTimestamp)}
-                                    </Typography>
-                                </Grid>
-                                {createdOnTimestamp !== lastUpdatedOnTimestamp && (<Grid item xs={12}>
-                                    <Typography>
-                                        Last updated on {getDatetime(lastUpdatedOnTimestamp)}
-                                    </Typography>
-                                </Grid>)}</>) : (
-                                <Grid item xs={12}>
-                                    <Button href={link} target="_blank" variant="contained" color="secondary"
+                                    <Button href={link} target="_blank" variant="outlined" color="secondary"
                                             endIcon={<OpenInNew/>}>Open post</Button>
                                 </Grid>
                             )}

@@ -23,7 +23,7 @@ const ClearEosAccountStorageComponent = () => {
         setSnackbarOpen(true)
     }
     return (
-        <Button onClick={clear} variant="text" color="primary" endIcon={<Delete/>}>
+        <Button onClick={clear} variant="text" color="secondary" endIcon={<Delete/>}>
             Clear eos account storage
         </Button>
     )

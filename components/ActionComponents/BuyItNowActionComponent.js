@@ -127,7 +127,7 @@ const BuyItNowActionComponent = ({code, token}) => {
         <>
             {submittingData && (
                 <Grid item xs={12}>
-                    <LinearProgress color="secondary"/>
+                    <LinearProgress/>
                 </Grid>
             )}
             {postCreated && (
@@ -143,7 +143,7 @@ const BuyItNowActionComponent = ({code, token}) => {
                     onClick={buyItNow}
                     disabled={disabled}
                     variant="contained"
-                    color="secondary">
+                    color="primary">
                     Confirm and pay
                 </Button>
             </Grid>

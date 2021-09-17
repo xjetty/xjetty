@@ -17,11 +17,13 @@ const BuyItNowFormComponent = ({token, code}) => {
     return (
         <>
             <Grid container spacing={2}>
+                <Grid item xs={12}>
+                    <Button variant="outlined" href="https://eospowerup.io/free" target="_blank" endIcon={<OpenInNew/>}>
+                        EOS powerup
+                    </Button>
+                </Grid>
                 <Grid item xs={12} md={6}>
                     <EosAccountFieldComponent/>
-                </Grid>
-                <Grid item xs={12}>
-                    <ClearEosAccountStorageComponent/>
                 </Grid>
                 {eosAccount === 'New' && (
                     <>
@@ -42,9 +44,7 @@ const BuyItNowFormComponent = ({token, code}) => {
                     </>
                 )}
                 <Grid item xs={12}>
-                    <Button href="https://eospowerup.io/free" target="_blank" color="primary" endIcon={<OpenInNew/>}>
-                        EOS powerup
-                    </Button>
+                    <ClearEosAccountStorageComponent/>
                 </Grid>
                 <Grid item xs={12}>
                     <Divider/>

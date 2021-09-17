@@ -63,7 +63,7 @@ const manageEscrow = async (req, res) => {
         const sellerToken = jwt.sign(sellerPayload, process.env.JWT_SIGNATURE)
         let linkBuyer = `https://blockcommerc.com/message-board/${buyerToken}`
         let linkSeller = `https://blockcommerc.com/message-board/${sellerToken}`
-        if (getLocalhost()) {
+        if (getLocalhost(req.sockets.remoteAddress)) {
             linkBuyer = `http://localhost:3015/message-board/${buyerToken}`
             linkSeller = `http://localhost:3015/message-board/${sellerToken}`
         }

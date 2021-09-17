@@ -1,4 +1,4 @@
-import Post from '../../models/Listing'
+import Listing from '../../models/Listing'
 import MessageBoard from '../../models/MessageBoard'
 import Offer from '../../models/Offer'
 import {getEosRate} from '../../server/getEosRate'
@@ -20,19 +20,20 @@ import Escrow from '../../models/Escrow'
 import {getListingPreview} from "../../server/getListingPreview";
 import {getLocalhost} from "../../server/getLocalhost";
 
+const eosFormatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 4,
+    maximumFractionDigits: 4
+})
+const usdFormatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+})
+
 const buyItNow = async (req, res) => {
-    const eosFormatter = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 4,
-        maximumFractionDigits: 4
-    })
-    const usdFormatter = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-    })
     const method = req.method
     if (method === 'POST') {
         const data = req.body
@@ -62,22 +63,22 @@ const buyItNow = async (req, res) => {
             }
             eosAccountToken = jwt.sign(eosAccountPayload, process.env.JWT_SIGNATURE)
         }
-        let postId = null
+        let listingId = null
         let fixedAmount = null
         let usdAmount = null
         let eosAmount = null
         let buyerEmailAddress = null
-        let post = null
+        let listing = null
         await connectToDb()
         if (!offer) {
-            post = await Post.findOne({code: code})
-            if (!post)
-                return res.json({success: false, alertMessage: 'Post not found'})
-            if (post.hidden) return res.json({success: false, alertMessage: 'Post hidden'})
-            postId = post._id
-            fixedAmount = post.fixedAmount
-            usdAmount = post.usdAmount
-            eosAmount = post.eosAmount
+            listing = await Listing.findOne({code: code})
+            if (!listing)
+                return res.json({success: false, alertMessage: 'Listing not found'})
+            if (listing.hidden) return res.json({success: false, alertMessage: 'Listing hidden'})
+            listingId = listing._id
+            fixedAmount = listing.fixedAmount
+            usdAmount = listing.usdAmount
+            eosAmount = listing.eosAmount
             buyerEmailAddress = emailAddress
             if (!emailValidator.validate(buyerEmailAddress))
                 return res.json({success: false, reason: 'email address not valid'})
@@ -88,37 +89,34 @@ const buyItNow = async (req, res) => {
             const offer = await Offer.findById(offerId)
             if (!offer)
                 return res.json({success: false, alertMessage: 'Offer not found'})
-            postId = offer.postId
+            listingId = offer.listingId
             fixedAmount = offer.fixedAmount
             usdAmount = offer.usdAmount
             eosAmount = offer.eosAmount
             buyerEmailAddress = offer.emailAddress
-            post = await Post.findOne({_id: postId})
-            if (!post)
-                return res.json({success: false, alertMessage: 'Post not found'})
-            if (post.hidden) return res.json({success: false, alertMessage: 'Post hidden'})
+            listing = await Listing.findById(listingId)
+            if (!listing)
+                return res.json({success: false, alertMessage: 'Listing not found'})
+            if (listing.hidden) return res.json({success: false, alertMessage: 'Listing hidden'})
         }
-        const lastUpdatedOnTimestamp = post.lastUpdatedOnTimestamp
+        const lastUpdatedOnTimestamp = listing.lastUpdatedOnTimestamp
         if (pageTimestamp <= lastUpdatedOnTimestamp)
-            return res.json({success: false, alertMessage: 'Post out of date'})
-
-        const sellerEmailAddress = post.emailAddress
-        const sellerEosAccountName = post.eosAccountName
-        const sellerMemo = post.memo
+            return res.json({success: false, alertMessage: 'Listing out of date'})
+        const sellerEmailAddress = listing.emailAddress
+        const sellerEosAccountName = listing.eosAccountName
+        const sellerMemo = listing.memo
         const buyerEosAccountName = eosAccountName
         const buyerMemo = memo
-
         const eosAccountNameValid = validateEosAccountName(buyerEosAccountName)
         if (!eosAccountNameValid)
-            return res.json({success: false, reason: 'eosAccountName not valid', eosAccountName: eosAccountName})
+            return res.json({success: false, reason: 'eosAccountName not valid'})
         const eosAccountNameVerified = await verifyEosAccountName(buyerEosAccountName)
         if (!eosAccountNameVerified) return res.json({success: false, reason: 'eosAccountName not verified'})
-
         const eosRate = await getEosRate()
         const transactionQuantity = getTransactionQuantity(fixedAmount, usdAmount, eosAmount, eosRate, eosFormatter)
-        const transactionPrepared = await prepareTransaction(postId)
+        const transactionPrepared = await prepareTransaction(listingId)
         if (!transactionPrepared.success) {
-            await updatePendingTransactions(postId, false)
+            await updatePendingTransactions(listingId, false)
             return res.json({success: false, alertMessage: transactionPrepared.alertMessage})
         }
         let transactionId = ''
@@ -132,19 +130,20 @@ const buyItNow = async (req, res) => {
                 true
             )
             if (result.json && result.json.code) {
-                await updatePendingTransactions(postId, false)
-                const errorMessage = result.json.error.details[0].message
+                await updatePendingTransactions(listingId, false)
+                let errorMessage = result.json.error.details[0].message
+                errorMessage = `${errorMessage}\nTrying using the EOS PowerUp!`
                 return res.json({success: false, alertMessage: errorMessage})
             } else if (!result) {
-                await updatePendingTransactions(postId, false)
+                await updatePendingTransactions(listingId, false)
                 return res.json({success: false, reason: 'result not valid'})
             } else transactionId = result.transaction_id
         } catch (error) {
-            await updatePendingTransactions(postId, false)
+            await updatePendingTransactions(listingId, false)
             return res.json({success: false, alertMessage: 'Invalid associative private key'})
         }
-        await increaseQuantitySold(postId)
-        await updatePendingTransactions(postId, false)
+        await increaseQuantitySold(listingId)
+        await updatePendingTransactions(listingId, false)
         const transactionAmount = parseFloat(transactionQuantity.replace(' EOS', ''))
         let usdAmountFormatted = ''
         let eosAmountFormatted = eosFormatter.format(transactionAmount).replace('$', '')
@@ -152,20 +151,16 @@ const buyItNow = async (req, res) => {
             usdAmountFormatted = usdFormatter.format(usdAmount)
         } else
             usdAmountFormatted = eosFormatter.format(transactionAmount * eosRate)
-
-        const mode = post.mode
-        const platforms = post.platforms
-        const category = post.category
-        const subcategory = post.subcategory
-        const title = post.title
-        const description = post.description
-        const keywords = post.keywords
-
-        const postDetails = {
-            mode: mode,
-            platforms: platforms,
-            category: category,
-            subcategory: subcategory,
+        const publicListing = listing.publicListing
+        const worldwide = listing.worldwide
+        const countries = listing.countries
+        const title = listing.title
+        const description = listing.description
+        const keywords = listing.keywords
+        const listingDetails = {
+            publicListing: publicListing,
+            worldwide: worldwide,
+            countries: countries,
             title: title,
             description: description,
             keywords: keywords,
@@ -179,7 +174,6 @@ const buyItNow = async (req, res) => {
             buyerMemo: buyerMemo,
             sellerMemo: sellerMemo
         }
-
         let message = 'Hello,<br /><br />Please reply here with your instructions, if needed.<br /><br />Thank you,<br /><br />Your buyer'
         if (comments) message = comments
         const messages = [
@@ -189,19 +183,16 @@ const buyItNow = async (req, res) => {
                 timestamp: Date.now()
             }
         ]
-
         const messageBoard = await MessageBoard.create({
-            postDetails: postDetails,
+            listingDetails: listingDetails,
             messages: messages,
             sellerEmailAddress: sellerEmailAddress,
             buyerEmailAddress: buyerEmailAddress
         })
-
         const messageBoardId = messageBoard._id
         await Escrow.create({
             messageBoardId: messageBoardId
         })
-
         const buyerPayload = {user: 'buyer', messageBoardId: messageBoardId}
         const sellerPayload = {user: 'seller', messageBoardId: messageBoardId}
         const JWT_SIGNATURE = process.env.JWT_SIGNATURE
@@ -209,17 +200,16 @@ const buyItNow = async (req, res) => {
         const sellerToken = jwt.sign(sellerPayload, JWT_SIGNATURE)
         let linkBuyer = `https://blockcommerc.com/message-board/${buyerToken}`
         let linkSeller = `https://blockcommerc.com/message-board/${sellerToken}`
-        if (getLocalhost()) {
+        if (getLocalhost(req.sockets.remoteAddress)) {
             linkBuyer = `http://localhost:3015/message-board/${buyerToken}`
             linkSeller = `http://localhost:3015/message-board/${sellerToken}`
         }
-
-        const postPreviewSeller = getListingPreview(mode, platforms, category, subcategory, title, description, keywords)
-        const postPreviewBuyer = getListingPreview(mode, platforms, category, subcategory, title, description, [])
+        const listingPreviewSeller = getListingPreview(title, description, keywords)
+        const listingPreviewBuyer = getListingPreview(title, description, [])
         const subjectSeller = `You made a sale! - ${title}`
         const subjectBuyer = `You made a purchase! - ${title}`
-        const messageSeller = `Go to your message board for review.<br /><br /><a href=${linkBuyer}>${linkBuyer}</a><br /><br />${postPreviewBuyer}<br /><br />${transactionId}`
-        const messageBuyer = `Go to your message board for review.<br /><br /><a href=${linkSeller}>${linkSeller}</a><br /><br />${postPreviewSeller}<br /><br />${transactionId}`
+        const messageSeller = `Go to your message board for review.<br /><br /><a href=${linkBuyer}>${linkBuyer}</a><br /><br />${listingPreviewBuyer}<br /><br />Transaction ID: ${transactionId}`
+        const messageBuyer = `Go to your message board for review.<br /><br /><a href=${linkSeller}>${linkSeller}</a><br /><br />${listingPreviewSeller}<br /><br />Transaction ID: ${transactionId}`
         await sendEmail(buyerEmailAddress, subjectSeller, messageSeller)
         await sendEmail(sellerEmailAddress, subjectBuyer, messageBuyer)
         return res.json({success: true, eosAccountToken: eosAccountToken, eosAccountName: eosAccountName})

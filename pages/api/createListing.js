@@ -28,9 +28,8 @@ const createListing = async (req, res) => {
             const title = listing.title
             const description = listing.description
             const keywords = listing.keywords
-            const countries = listing.countries
             const emailAddress = listing.emailAddress
-            const listingPreview = getListingPreview(title, description, keywords, countries)
+            const listingPreview = getListingPreview(title, description, keywords)
             const payload = {listingId: listingId}
             const token = jwt.sign(payload, process.env.JWT_SIGNATURE)
             let link = `https://blockcommerc.com/manager/${token}`

@@ -22,9 +22,9 @@ const getOfferData = async (req, res) => {
         const fixedAmount = offer.fixedAmount
         const usdAmount = offer.usdAmount
         const eosAmount = offer.eosAmount
-        const postId = offer.postId
+        const listingId = offer.listingId
         const emailAddress = offer.emailAddress
-        const post = await Post.findById(postId)
+        const post = await Post.findById(listingId)
         if (!post) return res.json({success: false, alertMessage: 'Post not found'})
         const mode = post.mode
         const platforms = post.platforms
@@ -33,7 +33,7 @@ const getOfferData = async (req, res) => {
         const title = post.title
         const code = post.code
         let link = `https://blockcommerc.com/post/${code}`
-        if (getLocalhost())
+        if (getLocalhost(req.sockets.remoteAddress))
             link = `https://localhost:3015/post/${code}`
         const imageLink = post.imageLink
         const quantity = post.quantity

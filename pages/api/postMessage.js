@@ -50,7 +50,7 @@ const postMessage = async (req, res) => {
         const payload = {user: user, messageBoardId: messageBoardId}
         const messageBoardDataToken = jwt.sign(payload, process.env.JWT_SIGNATURE)
         let link = `https://blockcommerc.com/message-board/${messageBoardDataToken}`
-        if (getLocalhost())
+        if (getLocalhost(req.sockets.remoteAddress))
             link = `http://localhost:3015/message-board/${messageBoardDataToken}`
         const subject = `You have a new message! - ${title}`
         const emailMessage = `Go to your message board to read your message.<br /><br /><a href=${link}>${link}</a><br /><br />${postPreview}`

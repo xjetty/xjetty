@@ -14,7 +14,7 @@ import ClearEosAccountStorageComponent from "../ClearEosAccountStorageComponent"
 import {createTheme} from "@material-ui/core/styles";
 import {amber, green, yellow} from "@material-ui/core/colors";
 
-const amberTheme = createTheme({palette: {primary: yellow}})
+const yellowTheme = createTheme({palette: {primary: yellow}})
 
 const BuyItNowFormComponent = ({token, code}) => {
     const {eosAccount, addMemo} = useContext(AppContext)
@@ -22,7 +22,7 @@ const BuyItNowFormComponent = ({token, code}) => {
         <>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
-                    <MuiThemeProvider theme={amberTheme}>
+                    <MuiThemeProvider theme={yellowTheme}>
                         <Button disableElevation variant="contained" color="primary" href="https://eospowerup.io/free" target="_blank" endIcon={<OpenInNew/>}>
                             EOS powerup
                         </Button>

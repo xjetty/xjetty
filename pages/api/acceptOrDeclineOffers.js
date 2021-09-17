@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import {getIdsFromTokens} from "../../server/getIdsFromTokens";
 import Offer from '../../models/Offer'
-import Post from '../../models/Listing'
+import Listing from '../../models/Listing'
 import {sendEmail} from "../../server/sendEmail";
 import connectToDb from "../../middleware/connectToDb";
 import {getIdFromToken} from "../../server/getIdFromToken";
@@ -13,17 +13,13 @@ const acceptOrDeclineOffers = async (req, res) => {
     if (method === 'POST') {
         const data = req.body
         const token = data.token
-        const postId = getIdFromToken(token, 'postId')
-        if (!postId)
+        const listingId = getIdFromToken(token, 'listingId')
+        if (!listingId)
             return res.json({success: false})
-        const post = await Post.findById(postId)
-        const mode = post.mode
-        const platforms = post.platforms
-        const category = post.category
-        const subcategory = post.subcategory
-        const title = post.title
-        const description = post.description
-        const postPreview = getListingPreview(mode, platforms, category, subcategory, title, description, [])
+        const listing = await Listing.findById(listingId)
+        const title = listing.title
+        const description = listing.description
+        const listingPreview = getListingPreview(title, description, [])
         const subject = `Your offer was accepted! - ${title}`
         const offerTokens = data.offerTokens
         const decision = data.decision
@@ -37,7 +33,7 @@ const acceptOrDeclineOffers = async (req, res) => {
             status = 'Declined'
         const offerIds = getIdsFromTokens(offerTokens, 'offerId')
         await connectToDb()
-        const offers = await Offer.find({postId: postId})
+        const offers = await Offer.find({listingId: listingId})
         if (!offers)
             return res.json({success: false})
         const timestamp = Date.now()
@@ -48,9 +44,9 @@ const acceptOrDeclineOffers = async (req, res) => {
                     const emailAddress = offer.emailAddress
                     const token = jwt.sign({offerId: offer._id}, process.env.JWT_SIGNATURE)
                     let link = `https://blockcommerc.com/offer/${token}`
-                    if (getLocalhost())
+                    if (getLocalhost(req.sockets.remoteAddress))
                         link = `http://localhost:3015/offer/${token}`
-                    const message = `Confirm and pay for your offer.<br /><br /><a href=${link}>${link}</a><br /><br />${postPreview}`
+                    const message = `Confirm and pay for your offer.<br /><br /><a href=${link}>${link}</a><br /><br />${listingPreview}`
                     await sendEmail(emailAddress, subject, message)
                 }
             }

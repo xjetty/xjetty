@@ -1,10 +1,10 @@
-import Post from '../models/Listing'
+import Listing from '../models/Listing'
 
-export async function increaseQuantitySold(postId) {
-    const post = await Post.findOne({_id: postId}, {quantitySold: 1})
-    const quantitySold = post.quantitySold
-    await Post.updateOne(
-        {_id: postId},
+export async function increaseQuantitySold(listingId) {
+    const listing = await Listing.findOne({_id: listingId}, {quantitySold: 1})
+    const quantitySold = listing.quantitySold
+    await Listing.updateOne(
+        {_id: listingId},
         {$set: {quantitySold: quantitySold + 1}}
     )
 }

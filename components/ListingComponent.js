@@ -7,7 +7,7 @@ import {
     CardContent, CardMedia, Divider,
     Grid,
     List,
-    ListItem, ListItemAvatar,
+    ListItem, ListItemAvatar, ListItemIcon,
     ListItemText,
     Tab,
     Typography
@@ -21,8 +21,8 @@ import MakeOfferFormComponent from "./FormComponents/MakeOfferFormComponent";
 import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
-import ImageLinkPreviewComponent from "./ImageLinkPreviewComponent";
 import {OpenInNew} from "@material-ui/icons";
+import {Public} from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
     heading: {
@@ -161,7 +161,7 @@ const ListingComponent = ({code}) => {
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>
-                <Card>
+                <Card variant="outlined">
                     <CardMedia
                         className={classes.media}
                         image='/logo.jpg'
@@ -234,11 +234,19 @@ const ListingComponent = ({code}) => {
                                             </Grid>
                                         </Grid>
                                     </AccordionDetails>
-                                </Accordion>) : ''}
+                                </Accordion>): ('')}
                             </Grid>
-                            {(saleMethod !== 'offersOnly' || offer) && (<Grid item xs={12}>
+                            {(saleMethod !== 'offersOnly' || offer) ? (<Grid item xs={12}>
                                 <List>
                                     <>
+                                        {publicListing && (<ListItem>
+                                            <ListItemIcon>
+                                                <Public color="primary"/>
+                                            </ListItemIcon>
+                                            <ListItemText
+                                                primary={worldwide ? 'Worldwide' : countries.join(', ')}
+                                            />
+                                        </ListItem>)}
                                         <ListItem divider>
                                             {fixedAmount !== 'usd' && (<ListItemAvatar>
                                                 <Avatar alt="EOS Logo" imgProps={{style: {objectFit: "initial"}}}
@@ -258,9 +266,17 @@ const ListingComponent = ({code}) => {
                                                 primary={fixedAmount !== 'usd' ? usdAmountLabel : eosAmountLabel}
                                             />
                                         </ListItem>
+
                                     </>
                                 </List>
-                            </Grid>)}
+                            </Grid>) : publicListing ? (<List><ListItem>
+                                <ListItemIcon>
+                                    <Public color="primary"/>
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary={worldwide ? 'Worldwide' : countries.join(', ')}
+                                />
+                            </ListItem></List>) : ('')}
                             <Grid item xs={12}>
                                 {saleMethod === 'askingPriceAndOffers' && !offer ? (
                                     <TabContext value={tabValue}>

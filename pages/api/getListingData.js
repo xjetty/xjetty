@@ -10,12 +10,11 @@ const getListingData = async (req, res) => {
         await connectToDb()
         const listing = await Listing.findOne({code: code})
         if (!listing) return res.json({success: false, alertMessage: 'Listing not found'})
-        const mode = listing.mode
-        const platforms = listing.platforms
-        const category = listing.category
-        const subcategory = listing.subcategory
+        const publicListing = listing.publicListing
+        const worldwide = listing.worldwide
+        const countries = listing.countries
         const title = listing.title
-        const imageLink = listing.imageLink
+        const imageLinks = listing.imageLinks
         const fixedAmount = listing.fixedAmount
         const usdAmount = listing.usdAmount
         const eosAmount = listing.eosAmount
@@ -32,12 +31,11 @@ const getListingData = async (req, res) => {
         const lastUpdatedOnTimestamp = listing.lastUpdatedOnTimestamp
         return res.json({
             success: true, listing: {
-                mode: mode,
-                platforms: platforms,
-                category: category,
-                subcategory: subcategory,
+                publicListing: publicListing,
+                worldwide: worldwide,
+                countries: countries,
                 title: title,
-                imageLink: imageLink,
+                imageLinks: imageLinks,
                 fixedAmount: fixedAmount,
                 usdAmount: usdAmount,
                 eosAmount: eosAmount,

@@ -49,21 +49,21 @@ const Listing = ({code}) => {
             const data = res.data
             if (data.success) {
                 setEosAccountItems2()
-                const post = data.post
-                const publicListing = post.publicListing
-                const worldwide = post.worldwide
-                const countries = post.countries
-                const title = post.title
-                const imageLinks = post.imageLinks
-                const description = post.description
-                const fixedAmount = post.fixedAmount
-                const usdAmount = post.usdAmount
-                const eosAmount = post.eosAmount
-                const saleMethod = post.saleMethod
+                const listing = data.listing
+                const publicListing = listing.publicListing
+                const worldwide = listing.worldwide
+                const countries = listing.countries
+                const title = listing.title
+                const imageLinks = listing.imageLinks
+                const description = listing.description
+                const fixedAmount = listing.fixedAmount
+                const usdAmount = listing.usdAmount
+                const eosAmount = listing.eosAmount
+                const saleMethod = listing.saleMethod
                 if (saleMethod === 'askingPriceOnly')
                     setHideRecaptcha(true)
-                const createdOnTimestamp = post.createdOnTimestamp
-                const lastUpdatedOnTimestamp = post.lastUpdatedOnTimestamp
+                const createdOnTimestamp = listing.createdOnTimestamp
+                const lastUpdatedOnTimestamp = listing.lastUpdatedOnTimestamp
                 setPublicListing(publicListing)
                 setWorldwide(worldwide)
                 setCountries(countries)
@@ -83,6 +83,7 @@ const Listing = ({code}) => {
             } else
                 alert('Something went wrong')
         } catch (e) {
+            console.log(e)
             alert('Lost Internet connection')
         }
     }

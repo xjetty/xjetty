@@ -1,5 +1,5 @@
 import {Button} from "@material-ui/core";
-import {Delete} from "@material-ui/icons";
+import {ClearAll, Delete} from "@material-ui/icons";
 import React, {useContext} from "react";
 import {AppContext} from "../contexts/AppContext";
 
@@ -18,7 +18,7 @@ const ClearKeywordStorageComponent = () => {
         setSnackbarOpen(true)
     }
     return (
-        <Button onClick={clear} variant="text" color="secondary" endIcon={<Delete/>}>
+        <Button onClick={clear} variant="text" color="secondary" startIcon={<ClearAll/>}>
             Clear keyword storage
         </Button>
     )

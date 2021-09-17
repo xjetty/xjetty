@@ -21,9 +21,10 @@ import MakeOfferFormComponent from "./FormComponents/MakeOfferFormComponent";
 import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
-import {Create, OpenInNew, Update} from "@material-ui/icons";
+import {Create, NavigateBefore, NavigateNext, OpenInNew, Update} from "@material-ui/icons";
 import {Public} from "@material-ui/icons";
 import {green} from "@material-ui/core/colors";
+import IconButton from "@material-ui/core/IconButton";
 
 const useStyles = makeStyles((theme) => ({
     heading: {
@@ -223,15 +224,13 @@ const ListingComponent = ({code}) => {
                                             </Grid>
                                             <Grid item xs={12}>
                                                 {imageLinks.length > 1 ? (
-                                                    <ButtonGroup variant="contained" color="primary"
-                                                                 aria-label="contained primary button group">
+                                                    <ButtonGroup variant="text" color="primary">
                                                         <Button onClick={prevImage}>Prev</Button>
                                                         <Button onClick={nextImage}>Next</Button>
-                                                        <Button onClick={openImage}>Open</Button>
+                                                        <Button onClick={openImage} endIcon={<OpenInNew/>}>Open</Button>
                                                     </ButtonGroup>) : (
-                                                    <ButtonGroup variant="contained" color="primary"
-                                                                 aria-label="contained primary button group">
-                                                        <Button onClick={openImage}>Open</Button>
+                                                    <ButtonGroup variant="text" color="primary">
+                                                        <Button onClick={openImage} endIcon={<OpenInNew/>}>Open</Button>
                                                     </ButtonGroup>
                                                 )}
                                             </Grid>

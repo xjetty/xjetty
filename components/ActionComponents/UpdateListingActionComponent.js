@@ -108,7 +108,7 @@ const UpdateListingActionComponent = ({token}) => {
                     setShowOffers(true)
                 } else
                     setShowOffers(false)
-                setSnackbarMessage('Post updated successfully')
+                setSnackbarMessage('Listing updated successfully')
                 setSnackbarOpen(true)
             } else
                 alert('Something went wrong')

@@ -1,4 +1,4 @@
-import {Button, Divider, Grid} from '@material-ui/core'
+import {Button, Divider, Grid, MuiThemeProvider} from '@material-ui/core'
 import EosAccountNameFieldComponent from '../FieldComponents/EosAccountNameFieldComponent'
 import AssociativePrivateKeyFieldComponent from '../FieldComponents/AssociativePrivateKeyFieldComponent'
 import CommentsFieldComponent from '../FieldComponents/CommentsFieldComponent'
@@ -11,6 +11,10 @@ import EosAccountFieldComponent from "../FieldComponents/EosAccountFieldComponen
 import AddMemoFieldComponent from "../FieldComponents/AddMemoFieldComponent";
 import {OpenInNew} from "@material-ui/icons";
 import ClearEosAccountStorageComponent from "../ClearEosAccountStorageComponent";
+import {createTheme} from "@material-ui/core/styles";
+import {amber, green, yellow} from "@material-ui/core/colors";
+
+const amberTheme = createTheme({palette: {primary: yellow}})
 
 const BuyItNowFormComponent = ({token, code}) => {
     const {eosAccount, addMemo} = useContext(AppContext)
@@ -18,9 +22,14 @@ const BuyItNowFormComponent = ({token, code}) => {
         <>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
-                    <Button variant="outlined" href="https://eospowerup.io/free" target="_blank" endIcon={<OpenInNew/>}>
-                        EOS powerup
-                    </Button>
+                    <MuiThemeProvider theme={amberTheme}>
+                        <Button disableElevation variant="contained" color="primary" href="https://eospowerup.io/free" target="_blank" endIcon={<OpenInNew/>}>
+                            EOS powerup
+                        </Button>
+                    </MuiThemeProvider>
+                </Grid>
+                <Grid item xs={12}>
+                    <Divider/>
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <EosAccountFieldComponent/>
@@ -54,6 +63,9 @@ const BuyItNowFormComponent = ({token, code}) => {
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <EmailAddressFieldComponent/>
+                </Grid>
+                <Grid item xs={12}>
+                    <Divider/>
                 </Grid>
                 <BuyItNowActionComponent code={code} token={token}/>
             </Grid>

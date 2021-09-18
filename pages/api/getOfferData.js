@@ -33,7 +33,7 @@ const getOfferData = async (req, res) => {
         const imageLinks = listing.imageLinks
         const code = listing.code
         let link = `https://blockcommerc.com/listing/${code}`
-        if (getLocalhost(req.sockets.remoteAddress))
+        if (getLocalhost(req.socket.remoteAddress))
             link = `https://localhost:3015/listing/${code}`
         const quantity = listing.quantity
         const quantitySold = listing.quantitySold

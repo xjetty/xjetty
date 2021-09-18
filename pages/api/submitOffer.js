@@ -51,7 +51,7 @@ const submitOffer = async (req, res) => {
         const JWT_SIGNATURE = process.env.JWT_SIGNATURE
         const token = jwt.sign(payload, JWT_SIGNATURE)
         let link = `https://blockcommerc.com/manager/${token}`
-        if (getLocalhost(req.sockets.remoteAddress))
+        if (getLocalhost(req.socket.remoteAddress))
             link = `http://localhost:3015/manager/${token}`
         const subject = `You got an offer! - ${title}`
         const message = `You can choose to accept your offer in your manager.<br /><br /><a href=${link}>${link}</a><br /><br />${listingPreview}`

@@ -1,7 +1,8 @@
 import {IconButton, InputAdornment, TextField} from '@material-ui/core'
-import {useContext} from 'react'
+import React, {useContext} from 'react'
 import {AppContext} from '../../contexts/AppContext'
 import {FileCopy} from '@material-ui/icons'
+import OpenInNew from "@material-ui/icons/OpenInNew";
 
 const LinkFieldComponent = () => {
     const {link, setSnackbarOpen, setSnackbarMessage} =
@@ -26,6 +27,11 @@ const LinkFieldComponent = () => {
                     <InputAdornment position="end">
                         <IconButton onClick={copy}>
                             <FileCopy/>
+                        </IconButton>
+                        <IconButton
+                            href={link}
+                            target="_blank">
+                            <OpenInNew/>
                         </IconButton>
                     </InputAdornment>
                 )

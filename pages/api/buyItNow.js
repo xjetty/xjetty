@@ -200,7 +200,7 @@ const buyItNow = async (req, res) => {
         const sellerToken = jwt.sign(sellerPayload, JWT_SIGNATURE)
         let linkBuyer = `https://blockcommerc.com/message-board/${buyerToken}`
         let linkSeller = `https://blockcommerc.com/message-board/${sellerToken}`
-        if (getLocalhost(req.sockets.remoteAddress)) {
+        if (getLocalhost(req.socket.remoteAddress)) {
             linkBuyer = `http://localhost:3015/message-board/${buyerToken}`
             linkSeller = `http://localhost:3015/message-board/${sellerToken}`
         }

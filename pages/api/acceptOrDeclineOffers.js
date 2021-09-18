@@ -44,7 +44,7 @@ const acceptOrDeclineOffers = async (req, res) => {
                     const emailAddress = offer.emailAddress
                     const token = jwt.sign({offerId: offer._id}, process.env.JWT_SIGNATURE)
                     let link = `https://blockcommerc.com/offer/${token}`
-                    if (getLocalhost(req.sockets.remoteAddress))
+                    if (getLocalhost(req.socket.remoteAddress))
                         link = `http://localhost:3015/offer/${token}`
                     const message = `Confirm and pay for your offer.<br /><br /><a href=${link}>${link}</a><br /><br />${listingPreview}`
                     await sendEmail(emailAddress, subject, message)

@@ -87,7 +87,7 @@ const MakeOfferActionComponent = ({code}) => {
             <Grid container spacing={2}>
                 {submittingData && (
                     <Grid item xs={12}>
-                        <LinearProgress color="secondary"/>
+                        <LinearProgress/>
                     </Grid>
                 )}
                 <Grid item xs={12}>
@@ -96,7 +96,7 @@ const MakeOfferActionComponent = ({code}) => {
                         onClick={submitRecaptcha}
                         disabled={disabled}
                         variant="contained"
-                        color="secondary">
+                        color="primary">
                         Submit offer
                     </Button>
                 </Grid>

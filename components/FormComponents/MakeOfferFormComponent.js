@@ -1,4 +1,4 @@
-import {Grid} from '@material-ui/core'
+import {Divider, Grid} from '@material-ui/core'
 import UsdAmountFieldComponent from '../FieldComponents/UsdAmountFieldComponent'
 import EosAmountFieldComponent from '../FieldComponents/EosAmountFieldComponent'
 import EmailAddressFieldComponent from '../FieldComponents/EmailAddressFieldComponent'
@@ -17,6 +17,9 @@ const MakeOfferFormComponent = ({code}) => {
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <EmailAddressFieldComponent/>
+                </Grid>
+                <Grid item xs={12}>
+                    <Divider/>
                 </Grid>
                 <Grid item xs={12}>
                     <MakeOfferActionComponent code={code}/>

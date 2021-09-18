@@ -237,7 +237,7 @@ const ListingComponent = ({code}) => {
                                         </Grid>
                                     </AccordionDetails>
                                 </Accordion>) : ('')}
-                                <Accordion>
+                                {!offer && (<Accordion>
                                     <AccordionSummary
                                         expandIcon={<ExpandMoreIcon/>}>
                                         <Typography
@@ -268,7 +268,7 @@ const ListingComponent = ({code}) => {
                                             </List>
                                         </Typography>
                                     </AccordionDetails>
-                                </Accordion>
+                                </Accordion>)}
                             </Grid>
                             {(saleMethod !== 'offersOnly' || offer) ? (<Grid item xs={12}>
                                 <List>
@@ -361,8 +361,8 @@ const ListingComponent = ({code}) => {
                                         <Divider/>
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <Button href={link} target="_blank" variant="outlined" color="secondary"
-                                                endIcon={<OpenInNew/>}>Open post</Button>
+                                        <Button href={link} target="_blank" variant="text" color="primary"
+                                                endIcon={<OpenInNew/>}>Original post</Button>
                                     </Grid>
                                 </>
                             )}

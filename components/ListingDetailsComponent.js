@@ -3,13 +3,11 @@ import {
     AccordionDetails,
     AccordionSummary,
     Grid, IconButton, InputAdornment,
-    List,
-    ListItem, ListItemSecondaryAction,
-    ListItemText, TextField,
+    TextField,
     Typography
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import React, {useContext, useEffect} from "react";
+import React, {useContext} from "react";
 import {makeStyles} from "@material-ui/core/styles";
 import OpenInNew from '@material-ui/icons/OpenInNew'
 import {FileCopy} from "@material-ui/icons";
@@ -32,12 +30,12 @@ const datetimeOptions = {
     timeZoneName: 'short'
 }
 
-const PostDetailsComponent = (props) => {
+const ListingDetailsComponent = (props) => {
     const classes = useStyles()
     const {setSnackbarMessage, setSnackbarOpen} = useContext(AppContext)
     const copy = () => {
         let textField = document.createElement('textarea')
-        textField.innerText = props.postDetails.transactionId
+        textField.innerText = props.listingDetails.transactionId
         document.body.appendChild(textField)
         textField.select()
         document.execCommand('copy')
@@ -65,53 +63,20 @@ const PostDetailsComponent = (props) => {
                                 }}
                             />
                         </Grid>
-                        <Grid item xs={12} md={6}>
-                            <TextField
-                                value={props.postDetails.mode}
-                                fullWidth
-                                label="Mode"
-                                variant="filled"
-                                InputProps={{
-                                    readOnly: true,
-                                }}
-                            />
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                            <TextField
-                                value={props.postDetails.platforms.join(', ')}
-                                fullWidth
-                                label="Platforms"
-                                variant="filled"
-                                InputProps={{
-                                    readOnly: true,
-                                }}
-                            />
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                            <TextField
-                                value={props.postDetails.category}
-                                fullWidth
-                                label="Category"
-                                variant="filled"
-                                InputProps={{
-                                    readOnly: true,
-                                }}
-                            />
-                        </Grid>
-                        {props.postDetails.subcategory && (<Grid item xs={12} md={6}>
-                            <TextField
-                                value={props.postDetails.subcategory}
-                                fullWidth
-                                label="Subcategory"
-                                variant="filled"
-                                InputProps={{
-                                    readOnly: true,
-                                }}
-                            />
-                        </Grid>)}
                         <Grid item xs={12}>
                             <TextField
-                                value={props.postDetails.title}
+                                value={props.listingDetails.publicListing ? 'True' : 'False'}
+                                fullWidth
+                                label="Public listing"
+                                variant="filled"
+                                InputProps={{
+                                    readOnly: true,
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                value={props.listingDetails.title}
                                 fullWidth
                                 label="Title"
                                 variant="filled"
@@ -122,8 +87,8 @@ const PostDetailsComponent = (props) => {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
-                                value={props.postDetails.description ? props.postDetails.description : ''}
-                                disabled={!props.postDetails.description}
+                                value={props.listingDetails.description ? props.listingDetails.description : ''}
+                                disabled={!props.listingDetails.description}
                                 fullWidth
                                 multiline
                                 label="Description"
@@ -135,7 +100,7 @@ const PostDetailsComponent = (props) => {
                         </Grid>
                         <Grid item xs={12} md={6}>
                             <TextField
-                                value={props.postDetails.fixedAmount.toUpperCase()}
+                                value={props.listingDetails.fixedAmount.toUpperCase()}
                                 fullWidth
                                 label="Fixed amount"
                                 variant="filled"
@@ -146,7 +111,7 @@ const PostDetailsComponent = (props) => {
                         </Grid>
                         <Grid item xs={12} md={6}>
                             <TextField
-                                value={props.postDetails.usdAmount}
+                                value={props.listingDetails.usdAmount}
                                 fullWidth
                                 label="USD amount"
                                 variant="filled"
@@ -157,7 +122,7 @@ const PostDetailsComponent = (props) => {
                         </Grid>
                         <Grid item xs={12} md={6}>
                             <TextField
-                                value={`${props.postDetails.eosAmount} EOS`}
+                                value={`${props.listingDetails.eosAmount} EOS`}
                                 fullWidth
                                 label="EOS amount"
                                 variant="filled"
@@ -168,7 +133,7 @@ const PostDetailsComponent = (props) => {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
-                                value={props.postDetails.transactionId}
+                                value={props.listingDetails.transactionId}
                                 fullWidth
                                 label="Transaction ID"
                                 variant="filled"
@@ -180,7 +145,7 @@ const PostDetailsComponent = (props) => {
                                                 <FileCopy/>
                                             </IconButton>
                                             <IconButton
-                                                href={`https://bloks.io/transaction/${props.postDetails.transactionId}`}
+                                                href={`https://bloks.io/transaction/${props.listingDetails.transactionId}`}
                                                 target="_blank">
                                                 <OpenInNew/>
                                             </IconButton>
@@ -196,4 +161,4 @@ const PostDetailsComponent = (props) => {
     )
 }
 
-export default PostDetailsComponent
+export default ListingDetailsComponent

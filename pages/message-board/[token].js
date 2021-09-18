@@ -5,7 +5,7 @@ import {Grid} from "@material-ui/core";
 import PostMessageFormComponent from "../../components/FormComponents/PostMessageFormComponent";
 import {AppContext} from "../../contexts/AppContext";
 import axios from "axios";
-import PostDetailsComponent from "../../components/PostDetailsComponent";
+import ListingDetailsComponent from "../../components/ListingDetailsComponent";
 import EscrowComponent from "../../components/EscrowComponent";
 
 const MessageBoard = ({token}) => {
@@ -13,7 +13,7 @@ const MessageBoard = ({token}) => {
     const {messages, setMessages, setEscrowDetails} = useContext(AppContext)
     const [show, setShow] = React.useState(false)
     const [user, setUser] = React.useState('')
-    const [postDetails, setPostDetails] = React.useState({})
+    const [listingDetails, setListingDetails] = React.useState({})
     const [createdOnTimestamp, setCreatedOnTimestamp] = React.useState('')
 
     const getMessageBoardData = async () => {
@@ -26,12 +26,12 @@ const MessageBoard = ({token}) => {
                 const messageBoardData = data.messageBoardData
                 const user = messageBoardData.user
                 const messages = messageBoardData.messages
-                const postDetails = messageBoardData.postDetails
+                const listingDetails = messageBoardData.listingDetails
                 const escrowDetails = messageBoardData.escrowDetails
                 const createdOnTimestamp = messages[0]['timestamp']
                 setCreatedOnTimestamp(createdOnTimestamp)
                 setMessages(messages.reverse())
-                setPostDetails(postDetails)
+                setListingDetails(listingDetails)
                 setEscrowDetails(escrowDetails)
                 setUser(user)
                 setShow(true)
@@ -73,8 +73,8 @@ const MessageBoard = ({token}) => {
             </Head>
             {show && (<Grid container spacing={2}>
                 <Grid item xs={12}>
-                    <PostDetailsComponent createdOnDatetime={getDatetime(createdOnTimestamp)}
-                                          postDetails={postDetails}/>
+                    <ListingDetailsComponent createdOnDatetime={getDatetime(createdOnTimestamp)}
+                                             listingDetails={listingDetails}/>
                     <EscrowComponent token={token} user={user}/>
                 </Grid>
                 <Grid item xs={12}>

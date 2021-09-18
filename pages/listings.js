@@ -6,7 +6,7 @@ import {
     CardActions,
     CardContent,
     CardMedia,
-    Chip, Divider,
+    Chip,
     Grid,
     LinearProgress,
     MuiThemeProvider,
@@ -22,17 +22,15 @@ import UpdateEosRate from "../components/UpdateEosRate";
 import {GpsFixed, GpsNotFixed, EmojiPeople, OpenInNew} from '@material-ui/icons'
 import Masonry from 'react-masonry-css'
 import {Pagination} from "@material-ui/lab";
-import ModesFieldComponent from "../components/FieldComponents/ModesFieldComponent";
-import Platforms2FieldComponent from "../components/FieldComponents/Platforms2FieldComponent";
-import CategoriesFieldComponent from "../components/FieldComponents/CategoriesFieldComponent";
-import SubcategoriesFieldComponent from "../components/FieldComponents/SubcategoriesFieldComponent";
+import WorldwideFieldComponent from "../components/FieldComponents/WorldwideFieldComponent";
+import CountriesFieldComponent from "../components/FieldComponents/CountriesFieldComponent";
 
 const useStyles = makeStyles((theme) => ({
     media: {
         height: theme.spacing(25),
         backgroundSize: 'contain'
     },
-    postMedia: {
+    listingMedia: {
         height: theme.spacing(30)
     },
     chip: {
@@ -75,41 +73,44 @@ const eosFormatter = new Intl.NumberFormat('en-US', {
 
 const redTheme = createTheme({palette: {primary: red}})
 
-const Posts = () => {
+const Listings = () => {
     const classes = useStyles()
     const {
         search,
         eosRate,
-        modes,
-        platforms2,
-        categories,
-        subcategories
+        countries,
+        worldwide,
+        setCountries,
+        setWorldwide,
+        countriesError,
+        setHideRecaptcha,
     } = useContext(AppContext)
-    const [posts, setPosts] = React.useState([])
+    const [listings, setListings] = React.useState([])
     const [page, setPage] = React.useState(1)
     const [pageLength, setPageLength] = React.useState(1)
     const [submittingData, setSubmittingData] = React.useState(false)
+    const [show, setShow] = React.useState(false)
 
-    const getPosts = async (applied, modes, platforms, categories, subcategories, search, page) => {
+    const getListings = async (applied, search, worldwide, countries, page) => {
         try {
-            const res = await axios.post('api/getPosts', {
+            const res = await axios.post('api/getListings', {
                 applied: applied,
-                modes: modes,
-                platforms: platforms,
-                categories: categories,
-                subcategories: subcategories,
                 search: search,
+                worldwide: worldwide,
+                countries: countries,
                 page: page
             })
             const data = res.data
             if (data.success) {
-                setPosts(data.posts)
+                setListings(data.listings)
                 setPageLength(data.pageLength)
+                setShow(true)
             } else if (data && data.alertMessage) {
                 alert(data.alertMessage)
             } else
                 alert('Something went wrong')
         } catch (e) {
+            alert(e)
             alert('Lost Internet connection')
         }
         setSubmittingData(false)
@@ -117,31 +118,49 @@ const Posts = () => {
 
     const submitData = () => {
         setSubmittingData(true)
-        setPosts([])
-        getPosts(true, modes, platforms2, categories, subcategories, search, page)
+        setListings([])
+        getListings(true, search, worldwide, countries, page)
     }
 
     useEffect(() => {
-        getPosts(true, [], [], [], [], '', 1)
+        setHideRecaptcha(true)
+        let worldwide2 = localStorage.getItem('worldwide')
+        let countries2 = localStorage.getItem('countries')
+        if (worldwide2 && countries2) {
+            worldwide2 = JSON.parse(worldwide2)
+            countries2 = JSON.parse(countries2)
+            setWorldwide(worldwide2)
+            setCountries(countries2)
+            getListings(true, '', worldwide2, countries2, 1)
+        } else
+            getListings(true, '', worldwide, countries, 1)
     }, [])
+
+    useEffect(() => {
+        if (show) {
+            localStorage.setItem('worldwide', worldwide)
+            localStorage.setItem('countries', JSON.stringify(countries))
+        }
+    }, [worldwide, countries])
 
     const disabled = useMemo(() => {
         if (submittingData)
             return true
-        if (modes.length === 0 && platforms2.length === 0 && categories.length === 0 && subcategories.length === 0 && !search.trim())
-            return true
-        return false
-    }, [submittingData, modes, platforms2, categories, subcategories, search])
+        if (!worldwide) {
+            return !countries.length || countriesError
+        } else
+            return false
+    }, [countriesError, countries, worldwide, submittingData])
 
-    const updateAmount = (post) => {
+    const updateAmount = (listing) => {
         let returnThis = {}
-        if (post.fixedAmount === 'usd') {
-            const fixedAmount = `${usdFormatter.format(post.usdAmount)} USD`
-            const notFixedAmount = `${eosFormatter.format(post.usdAmount / eosRate).replace('$', '')} EOS`
+        if (listing.fixedAmount === 'usd') {
+            const fixedAmount = `${usdFormatter.format(listing.usdAmount)} USD`
+            const notFixedAmount = `${eosFormatter.format(listing.usdAmount / eosRate).replace('$', '')} EOS`
             returnThis = {fixedAmount: fixedAmount, notFixedAmount: notFixedAmount}
         } else {
-            const fixedAmount = `${eosFormatter.format(post.eosAmount).replace('$', '')} EOS`
-            const notFixedAmount = `${usdFormatter.format(post.eosAmount * eosRate)} USD`
+            const fixedAmount = `${eosFormatter.format(listing.eosAmount).replace('$', '')} EOS`
+            const notFixedAmount = `${usdFormatter.format(listing.eosAmount * eosRate)} USD`
             returnThis = {fixedAmount: fixedAmount, notFixedAmount: notFixedAmount}
         }
         return returnThis
@@ -150,9 +169,9 @@ const Posts = () => {
     const changePage = (event, value) => {
         if (page !== value) {
             setSubmittingData(true)
-            setPosts([])
+            setListings([])
             setPage(value)
-            getPosts(false, [], [], [], [], '', value)
+            getListings(false, search, worldwide, countries, value)
         }
     }
 
@@ -172,39 +191,30 @@ const Posts = () => {
     return (
         <html>
         <Head>
-            <title>Posts - BlockCommerc</title>
+            <title>Listings - BlockCommerc</title>
             <meta name="robots" content="noindex"/>
         </Head>
-        <Grid container spacing={2}>
+        {show && (<Grid container spacing={2}>
             <Grid item xs={12}>
-                <Card>
+                <Card variant="outlined">
                     <CardMedia
                         className={classes.media}
-                        image='/logo.png'
+                        image='/logo.jpg'
                         title="BlockCommerc Logo"
                     />
                     <CardContent>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <Typography variant="h5">
-                                    Filter Posts
+                                    Filter Listings
                                 </Typography>
                             </Grid>
-                            <Grid item xs={12} md={6}>
-                                <ModesFieldComponent/>
-                            </Grid>
-                            <Grid item xs={12} md={6}>
-                                <Platforms2FieldComponent/>
-                            </Grid>
-                            <Grid item xs={12} md={6}>
-                                <CategoriesFieldComponent/>
-                            </Grid>
-                            <Grid item xs={12} md={6}>
-                                <SubcategoriesFieldComponent/>
-                            </Grid>
                             <Grid item xs={12}>
-                                <Divider/>
+                                <WorldwideFieldComponent/>
                             </Grid>
+                            {!worldwide && (<Grid item xs={12}>
+                                <CountriesFieldComponent/>
+                            </Grid>)}
                             <Grid item xs={12}>
                                 <SearchFieldComponent/>
                             </Grid>
@@ -224,35 +234,35 @@ const Posts = () => {
                 </Card>
             </Grid>
             <Grid item xs={12}>
-                <Masonry
+                {listings.length > 0 ? (<Masonry
                     breakpointCols={breakpointColumnsObj}
                     className={classes.masonryGrid}
                     columnClassName={classes.masonryGridColumn}
                 >
-                    {posts.map((post, index) => (
-                        <Card key={index} style={{marginBottom: '16px'}}>
-                            {post.imageLink && (<CardMedia
-                                className={classes.postMedia}
-                                image={post.imageLink}
+                    {listings.map((listing, index) => (
+                        <Card variant="outlined" key={index} style={{marginBottom: '16px'}}>
+                            {listing.imageLink && (<CardMedia
+                                className={classes.listingMedia}
+                                image={listing.imageLink}
                             />)}
                             <CardContent>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12}>
                                         <Typography variant="h6">
-                                            {post.title}
+                                            {listing.title}
                                         </Typography>
                                         <Typography color="textSecondary">
-                                            {getDatetime(post.createdOnTimestamp)}
+                                            {getDatetime(listing.createdOnTimestamp)}
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12}>
                                         <div className={classes.chip} key={eosRate}>
-                                            {post.saleMethod !== 'offersOnly' && (<><Chip
-                                                label={updateAmount(post).fixedAmount}
+                                            {listing.saleMethod !== 'offersOnly' && (<><Chip
+                                                label={updateAmount(listing).fixedAmount}
                                                 icon={<GpsFixed/>}/>
-                                                <Chip label={updateAmount(post).notFixedAmount}
+                                                <Chip label={updateAmount(listing).notFixedAmount}
                                                       icon={<GpsNotFixed/>}/></>)}
-                                            {post.saleMethod !== 'askingPriceOnly' && (
+                                            {listing.saleMethod !== 'askingPriceOnly' && (
                                                 <MuiThemeProvider theme={redTheme}><Chip label="Taking offers"
                                                                                          icon={<EmojiPeople/>}
                                                                                          color="primary"/></MuiThemeProvider>)}
@@ -261,20 +271,28 @@ const Posts = () => {
                                 </Grid>
                             </CardContent>
                             <CardActions>
-                                <Button href={`/post/${post.code}`} target="_blank" variant="contained"
-                                        color="secondary" endIcon={<OpenInNew/>}>Open post</Button>
+                                <Button href={`/listing/${listing.code}`} target="_blank" variant="contained"
+                                        color="primary" endIcon={<OpenInNew/>}>Buy now</Button>
                             </CardActions>
                         </Card>
                     ))}
-                </Masonry>
+                </Masonry>) : !submittingData ? (
+                    <Card variant="outlined">
+                        <CardContent>
+                            <Typography>
+                                No listings to show 😢
+                            </Typography>
+                        </CardContent>
+                    </Card>
+                ) : ('')}
             </Grid>
-            {posts.length > 0 && (<Grid item xs={12} container justifyContent="center">
+            {listings.length > 0 && (<Grid item xs={12} container justifyContent="center">
                 <Pagination color="primary" count={pageLength} page={page} onChange={changePage}/>
             </Grid>)}
-        </Grid>
+        </Grid>)}
         <UpdateEosRate/>
         </html>
     )
 }
 
-export default Posts
+export default Listings

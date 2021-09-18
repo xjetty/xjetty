@@ -1,46 +1,35 @@
 import connectToDb from "../../middleware/connectToDb";
 import cookie from 'cookie'
-import Post from '../../models/Listing'
+import Listing from '../../models/Listing'
 
-const getPosts = async (req, res) => {
+const getListings = async (req, res) => {
     const method = req.method
     if (method === 'POST') {
         const data = req.body
         await connectToDb()
         const applied = data.applied
-
-        let modes = data.modes
-        let platforms = data.platforms
-        let categories = data.categories
-        let subcategories = data.subcategories
         let search = data.search
+        let worldwide = data.worldwide
+        let countries = data.countries
         search = search.trim().toLowerCase()
         search = search.replace(/\s\s+/g, ' ')
         const page = data.page
         if (applied) {
-            res.setHeader('Set-Cookie', cookie.serialize('modes', modes, {
-                httpOnly: true,
-            }))
-            res.setHeader('Set-Cookie', cookie.serialize('platforms', platforms, {
-                httpOnly: true,
-            }))
-            res.setHeader('Set-Cookie', cookie.serialize('categories', categories, {
-                httpOnly: true,
-            }))
-            res.setHeader('Set-Cookie', cookie.serialize('subcategories', subcategories, {
-                httpOnly: true,
-            }))
             res.setHeader('Set-Cookie', cookie.serialize('search', search, {
                 httpOnly: true,
             }))
+            res.setHeader('Set-Cookie', cookie.serialize('worldwide', worldwide, {
+                httpOnly: true,
+            }))
+            res.setHeader('Set-Cookie', cookie.serialize('countries', countries, {
+                httpOnly: true,
+            }))
         } else {
-            modes = cookie.parse(req.headers.modes)
-            platforms = cookie.parse(req.headers.platforms)
-            categories = cookie.parse(req.headers.categories)
-            subcategories = cookie.parse(req.headers.subcategories)
             search = cookie.parse(req.headers.search)
+            worldwide = cookie.parse(req.headers.worldwide)
+            countries = cookie.parse(req.headers.countries)
         }
-        let posts = []
+        let listings = []
         let searchArray = search.split(' ')
         let searchArrayFilter = searchArray.map(function (value) {
             return `/${value}/`
@@ -51,38 +40,34 @@ const getPosts = async (req, res) => {
             searchArrayFilterRegex.push(new RegExp(newValue))
         })
         let filter = {
+            publicListing: true,
             hidden: false,
-            code: {$ne: null}
+            worldwide: worldwide
         }
-        if (modes.length > 0) {
-            filter.mode = {$in: modes}
-        }
-        if (platforms.length > 0) {
-            filter.platforms = {$elemMatch: {$in: platforms}}
-        }
-        if (categories.length > 0) {
-            filter.categories = {$in: categories}
-        }
-        if (subcategories.length > 0) {
-            filter.subcategories = {$in: subcategories}
+        if (!worldwide) {
+            if (countries.length === 0)
+                return res.json({success: false})
+            filter.countries = {$in: countries}
         }
         if (search) {
             filter.$or = [{title: {'$regex': search, '$options': 'i'}},
                 {description: {'$regex': search, '$options': 'i'}},
                 {keywords: {$in: searchArrayFilterRegex}}]
         }
-        posts = await Post.find(filter)
-
-        posts.filter(function (post) {
+        listings = await Listing.find(filter)
+        listings.filter(function (post) {
             const quantity = post.quantity
             const quantitySold = post.quantitySold
             const pendingTransactions = post.pendingTransactions
             return ((quantitySold + pendingTransactions) < quantity)
         })
-        posts = posts.reverse()
-        posts = posts.map(function (value) {
+        listings = listings.reverse()
+        listings = listings.map(function (value) {
+            let imageLink = null
+            if (value.imageLinks.length > 0)
+                imageLink = value.imageLinks[0]
             return {
-                imageLink: value.imageLink,
+                imageLink: imageLink,
                 title: value.title,
                 createdOnTimestamp: value.createdOnTimestamp,
                 fixedAmount: value.fixedAmount,
@@ -92,11 +77,11 @@ const getPosts = async (req, res) => {
                 code: value.code
             }
         })
-        const pageLength = Math.ceil(posts.length / 64)
-        posts = posts.slice((page - 1) * 64, 64)
-        return res.json({success: true, posts: posts, pageLength: pageLength})
+        const pageLength = Math.ceil(listings.length / 64)
+        listings = listings.slice((page - 1) * 64, 64)
+        return res.json({success: true, listings: listings, pageLength: pageLength})
     } else
         return res.json({success: false})
 }
 
-export default getPosts
+export default getListings

@@ -29,6 +29,7 @@ const Listing = ({code}) => {
     } = useContext(AppContext)
 
     useEffect(() => {
+        setHideRecaptcha(true)
         getListingData()
     }, [])
 
@@ -60,8 +61,10 @@ const Listing = ({code}) => {
                 const usdAmount = listing.usdAmount
                 const eosAmount = listing.eosAmount
                 const saleMethod = listing.saleMethod
-                if (saleMethod === 'askingPriceOnly')
+                if (saleMethod === 'askingPriceOnly') {
                     setHideRecaptcha(true)
+                } else
+                    setHideRecaptcha(false)
                 const createdOnTimestamp = listing.createdOnTimestamp
                 const lastUpdatedOnTimestamp = listing.lastUpdatedOnTimestamp
                 setPublicListing(publicListing)

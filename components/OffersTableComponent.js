@@ -9,11 +9,16 @@ import {
     DialogContent,
     DialogContentText,
     DialogTitle,
-    Grid, IconButton, LinearProgress, Paper, Tooltip
+    Grid, IconButton, LinearProgress, MuiThemeProvider, Paper, Tooltip
 } from "@material-ui/core";
 import axios from "axios";
 import MUIDataTable from 'mui-datatables'
 import {Cancel, CheckCircle} from "@material-ui/icons";
+import {createTheme} from "@material-ui/core/styles";
+import {green, red} from "@material-ui/core/colors";
+
+const greenTheme = createTheme({palette: {primary: green}})
+const redTheme = createTheme({palette: {primary: red}})
 
 const columns = [
     {
@@ -117,16 +122,20 @@ const OffersTableComponent = ({token}) => {
         customToolbarSelect: () => {
             return (
                 <div style={{marginRight: '24px'}}>
-                    <Tooltip title={'Accept'}>
-                        <IconButton onClick={acceptOffer}>
-                            <CheckCircle/>
-                        </IconButton>
-                    </Tooltip>
-                    <Tooltip title={'Decline'}>
-                        <IconButton onClick={declineOffer}>
-                            <Cancel/>
-                        </IconButton>
-                    </Tooltip>
+                    <MuiThemeProvider theme={greenTheme}>
+                        <Tooltip title={'Accept'}>
+                            <IconButton onClick={acceptOffer}>
+                                <CheckCircle color="primary"/>
+                            </IconButton>
+                        </Tooltip>
+                    </MuiThemeProvider>
+                    <MuiThemeProvider theme={redTheme}>
+                        <Tooltip title={'Decline'}>
+                            <IconButton color="primary" onClick={declineOffer}>
+                                <Cancel/>
+                            </IconButton>
+                        </Tooltip>
+                    </MuiThemeProvider>
                 </div>
             )
         },

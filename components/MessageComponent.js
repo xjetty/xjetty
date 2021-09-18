@@ -11,7 +11,7 @@ const useStyles = makeStyles({
 const MessageComponent = (props) => {
     const classes = useStyles()
     return (
-        <Card>
+        <Card variant="outlined">
             <CardContent>
                 <Typography variant="h5">
                     {props.user}

@@ -43,14 +43,14 @@ const CreateUpdateListingFormComponent = ({create, token}) => {
                     <Grid item xs={12}>
                         <ClearKeywordStorageComponent/>
                     </Grid>
-                    <Grid item xs={12}>
-                        <WorldwideFieldComponent/>
-                    </Grid>
-                    {!worldwide && (<Grid item xs={12}>
-                        <CountriesFieldComponent/>
-                    </Grid>)}
                 </>
             )}
+            <Grid item xs={12}>
+                <WorldwideFieldComponent/>
+            </Grid>
+            {!worldwide && (<Grid item xs={12}>
+                <CountriesFieldComponent/>
+            </Grid>)}
             <Grid item xs={12}>
                 <Divider/>
             </Grid>

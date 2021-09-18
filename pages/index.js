@@ -52,7 +52,7 @@ const Home = () => {
                                     BlockCommerc
                                 </Typography>
                                 <Typography color="textSecondary" component="h1">
-                                    Commerce on the Blockchain With EOS
+                                    Commerce on the Blockchain With EOS – Compare to a Crypto eBay or Crypto Amazon but With, No Fees, No Sign Up, and No Identify Checks
                                 </Typography>
                             </Grid>
                             <Grid item xs={12} md={3}>
@@ -83,7 +83,7 @@ const Home = () => {
                                     <CheckCircle color="secondary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Built-in crypto payment processor"
+                                    primary="A built-in crypto payment processor"
                                 />
                             </ListItem>
                             <ListItem>
@@ -115,7 +115,7 @@ const Home = () => {
                                     <CheckCircle color="secondary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Does not require sign up"
+                                    primary="No sign up required"
                                 />
                             </ListItem>
                             <ListItem>
@@ -123,7 +123,7 @@ const Home = () => {
                                     <CheckCircle color="secondary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="No fee of any kind"
+                                    primary="No fee whatsoever"
                                 />
                             </ListItem>
                             <ListItem>
@@ -131,7 +131,7 @@ const Home = () => {
                                     <CheckCircle color="secondary"/>
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="An escrow for security"
+                                    primary="An escrow for protection"
                                 />
                             </ListItem>
                         </List>

@@ -5,7 +5,7 @@ import PostMessageActionComponent from "../ActionComponents/PostMessageActionCom
 const PostMessageFormComponent = (props) => {
     return (
         <>
-            <Card>
+            <Card variant="outlined">
                 <CardContent>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>

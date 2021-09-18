@@ -63,11 +63,34 @@ const ListingDetailsComponent = (props) => {
                                 }}
                             />
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid item xs={12} md={6}>
                             <TextField
-                                value={props.listingDetails.publicListing ? 'True' : 'False'}
+                                value={props.listingDetails.publicListing ? 'Yes' : 'No'}
                                 fullWidth
                                 label="Public listing"
+                                variant="filled"
+                                InputProps={{
+                                    readOnly: true,
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                            <TextField
+                                value={props.listingDetails.worldwide ? 'Yes' : 'No'}
+                                fullWidth
+                                label="Worldwide"
+                                variant="filled"
+                                InputProps={{
+                                    readOnly: true,
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                            <TextField
+                                value={!props.listingDetails.worldwide ? props.listingDetails.countries.join(', ') : ''}
+                                disabled={props.listingDetails.worldwide}
+                                fullWidth
+                                label="Countries"
                                 variant="filled"
                                 InputProps={{
                                     readOnly: true,

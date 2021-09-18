@@ -272,38 +272,35 @@ const ListingComponent = ({code}) => {
                             </Grid>
                             {(saleMethod !== 'offersOnly' || offer) ? (<Grid item xs={12}>
                                 <List>
-                                    <>
-                                        {publicListing && (<ListItem>
-                                            <ListItemIcon>
-                                                <Public color="secondary"/>
-                                            </ListItemIcon>
-                                            <ListItemText
-                                                primary={worldwide ? 'Worldwide' : countries.join(', ')}
-                                            />
-                                        </ListItem>)}
-                                        <ListItem divider>
-                                            {fixedAmount !== 'usd' && (<ListItemAvatar>
-                                                <Avatar alt="EOS Logo" imgProps={{style: {objectFit: "initial"}}}
-                                                        src="/eos-logo.svg"/>
-                                            </ListItemAvatar>)}
-                                            <ListItemText
-                                                primary={fixedAmount === 'usd' ? usdAmountLabel : eosAmountLabel}
-                                                secondary="Fixed"
-                                            />
-                                        </ListItem>
-                                        <ListItem>
-                                            {fixedAmount === 'usd' && (<ListItemAvatar>
-                                                <Avatar alt="EOS Logo" imgProps={{style: {objectFit: "initial"}}}
-                                                        src="/eos-logo.svg"/>
-                                            </ListItemAvatar>)}
-                                            <ListItemText
-                                                primary={fixedAmount !== 'usd' ? usdAmountLabel : eosAmountLabel}
-                                            />
-                                        </ListItem>
-
-                                    </>
+                                    <ListItem>
+                                        <ListItemIcon>
+                                            <Public color="secondary"/>
+                                        </ListItemIcon>
+                                        <ListItemText
+                                            primary={worldwide ? 'Worldwide' : countries.join(', ')}
+                                        />
+                                    </ListItem>
+                                    <ListItem divider>
+                                        {fixedAmount !== 'usd' && (<ListItemAvatar>
+                                            <Avatar alt="EOS Logo" imgProps={{style: {objectFit: "initial"}}}
+                                                    src="/eos-logo.svg"/>
+                                        </ListItemAvatar>)}
+                                        <ListItemText
+                                            primary={fixedAmount === 'usd' ? usdAmountLabel : eosAmountLabel}
+                                            secondary="Fixed"
+                                        />
+                                    </ListItem>
+                                    <ListItem>
+                                        {fixedAmount === 'usd' && (<ListItemAvatar>
+                                            <Avatar alt="EOS Logo" imgProps={{style: {objectFit: "initial"}}}
+                                                    src="/eos-logo.svg"/>
+                                        </ListItemAvatar>)}
+                                        <ListItemText
+                                            primary={fixedAmount !== 'usd' ? usdAmountLabel : eosAmountLabel}
+                                        />
+                                    </ListItem>
                                 </List>
-                            </Grid>) : publicListing ? (<List><ListItem>
+                            </Grid>) : (<List><ListItem>
                                 <ListItemIcon>
                                     <MuiThemeProvider theme={greenTheme}>
                                         <Public color="primary"/>
@@ -312,7 +309,7 @@ const ListingComponent = ({code}) => {
                                 <ListItemText
                                     primary={worldwide ? 'Worldwide' : countries.join(', ')}
                                 />
-                            </ListItem></List>) : ('')}
+                            </ListItem></List>)}
                             <Grid item xs={12}>
                                 {saleMethod === 'askingPriceAndOffers' && !offer ? (
                                     <TabContext value={tabValue}>

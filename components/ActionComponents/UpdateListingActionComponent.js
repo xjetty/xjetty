@@ -39,11 +39,9 @@ const UpdateListingActionComponent = ({token}) => {
         if (submittingData) return true
         if (!title || titleError)
             return true
-        if (publicListing) {
-            if (!worldwide) {
-                if (countries.length === 0 || countriesError)
-                    return true
-            }
+        if (!worldwide) {
+            if (countries.length === 0 || countriesError)
+                return true
         }
         if (fixedAmount === 'usd') {
             if (!usdAmount || usdAmountError)
@@ -64,7 +62,6 @@ const UpdateListingActionComponent = ({token}) => {
         submittingData,
         title,
         titleError,
-        publicListing,
         worldwide,
         countries,
         countriesError,

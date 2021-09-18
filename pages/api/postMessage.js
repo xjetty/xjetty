@@ -30,22 +30,18 @@ const postMessage = async (req, res) => {
             return res.json({success: false, alertMessage: 'Message board not found'})
         const sellerEmailAddress = messageBoardData.sellerEmailAddress
         const buyerEmailAddress = messageBoardData.buyerEmailAddress
-        const postDetails = messageBoardData.postDetails
-        const mode = postDetails.mode
-        const platforms = postDetails.platforms
-        const category = postDetails.category
-        const subcategory = postDetails.subcategory
-        const title = postDetails.title
-        const description = postDetails.description
-        const keywords = postDetails.keywords
+        const listingDetails = messageBoardData.listingDetails
+        const title = listingDetails.title
+        const description = listingDetails.description
+        const keywords = listingDetails.keywords
         let postPreview = ''
         let emailAddress = ''
         if (user === 'seller') {
             emailAddress = sellerEmailAddress
-            postPreview = getListingPreview(mode, platforms, category, subcategory, title, description, keywords)
+            postPreview = getListingPreview(title, description, keywords)
         } else {
             emailAddress = buyerEmailAddress
-            postPreview = getListingPreview(mode, platforms, category, subcategory, title, description, [])
+            postPreview = getListingPreview(title, description, [])
         }
         const payload = {user: user, messageBoardId: messageBoardId}
         const messageBoardDataToken = jwt.sign(payload, process.env.JWT_SIGNATURE)

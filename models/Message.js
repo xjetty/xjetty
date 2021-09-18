@@ -18,6 +18,10 @@ const MessageSchema = new mongoose.Schema({
             }
         }
     },
+    app: {
+        type: String,
+        default: 'blockcommerc'
+    },
     createdTimestamp: {
         type: Number,
         default: Date.now()

@@ -9,25 +9,25 @@ const getMessageBoardData = async (req, res) => {
     if (method === 'POST') {
         const data = req.body
         const token = data.token
-        const messageBoardData = getDataFromToken(token)
+        let messageBoardData = getDataFromToken(token)
         if (!messageBoardData)
             return res.json({success: false, alertMessage: 'Invalid token'})
         const user = messageBoardData.user
         const messageBoardId = messageBoardData.messageBoardId
         await connectToDb()
-        const messageBoardData2 = await MessageBoard.findById(messageBoardId)
-        if (!messageBoardData2)
+        messageBoardData = await MessageBoard.findById(messageBoardId)
+        if (!messageBoardData)
             return res.json({success: false, alertMessage: 'Message board not found'})
-        const messages = messageBoardData2.messages
-        const postDetails = messageBoardData2.postDetails
-        delete postDetails.sellerEosAccountName
-        delete postDetails.buyerEosAccountName
-        delete postDetails.buyerMemo
-        delete postDetails.sellerMemo
-        const messageBoardData3 = {
+        const messages = messageBoardData.messages
+        const listingDetails = messageBoardData.listingDetails
+        delete listingDetails.sellerEosAccountName
+        delete listingDetails.buyerEosAccountName
+        delete listingDetails.buyerMemo
+        delete listingDetails.sellerMemo
+        messageBoardData = {
             user: user,
             messages: messages,
-            postDetails: postDetails,
+            listingDetails: listingDetails,
             escrowDetails: {}
         }
         const escrowData = await Escrow.findOne({messageBoardId: messageBoardId})
@@ -46,7 +46,7 @@ const getMessageBoardData = async (req, res) => {
             disputeResolved = disputeData.resolved
             disputeResolvedOnTimestamp = disputeData.resolvedOnTimestamp
         }
-        messageBoardData3.escrowDetails = {
+        messageBoardData.escrowDetails = {
             escrowReleased: escrowReleased,
             escrowRefunded: escrowRefunded,
             disputeOpened: disputeOpened,
@@ -57,7 +57,7 @@ const getMessageBoardData = async (req, res) => {
             disputeOpenedOnTimestamp: disputeOpenedOnTimestamp,
             transactionId: transactionId
         }
-        return res.json({success: true, messageBoardData: messageBoardData3})
+        return res.json({success: true, messageBoardData: messageBoardData})
     } else
         return res.json({success: false})
 }

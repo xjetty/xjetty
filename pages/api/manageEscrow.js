@@ -34,19 +34,15 @@ const manageEscrow = async (req, res) => {
             return res.json({success: false, alertMessage: 'Message board not found'})
         const buyerEmailAddress = messageBoardData.buyerEmailAddress
         const sellerEmailAddress = messageBoardData.sellerEmailAddress
-        const postDetails = messageBoardData.postDetails
-        const mode = postDetails.mode
-        const platforms = postDetails.platforms
-        const category = postDetails.category
-        const subcategory = postDetails.subcategory
-        const title = postDetails.title
-        const description = postDetails.description
-        const keywords = postDetails.keywords
-        const transactionQuantity = postDetails.transactionQuantity
-        const sellerEosAccountName = postDetails.sellerEosAccountName
-        const sellerMemo = postDetails.sellerMemo
-        const buyerEosAccountName = postDetails.buyerEosAccountName
-        const buyerMemo = postDetails.buyerMemo
+        const listingDetails = messageBoardData.listingDetails
+        const title = listingDetails.title
+        const description = listingDetails.description
+        const keywords = listingDetails.keywords
+        const transactionQuantity = listingDetails.transactionQuantity
+        const sellerEosAccountName = listingDetails.sellerEosAccountName
+        const sellerMemo = listingDetails.sellerMemo
+        const buyerEosAccountName = listingDetails.buyerEosAccountName
+        const buyerMemo = listingDetails.buyerMemo
         const escrowData = await Escrow.findOne({messageBoardId: messageBoardId})
         if (!escrowData)
             return res.json({success: false, alertMessage: 'Escrow not found'})
@@ -67,8 +63,8 @@ const manageEscrow = async (req, res) => {
             linkBuyer = `http://localhost:3015/message-board/${buyerToken}`
             linkSeller = `http://localhost:3015/message-board/${sellerToken}`
         }
-        const buyerPostPreview = getListingPreview(mode, platforms, category, subcategory, title, description, [])
-        const sellerPostPreview = getListingPreview(mode, platforms, category, subcategory, title, description, keywords)
+        const buyerPostPreview = getListingPreview(title, description, [])
+        const sellerPostPreview = getListingPreview(title, description, keywords)
         const messageSeller = `Go to your message board for review.<br /><br /><a href=${linkBuyer}>${linkBuyer}</a><br /><br />${sellerPostPreview}`
         const messageBuyer = `Go to your message board for review.<br /><br /><a href=${linkSeller}>${linkSeller}</a><br /><br />${buyerPostPreview}`
         let transactionId = ''
@@ -84,12 +80,22 @@ const manageEscrow = async (req, res) => {
                 )
                 if (result.json && result.json.code) {
                     const errorMessage = result.json.error.details[0].message
-                    return res.json({success: false, reason: errorMessage})
+                    return res.json({
+                        success: false,
+                        reason: errorMessage,
+                        alertMessage: 'Please free power up (https://eospowerup.io/free) the EOS account name blockcommerc and try again. Thank you!'
+                    })
                 } else if (!result) {
-                    return res.json({success: false})
+                    return res.json({
+                        success: false,
+                        alertMessage: 'Please free power up (https://eospowerup.io/free) the EOS account name blockcommerc and try again. Thank you!'
+                    })
                 } else transactionId = result.transaction_id
             } catch (error) {
-                return res.json({success: false})
+                return res.json({
+                    success: false,
+                    alertMessage: 'Please free power up (https://eospowerup.io/free) the EOS account name blockcommerc and try again. Thank you!'
+                })
             }
             await Escrow.updateOne({_id: escrowId}, {
                 $set: {
@@ -114,12 +120,22 @@ const manageEscrow = async (req, res) => {
                 )
                 if (result.json && result.json.code) {
                     const errorMessage = result.json.error.details[0].message
-                    return res.json({success: false, reason: errorMessage})
+                    return res.json({
+                        success: false,
+                        reason: errorMessage,
+                        alertMessage: 'Please free power up (https://eospowerup.io/free) the EOS account name blockcommerc and try again. Thank you!'
+                    })
                 } else if (!result) {
-                    return res.json({success: false})
+                    return res.json({
+                        success: false,
+                        alertMessage: 'Please free power up (https://eospowerup.io/free) the EOS account name blockcommerc and try again. Thank you!'
+                    })
                 } else transactionId = result.transaction_id
             } catch (error) {
-                return res.json({success: false})
+                return res.json({
+                    success: false,
+                    alertMessage: 'Please free power up (https://eospowerup.io/free) the EOS account name blockcommerc and try again. Thank you!'
+                })
             }
             await Escrow.updateOne({_id: escrowId}, {
                 $set: {

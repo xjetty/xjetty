@@ -1,22 +1,17 @@
 import {verifyRecaptcha} from "../../server/verifyRecaptcha";
 import Message from '../../models/Message'
 import connectToDb from "../../middleware/connectToDb";
-
-const xss = require('xss')
+import {cleanString} from "../../server/cleanString";
 
 const sendMessage = async (req, res) => {
     const method = req.method
     if (method === 'POST') {
         const data = req.body
         const recaptchaResponse = data.recaptchaResponse
-        if (!(await verifyRecaptcha(recaptchaResponse)))
-            return res.json({success: false})
+        const recaptchaValid = verifyRecaptcha(recaptchaResponse)
+        if (!recaptchaValid) return res.json({success: false})
         delete data.recaptchaResponse
-        data.message = xss(data.message, {
-            whiteList: {},
-            stripIgnoreTag: true,
-            stripIgnoreTagBody: ['script']
-        })
+        data.message = cleanString(data.message)
         await connectToDb()
         try {
             await Message.create(data)

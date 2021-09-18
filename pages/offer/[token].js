@@ -15,15 +15,14 @@ const Offer = ({token}) => {
         setSaleMethod,
         setEosAccountItems,
         setTitle,
-        setImageLink,
-        setMode,
-        setPlatforms,
-        setCategory,
-        setSubcategory,
+        setImageLinks,
         setEmailAddress,
         setOffer,
         setHideRecaptcha,
         setLink,
+        setPublicListing,
+        setWorldwide,
+        setCountries,
     } = useContext(AppContext)
 
     const [show, setShow] = React.useState(false)
@@ -45,26 +44,21 @@ const Offer = ({token}) => {
             const data = res.data
             if (data.success) {
                 setEosAccountItems2()
-                const post = data.post
-                const mode = post.mode
-                const platforms = post.platforms
-                const category = post.category
-                const subcategory = post.subcategory
-                const title = post.title
-                const imageLink = post.imageLink
-                const description = post.description
-                const fixedAmount = post.fixedAmount
-                const usdAmount = post.usdAmount
-                const eosAmount = post.eosAmount
-                const emailAddress = post.emailAddress
-                const saleMethod = post.saleMethod
-                const link = post.link
-                setMode(mode)
-                setPlatforms(platforms)
-                setCategory(category)
-                setSubcategory(subcategory)
+                const listing = data.listing
+                const title = listing.title
+                const imageLinks = listing.imageLinks
+                const description = listing.description
+                const fixedAmount = listing.fixedAmount
+                const usdAmount = listing.usdAmount
+                const eosAmount = listing.eosAmount
+                const emailAddress = listing.emailAddress
+                const saleMethod = listing.saleMethod
+                const link = listing.link
+                const publicListing = listing.publicListing
+                const worldwide = listing.worldwide
+                const countries = listing.countries
                 setTitle(title)
-                setImageLink(imageLink)
+                setImageLinks(imageLinks)
                 setFixedAmount(fixedAmount)
                 setUsdAmountValue(usdAmount)
                 setEosAmountValue(eosAmount)
@@ -72,6 +66,9 @@ const Offer = ({token}) => {
                 setSaleMethod(saleMethod)
                 setEmailAddress(emailAddress)
                 setLink(link)
+                setPublicListing(publicListing)
+                setWorldwide(worldwide)
+                setCountries(countries)
                 setShow(true)
             } else if (data && data.alertMessage) {
                 alert(data.alertMessage)

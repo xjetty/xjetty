@@ -1,4 +1,4 @@
-import Post from '../../models/Listing'
+import Listing from '../../models/Listing'
 import Offer from '../../models/Offer'
 import {getIdFromToken} from "../../server/getIdFromToken";
 import connectToDb from "../../middleware/connectToDb";
@@ -24,38 +24,36 @@ const getOfferData = async (req, res) => {
         const eosAmount = offer.eosAmount
         const listingId = offer.listingId
         const emailAddress = offer.emailAddress
-        const post = await Post.findById(listingId)
-        if (!post) return res.json({success: false, alertMessage: 'Post not found'})
-        const mode = post.mode
-        const platforms = post.platforms
-        const category = post.category
-        const subcategory = post.subcategory
-        const title = post.title
-        const code = post.code
-        let link = `https://blockcommerc.com/post/${code}`
+        const listing = await Listing.findById(listingId)
+        if (!listing) return res.json({success: false, alertMessage: 'Listing not found'})
+        const publicListing = listing.publicListing
+        const worldwide = listing.worldwide
+        const countries = listing.countries
+        const title = listing.title
+        const imageLinks = listing.imageLinks
+        const code = listing.code
+        let link = `https://blockcommerc.com/listing/${code}`
         if (getLocalhost(req.sockets.remoteAddress))
-            link = `https://localhost:3015/post/${code}`
-        const imageLink = post.imageLink
-        const quantity = post.quantity
-        const quantitySold = post.quantitySold
+            link = `https://localhost:3015/listing/${code}`
+        const quantity = listing.quantity
+        const quantitySold = listing.quantitySold
         const quantityAvailable = quantity - quantitySold
         if (!quantityAvailable)
-            return res.json({success: false, alertMessage: 'Post not available'})
-        const hidden = post.hidden
-        if (hidden) return res.json({success: false, alertMessage: 'Post hidden'})
-        const description = insertBreaks(post.description)
-        const saleMethod = post.saleMethod
+            return res.json({success: false, alertMessage: 'Listing not available'})
+        const hidden = listing.hidden
+        if (hidden) return res.json({success: false, alertMessage: 'Listing hidden'})
+        const description = insertBreaks(listing.description)
+        const saleMethod = listing.saleMethod
         if (saleMethod === 'askingPriceOnly')
             return res.json({success: false, alertMessage: 'Offers not accepted'})
         return res.json({
-            success: true, post: {
-                mode: mode,
-                platforms: platforms,
-                category: category,
-                subcategory: subcategory,
+            success: true, listing: {
+                publicListing: publicListing,
+                worldwide: worldwide,
+                countries: countries,
                 title: title,
                 link: link,
-                imageLink: imageLink,
+                imageLinks: imageLinks,
                 fixedAmount: fixedAmount,
                 usdAmount: usdAmount,
                 eosAmount: eosAmount,

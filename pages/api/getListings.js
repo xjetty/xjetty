@@ -41,18 +41,19 @@ const getListings = async (req, res) => {
         })
         let filter = {
             publicListing: true,
-            hidden: false,
-            worldwide: worldwide
+            hidden: false
         }
-        if (!worldwide) {
+        if (worldwide) {
+            filter.worldwide = true
+            if (search)
+                filter.$or = [{title: {'$regex': search, '$options': 'i'}}, {description: {'$regex': search, '$options': 'i'}}, {keywords: {$in: searchArrayFilterRegex}}]
+        } else {
             if (countries.length === 0)
                 return res.json({success: false})
-            filter.countries = {$in: countries}
-        }
-        if (search) {
-            filter.$or = [{title: {'$regex': search, '$options': 'i'}},
-                {description: {'$regex': search, '$options': 'i'}},
-                {keywords: {$in: searchArrayFilterRegex}}]
+            if (search) {
+                filter.$or = [{title: {'$regex': search, '$options': 'i'}}, {worldwide: true}, {countries: {$in: countries}}, {description: {'$regex': search, '$options': 'i'}}, {keywords: {$in: searchArrayFilterRegex}}]
+            } else
+                filter.$or = [{worldwide: true}, {countries: {$in: countries}}]
         }
         listings = await Listing.find(filter)
         listings.filter(function (post) {

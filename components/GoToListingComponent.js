@@ -25,7 +25,7 @@ const mask = (props) => {
 }
 
 
-const GoToPostComponent = () => {
+const GoToListingComponent = () => {
     const [code, setCode] = React.useState('')
     const handle = (event) => {
         const value = event.target.value
@@ -34,6 +34,7 @@ const GoToPostComponent = () => {
     return (
         <TextField
             fullWidth
+            helperText="Codes take you directly to listings"
             value={code}
             onChange={handle}
             InputProps={{
@@ -54,4 +55,4 @@ const GoToPostComponent = () => {
     )
 }
 
-export default GoToPostComponent
+export default GoToListingComponent

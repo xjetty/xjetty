@@ -13,7 +13,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import Link from 'next/link'
 import ContactFormComponent from "../components/FormComponents/ContactFormComponent";
 import SendMessageActionComponent from "../components/ActionComponents/SendMessageActionComponent";
-import GoToPostComponent from "../components/GoToPostComponent";
+import GoToListingComponent from "../components/GoToListingComponent";
 import {CheckCircle, EmojiEvents, Twitter} from '@material-ui/icons'
 
 const useStyles = makeStyles((theme) => ({
@@ -56,7 +56,7 @@ const Home = () => {
                                 </Typography>
                             </Grid>
                             <Grid item xs={12} md={3}>
-                                <GoToPostComponent/>
+                                <GoToListingComponent/>
                             </Grid>
                             <Grid item xs={12}>
                                 <div className={classes.buttons}>

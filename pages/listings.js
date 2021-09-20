@@ -194,7 +194,7 @@ const Listings = () => {
             <title>Listings - BlockCommerc</title>
             <meta name="robots" content="noindex"/>
         </Head>
-        {show && (<Grid container spacing={2}>
+        <Grid container spacing={2}>
             <Grid item xs={12}>
                 <Card variant="outlined">
                     <CardMedia
@@ -233,7 +233,7 @@ const Listings = () => {
                     </CardActions>
                 </Card>
             </Grid>
-            <Grid item xs={12}>
+            {show && (<Grid item xs={12}>
                 {listings.length > 0 ? (<Masonry
                     breakpointCols={breakpointColumnsObj}
                     className={classes.masonryGrid}
@@ -285,11 +285,11 @@ const Listings = () => {
                         </CardContent>
                     </Card>
                 ) : ('')}
-            </Grid>
+            </Grid>)}
             {listings.length > 0 && (<Grid item xs={12} container justifyContent="center">
                 <Pagination color="primary" count={pageLength} page={page} onChange={changePage}/>
             </Grid>)}
-        </Grid>)}
+        </Grid>
         <UpdateEosRate/>
         </html>
     )

@@ -52,7 +52,7 @@ const Home = () => {
                                     BlockCommerc
                                 </Typography>
                                 <Typography color="textSecondary" component="h1">
-                                    Commerce on the Blockchain With EOS – Compare to a Crypto eBay or Crypto Amazon but With, No Fees, No Sign Up, and No Identify Checks
+                                    Commerce on the Blockchain With EOS – Compare to a Crypto eBay or Crypto Amazon but With No Fees, No Sign Up, and No Identity Checks
                                 </Typography>
                             </Grid>
                             <Grid item xs={12} md={3}>

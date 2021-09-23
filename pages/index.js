@@ -33,9 +33,9 @@ const Home = () => {
     return (
         <html>
         <Head>
-            <title>Home - BlockCommerc</title>
+            <title>Home - BlockCommerc, Blockchain Commerce or E-Commerce Website, Alternative to eBay and Amazon, Compare to a Crypto eBay or Crypto Amazon</title>
             <meta name="description"
-                  content=""/>
+                  content="BlockCommerc Is a Blockchain Commerce or E-Commerce Website That Is an Alternative to eBay and Amazon. Compare to a Crypto eBay or Crypto Amazon but With No Fees, No Signup, and No Identity Checks."/>
         </Head>
         <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -52,7 +52,7 @@ const Home = () => {
                                     BlockCommerc
                                 </Typography>
                                 <Typography color="textSecondary" component="h1">
-                                    Commerce on the Blockchain With EOS – No Fees, No Signup, and No Identity Checks
+                                    Commerce (or E-Commerce) on the Blockchain With EOS – An Alternative to eBay and Amazon, Like a Crypto eBay or Crypto Amazon but With No Fees, No Signup, and No Identity Checks
                                 </Typography>
                             </Grid>
                             <Grid item xs={12} md={3}>

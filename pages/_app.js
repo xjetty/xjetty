@@ -2,9 +2,10 @@ import '../styles/globals.css'
 import {createTheme} from '@material-ui/core/styles'
 import {blue, red} from "@material-ui/core/colors";
 import {AppContext} from "../contexts/AppContext";
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import {CssBaseline, ThemeProvider} from "@material-ui/core";
 import LayoutComponent from "../components/LayoutComponent";
+import {useRouter} from "next/router";
 
 const theme = createTheme({
     palette: {
@@ -14,6 +15,19 @@ const theme = createTheme({
 })
 
 function MyApp({Component, pageProps}) {
+    const router = useRouter()
+    const handleRouteChange = (url) => {
+        window.gtag('config', process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
+            page_path: url,
+        })
+    }
+
+    useEffect(() => {
+        router.events.on('routeChangeComplete', handleRouteChange)
+        return () => {
+            router.events.off('routeChangeComplete', handleRouteChange)
+        }
+    }, [router.events])
     const [description, setDescription] = React.useState('')
     const [descriptionError, setDescriptionError] = React.useState(false)
     const [quantity, setQuantity] = React.useState(1)

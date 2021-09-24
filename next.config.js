@@ -12,6 +12,7 @@ module.exports = {
         ESCROW_ASSOCIATIVE_PRIVATE_KEY:
             '5KD6WKJ2ctuZKpYedyZjE9TcFAC79HfSzLZR5FBFs671sN5z9hY',
         ESCROW_MEMO: '',
-        EMAILS: "blockcommerc1@gmail.com, blockcommerc2@gmail.com, blockcommerc3@gmail.com"
+        EMAILS: "blockcommerc1@gmail.com, blockcommerc2@gmail.com, blockcommerc3@gmail.com",
+        NEXT_PUBLIC_GOOGLE_ANALYTICS:"G-4SX982D0V0"
     }
 }

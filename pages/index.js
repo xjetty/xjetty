@@ -59,16 +59,16 @@ const Home = () => {
                                 <GoToListingComponent/>
                             </Grid>
                             <Grid item xs={12}>
-                                <div className={classes.buttons}>
-                                    <Link href="/listings">
-                                        <Button size="large" variant="contained" color="primary">Browse
-                                            listings</Button>
-                                    </Link>
-                                    <Link href="/create">
-                                        <Button size="large" variant="outlined" color="secondary">Create a
-                                            listing</Button>
-                                    </Link>
-                                </div>
+                                <Link href="/listings">
+                                    <Button size="large" variant="contained" color="primary">Browse
+                                        listings</Button>
+                                </Link>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Link href="/create">
+                                    <Button size="large" variant="outlined" color="secondary">Create a
+                                        listing</Button>
+                                </Link>
                             </Grid>
                         </Grid>
                     </CardContent>

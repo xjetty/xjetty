@@ -7,6 +7,10 @@ const DisputeSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    resolution: {
+        type: String,
+        default: ''
+    },
     resolvedOnTimestamp: {
         type: Number,
         default: null

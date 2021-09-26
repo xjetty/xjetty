@@ -44,9 +44,11 @@ const getMessageBoardData = async (req, res) => {
             const transactionId = escrowData.transactionId
             let disputeResolved = false
             let disputeResolvedOnTimestamp = null
+            let disputeResolution = ''
             if (disputeData) {
                 disputeResolved = disputeData.resolved
                 disputeResolvedOnTimestamp = disputeData.resolvedOnTimestamp
+                disputeResolution = disputeData.resolution
             }
             messageBoardData.escrowDetails = {
                 escrowReleased: escrowReleased,
@@ -54,6 +56,7 @@ const getMessageBoardData = async (req, res) => {
                 disputeOpened: disputeOpened,
                 disputeResolved: disputeResolved,
                 disputeResolvedOnTimestamp: disputeResolvedOnTimestamp,
+                disputeResolution: disputeResolution,
                 escrowReleasedOnTimestamp: escrowReleasedOnTimestamp,
                 escrowRefundedOnTimestamp: escrowRefundedOnTimestamp,
                 disputeOpenedOnTimestamp: disputeOpenedOnTimestamp,

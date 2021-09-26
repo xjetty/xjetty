@@ -1,7 +1,17 @@
-import {Grid, IconButton, InputAdornment, TextField} from "@material-ui/core";
+import {
+    Divider,
+    Grid,
+    IconButton,
+    InputAdornment,
+    List,
+    ListItem,
+    ListItemIcon,
+    ListItemText,
+    TextField
+} from "@material-ui/core";
 import React, {useContext} from "react";
 import {AppContext} from "../contexts/AppContext";
-import {FileCopy} from "@material-ui/icons";
+import {FileCopy, Public} from "@material-ui/icons";
 import OpenInNew from "@material-ui/icons/OpenInNew";
 
 const EscrowDetailsComponent = () => {
@@ -55,48 +65,47 @@ const EscrowDetailsComponent = () => {
                         }}
                     />
                 </Grid>
-                <Grid item xs={12} md={6}>
-                    <TextField
-                        value={escrowDetails.escrowReleased ? getDatetime(escrowDetails.escrowReleasedOnTimestamp) : ''}
-                        disabled={!escrowDetails.escrowReleased}
-                        fullWidth
-                        label="Escrow released on"
-                        variant="filled"
-                        InputProps={{
-                            readOnly: true,
-                        }}
-                    />
+                <Grid item xs={12}>
+                    <Divider/>
                 </Grid>
-                <Grid item xs={12} md={6}>
-                    <TextField
-                        value={escrowDetails.escrowRefunded ? getDatetime(escrowDetails.escrowRefundedOnTimestamp) : ''}
-                        disabled={!escrowDetails.escrowRefunded}
-                        fullWidth
-                        label="Escrow refunded on"
-                        variant="filled"
-                        InputProps={{
-                            readOnly: true,
-                        }}
-                    />
+                <Grid item xs={12}>
+                    <List disablePadding>
+                        <ListItem disableGutters>
+                            <ListItemText
+                                primary={escrowDetails.escrowReleased ? getDatetime(escrowDetails.escrowReleasedOnTimestamp) : '-'}
+                                secondary="Released on"
+                            />
+                        </ListItem>
+                        <ListItem disableGutters>
+                            <ListItemText
+                                primary={escrowDetails.escrowRefunded ? getDatetime(escrowDetails.escrowRefundedOnTimestamp) : '-'}
+                                secondary="Refunded on"
+                            />
+                        </ListItem>
+                        <ListItem disableGutters>
+                            <ListItemText
+                                primary={escrowDetails.disputeOpened ? getDatetime(escrowDetails.disputeOpenedOnTimestamp) : '-'}
+                                secondary="Dispute opened on"
+                            />
+                        </ListItem>
+                        <ListItem disableGutters>
+                            <ListItemText
+                                primary={escrowDetails.disputeResolved ? getDatetime(escrowDetails.disputeResolvedOnTimestamp) : '-'}
+                                secondary="Dispute resolved on"
+                            />
+                        </ListItem>
+                    </List>
                 </Grid>
-                <Grid item xs={12} md={6}>
-                    <TextField
-                        value={escrowDetails.disputeOpened ? getDatetime(escrowDetails.disputeOpenedOnTimestamp) : ''}
-                        disabled={!escrowDetails.disputeOpened}
-                        fullWidth
-                        label="Dispute opened on"
-                        variant="filled"
-                        InputProps={{
-                            readOnly: true,
-                        }}
-                    />
+                <Grid item xs={12}>
+                    <Divider/>
                 </Grid>
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12}>
                     <TextField
-                        value={escrowDetails.disputeResolved ? getDatetime(escrowDetails.disputeResolvedOnTimestamp) : ''}
-                        disabled={!escrowDetails.disputeResolved}
+                        value={escrowDetails.disputeResolution ? escrowDetails.disputeResolution : ''}
+                        disabled={!escrowDetails.disputeResolution}
                         fullWidth
-                        label="Dispute resolved on"
+                        multiline
+                        label="Dispute resolution"
                         variant="filled"
                         InputProps={{
                             readOnly: true,

@@ -41,10 +41,11 @@ const EscrowDetailsComponent = () => {
                             readOnly: true,
                             endAdornment: (
                                 <InputAdornment position="end">
-                                    <IconButton onClick={copy}>
+                                    <IconButton disabled={!escrowDetails.transactionId} onClick={copy}>
                                         <FileCopy/>
                                     </IconButton>
                                     <IconButton
+                                        disabled={!escrowDetails.transactionId}
                                         href={`https://bloks.io/transaction/${escrowDetails.transactionId}`}
                                         target="_blank">
                                         <OpenInNew/>

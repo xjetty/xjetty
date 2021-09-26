@@ -248,7 +248,6 @@ const ListingComponent = ({code}) => {
                                         </Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                        <Typography>
                                             <List disablePadding>
                                                 <ListItem disableGutters>
                                                     <ListItemIcon>
@@ -268,7 +267,6 @@ const ListingComponent = ({code}) => {
                                                         />
                                                     </ListItem>)}
                                             </List>
-                                        </Typography>
                                     </AccordionDetails>
                                 </Accordion>)}
                             </Grid>

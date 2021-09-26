@@ -134,7 +134,7 @@ const BuyItNowActionComponent = ({code, token}) => {
                 <Grid item xs={12}>
                     <Alert severity="success">
                         <AlertTitle>Success</AlertTitle>
-                        Your transaction went through. A link to your message board was sent to your email.
+                        Your payment went through. A link to your message board was sent to your email.
                     </Alert>
                 </Grid>
             )}

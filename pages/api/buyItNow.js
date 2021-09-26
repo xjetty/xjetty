@@ -18,7 +18,6 @@ import {getDataFromToken} from "../../server/getDataFromToken";
 import {validateEosAccountName} from "../../server/validateEosAccountName";
 import Escrow from '../../models/Escrow'
 import {getListingPreview} from "../../server/getListingPreview";
-import {getLocalhost} from "../../server/getLocalhost";
 
 const eosFormatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -105,6 +104,7 @@ const buyItNow = async (req, res) => {
         const sellerEmailAddress = listing.emailAddress
         const sellerEosAccountName = listing.eosAccountName
         const sellerMemo = listing.memo
+        const useEscrow = listing.useEscrow
         const buyerEosAccountName = eosAccountName
         const buyerMemo = memo
         const eosAccountNameValid = validateEosAccountName(buyerEosAccountName)
@@ -119,6 +119,7 @@ const buyItNow = async (req, res) => {
             await updatePendingTransactions(listingId, false)
             return res.json({success: false, alertMessage: transactionPrepared.alertMessage})
         }
+
         let transactionId = ''
         try {
             const result = await attemptTransaction(
@@ -127,7 +128,7 @@ const buyItNow = async (req, res) => {
                 buyerEosAccountName,
                 associativePrivateKey,
                 sellerMemo,
-                true
+                useEscrow
             )
             if (result.json && result.json.code) {
                 await updatePendingTransactions(listingId, false)
@@ -167,6 +168,7 @@ const buyItNow = async (req, res) => {
             fixedAmount: fixedAmount,
             usdAmount: usdAmountFormatted,
             eosAmount: eosAmountFormatted,
+            useEscrow: useEscrow,
             transactionId: transactionId,
             sellerEosAccountName: sellerEosAccountName,
             transactionQuantity: transactionQuantity,
@@ -174,7 +176,7 @@ const buyItNow = async (req, res) => {
             buyerMemo: buyerMemo,
             sellerMemo: sellerMemo
         }
-        let message = 'Hello,<br /><br />Please reply here with your instructions, if needed.<br /><br />Thank you,<br /><br />Your buyer'
+        let message = 'Hello,<br /><br />Please reply here with your instructions, if need be.<br /><br />Thank you,<br />Your buyer'
         if (comments) message = comments
         const messages = [
             {
@@ -190,28 +192,26 @@ const buyItNow = async (req, res) => {
             buyerEmailAddress: buyerEmailAddress
         })
         const messageBoardId = messageBoard._id
-        await Escrow.create({
-            messageBoardId: messageBoardId
-        })
+        if (useEscrow) {
+            await Escrow.create({
+                messageBoardId: messageBoardId
+            })
+        }
         const buyerPayload = {user: 'buyer', messageBoardId: messageBoardId}
         const sellerPayload = {user: 'seller', messageBoardId: messageBoardId}
         const JWT_SIGNATURE = process.env.JWT_SIGNATURE
         const buyerToken = jwt.sign(buyerPayload, JWT_SIGNATURE)
         const sellerToken = jwt.sign(sellerPayload, JWT_SIGNATURE)
-        let linkBuyer = `https://blockcommerc.com/message-board/${buyerToken}`
-        let linkSeller = `https://blockcommerc.com/message-board/${sellerToken}`
-        if (getLocalhost(req.socket.remoteAddress)) {
-            linkBuyer = `http://localhost:3015/message-board/${buyerToken}`
-            linkSeller = `http://localhost:3015/message-board/${sellerToken}`
-        }
+        const linkBuyer = `https://blockcommerc.com/message-board/${buyerToken}`
+        const linkSeller = `https://blockcommerc.com/message-board/${sellerToken}`
         const listingPreviewSeller = getListingPreview(title, description, keywords)
         const listingPreviewBuyer = getListingPreview(title, description, [])
         const subjectSeller = `You made a sale! - ${title}`
         const subjectBuyer = `You made a purchase! - ${title}`
-        const messageSeller = `Go to your message board for review.<br /><br /><a href=${linkBuyer}>${linkBuyer}</a><br /><br />${listingPreviewBuyer}<br /><br />Transaction ID: ${transactionId}`
-        const messageBuyer = `Go to your message board for review.<br /><br /><a href=${linkSeller}>${linkSeller}</a><br /><br />${listingPreviewSeller}<br /><br />Transaction ID: ${transactionId}`
-        await sendEmail(buyerEmailAddress, subjectSeller, messageSeller)
-        await sendEmail(sellerEmailAddress, subjectBuyer, messageBuyer)
+        const messageSeller = `Go to your message board for review.<br /><br /><a href=${linkSeller}>${linkSeller}</a><br /><br />${listingPreviewSeller}<br /><br />Transaction ID: ${transactionId}`
+        const messageBuyer = `Go to your message board for review.<br /><br /><a href=${linkBuyer}>${linkBuyer}</a><br /><br />${listingPreviewBuyer}<br /><br />Transaction ID: ${transactionId}`
+        await sendEmail(sellerEmailAddress, subjectSeller, messageSeller)
+        await sendEmail(buyerEmailAddress, subjectBuyer, messageBuyer)
         return res.json({success: true, eosAccountToken: eosAccountToken, eosAccountName: eosAccountName})
     } else
         return res.json({success: false, reason: 'method not valid'})

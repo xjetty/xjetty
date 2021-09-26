@@ -21,9 +21,9 @@ import MakeOfferFormComponent from "./FormComponents/MakeOfferFormComponent";
 import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
-import {Create, NavigateBefore, NavigateNext, OpenInNew, Update} from "@material-ui/icons";
+import {Create, NavigateBefore, NavigateNext, OpenInNew, Update, VerifiedUser, Warning} from "@material-ui/icons";
 import {Public} from "@material-ui/icons";
-import {green} from "@material-ui/core/colors";
+import {green, orange, red} from "@material-ui/core/colors";
 import IconButton from "@material-ui/core/IconButton";
 
 const useStyles = makeStyles((theme) => ({
@@ -48,6 +48,9 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
+const greenTheme = createTheme({palette: {primary: green}})
+const orangeTheme = createTheme({palette: {primary: orange}})
+
 const usdFormatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -61,8 +64,6 @@ const eosFormatter = new Intl.NumberFormat('en-US', {
     minimumFractionDigits: 4,
     maximumFractionDigits: 4
 })
-
-const greenTheme = createTheme({palette: {primary: green}})
 
 const ListingComponent = ({code}) => {
     const classes = useStyles()
@@ -83,6 +84,7 @@ const ListingComponent = ({code}) => {
         createdOnTimestamp,
         lastUpdatedOnTimestamp,
         publicListing,
+        useEscrow,
         worldwide,
         countries,
         link
@@ -274,10 +276,25 @@ const ListingComponent = ({code}) => {
                                 <List>
                                     <ListItem>
                                         <ListItemIcon>
-                                            <Public color="secondary"/>
+                                            <Public color="primary"/>
                                         </ListItemIcon>
                                         <ListItemText
                                             primary={worldwide ? 'Worldwide' : countries.join(', ')}
+                                        />
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListItemIcon>
+                                            {useEscrow ? (<MuiThemeProvider theme={greenTheme}><VerifiedUser
+                                                color="primary"/></MuiThemeProvider>) : (
+                                                <MuiThemeProvider theme={orangeTheme}><Warning
+                                                    color="primary"/></MuiThemeProvider>)}
+                                        </ListItemIcon>
+                                        <ListItemText
+                                            primary={
+                                                useEscrow
+                                                    ? 'Escrow in use'
+                                                    : 'Escrow not in use'
+                                            }
                                         />
                                     </ListItem>
                                     <ListItem divider>
@@ -300,14 +317,26 @@ const ListingComponent = ({code}) => {
                                         />
                                     </ListItem>
                                 </List>
-                            </Grid>) : (<List><ListItem>
+                            </Grid>) : (<List> <ListItem>
                                 <ListItemIcon>
-                                    <MuiThemeProvider theme={greenTheme}>
-                                        <Public color="primary"/>
-                                    </MuiThemeProvider>
+                                    <Public color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
                                     primary={worldwide ? 'Worldwide' : countries.join(', ')}
+                                />
+                            </ListItem> <ListItem>
+                                <ListItemIcon>
+                                    {useEscrow ? (<MuiThemeProvider theme={greenTheme}><VerifiedUser
+                                        color="primary"/></MuiThemeProvider>) : (
+                                        <MuiThemeProvider theme={orangeTheme}><Warning
+                                            color="primary"/></MuiThemeProvider>)}
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary={
+                                        useEscrow
+                                            ? 'Escrow in use'
+                                            : 'Escrow not in use'
+                                    }
                                 />
                             </ListItem></List>)}
                             <Grid item xs={12}>

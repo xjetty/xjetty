@@ -35,6 +35,9 @@ const manageEscrow = async (req, res) => {
         const buyerEmailAddress = messageBoardData.buyerEmailAddress
         const sellerEmailAddress = messageBoardData.sellerEmailAddress
         const listingDetails = messageBoardData.listingDetails
+        const useEscrow = listingDetails.useEscrow
+        if (!useEscrow)
+            return res.json({success: false})
         const title = listingDetails.title
         const description = listingDetails.description
         const keywords = listingDetails.keywords

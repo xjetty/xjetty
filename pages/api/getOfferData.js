@@ -32,9 +32,7 @@ const getOfferData = async (req, res) => {
         const title = listing.title
         const imageLinks = listing.imageLinks
         const code = listing.code
-        let link = `https://blockcommerc.com/listing/${code}`
-        if (getLocalhost(req.socket.remoteAddress))
-            link = `http://localhost:3015/listing/${code}`
+        const link = `https://blockcommerc.com/listing/${code}`
         const quantity = listing.quantity
         const quantitySold = listing.quantitySold
         const quantityAvailable = quantity - quantitySold
@@ -43,6 +41,7 @@ const getOfferData = async (req, res) => {
         const hidden = listing.hidden
         if (hidden) return res.json({success: false, alertMessage: 'Listing hidden'})
         const description = insertBreaks(listing.description)
+        const useEscrow = listing.useEscrow
         const saleMethod = listing.saleMethod
         if (saleMethod === 'askingPriceOnly')
             return res.json({success: false, alertMessage: 'Offers not accepted'})
@@ -58,6 +57,7 @@ const getOfferData = async (req, res) => {
                 usdAmount: usdAmount,
                 eosAmount: eosAmount,
                 description: description,
+                useEscrow: useEscrow,
                 saleMethod: saleMethod,
                 emailAddress: emailAddress
             }

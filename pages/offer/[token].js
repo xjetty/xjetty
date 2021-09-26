@@ -23,6 +23,7 @@ const Offer = ({token}) => {
         setPublicListing,
         setWorldwide,
         setCountries,
+        setUseEscrow,
     } = useContext(AppContext)
 
     const [show, setShow] = React.useState(false)
@@ -53,6 +54,7 @@ const Offer = ({token}) => {
                 const eosAmount = listing.eosAmount
                 const emailAddress = listing.emailAddress
                 const saleMethod = listing.saleMethod
+                const useEscrow = listing.useEscrow
                 const link = listing.link
                 const publicListing = listing.publicListing
                 const worldwide = listing.worldwide
@@ -64,6 +66,7 @@ const Offer = ({token}) => {
                 setEosAmountValue(eosAmount)
                 setDescription(description)
                 setSaleMethod(saleMethod)
+                setUseEscrow(useEscrow)
                 setEmailAddress(emailAddress)
                 setLink(link)
                 setPublicListing(publicListing)

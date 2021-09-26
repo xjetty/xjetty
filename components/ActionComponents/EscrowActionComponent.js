@@ -101,20 +101,20 @@ const EscrowActionComponent = (props) => {
                         <Grid item xs={12}>
                             <Button disabled={escrowDetails.escrowReleased || escrowDetails.escrowRefunded}
                                     onClick={(event) => handleButton(event, 'releaseEscrow', 'Release escrow?')}
-                                    variant="contained" color="secondary">Release escrow</Button>
+                                    variant="contained" color="primary">Release escrow</Button>
                         </Grid>
                         <Grid item xs={12}>
                             <Button
                                 disabled={escrowDetails.escrowReleased || escrowDetails.escrowRefunded || escrowDetails.disputeOpened}
                                 onClick={(event) => handleButton(event, 'openDispute', 'Open dispute?')}
-                                variant="outlined" color="primary">Open dispute</Button>
+                                variant="outlined" color="secondary">Open dispute</Button>
                         </Grid>
                     </>
                 ) : (
                     <Grid item xs={12}>
                         <Button disabled={escrowDetails.escrowReleased || escrowDetails.escrowRefunded}
                                 onClick={(event) => handleButton(event, 'refundEscrow', 'Refund escrow?')}
-                                variant="outlined" color="primary">Refund escrow</Button>
+                                variant="outlined" color="secondary">Refund escrow</Button>
                     </Grid>
                 )}
             </Grid>

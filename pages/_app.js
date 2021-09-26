@@ -110,6 +110,9 @@ function MyApp({Component, pageProps}) {
     const [countriesError, setCountriesError] = useState(false)
     const [worldwide, setWorldwide] = useState(true)
     const [imageLinks, setImageLinks] = useState([''])
+    const [useEscrow, setUseEscrow] = useState(true)
+    const [eosAccountNameCreator, setEosAccountNameCreator] = useState('')
+    const [eosAccountNameCreatorError, setEosAccountNameCreatorError] = useState(false)
 
     React.useEffect(() => {
         const jssStyles = document.querySelector('#jss-server-side');
@@ -119,6 +122,8 @@ function MyApp({Component, pageProps}) {
     return (
         <AppContext.Provider
             value={{
+                useEscrow,
+                setUseEscrow,
                 countries,
                 setCountries,
                 countriesError,
@@ -127,6 +132,10 @@ function MyApp({Component, pageProps}) {
                 setWorldwide,
                 imageLinks,
                 setImageLinks,
+                eosAccountNameCreator,
+                setEosAccountNameCreator,
+                eosAccountNameCreatorError,
+                setEosAccountNameCreatorError,
 
                 hideRecaptcha,
                 setHideRecaptcha,

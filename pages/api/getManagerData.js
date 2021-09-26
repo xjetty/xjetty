@@ -27,6 +27,7 @@ const getManagerData = async (req, res) => {
         const fixedAmount = listing.fixedAmount
         const usdAmount = listing.usdAmount
         const eosAmount = listing.eosAmount
+        const useEscrow = listing.useEscrow
         const quantity = listing.quantity
         const quantitySold = listing.quantitySold
         const minimumQuantity = (quantity - (quantity - quantitySold)) + 1
@@ -35,9 +36,7 @@ const getManagerData = async (req, res) => {
         const eosAccountName = listing.eosAccountName
         const maximumPercentLessThan = listing.maximumPercentLessThan
         const code = listing.code
-        let link = `https://blockcommerc.com/listing/${code}`
-        if (getLocalhost(req.socket.remoteAddress))
-            link = `http://localhost:3015/listing/${code}`
+        const link = `https://blockcommerc.com/listing/${code}`
         const listingData = {
             publicListing: publicListing,
             worldwide: worldwide,
@@ -54,6 +53,7 @@ const getManagerData = async (req, res) => {
             minimumQuantity: minimumQuantity,
             hidden: hidden,
             saleMethod: saleMethod,
+            useEscrow: useEscrow,
             code: code,
             link: link,
             eosAccountName: eosAccountName,

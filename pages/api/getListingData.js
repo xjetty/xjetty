@@ -16,6 +16,7 @@ const getListingData = async (req, res) => {
         const title = listing.title
         const imageLinks = listing.imageLinks
         const fixedAmount = listing.fixedAmount
+        const useEscrow = listing.useEscrow
         const usdAmount = listing.usdAmount
         const eosAmount = listing.eosAmount
         const quantity = listing.quantity
@@ -41,6 +42,7 @@ const getListingData = async (req, res) => {
                 eosAmount: eosAmount,
                 description: description,
                 saleMethod: saleMethod,
+                useEscrow: useEscrow,
                 createdOnTimestamp: createdOnTimestamp,
                 lastUpdatedOnTimestamp: lastUpdatedOnTimestamp
             }

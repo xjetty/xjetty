@@ -43,6 +43,7 @@ const CreateListingActionComponent = () => {
         countries,
         countriesError,
         setKeywords,
+        useEscrow,
     } = useContext(AppContext)
 
     const [submittingData, setSubmittingData] = React.useState(false)
@@ -94,7 +95,7 @@ const CreateListingActionComponent = () => {
         emailAddressError
     ])
 
-    const createPost = async () => {
+    const createListing = async () => {
         try {
             const res = await axios.post('api/createListing', {
                 publicListing: publicListing,
@@ -113,6 +114,7 @@ const CreateListingActionComponent = () => {
                 eosAccountName: eosAccountName,
                 addMemo: addMemo,
                 memo: memo,
+                useEscrow: useEscrow,
                 emailAddress: emailAddress,
                 recaptchaResponse: recaptchaResponse
             })
@@ -144,7 +146,7 @@ const CreateListingActionComponent = () => {
     }
 
     useEffect(() => {
-        if (submittingData && recaptchaResponse) createPost()
+        if (submittingData && recaptchaResponse) createListing()
     }, [recaptchaResponse])
 
     const handle = () => {

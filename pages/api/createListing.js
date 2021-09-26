@@ -32,9 +32,7 @@ const createListing = async (req, res) => {
             const listingPreview = getListingPreview(title, description, keywords)
             const payload = {listingId: listingId}
             const token = jwt.sign(payload, process.env.JWT_SIGNATURE)
-            let link = `https://blockcommerc.com/manager/${token}`
-            if (getLocalhost(req.socket.remoteAddress))
-                link = `http://localhost:3015/manager/${token}`
+            const link = `https://blockcommerc.com/manager/${token}`
             const subject = `You created a listing! - ${title}`
             const message = `You can review your listing by visiting your manager.<br /><br /><a href=${link}>${link}</a><br /><br />${listingPreview}`
             await sendEmail(emailAddress, subject, message)

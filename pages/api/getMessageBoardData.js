@@ -20,6 +20,7 @@ const getMessageBoardData = async (req, res) => {
             return res.json({success: false, alertMessage: 'Message board not found'})
         const messages = messageBoardData.messages
         const listingDetails = messageBoardData.listingDetails
+        const useEscrow = listingDetails.useEscrow
         delete listingDetails.sellerEosAccountName
         delete listingDetails.buyerEosAccountName
         delete listingDetails.buyerMemo
@@ -30,32 +31,34 @@ const getMessageBoardData = async (req, res) => {
             listingDetails: listingDetails,
             escrowDetails: {}
         }
-        const escrowData = await Escrow.findOne({messageBoardId: messageBoardId})
-        const escrowId = escrowData._id
-        const disputeData = await Dispute.findOne({escrowId: escrowId})
-        const escrowReleased = escrowData.escrowReleased
-        const escrowRefunded = escrowData.escrowRefunded
-        const disputeOpened = escrowData.disputeOpened
-        const escrowReleasedOnTimestamp = escrowData.escrowReleasedOnTimestamp
-        const escrowRefundedOnTimestamp = escrowData.escrowRefundedOnTimestamp
-        const disputeOpenedOnTimestamp = escrowData.disputeOpenedOnTimestamp
-        const transactionId = escrowData.transactionId
-        let disputeResolved = false
-        let disputeResolvedOnTimestamp = null
-        if (disputeData) {
-            disputeResolved = disputeData.resolved
-            disputeResolvedOnTimestamp = disputeData.resolvedOnTimestamp
-        }
-        messageBoardData.escrowDetails = {
-            escrowReleased: escrowReleased,
-            escrowRefunded: escrowRefunded,
-            disputeOpened: disputeOpened,
-            disputeResolved: disputeResolved,
-            disputeResolvedOnTimestamp: disputeResolvedOnTimestamp,
-            escrowReleasedOnTimestamp: escrowReleasedOnTimestamp,
-            escrowRefundedOnTimestamp: escrowRefundedOnTimestamp,
-            disputeOpenedOnTimestamp: disputeOpenedOnTimestamp,
-            transactionId: transactionId
+        if (useEscrow) {
+            const escrowData = await Escrow.findOne({messageBoardId: messageBoardId})
+            const escrowId = escrowData._id
+            const disputeData = await Dispute.findOne({escrowId: escrowId})
+            const escrowReleased = escrowData.escrowReleased
+            const escrowRefunded = escrowData.escrowRefunded
+            const disputeOpened = escrowData.disputeOpened
+            const escrowReleasedOnTimestamp = escrowData.escrowReleasedOnTimestamp
+            const escrowRefundedOnTimestamp = escrowData.escrowRefundedOnTimestamp
+            const disputeOpenedOnTimestamp = escrowData.disputeOpenedOnTimestamp
+            const transactionId = escrowData.transactionId
+            let disputeResolved = false
+            let disputeResolvedOnTimestamp = null
+            if (disputeData) {
+                disputeResolved = disputeData.resolved
+                disputeResolvedOnTimestamp = disputeData.resolvedOnTimestamp
+            }
+            messageBoardData.escrowDetails = {
+                escrowReleased: escrowReleased,
+                escrowRefunded: escrowRefunded,
+                disputeOpened: disputeOpened,
+                disputeResolved: disputeResolved,
+                disputeResolvedOnTimestamp: disputeResolvedOnTimestamp,
+                escrowReleasedOnTimestamp: escrowReleasedOnTimestamp,
+                escrowRefundedOnTimestamp: escrowRefundedOnTimestamp,
+                disputeOpenedOnTimestamp: disputeOpenedOnTimestamp,
+                transactionId: transactionId
+            }
         }
         return res.json({success: true, messageBoardData: messageBoardData})
     } else

@@ -21,6 +21,7 @@ import PublicListingFieldComponent from "../FieldComponents/PublicListingFieldCo
 import WorldwideFieldComponent from "../FieldComponents/WorldwideFieldComponent";
 import CountriesFieldComponent from "../FieldComponents/CountriesFieldComponent";
 import ImageLinksFieldComponent from "../FieldComponents/ImageLinksFieldComponent";
+import UseEscrowFieldComponent from "../FieldComponents/UseEscrowFieldComponent";
 
 const CreateUpdateListingFormComponent = ({create, token}) => {
     const {
@@ -117,13 +118,18 @@ const CreateUpdateListingFormComponent = ({create, token}) => {
                     <MemoFieldComponent/>
                 </Grid>
             )}
+            <Grid item xs={12}>
+                <UseEscrowFieldComponent/>
+            </Grid>
             {create && (<><Grid item xs={12}>
                 <Divider/>
             </Grid>
                 <Grid item xs={12} md={6}>
                     <EmailAddressFieldComponent/>
                 </Grid></>)}
-            {!create && (<UpdateListingActionComponent token={token}/>)}
+            {!create && (<><Grid item xs={12}>
+                <Divider/>
+            </Grid><UpdateListingActionComponent token={token}/></>)}
         </Grid>
     )
 }

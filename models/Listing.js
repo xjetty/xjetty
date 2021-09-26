@@ -121,6 +121,10 @@ const ListingSchema = new mongoose.Schema({
         type: String,
         trim: true
     },
+    useEscrow: {
+        type: Boolean,
+        required: true
+    },
     emailAddress: {
         type: String,
         required: true,

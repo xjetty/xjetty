@@ -80,6 +80,7 @@ const EosAccountNameFieldComponent = () => {
 
     return (
         <TextField
+            autoComplete="username"
             InputLabelProps={{required: true}}
             onKeyUp={verify}
             error={eosAccountNameError}

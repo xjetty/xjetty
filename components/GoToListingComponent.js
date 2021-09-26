@@ -34,7 +34,7 @@ const GoToListingComponent = () => {
     return (
         <TextField
             fullWidth
-            helperText="Codes take you directly to listings"
+            helperText="Go directly to a listing"
             value={code}
             onChange={handle}
             InputProps={{

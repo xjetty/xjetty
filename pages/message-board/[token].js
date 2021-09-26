@@ -10,7 +10,7 @@ import EscrowComponent from "../../components/EscrowComponent";
 
 const MessageBoard = ({token}) => {
 
-    const {messages, setMessages, setEscrowDetails} = useContext(AppContext)
+    const {messages, setMessages, setEscrowDetails, setUseEscrow, useEscrow} = useContext(AppContext)
     const [show, setShow] = React.useState(false)
     const [user, setUser] = React.useState('')
     const [listingDetails, setListingDetails] = React.useState({})
@@ -27,8 +27,10 @@ const MessageBoard = ({token}) => {
                 const user = messageBoardData.user
                 const messages = messageBoardData.messages
                 const listingDetails = messageBoardData.listingDetails
+                const useEscrow = listingDetails.useEscrow
                 const escrowDetails = messageBoardData.escrowDetails
                 const createdOnTimestamp = messages[0]['timestamp']
+                setUseEscrow(useEscrow)
                 setCreatedOnTimestamp(createdOnTimestamp)
                 setMessages(messages.reverse())
                 setListingDetails(listingDetails)
@@ -75,7 +77,7 @@ const MessageBoard = ({token}) => {
                 <Grid item xs={12}>
                     <ListingDetailsComponent createdOnDatetime={getDatetime(createdOnTimestamp)}
                                              listingDetails={listingDetails}/>
-                    <EscrowComponent token={token} user={user}/>
+                    {useEscrow && (<EscrowComponent token={token} user={user}/>)}
                 </Grid>
                 <Grid item xs={12}>
                     <PostMessageFormComponent

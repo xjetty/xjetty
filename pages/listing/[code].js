@@ -26,6 +26,7 @@ const Listing = ({code}) => {
         setPublicListing,
         setWorldwide,
         setCountries,
+        setUseEscrow,
     } = useContext(AppContext)
 
     useEffect(() => {
@@ -61,6 +62,7 @@ const Listing = ({code}) => {
                 const usdAmount = listing.usdAmount
                 const eosAmount = listing.eosAmount
                 const saleMethod = listing.saleMethod
+                const useEscrow = listing.useEscrow
                 if (saleMethod === 'askingPriceOnly') {
                     setHideRecaptcha(true)
                 } else
@@ -77,6 +79,7 @@ const Listing = ({code}) => {
                 setEosAmountValue(eosAmount)
                 setDescription(description)
                 setSaleMethod(saleMethod)
+                setUseEscrow(useEscrow)
                 setCreatedOnTimestamp(createdOnTimestamp)
                 setLastUpdatedOnTimestamp(lastUpdatedOnTimestamp)
                 setMinAmount(false)

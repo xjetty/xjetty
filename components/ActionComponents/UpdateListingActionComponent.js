@@ -31,6 +31,7 @@ const UpdateListingActionComponent = ({token}) => {
         setShowOffers,
         setSnackbarMessage,
         setSnackbarOpen,
+        useEscrow,
     } = useContext(AppContext)
 
     const [submittingData, setSubmittingData] = React.useState(false)
@@ -77,7 +78,7 @@ const UpdateListingActionComponent = ({token}) => {
         memoError
     ])
 
-    const updatePost = async () => {
+    const updateListing = async () => {
         setSubmittingData(true)
         try {
             const res = await axios.post('../api/updateListing', {
@@ -97,6 +98,7 @@ const UpdateListingActionComponent = ({token}) => {
                 eosAccountName: eosAccountName,
                 addMemo: addMemo,
                 memo: memo,
+                useEscrow: useEscrow,
                 token: token
             })
             const data = res.data
@@ -125,7 +127,7 @@ const UpdateListingActionComponent = ({token}) => {
             <Grid item xs={12}>
                 <Button
                     key={disabled}
-                    onClick={updatePost}
+                    onClick={updateListing}
                     disabled={disabled}
                     variant="contained"
                     color="primary">

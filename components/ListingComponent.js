@@ -119,6 +119,11 @@ const ListingComponent = ({code}) => {
 
     const [tabValue, setTabValue] = React.useState('1')
     const [imageNumber, setImageNumber] = React.useState(0)
+    const [imageCount, setImageCount] = React.useState(0)
+
+    useEffect(() => {
+        setImageCount(imageLinks.length)
+    }, [])
 
     const handleTabChange = (event, newValue) => {
         setTabValue(newValue)
@@ -207,8 +212,8 @@ const ListingComponent = ({code}) => {
                                             <Grid item xs={12}>
                                                 {imageLinks.length > 1 ? (
                                                     <ButtonGroup variant="text" color="primary">
-                                                        <Button onClick={prevImage}>Prev</Button>
-                                                        <Button onClick={nextImage}>Next</Button>
+                                                        <Button disabled={imageNumber === 0} onClick={prevImage}>Prev</Button>
+                                                        <Button disabled={imageNumber === imageCount - 1} onClick={nextImage}>Next</Button>
                                                         <Button onClick={openImage} endIcon={<OpenInNew/>}>Open</Button>
                                                     </ButtonGroup>) : (
                                                     <ButtonGroup variant="text" color="primary">

@@ -70,7 +70,8 @@ const ListingComponent = ({code}) => {
         useEscrow,
         worldwide,
         countries,
-        link
+        link,
+        condition,
     } = useContext(AppContext)
 
     useEffect(() => {
@@ -210,13 +211,16 @@ const ListingComponent = ({code}) => {
                                                 <Divider/>
                                             </Grid>
                                             <Grid item xs={12}>
-                                                <Chip label={`${imageNumber + 1}/${imageCount}`} variant="outlined" color="primary" />
+                                                <Chip label={`${imageNumber + 1}/${imageCount}`} variant="outlined"
+                                                      color="primary"/>
                                             </Grid>
                                             <Grid item xs={12}>
                                                 {imageLinks.length > 1 ? (
                                                     <ButtonGroup variant="text" color="primary">
-                                                        <Button disabled={imageNumber === 0} onClick={prevImage}>Prev</Button>
-                                                        <Button disabled={imageNumber === imageCount - 1} onClick={nextImage}>Next</Button>
+                                                        <Button disabled={imageNumber === 0}
+                                                                onClick={prevImage}>Prev</Button>
+                                                        <Button disabled={imageNumber === imageCount - 1}
+                                                                onClick={nextImage}>Next</Button>
                                                         <Button onClick={openImage} endIcon={<OpenInNew/>}>Open</Button>
                                                     </ButtonGroup>) : (
                                                     <ButtonGroup variant="text" color="primary">
@@ -259,6 +263,9 @@ const ListingComponent = ({code}) => {
                             </Grid>
                             {(saleMethod !== 'offersOnly' || offer) ? (<Grid item xs={12}>
                                 <List disablePadding>
+                                    <ListItem disableGutters>
+                                        <ListItemText primary={condition} secondary="Condition"/>
+                                    </ListItem>
                                     <ListItem disableGutters>
                                         <ListItemIcon>
                                             <Public/>

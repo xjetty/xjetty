@@ -69,6 +69,7 @@ const getListings = async (req, res) => {
                 imageLink = value.imageLinks[0]
             return {
                 imageLink: imageLink,
+                condition: value.condition,
                 title: value.title,
                 createdOnTimestamp: value.createdOnTimestamp,
                 fixedAmount: value.fixedAmount,

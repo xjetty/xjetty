@@ -44,6 +44,9 @@ const ListingDetailsComponent = (props) => {
                                     />
                                 </ListItem>
                                 <ListItem disableGutters>
+                                    <ListItemText primary={props.listingDetails.condition} secondary="Condition"/>
+                                </ListItem>
+                                <ListItem disableGutters>
                                     <ListItemIcon>
                                         <Public/>
                                     </ListItemIcon>

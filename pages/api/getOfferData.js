@@ -3,7 +3,6 @@ import Offer from '../../models/Offer'
 import {getIdFromToken} from "../../server/getIdFromToken";
 import connectToDb from "../../middleware/connectToDb";
 import {insertBreaks} from "../../server/insertBreaks";
-import {getLocalhost} from "../../server/getLocalhost";
 
 const getOfferData = async (req, res) => {
     const method = req.method
@@ -29,6 +28,7 @@ const getOfferData = async (req, res) => {
         const publicListing = listing.publicListing
         const worldwide = listing.worldwide
         const countries = listing.countries
+        const condition = listing.condition
         const title = listing.title
         const imageLinks = listing.imageLinks
         const code = listing.code
@@ -50,6 +50,7 @@ const getOfferData = async (req, res) => {
                 publicListing: publicListing,
                 worldwide: worldwide,
                 countries: countries,
+                condition: condition,
                 title: title,
                 link: link,
                 imageLinks: imageLinks,

@@ -31,6 +31,7 @@ const Manager = ({token}) => {
         setPublicListing,
         setWorldwide,
         setCountries,
+        setCondition,
     } = useContext(AppContext)
 
     const [show, setShow] = React.useState(false)
@@ -48,6 +49,7 @@ const Manager = ({token}) => {
                 setPublicListing(listing.publicListing)
                 setWorldwide(listing.worldwide)
                 setCountries(listing.countries)
+                setCondition(listing.condition)
                 setTitle(listing.title)
                 setImageLinks(listing.imageLinks)
                 setKeywords(listing.keywords)

@@ -3,7 +3,6 @@ import Listing from '../../models/Listing'
 import Offer from '../../models/Offer'
 import jwt from "jsonwebtoken";
 import connectToDb from "../../middleware/connectToDb";
-import {getLocalhost} from "../../server/getLocalhost";
 
 const getManagerData = async (req, res) => {
     const method = req.method
@@ -20,6 +19,7 @@ const getManagerData = async (req, res) => {
         const publicListing = listing.publicListing
         const worldwide = listing.worldwide
         const countries = listing.countries
+        const condition = listing.condition
         const title = listing.title
         const imageLinks = listing.imageLinks
         const description = listing.description
@@ -41,6 +41,7 @@ const getManagerData = async (req, res) => {
             publicListing: publicListing,
             worldwide: worldwide,
             countries: countries,
+            condition: condition,
             title: title,
             imageLinks: imageLinks,
             description: description,

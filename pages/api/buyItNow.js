@@ -155,6 +155,7 @@ const buyItNow = async (req, res) => {
         const publicListing = listing.publicListing
         const worldwide = listing.worldwide
         const countries = listing.countries
+        const condition = listing.condition
         const title = listing.title
         const description = listing.description
         const keywords = listing.keywords
@@ -162,6 +163,7 @@ const buyItNow = async (req, res) => {
             publicListing: publicListing,
             worldwide: worldwide,
             countries: countries,
+            condition: condition,
             title: title,
             description: description,
             keywords: keywords,

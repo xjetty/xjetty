@@ -24,6 +24,7 @@ const Offer = ({token}) => {
         setWorldwide,
         setCountries,
         setUseEscrow,
+        setCondition,
     } = useContext(AppContext)
 
     const [show, setShow] = React.useState(false)
@@ -46,6 +47,7 @@ const Offer = ({token}) => {
             if (data.success) {
                 setEosAccountItems2()
                 const listing = data.listing
+                const condition = data.condition
                 const title = listing.title
                 const imageLinks = listing.imageLinks
                 const description = listing.description
@@ -59,6 +61,7 @@ const Offer = ({token}) => {
                 const publicListing = listing.publicListing
                 const worldwide = listing.worldwide
                 const countries = listing.countries
+                setCondition(condition)
                 setTitle(title)
                 setImageLinks(imageLinks)
                 setFixedAmount(fixedAmount)

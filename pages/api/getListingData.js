@@ -13,6 +13,7 @@ const getListingData = async (req, res) => {
         const publicListing = listing.publicListing
         const worldwide = listing.worldwide
         const countries = listing.countries
+        const condition = listing.condition
         const title = listing.title
         const imageLinks = listing.imageLinks
         const fixedAmount = listing.fixedAmount
@@ -35,6 +36,7 @@ const getListingData = async (req, res) => {
                 publicListing: publicListing,
                 worldwide: worldwide,
                 countries: countries,
+                condition: condition,
                 title: title,
                 imageLinks: imageLinks,
                 fixedAmount: fixedAmount,

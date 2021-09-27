@@ -27,6 +27,7 @@ const Listing = ({code}) => {
         setWorldwide,
         setCountries,
         setUseEscrow,
+        setCondition,
     } = useContext(AppContext)
 
     useEffect(() => {
@@ -55,6 +56,7 @@ const Listing = ({code}) => {
                 const publicListing = listing.publicListing
                 const worldwide = listing.worldwide
                 const countries = listing.countries
+                const condition = listing.condition
                 const title = listing.title
                 const imageLinks = listing.imageLinks
                 const description = listing.description
@@ -72,6 +74,7 @@ const Listing = ({code}) => {
                 setPublicListing(publicListing)
                 setWorldwide(worldwide)
                 setCountries(countries)
+                setCondition(condition)
                 setTitle(title)
                 setImageLinks(imageLinks)
                 setFixedAmount(fixedAmount)

@@ -32,6 +32,7 @@ const UpdateListingActionComponent = ({token}) => {
         setSnackbarMessage,
         setSnackbarOpen,
         useEscrow,
+        condition
     } = useContext(AppContext)
 
     const [submittingData, setSubmittingData] = React.useState(false)
@@ -85,6 +86,7 @@ const UpdateListingActionComponent = ({token}) => {
                 publicListing: publicListing,
                 worldwide: worldwide,
                 countries: countries,
+                condition: condition,
                 imageLinks: imageLinks,
                 title: title,
                 description: description,

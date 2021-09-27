@@ -44,6 +44,10 @@ const CreateListingActionComponent = () => {
         countriesError,
         setKeywords,
         useEscrow,
+        condition,
+        conditionError,
+        setCondition,
+        setConditionError,
     } = useContext(AppContext)
 
     const [submittingData, setSubmittingData] = React.useState(false)
@@ -51,6 +55,8 @@ const CreateListingActionComponent = () => {
 
     const disabled = useMemo(() => {
         if (submittingData) return true
+        if (!condition || conditionError)
+            return true
         if (!title || titleError)
             return true
         if (!worldwide) {
@@ -76,6 +82,8 @@ const CreateListingActionComponent = () => {
         return false
     }, [
         submittingData,
+        condition,
+        conditionError,
         title,
         titleError,
         worldwide,
@@ -101,6 +109,7 @@ const CreateListingActionComponent = () => {
                 publicListing: publicListing,
                 worldwide: worldwide,
                 countries: countries,
+                condition: condition,
                 imageLinks: imageLinks,
                 title: title,
                 description: description,
@@ -127,8 +136,10 @@ const CreateListingActionComponent = () => {
                 setSliderKey(newSliderKey)
                 setUsdAmount('')
                 setEosAmount('')
+                setCondition('')
                 setKeywords([])
                 setTitleError(false)
+                setConditionError(false)
                 setUsdAmountError(false)
                 setEosAmountError(false)
                 setListingCreated(true)

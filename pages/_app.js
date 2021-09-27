@@ -113,6 +113,8 @@ function MyApp({Component, pageProps}) {
     const [useEscrow, setUseEscrow] = useState(true)
     const [eosAccountNameCreator, setEosAccountNameCreator] = useState('')
     const [eosAccountNameCreatorError, setEosAccountNameCreatorError] = useState(false)
+    const [condition, setCondition] = useState('')
+    const [conditionError, setConditionError] = useState(false)
 
     React.useEffect(() => {
         const jssStyles = document.querySelector('#jss-server-side');
@@ -136,6 +138,10 @@ function MyApp({Component, pageProps}) {
                 setEosAccountNameCreator,
                 eosAccountNameCreatorError,
                 setEosAccountNameCreatorError,
+                condition,
+                setCondition,
+                conditionError,
+                setConditionError,
 
                 hideRecaptcha,
                 setHideRecaptcha,

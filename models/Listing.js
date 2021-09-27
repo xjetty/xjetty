@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 import {verifyEosAccountName} from '../server/verifyEosAccountName'
 import emailValidator from 'email-validator'
 import {countryOptions} from "../countryOptions";
+import {conditionOptions} from '../conditionOptions'
 
 const ip = require('ip')
 
@@ -40,6 +41,11 @@ const ListingSchema = new mongoose.Schema({
     pendingTransactions: {
         type: Number,
         default: 0
+    },
+    condition: {
+        type: String,
+        required: true,
+        enum: conditionOptions
     },
     title: {
         type: String,

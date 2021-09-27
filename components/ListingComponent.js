@@ -4,7 +4,7 @@ import {
     AccordionSummary,
     AppBar, Avatar, Button, ButtonGroup,
     Card,
-    CardContent, CardMedia, Divider,
+    CardContent, CardMedia, Chip, Divider,
     Grid,
     List,
     ListItem, ListItemAvatar, ListItemIcon,
@@ -208,6 +208,9 @@ const ListingComponent = ({code}) => {
                                             </Grid>
                                             <Grid item xs={12}>
                                                 <Divider/>
+                                            </Grid>
+                                            <Grid item xs={12}>
+                                                <Chip label={`${imageNumber + 1}/${imageCount}`} variant="outlined" color="primary" />
                                             </Grid>
                                             <Grid item xs={12}>
                                                 {imageLinks.length > 1 ? (

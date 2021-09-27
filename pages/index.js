@@ -1,11 +1,12 @@
 import Head from "next/head";
 import {
+    Avatar,
     Button, ButtonGroup,
     Card, CardActions,
     CardContent, CardMedia, Divider,
     Grid, IconButton,
     List,
-    ListItem, ListItemIcon,
+    ListItem, ListItemAvatar, ListItemIcon,
     ListItemText, ListSubheader,
     Typography
 } from "@material-ui/core";
@@ -33,7 +34,8 @@ const Home = () => {
     return (
         <html>
         <Head>
-            <title>Home - BlockCommerc, Blockchain Commerce or E-Commerce Website, Alternative to eBay and Amazon, Compare to a Crypto eBay or Crypto Amazon</title>
+            <title>Home - BlockCommerc, Blockchain Commerce or E-Commerce Website, Alternative to eBay and Amazon,
+                Compare to a Crypto eBay or Crypto Amazon</title>
             <meta name="description"
                   content="BlockCommerc Is a Blockchain Commerce or E-Commerce Website That Is an Alternative to eBay and Amazon. Compare to a Crypto eBay or Crypto Amazon but With No Fees, No Signup, and No Identity Checks."/>
         </Head>
@@ -52,7 +54,9 @@ const Home = () => {
                                     BlockCommerc
                                 </Typography>
                                 <Typography color="textSecondary" component="h1">
-                                    Commerce (or E-Commerce) on the Blockchain With EOS – An Alternative to eBay and Amazon, Like a Crypto eBay or Crypto Amazon but With No Fees, No Signup, and No Identity Checks
+                                    Commerce (or E-Commerce) on the Blockchain With EOS Cryptocurrency – An Alternative to eBay and
+                                    Amazon, Like a Crypto eBay or Crypto Amazon but With No Fees, No Signup, and No
+                                    Identity Checks
                                 </Typography>
                             </Grid>
                             <Grid item xs={12} md={3}>
@@ -141,7 +145,40 @@ const Home = () => {
             <Grid item xs={12}>
                 <Card variant="outlined">
                     <CardContent>
-                        <List subheader={<ListSubheader>EOS</ListSubheader>}>
+                        <List subheader={<ListSubheader>Fee Comparison</ListSubheader>}>
+                            <ListItem>
+                                <ListItemAvatar>
+                                    <Avatar alt="crypto amazon" variant="square" src="/amazon-logo.svg"
+                                            imgProps={{style: {objectFit: "initial"}}}/>
+                                </ListItemAvatar>
+                                <ListItemText primary="15%"/>
+                            </ListItem>
+                            <ListItem>
+                                <ListItemAvatar>
+                                    <Avatar alt="crypto ebay" variant="square" src="/ebay-logo.svg"
+                                            imgProps={{style: {objectFit: "initial"}}}/>
+                                </ListItemAvatar>
+                                <ListItemText primary="10%"/>
+                            </ListItem>
+                            <ListItem>
+                                <ListItemAvatar>
+                                    <Avatar alt="alternative to ebay and amazon" variant="square" src="/logo.jpg"
+                                            imgProps={{style: {objectFit: "initial"}}}/>
+                                </ListItemAvatar>
+                                <ListItemText primary="0%"/>
+                            </ListItem>
+                            <ListItem>
+                                <ListItemText
+                                    primary="With 0% transaction fees, you get all that you earn on BlockCommerc"/>
+                            </ListItem>
+                        </List>
+                    </CardContent>
+                </Card>
+            </Grid>
+            <Grid item xs={12}>
+                <Card variant="outlined">
+                    <CardContent>
+                        <List subheader={<ListSubheader>EOS Cryptocurrency</ListSubheader>}>
                             <ListItem>
                                 <ListItemIcon>
                                     <EmojiEvents color="primary"/>

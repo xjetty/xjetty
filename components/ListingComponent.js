@@ -21,31 +21,15 @@ import MakeOfferFormComponent from "./FormComponents/MakeOfferFormComponent";
 import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
-import {Create, NavigateBefore, NavigateNext, OpenInNew, Update, VerifiedUser, Warning} from "@material-ui/icons";
+import {Create, OpenInNew, Update, VerifiedUser, Warning} from "@material-ui/icons";
 import {Public} from "@material-ui/icons";
-import {green, orange, red} from "@material-ui/core/colors";
-import IconButton from "@material-ui/core/IconButton";
+import {green, orange} from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
-    heading: {
-        fontSize: theme.typography.pxToRem(15),
-        fontWeight: theme.typography.fontWeightRegular
-    },
     media: {
         height: theme.spacing(25),
         backgroundSize: 'contain'
-    },
-    imageList: {
-        width: 500,
-        height: 500,
-    },
-    title: {
-        color: theme.palette.primary.light,
-    },
-    titleBar: {
-        background:
-            'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
-    },
+    }
 }))
 
 const greenTheme = createTheme({palette: {primary: green}})
@@ -83,7 +67,6 @@ const ListingComponent = ({code}) => {
         imageLinks,
         createdOnTimestamp,
         lastUpdatedOnTimestamp,
-        publicListing,
         useEscrow,
         worldwide,
         countries,
@@ -179,13 +162,12 @@ const ListingComponent = ({code}) => {
                                 <Accordion defaultExpanded={true}>
                                     <AccordionSummary
                                         expandIcon={<ExpandMoreIcon/>}>
-                                        <Typography
-                                            className={classes.heading}>
+                                        <Typography>
                                             Title
                                         </Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                        <Typography>
+                                        <Typography variant="h6">
                                             {title}
                                         </Typography>
                                     </AccordionDetails>
@@ -193,8 +175,7 @@ const ListingComponent = ({code}) => {
                                 {description && (<Accordion defaultExpanded={true}>
                                     <AccordionSummary
                                         expandIcon={<ExpandMoreIcon/>}>
-                                        <Typography
-                                            className={classes.heading}>
+                                        <Typography>
                                             Description
                                         </Typography>
                                     </AccordionSummary>
@@ -207,8 +188,7 @@ const ListingComponent = ({code}) => {
                                 {(imageLinks.length >= 1 && imageLinks[0]) ? (<Accordion defaultExpanded={true}>
                                     <AccordionSummary
                                         expandIcon={<ExpandMoreIcon/>}>
-                                        <Typography
-                                            className={classes.heading}>
+                                        <Typography>
                                             Images
                                         </Typography>
                                     </AccordionSummary>
@@ -242,45 +222,44 @@ const ListingComponent = ({code}) => {
                                 {!offer && (<Accordion>
                                     <AccordionSummary
                                         expandIcon={<ExpandMoreIcon/>}>
-                                        <Typography
-                                            className={classes.heading}>
+                                        <Typography>
                                             Specifics
                                         </Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                            <List disablePadding>
+                                        <List disablePadding>
+                                            <ListItem disableGutters>
+                                                <ListItemIcon>
+                                                    <Create/>
+                                                </ListItemIcon>
+                                                <ListItemText
+                                                    primary={getDatetime(createdOnTimestamp)}
+                                                />
+                                            </ListItem>
+                                            {createdOnTimestamp !== lastUpdatedOnTimestamp && (
                                                 <ListItem disableGutters>
                                                     <ListItemIcon>
-                                                        <Create/>
+                                                        <Update/>
                                                     </ListItemIcon>
                                                     <ListItemText
-                                                        primary={getDatetime(createdOnTimestamp)}
+                                                        primary={getDatetime(lastUpdatedOnTimestamp)}
                                                     />
-                                                </ListItem>
-                                                {createdOnTimestamp !== lastUpdatedOnTimestamp && (
-                                                    <ListItem disableGutters>
-                                                        <ListItemIcon>
-                                                            <Update/>
-                                                        </ListItemIcon>
-                                                        <ListItemText
-                                                            primary={getDatetime(lastUpdatedOnTimestamp)}
-                                                        />
-                                                    </ListItem>)}
-                                            </List>
+                                                </ListItem>)}
+                                        </List>
                                     </AccordionDetails>
                                 </Accordion>)}
                             </Grid>
                             {(saleMethod !== 'offersOnly' || offer) ? (<Grid item xs={12}>
-                                <List>
-                                    <ListItem>
+                                <List disablePadding>
+                                    <ListItem disableGutters>
                                         <ListItemIcon>
-                                            <Public color="primary"/>
+                                            <Public/>
                                         </ListItemIcon>
                                         <ListItemText
                                             primary={worldwide ? 'Worldwide' : countries.join(', ')}
                                         />
                                     </ListItem>
-                                    <ListItem>
+                                    <ListItem disableGutters>
                                         <ListItemIcon>
                                             {useEscrow ? (<MuiThemeProvider theme={greenTheme}><VerifiedUser
                                                 color="primary"/></MuiThemeProvider>) : (
@@ -295,7 +274,7 @@ const ListingComponent = ({code}) => {
                                             }
                                         />
                                     </ListItem>
-                                    <ListItem divider>
+                                    <ListItem disableGutters divider>
                                         {fixedAmount !== 'usd' && (<ListItemAvatar>
                                             <Avatar alt="EOS Logo" imgProps={{style: {objectFit: "initial"}}}
                                                     src="/eos-logo.svg"/>
@@ -305,7 +284,7 @@ const ListingComponent = ({code}) => {
                                             secondary="Fixed"
                                         />
                                     </ListItem>
-                                    <ListItem>
+                                    <ListItem disableGutters>
                                         {fixedAmount === 'usd' && (<ListItemAvatar>
                                             <Avatar alt="EOS Logo" imgProps={{style: {objectFit: "initial"}}}
                                                     src="/eos-logo.svg"/>
@@ -315,14 +294,14 @@ const ListingComponent = ({code}) => {
                                         />
                                     </ListItem>
                                 </List>
-                            </Grid>) : (<List> <ListItem>
+                            </Grid>) : (<List disablePadding> <ListItem disableGutters>
                                 <ListItemIcon>
                                     <Public color="primary"/>
                                 </ListItemIcon>
                                 <ListItemText
                                     primary={worldwide ? 'Worldwide' : countries.join(', ')}
                                 />
-                            </ListItem> <ListItem>
+                            </ListItem> <ListItem disableGutters>
                                 <ListItemIcon>
                                     {useEscrow ? (<MuiThemeProvider theme={greenTheme}><VerifiedUser
                                         color="primary"/></MuiThemeProvider>) : (
@@ -386,7 +365,7 @@ const ListingComponent = ({code}) => {
                                     </Grid>
                                     <Grid item xs={12}>
                                         <Button href={link} target="_blank" variant="text" color="primary"
-                                                endIcon={<OpenInNew/>}>Original post</Button>
+                                                endIcon={<OpenInNew/>}>Original listing</Button>
                                     </Grid>
                                 </>
                             )}

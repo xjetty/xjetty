@@ -275,7 +275,7 @@ const Listings = () => {
                             </CardContent>
                             <CardActions>
                                 <Button href={`/listing/${listing.code}`} target="_blank" variant="contained"
-                                        color="primary" endIcon={<OpenInNew/>}>Open listing</Button>
+                                        color="primary" endIcon={<OpenInNew/>}>View listing</Button>
                             </CardActions>
                         </Card>
                     ))}

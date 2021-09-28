@@ -54,9 +54,9 @@ const Home = () => {
                                     BlockCommerc
                                 </Typography>
                                 <Typography color="textSecondary" component="h1">
-                                    Commerce (or E-Commerce) on the Blockchain With EOS – An Alternative
+                                    Commerce (or E-Commerce) on the Blockchain With EOS (Cryptocurrency) – An Alternative
                                     to eBay and
-                                    Amazon, Like a Crypto (Cryptocurrency) eBay or Crypto (Cryptocurrency) Amazon but With No Fees, No Signup, and No
+                                    Amazon, Like a Crypto eBay or Crypto Amazon but With No Fees, No Signup, and No
                                     Identity Checks
                                 </Typography>
                             </Grid>

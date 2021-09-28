@@ -227,7 +227,7 @@ const Listings = () => {
                             </Grid>)}
                             <Grid item xs={12}>
                                 <Button onClick={submitData} disabled={disabled} variant="contained"
-                                        color="primary">Apply</Button>
+                                        color="primary">Apply filters</Button>
                             </Grid>
                         </Grid>
                     </CardActions>
@@ -275,7 +275,7 @@ const Listings = () => {
                             </CardContent>
                             <CardActions>
                                 <Button href={`/listing/${listing.code}`} target="_blank" variant="contained"
-                                        color="primary" endIcon={<OpenInNew/>}>Buy now</Button>
+                                        color="primary" endIcon={<OpenInNew/>}>Open listing</Button>
                             </CardActions>
                         </Card>
                     ))}

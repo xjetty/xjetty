@@ -54,7 +54,8 @@ const Home = () => {
                                     BlockCommerc
                                 </Typography>
                                 <Typography color="textSecondary" component="h1">
-                                    Commerce (or E-Commerce) on the Blockchain With EOS Cryptocurrency – An Alternative to eBay and
+                                    Commerce (or E-Commerce) on the Blockchain With EOS Cryptocurrency – An Alternative
+                                    to eBay and
                                     Amazon, Like a Crypto eBay or Crypto Amazon but With No Fees, No Signup, and No
                                     Identity Checks
                                 </Typography>
@@ -81,62 +82,15 @@ const Home = () => {
             <Grid item xs={12}>
                 <Card variant="outlined">
                     <CardContent>
-                        <List subheader={<ListSubheader>Features</ListSubheader>}>
-                            <ListItem>
-                                <ListItemIcon>
-                                    <CheckCircle color="secondary"/>
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary="A built-in crypto payment processor"
-                                />
+                        <List subheader={<ListSubheader>Fee Comparison</ListSubheader>}>
+                            <ListItem divider>
+                                <ListItemText primary="Amazon" secondary="15%"/>
+                            </ListItem>
+                            <ListItem divider>
+                                <ListItemText primary="eBay" secondary="10%"/>
                             </ListItem>
                             <ListItem>
-                                <ListItemIcon>
-                                    <CheckCircle color="secondary"/>
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary="Fixed item quantities"
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemIcon>
-                                    <CheckCircle color="secondary"/>
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary="USD or crypto fixed amounts"
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemIcon>
-                                    <CheckCircle color="secondary"/>
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary="Multiple sale methods, including offers"
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemIcon>
-                                    <CheckCircle color="secondary"/>
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary="No signup required"
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemIcon>
-                                    <CheckCircle color="secondary"/>
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary="No fee whatsoever"
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemIcon>
-                                    <CheckCircle color="secondary"/>
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary="An optional escrow for protection"
-                                />
+                                <ListItemText primary="BlockCommerc" secondary="0%"/>
                             </ListItem>
                         </List>
                     </CardContent>
@@ -145,31 +99,75 @@ const Home = () => {
             <Grid item xs={12}>
                 <Card variant="outlined">
                     <CardContent>
-                        <List subheader={<ListSubheader>Fee Comparison</ListSubheader>}>
+                        <List subheader={<ListSubheader>Features</ListSubheader>}>
                             <ListItem>
-                                <ListItemAvatar>
-                                    <Avatar alt="crypto amazon" variant="square" src="/amazon-logo.svg"
-                                            imgProps={{style: {objectFit: "initial"}}}/>
-                                </ListItemAvatar>
-                                <ListItemText primary="15%"/>
-                            </ListItem>
-                            <ListItem>
-                                <ListItemAvatar>
-                                    <Avatar alt="crypto ebay" variant="square" src="/ebay-logo.svg"
-                                            imgProps={{style: {objectFit: "initial"}}}/>
-                                </ListItemAvatar>
-                                <ListItemText primary="10%"/>
-                            </ListItem>
-                            <ListItem>
-                                <ListItemAvatar>
-                                    <Avatar alt="alternative to ebay and amazon" variant="square" src="/logo.jpg"
-                                            imgProps={{style: {objectFit: "initial"}}}/>
-                                </ListItemAvatar>
-                                <ListItemText primary="0%"/>
-                            </ListItem>
-                            <ListItem>
+                                <ListItemIcon>
+                                    <CheckCircle color="secondary"/>
+                                </ListItemIcon>
                                 <ListItemText
-                                    primary="With 0% transaction fees, you get all that you earn on BlockCommerc"/>
+                                    primary="A Built-In Crypto Payment Processor"
+                                    secondary="Current crypto e-commerce methods involve sending crypto manually off-site to a
+                                    wallet address. On BlockCommerc, transactions occur on-site, and therefore make voided crypto
+                                    purchases a thing of the past. With near-instant transaction times of EOS cryptocurrency, there is
+                                    no need to wait for payment approvals. These transaction speeds allow BlockCommerc to assess transactions
+                                    rapidly and accept or reject them, similar to fiat (USD) transactions on eBay and Amazon. A buyer
+                                    no longer has to question the acceptance of their payment."
+                                />
+                            </ListItem>
+                            <ListItem>
+                                <ListItemIcon>
+                                    <CheckCircle color="secondary"/>
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary="Item Quantities"
+                                />
+                            </ListItem>
+                            <ListItem>
+                                <ListItemIcon>
+                                    <CheckCircle color="secondary"/>
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary="USD or Crypto Fixed Amounts"
+                                    secondary="Conventional crypto payment methods only send the approximate amount of crypto equivalent to the dollar
+                                    (USD). BlockCommerc allows the USD amount of crypto to be fixed (and the EOS amount too) similar to eBay and Amazon."
+                                />
+                            </ListItem>
+                            <ListItem>
+                                <ListItemIcon>
+                                    <CheckCircle color="secondary"/>
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary="Multiple Sale Methods, Including Offers"
+                                    secondary="Similar to eBay, buyers on BlockCommerc can take offers.
+                                    There are three sale methods on BlockCommerc: Asking price only, Asking price or offers, and Offers only.
+                                    The latter two require a maximum percent less than (the asking price) and a minimum amount defined, respectively."
+                                />
+                            </ListItem>
+                            <ListItem>
+                                <ListItemIcon>
+                                    <CheckCircle color="secondary"/>
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary="No Signup Required"
+                                />
+                            </ListItem>
+                            <ListItem>
+                                <ListItemIcon>
+                                    <CheckCircle color="secondary"/>
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary="No Fee Whatsoever"
+                                />
+                            </ListItem>
+                            <ListItem>
+                                <ListItemIcon>
+                                    <CheckCircle color="secondary"/>
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary="An Escrow for Protection (Optional)"
+                                    secondary="Both eBay and Amazon protect both buyers and sellers. On BlockCommerc, an escrow protects them.
+                                    As the buyer approves a purchase, the respective payment releases to the seller."
+                                />
                             </ListItem>
                         </List>
                     </CardContent>

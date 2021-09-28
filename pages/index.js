@@ -39,6 +39,7 @@ const Home = () => {
             <meta name="description"
                   content="BlockCommerc Is a Blockchain Commerce or E-Commerce Website That Is an Alternative to eBay and Amazon. Compare to a Crypto eBay or Crypto Amazon but With No Fees, No Signup, and No Identity Checks."/>
             <meta name="google-site-verification" content="rbXulvn5JXiuGNF668VpY9e3KMqV3sBNgjPUrEcpAdY" />
+            <link href="https://blockcommerc.com" rel="canonical"/>
         </Head>
         <Grid container spacing={2}>
             <Grid item xs={12}>

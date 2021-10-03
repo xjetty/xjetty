@@ -63,6 +63,9 @@ const BuyItNowFormComponent = ({token, code}) => {
                     <QuantityRequestedFieldComponent/>
                 </Grid>
                 <Grid item xs={12}>
+                    <Divider/>
+                </Grid>
+                <Grid item xs={12}>
                     <CommentsFieldComponent/>
                 </Grid>
                 <Grid item xs={12} md={6}>

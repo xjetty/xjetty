@@ -24,6 +24,8 @@ import TabPanel from '@material-ui/lab/TabPanel';
 import {Create, OpenInNew, Update, VerifiedUser, Warning} from "@material-ui/icons";
 import {Public} from "@material-ui/icons";
 import {green, orange} from "@material-ui/core/colors";
+import {eosFormatter} from '../eosFormatter'
+import {usdFormatter} from '../usdFormatter'
 
 const useStyles = makeStyles((theme) => ({
     media: {
@@ -34,20 +36,6 @@ const useStyles = makeStyles((theme) => ({
 
 const greenTheme = createTheme({palette: {primary: green}})
 const orangeTheme = createTheme({palette: {primary: orange}})
-
-const usdFormatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2
-})
-
-const eosFormatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 4,
-    maximumFractionDigits: 4
-})
 
 const ListingComponent = ({code}) => {
     const classes = useStyles()
@@ -72,38 +60,34 @@ const ListingComponent = ({code}) => {
         countries,
         link,
         condition,
+        quantity
     } = useContext(AppContext)
 
-    useEffect(() => {
+    const setLabels = () => {
         if (fixedAmount === 'usd') {
-            setUsdAmountLabel(`${usdFormatter.format(usdAmountValue)} USD`)
+            setUsdAmountLabel(`${usdFormatter.format(usdAmountValue * quantity)} USD`)
             setEosAmountLabel(
                 `${eosFormatter
-                    .format(usdAmountValue / eosRate)
+                    .format((usdAmountValue * quantity) / eosRate)
                     .replace('$', '')} EOS`
             )
         } else {
             setUsdAmountLabel(
-                `${usdFormatter.format(eosAmountValue * eosRate)} USD`
+                `${usdFormatter.format(eosAmountValue * quantity * eosRate)} USD`
             )
             setEosAmountLabel(
-                `${eosFormatter.format(eosAmountValue).replace('$', '')} EOS`
+                `${eosFormatter.format(eosAmountValue * quantity).replace('$', '')} EOS`
             )
         }
+    }
+
+    useEffect(() => {
+        setLabels()
     }, [])
 
     useEffect(() => {
-        if (fixedAmount === 'usd') {
-            setEosAmountLabel(
-                `${eosFormatter
-                    .format(usdAmountValue / eosRate)
-                    .replace('$', '')} EOS`
-            )
-        } else
-            setUsdAmountLabel(
-                `${usdFormatter.format(eosAmountValue * eosRate)} USD`
-            )
-    }, [eosRate])
+        setLabels()
+    }, [eosRate, quantity])
 
     const datetimeOptions = {
         day: 'numeric',
@@ -165,9 +149,12 @@ const ListingComponent = ({code}) => {
                     <CardContent>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
+                                <Chip color="secondary"
+                                      label={condition !== 'Not applicable' ? condition : 'Condition does not apply'}/>
+                            </Grid>
+                            <Grid item xs={12}>
                                 <Accordion defaultExpanded={true}>
-                                    <AccordionSummary
-                                        expandIcon={<ExpandMoreIcon/>}>
+                                    <AccordionSummary expandIcon={<ExpandMoreIcon/>}>
                                         <Typography>
                                             Title
                                         </Typography>
@@ -262,53 +249,54 @@ const ListingComponent = ({code}) => {
                                 </Accordion>)}
                             </Grid>
                             {(saleMethod !== 'offersOnly' || offer) ? (<Grid item xs={12}>
-                                <List disablePadding>
-                                    <ListItem disableGutters>
-                                        <ListItemText primary={condition} secondary="Condition"/>
-                                    </ListItem>
-                                    <ListItem disableGutters>
-                                        <ListItemIcon>
-                                            <Public/>
-                                        </ListItemIcon>
-                                        <ListItemText
-                                            primary={worldwide ? 'Worldwide' : countries.join(', ')}
-                                        />
-                                    </ListItem>
-                                    <ListItem disableGutters>
-                                        <ListItemIcon>
-                                            {useEscrow ? (<MuiThemeProvider theme={greenTheme}><VerifiedUser
-                                                color="primary"/></MuiThemeProvider>) : (
-                                                <MuiThemeProvider theme={orangeTheme}><Warning
-                                                    color="primary"/></MuiThemeProvider>)}
-                                        </ListItemIcon>
-                                        <ListItemText
-                                            primary={
-                                                useEscrow
-                                                    ? 'Escrow in use'
-                                                    : 'Escrow not in use'
-                                            }
-                                        />
-                                    </ListItem>
-                                    <ListItem disableGutters divider>
-                                        {fixedAmount !== 'usd' && (<ListItemAvatar>
-                                            <Avatar alt="EOS Logo" imgProps={{style: {objectFit: "initial"}}}
-                                                    src="/eos-logo.svg"/>
-                                        </ListItemAvatar>)}
-                                        <ListItemText
-                                            primary={fixedAmount === 'usd' ? usdAmountLabel : eosAmountLabel}
-                                            secondary="Fixed"
-                                        />
-                                    </ListItem>
-                                    <ListItem disableGutters>
-                                        {fixedAmount === 'usd' && (<ListItemAvatar>
-                                            <Avatar alt="EOS Logo" imgProps={{style: {objectFit: "initial"}}}
-                                                    src="/eos-logo.svg"/>
-                                        </ListItemAvatar>)}
-                                        <ListItemText
-                                            primary={fixedAmount !== 'usd' ? usdAmountLabel : eosAmountLabel}
-                                        />
-                                    </ListItem>
-                                </List>
+                                <Card elevation={6}>
+                                    <CardContent>
+                                        <List disablePadding>
+                                            <ListItem disableGutters>
+                                                <ListItemIcon>
+                                                    <Public color="primary"/>
+                                                </ListItemIcon>
+                                                <ListItemText
+                                                    primary={worldwide ? 'Worldwide' : countries.join(', ')}
+                                                />
+                                            </ListItem>
+                                            <ListItem disableGutters>
+                                                <ListItemIcon>
+                                                    {useEscrow ? (<MuiThemeProvider theme={greenTheme}><VerifiedUser
+                                                        color="primary"/></MuiThemeProvider>) : (
+                                                        <MuiThemeProvider theme={orangeTheme}><Warning
+                                                            color="primary"/></MuiThemeProvider>)}
+                                                </ListItemIcon>
+                                                <ListItemText
+                                                    primary={
+                                                        useEscrow
+                                                            ? 'Escrow in use'
+                                                            : 'Escrow not in use'
+                                                    }
+                                                />
+                                            </ListItem>
+                                            <ListItem disableGutters divider>
+                                                {fixedAmount !== 'usd' && (<ListItemAvatar>
+                                                    <Avatar alt="EOS Logo" imgProps={{style: {objectFit: "initial"}}}
+                                                            src="/eos-logo.svg"/>
+                                                </ListItemAvatar>)}
+                                                <ListItemText
+                                                    primary={fixedAmount === 'usd' ? usdAmountLabel : eosAmountLabel}
+                                                    secondary="Fixed"
+                                                />
+                                            </ListItem>
+                                            <ListItem disableGutters>
+                                                {fixedAmount === 'usd' && (<ListItemAvatar>
+                                                    <Avatar alt="EOS Logo" imgProps={{style: {objectFit: "initial"}}}
+                                                            src="/eos-logo.svg"/>
+                                                </ListItemAvatar>)}
+                                                <ListItemText
+                                                    primary={fixedAmount !== 'usd' ? usdAmountLabel : eosAmountLabel}
+                                                />
+                                            </ListItem>
+                                        </List>
+                                    </CardContent>
+                                </Card>
                             </Grid>) : (<List disablePadding> <ListItem disableGutters>
                                 <ListItemIcon>
                                     <Public color="primary"/>

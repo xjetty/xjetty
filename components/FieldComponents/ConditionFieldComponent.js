@@ -33,7 +33,7 @@ const ConditionFieldComponent = () => {
     }, [conditionError])
 
     return (
-        <FormControl variant="filled" fullWidth error={conditionError}>
+        <FormControl required variant="filled" fullWidth error={conditionError}>
             <InputLabel id="condition">Condition</InputLabel>
             <Select
                 onClose={checkError}

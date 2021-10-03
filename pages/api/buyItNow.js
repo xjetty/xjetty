@@ -18,19 +18,8 @@ import {getDataFromToken} from "../../server/getDataFromToken";
 import {validateEosAccountName} from "../../server/validateEosAccountName";
 import Escrow from '../../models/Escrow'
 import {getListingPreview} from "../../server/getListingPreview";
-
-const eosFormatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 4,
-    maximumFractionDigits: 4
-})
-const usdFormatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2
-})
+import {eosFormatter} from '../../eosFormatter'
+import {usdFormatter} from '../../usdFormatter'
 
 const buyItNow = async (req, res) => {
     const method = req.method
@@ -46,6 +35,9 @@ const buyItNow = async (req, res) => {
         const pageTimestamp = data.pageTimestamp
         const code = data.code
         const token = data.token
+        const quantity = parseInt(data.quantity)
+        if (!quantity)
+            return res.json({success: false})
         let eosAccountToken = null
         if (eosAccount !== 'New') {
             const eosAccountData = getDataFromToken(eosAccount)
@@ -113,10 +105,10 @@ const buyItNow = async (req, res) => {
         const eosAccountNameVerified = await verifyEosAccountName(buyerEosAccountName)
         if (!eosAccountNameVerified) return res.json({success: false, reason: 'eosAccountName not verified'})
         const eosRate = await getEosRate()
-        const transactionQuantity = getTransactionQuantity(fixedAmount, usdAmount, eosAmount, eosRate, eosFormatter)
-        const transactionPrepared = await prepareTransaction(listingId)
+        const transactionQuantity = getTransactionQuantity(fixedAmount, usdAmount, eosAmount, eosRate, eosFormatter, quantity)
+        const transactionPrepared = await prepareTransaction(listingId, quantity)
         if (!transactionPrepared.success) {
-            await updatePendingTransactions(listingId, false)
+            await updatePendingTransactions(listingId, quantity, false)
             return res.json({success: false, alertMessage: transactionPrepared.alertMessage})
         }
 
@@ -131,20 +123,20 @@ const buyItNow = async (req, res) => {
                 useEscrow
             )
             if (result.json && result.json.code) {
-                await updatePendingTransactions(listingId, false)
+                await updatePendingTransactions(listingId, quantity, false)
                 let errorMessage = result.json.error.details[0].message
                 errorMessage = `${errorMessage}\nTrying using the EOS PowerUp!`
                 return res.json({success: false, alertMessage: errorMessage})
             } else if (!result) {
-                await updatePendingTransactions(listingId, false)
+                await updatePendingTransactions(listingId, quantity, false)
                 return res.json({success: false, reason: 'result not valid'})
             } else transactionId = result.transaction_id
         } catch (error) {
-            await updatePendingTransactions(listingId, false)
+            await updatePendingTransactions(listingId, quantity, false)
             return res.json({success: false, alertMessage: 'Invalid associative private key'})
         }
-        await increaseQuantitySold(listingId)
-        await updatePendingTransactions(listingId, false)
+        await increaseQuantitySold(listingId, quantity)
+        await updatePendingTransactions(listingId, quantity, false)
         const transactionAmount = parseFloat(transactionQuantity.replace(' EOS', ''))
         let usdAmountFormatted = ''
         let eosAmountFormatted = eosFormatter.format(transactionAmount).replace('$', '')
@@ -164,6 +156,7 @@ const buyItNow = async (req, res) => {
             worldwide: worldwide,
             countries: countries,
             condition: condition,
+            quantity: quantity,
             title: title,
             description: description,
             keywords: keywords,

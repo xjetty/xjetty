@@ -28,6 +28,7 @@ const Listing = ({code}) => {
         setCountries,
         setUseEscrow,
         setCondition,
+        setQuantityOptions,
     } = useContext(AppContext)
 
     useEffect(() => {
@@ -71,6 +72,12 @@ const Listing = ({code}) => {
                     setHideRecaptcha(false)
                 const createdOnTimestamp = listing.createdOnTimestamp
                 const lastUpdatedOnTimestamp = listing.lastUpdatedOnTimestamp
+                const quantityAvailable = listing.quantityAvailable
+                let setQuantityOptions2 = Array.from({length: quantityAvailable}, (_, i) => i + 1)
+                setQuantityOptions2 = setQuantityOptions2.map(function (value) {
+                    return value.toString()
+                })
+                setQuantityOptions(setQuantityOptions2)
                 setPublicListing(publicListing)
                 setWorldwide(worldwide)
                 setCountries(countries)

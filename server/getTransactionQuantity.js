@@ -1,19 +1,16 @@
+import {eosFormatter} from '../eosFormatter'
+
 export function getTransactionQuantity(
     fixedAmount,
     usdAmount,
     eosAmount,
-    eosRate
+    eosRate,
+    quantity
 ) {
-    const eosFormatter = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 4,
-        maximumFractionDigits: 4
-    })
     let eosAmount2 = ''
     if (fixedAmount === 'usd') {
-        eosAmount2 = usdAmount / eosRate
-    } else eosAmount2 = eosAmount
+        eosAmount2 = (usdAmount * quantity) / eosRate
+    } else eosAmount2 = eosAmount * quantity
 
     return `${eosFormatter.format(eosAmount2).replace('$', '').replace(new RegExp(',', 'g'), '')} EOS`
 }

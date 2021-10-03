@@ -33,6 +33,7 @@ const BuyItNowActionComponent = ({code, token}) => {
         addMemo,
         memoError,
         setMemoError,
+        quantity,
     } = useContext(AppContext)
 
     const buyItNow = async () => {
@@ -49,6 +50,7 @@ const BuyItNowActionComponent = ({code, token}) => {
                 offer: offer,
                 pageTimestamp: pageTimestamp,
                 code: code,
+                quantity: quantity,
                 token: token
             })
             const data = res.data

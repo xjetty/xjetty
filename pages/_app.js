@@ -31,6 +31,7 @@ function MyApp({Component, pageProps}) {
     const [description, setDescription] = React.useState('')
     const [descriptionError, setDescriptionError] = React.useState(false)
     const [quantity, setQuantity] = React.useState(1)
+    const [quantityOptions, setQuantityOptions] = React.useState([1])
     const [saleMethod, setSaleMethod] = React.useState('askingPriceOnly')
     const [fixedAmount, setFixedAmount] = React.useState('usd')
     const [usdAmount, setUsdAmount] = React.useState('')
@@ -105,7 +106,6 @@ function MyApp({Component, pageProps}) {
     const [hideRecaptcha, setHideRecaptcha] = useState(false)
     const [createdOnTimestamp, setCreatedOnTimestamp] = useState('')
     const [lastUpdatedOnTimestamp, setLastUpdatedOnTimestamp] = useState('')
-
     const [countries, setCountries] = useState([])
     const [countriesError, setCountriesError] = useState(false)
     const [worldwide, setWorldwide] = useState(true)
@@ -142,7 +142,8 @@ function MyApp({Component, pageProps}) {
                 setCondition,
                 conditionError,
                 setConditionError,
-
+                quantityOptions,
+                setQuantityOptions,
                 hideRecaptcha,
                 setHideRecaptcha,
                 mode,

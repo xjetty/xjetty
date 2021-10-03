@@ -12,7 +12,8 @@ import AddMemoFieldComponent from "../FieldComponents/AddMemoFieldComponent";
 import {OpenInNew} from "@material-ui/icons";
 import ClearEosAccountStorageComponent from "../ClearEosAccountStorageComponent";
 import {createTheme} from "@material-ui/core/styles";
-import {amber, green, yellow} from "@material-ui/core/colors";
+import {yellow} from "@material-ui/core/colors";
+import QuantityRequestedFieldComponent from "../FieldComponents/QuantityRequestedFieldComponent";
 
 const yellowTheme = createTheme({palette: {primary: yellow}})
 
@@ -57,6 +58,9 @@ const BuyItNowFormComponent = ({token, code}) => {
                 </Grid>
                 <Grid item xs={12}>
                     <Divider/>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                    <QuantityRequestedFieldComponent/>
                 </Grid>
                 <Grid item xs={12}>
                     <CommentsFieldComponent/>

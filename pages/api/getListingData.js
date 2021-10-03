@@ -43,6 +43,7 @@ const getListingData = async (req, res) => {
                 usdAmount: usdAmount,
                 eosAmount: eosAmount,
                 description: description,
+                quantityAvailable: quantityAvailable,
                 saleMethod: saleMethod,
                 useEscrow: useEscrow,
                 createdOnTimestamp: createdOnTimestamp,

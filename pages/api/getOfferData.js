@@ -51,6 +51,7 @@ const getOfferData = async (req, res) => {
                 worldwide: worldwide,
                 countries: countries,
                 condition: condition,
+                quantityAvailable: quantityAvailable,
                 title: title,
                 link: link,
                 imageLinks: imageLinks,

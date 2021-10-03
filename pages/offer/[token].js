@@ -25,6 +25,7 @@ const Offer = ({token}) => {
         setCountries,
         setUseEscrow,
         setCondition,
+        setQuantityOptions,
     } = useContext(AppContext)
 
     const [show, setShow] = React.useState(false)
@@ -61,6 +62,12 @@ const Offer = ({token}) => {
                 const publicListing = listing.publicListing
                 const worldwide = listing.worldwide
                 const countries = listing.countries
+                const quantityAvailable = listing.quantityAvailable
+                let setQuantityOptions2 = Array.from({length: quantityAvailable}, (_, i) => i + 1)
+                setQuantityOptions2 = setQuantityOptions2.map(function (value) {
+                    return value.toString()
+                })
+                setQuantityOptions(setQuantityOptions2)
                 setCondition(condition)
                 setTitle(title)
                 setImageLinks(imageLinks)

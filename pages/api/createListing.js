@@ -20,6 +20,7 @@ const createListing = async (req, res) => {
         data.keywords = data.keywords.map(function (keyword) {
             return keyword.toLowerCase()
         })
+        data.keywordsString = data.keywords.join(' ')
         await connectToDb()
         try {
             data.code = await generateCode()

@@ -79,9 +79,7 @@ const Listings = () => {
         search,
         eosRate,
         countries,
-        worldwide,
         setCountries,
-        setWorldwide,
         countriesError,
         setHideRecaptcha,
     } = useContext(AppContext)
@@ -91,12 +89,11 @@ const Listings = () => {
     const [submittingData, setSubmittingData] = React.useState(false)
     const [show, setShow] = React.useState(false)
 
-    const getListings = async (applied, search, worldwide, countries, page) => {
+    const getListings = async (applied, search, countries, page) => {
         try {
             const res = await axios.post('api/getListings', {
                 applied: applied,
                 search: search,
-                worldwide: worldwide,
                 countries: countries,
                 page: page
             })
@@ -119,38 +116,30 @@ const Listings = () => {
     const submitData = () => {
         setSubmittingData(true)
         setListings([])
-        getListings(true, search, worldwide, countries, page)
+        getListings(true, search, countries, page)
     }
 
     useEffect(() => {
         setHideRecaptcha(true)
-        let worldwide2 = localStorage.getItem('worldwide')
         let countries2 = localStorage.getItem('countries')
-        if (worldwide2 && countries2) {
-            worldwide2 = JSON.parse(worldwide2)
+        if (countries2) {
             countries2 = JSON.parse(countries2)
-            setWorldwide(worldwide2)
             setCountries(countries2)
-            getListings(true, '', worldwide2, countries2, 1)
+            getListings(true, '', countries2, 1)
         } else
-            getListings(true, '', worldwide, countries, 1)
+            getListings(true, '', countries, 1)
     }, [])
 
     useEffect(() => {
-        if (show) {
-            localStorage.setItem('worldwide', worldwide)
+        if (show)
             localStorage.setItem('countries', JSON.stringify(countries))
-        }
-    }, [worldwide, countries])
+    }, [countries])
 
     const disabled = useMemo(() => {
         if (submittingData)
             return true
-        if (!worldwide) {
-            return !countries.length || countriesError
-        } else
-            return false
-    }, [countriesError, countries, worldwide, submittingData])
+        return !countries.length || countriesError
+    }, [countriesError, countries, submittingData])
 
     const updateAmount = (listing) => {
         let returnThis = {}
@@ -171,7 +160,7 @@ const Listings = () => {
             setSubmittingData(true)
             setListings([])
             setPage(value)
-            getListings(false, search, worldwide, countries, value)
+            getListings(false, search, countries, value)
         }
     }
 
@@ -209,12 +198,7 @@ const Listings = () => {
                                     Filter Listings
                                 </Typography>
                             </Grid>
-                            <Grid item xs={12}>
-                                <WorldwideFieldComponent/>
-                            </Grid>
-                            {!worldwide && (<Grid item xs={12}>
-                                <CountriesFieldComponent/>
-                            </Grid>)}
+                            <CountriesFieldComponent/>
                             <Grid item xs={12}>
                                 <SearchFieldComponent/>
                             </Grid>

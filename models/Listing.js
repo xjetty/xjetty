@@ -62,6 +62,9 @@ const ListingSchema = new mongoose.Schema({
     keywords: {
         type: Array
     },
+    keywordsString: {
+        type: String
+    },
     quantity: {
         type: Number,
         required: true,

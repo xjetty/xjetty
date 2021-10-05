@@ -9,7 +9,6 @@ const getListings = async (req, res) => {
         await connectToDb()
         const applied = data.applied
         let search = data.search
-        let worldwide = data.worldwide
         let countries = data.countries
         search = search.trim().toLowerCase()
         search = search.replace(/\s\s+/g, ' ')
@@ -18,51 +17,37 @@ const getListings = async (req, res) => {
             res.setHeader('Set-Cookie', cookie.serialize('search', search, {
                 httpOnly: true,
             }))
-            res.setHeader('Set-Cookie', cookie.serialize('worldwide', worldwide, {
-                httpOnly: true,
-            }))
             res.setHeader('Set-Cookie', cookie.serialize('countries', countries, {
                 httpOnly: true,
             }))
         } else {
             search = cookie.parse(req.headers.search)
-            worldwide = cookie.parse(req.headers.worldwide)
             countries = cookie.parse(req.headers.countries)
         }
         let listings = []
-        let searchArray = search.split(' ')
-        let searchArrayFilter = searchArray.map(function (value) {
-            return `/${value}/`
-        })
-        const searchArrayFilterRegex = []
-        searchArrayFilter.forEach(function name(value) {
-            const newValue = value.replace(/\//ig, '')
-            searchArrayFilterRegex.push(new RegExp(newValue))
-        })
         let filter = {
             publicListing: true,
             hidden: false
         }
-        if (worldwide) {
-            filter.worldwide = true
-            if (search)
-                filter.$or = [{title: {'$regex': search, '$options': 'i'}}, {description: {'$regex': search, '$options': 'i'}}, {keywords: {$in: searchArrayFilterRegex}}]
+        if (search)
+            filter.$text = {$search: search}
+        if (countries.length > 0)
+            filter.countries = {$in: countries}
+        if (search) {
+            listings = await Listing.find(
+                filter,
+                {score: {$meta: "textScore"}}
+            ).sort({score: {$meta: "textScore"}})
         } else {
-            if (countries.length === 0)
-                return res.json({success: false})
-            if (search) {
-                filter.$or = [{title: {'$regex': search, '$options': 'i'}}, {worldwide: true}, {countries: {$in: countries}}, {description: {'$regex': search, '$options': 'i'}}, {keywords: {$in: searchArrayFilterRegex}}]
-            } else
-                filter.$or = [{worldwide: true}, {countries: {$in: countries}}]
+            listings = await Listing.find(filter)
+            listings.reverse()
         }
-        listings = await Listing.find(filter)
         listings.filter(function (post) {
             const quantity = post.quantity
             const quantitySold = post.quantitySold
             const pendingTransactions = post.pendingTransactions
             return ((quantitySold + pendingTransactions) < quantity)
         })
-        listings = listings.reverse()
         listings = listings.map(function (value) {
             let imageLink = null
             if (value.imageLinks.length > 0)

@@ -13,6 +13,7 @@ const updateListing = async (req, res) => {
         data.keywords = data.keywords.map(function (keyword) {
             return keyword.toLowerCase()
         })
+        data.keywordsString = data.keywords.join(' ')
         data.lastUpdatedOnTimestamp = Date.now()
         const listingId = getIdFromToken(token, 'listingId')
         if (!listingId)

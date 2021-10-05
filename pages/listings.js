@@ -198,7 +198,9 @@ const Listings = () => {
                                     Filter Listings
                                 </Typography>
                             </Grid>
-                            <CountriesFieldComponent/>
+                            <Grid item xs={12}>
+                                <CountriesFieldComponent/>
+                            </Grid>
                             <Grid item xs={12}>
                                 <SearchFieldComponent/>
                             </Grid>

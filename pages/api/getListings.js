@@ -32,7 +32,7 @@ const getListings = async (req, res) => {
         if (search)
             filter.$text = {$search: search}
         if (countries.length > 0)
-            filter.countries = {$in: countries}
+            filter.$or = [{worldwide: true}, {countries: {$in: countries}}]
         if (search) {
             listings = await Listing.find(
                 filter,

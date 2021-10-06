@@ -233,9 +233,10 @@ const Listings = () => {
                             <CardContent>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12}>
-                                        <Typography variant="subtitle2">
-                                            {listing.condition}
-                                        </Typography>
+                                        <Chip color="secondary"
+                                              label={listing.condition !== 'Not applicable' ? listing.condition : 'Condition does not apply'}/>
+                                    </Grid>
+                                    <Grid item xs={12}>
                                         <Typography variant="h6">
                                             {listing.title}
                                         </Typography>

@@ -1,4 +1,4 @@
-import {Button, Divider, Grid, MuiThemeProvider} from '@material-ui/core'
+import {Button, Divider, Grid, List, ListItem, ListItemIcon, ListItemText, MuiThemeProvider} from '@material-ui/core'
 import EosAccountNameFieldComponent from '../FieldComponents/EosAccountNameFieldComponent'
 import AssociativePrivateKeyFieldComponent from '../FieldComponents/AssociativePrivateKeyFieldComponent'
 import CommentsFieldComponent from '../FieldComponents/CommentsFieldComponent'
@@ -9,22 +9,25 @@ import MemoFieldComponent from "../FieldComponents/MemoFieldComponent";
 import {AppContext} from "../../contexts/AppContext";
 import EosAccountFieldComponent from "../FieldComponents/EosAccountFieldComponent";
 import AddMemoFieldComponent from "../FieldComponents/AddMemoFieldComponent";
-import {OpenInNew} from "@material-ui/icons";
+import {OpenInNew, VerifiedUser, Warning} from "@material-ui/icons";
 import ClearEosAccountStorageComponent from "../ClearEosAccountStorageComponent";
 import {createTheme} from "@material-ui/core/styles";
-import {yellow} from "@material-ui/core/colors";
+import {green, orange, yellow} from "@material-ui/core/colors";
 import QuantityRequestedFieldComponent from "../FieldComponents/QuantityRequestedFieldComponent";
 
 const yellowTheme = createTheme({palette: {primary: yellow}})
+const greenTheme = createTheme({palette: {primary: green}})
+const orangeTheme = createTheme({palette: {primary: orange}})
 
 const BuyItNowFormComponent = ({token, code}) => {
-    const {eosAccount, addMemo} = useContext(AppContext)
+    const {eosAccount, addMemo, useEscrow} = useContext(AppContext)
     return (
         <>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <MuiThemeProvider theme={yellowTheme}>
-                        <Button disableElevation variant="contained" color="primary" href="https://eospowerup.io/free" target="_blank" endIcon={<OpenInNew/>}>
+                        <Button disableElevation variant="contained" color="primary" href="https://eospowerup.io/free"
+                                target="_blank" endIcon={<OpenInNew/>}>
                             EOS powerup
                         </Button>
                     </MuiThemeProvider>

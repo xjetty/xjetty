@@ -229,6 +229,14 @@ const ListingComponent = ({code}) => {
                                         <List disablePadding>
                                             <ListItem disableGutters>
                                                 <ListItemIcon>
+                                                    <Public/>
+                                                </ListItemIcon>
+                                                <ListItemText
+                                                    primary={worldwide ? 'Worldwide' : countries.join(', ')}
+                                                />
+                                            </ListItem>
+                                            <ListItem disableGutters>
+                                                <ListItemIcon>
                                                     <Create/>
                                                 </ListItemIcon>
                                                 <ListItemText
@@ -252,14 +260,6 @@ const ListingComponent = ({code}) => {
                                 <Card elevation={6}>
                                     <CardContent>
                                         <List disablePadding>
-                                            <ListItem disableGutters>
-                                                <ListItemIcon>
-                                                    <Public color="primary"/>
-                                                </ListItemIcon>
-                                                <ListItemText
-                                                    primary={worldwide ? 'Worldwide' : countries.join(', ')}
-                                                />
-                                            </ListItem>
                                             <ListItem disableGutters>
                                                 <ListItemIcon>
                                                     {useEscrow ? (<MuiThemeProvider theme={greenTheme}><VerifiedUser

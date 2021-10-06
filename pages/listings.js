@@ -1,12 +1,13 @@
 import Head from "next/head";
 import React, {useEffect} from 'react'
 import {
+    Box,
     Button,
     Card,
     CardActions,
     CardContent,
     CardMedia,
-    Chip,
+    Chip, CircularProgress,
     Grid,
     LinearProgress,
     MuiThemeProvider,
@@ -218,7 +219,7 @@ const Listings = () => {
                     </CardActions>
                 </Card>
             </Grid>
-            {show && (<Grid item xs={12}>
+            {show ? (<Grid item xs={12}>
                 {listings.length > 0 ? (<Masonry
                     breakpointCols={breakpointColumnsObj}
                     className={classes.masonryGrid}
@@ -274,7 +275,13 @@ const Listings = () => {
                         </CardContent>
                     </Card>
                 ) : ('')}
-            </Grid>)}
+            </Grid>) : (
+                <Grid item xs={12}>
+                    <Box style={{ display: 'flex' }}>
+                        <CircularProgress />
+                    </Box>
+                </Grid>
+            )}
             {listings.length > 0 && (<Grid item xs={12} container justifyContent="center">
                 <Pagination color="primary" count={pageLength} page={page} onChange={changePage}/>
             </Grid>)}

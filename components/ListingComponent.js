@@ -270,8 +270,8 @@ const ListingComponent = ({code}) => {
                                                 <ListItemText
                                                     primary={
                                                         useEscrow
-                                                            ? 'Escrow in use'
-                                                            : 'Escrow not in use'
+                                                            ? 'Escrow in use!'
+                                                            : 'Escrow not in use!'
                                                     }
                                                 />
                                             </ListItem>

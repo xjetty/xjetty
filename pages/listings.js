@@ -276,7 +276,7 @@ const Listings = () => {
                     </Card>
                 ) : ('')}
             </Grid>) : (
-                <Grid item xs={12} justify>
+                <Grid item xs={12} container justifyContent="center">
                     <CircularProgress />
                 </Grid>
             )}

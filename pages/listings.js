@@ -22,8 +22,7 @@ import UpdateEosRate from "../components/UpdateEosRate";
 import {GpsFixed, GpsNotFixed, EmojiPeople, OpenInNew} from '@material-ui/icons'
 import Masonry from 'react-masonry-css'
 import {Pagination} from "@material-ui/lab";
-import WorldwideFieldComponent from "../components/FieldComponents/WorldwideFieldComponent";
-import CountriesFieldComponent from "../components/FieldComponents/CountriesFieldComponent";
+import CountryFieldComponent from "../components/FieldComponents/CountryFieldComponent";
 
 const useStyles = makeStyles((theme) => ({
     media: {
@@ -78,9 +77,9 @@ const Listings = () => {
     const {
         search,
         eosRate,
-        countries,
-        setCountries,
-        countriesError,
+        country,
+        setCountry,
+        countryError,
         setHideRecaptcha,
     } = useContext(AppContext)
     const [listings, setListings] = React.useState([])
@@ -89,12 +88,12 @@ const Listings = () => {
     const [submittingData, setSubmittingData] = React.useState(false)
     const [show, setShow] = React.useState(false)
 
-    const getListings = async (applied, search, countries, page) => {
+    const getListings = async (applied, search, country, page) => {
         try {
             const res = await axios.post('api/getListings', {
                 applied: applied,
                 search: search,
-                countries: countries,
+                country: country,
                 page: page
             })
             const data = res.data
@@ -116,30 +115,30 @@ const Listings = () => {
     const submitData = () => {
         setSubmittingData(true)
         setListings([])
-        getListings(true, search, countries, page)
+        getListings(true, search, country, page)
     }
 
     useEffect(() => {
         setHideRecaptcha(true)
-        let countries2 = localStorage.getItem('countries')
-        if (countries2) {
-            countries2 = JSON.parse(countries2)
-            setCountries(countries2)
-            getListings(true, '', countries2, 1)
+        let country2 = localStorage.getItem('country')
+        if (country2) {
+            country2 = JSON.parse(country2)
+            setCountry(country2)
+            getListings(true, '', country2, 1)
         } else
-            getListings(true, '', countries, 1)
+            getListings(true, '', country, 1)
     }, [])
 
     useEffect(() => {
         if (show)
-            localStorage.setItem('countries', JSON.stringify(countries))
-    }, [countries])
+            localStorage.setItem('country', JSON.stringify(country))
+    }, [country])
 
     const disabled = useMemo(() => {
         if (submittingData)
             return true
-        return !countries.length || countriesError
-    }, [countriesError, countries, submittingData])
+        return !country || countryError
+    }, [countryError, country, submittingData])
 
     const updateAmount = (listing) => {
         let returnThis = {}
@@ -160,7 +159,7 @@ const Listings = () => {
             setSubmittingData(true)
             setListings([])
             setPage(value)
-            getListings(false, search, countries, value)
+            getListings(false, search, country, value)
         }
     }
 
@@ -199,7 +198,7 @@ const Listings = () => {
                                 </Typography>
                             </Grid>
                             <Grid item xs={12}>
-                                <CountriesFieldComponent/>
+                                <CountryFieldComponent/>
                             </Grid>
                             <Grid item xs={12}>
                                 <SearchFieldComponent/>

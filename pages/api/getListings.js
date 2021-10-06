@@ -9,7 +9,7 @@ const getListings = async (req, res) => {
         await connectToDb()
         const applied = data.applied
         let search = data.search
-        let countries = data.countries
+        let country = data.country
         search = search.trim().toLowerCase()
         search = search.replace(/\s\s+/g, ' ')
         const page = data.page
@@ -17,12 +17,12 @@ const getListings = async (req, res) => {
             res.setHeader('Set-Cookie', cookie.serialize('search', search, {
                 httpOnly: true,
             }))
-            res.setHeader('Set-Cookie', cookie.serialize('countries', countries, {
+            res.setHeader('Set-Cookie', cookie.serialize('country', country, {
                 httpOnly: true,
             }))
         } else {
             search = cookie.parse(req.headers.search)
-            countries = cookie.parse(req.headers.countries)
+            country = cookie.parse(req.headers.country)
         }
         let listings = []
         let filter = {
@@ -31,8 +31,8 @@ const getListings = async (req, res) => {
         }
         if (search)
             filter.$text = {$search: search}
-        if (countries.length > 0)
-            filter.$or = [{worldwide: true}, {countries: {$in: countries}}]
+        if (country)
+            filter.$or = [{worldwide: true}, {countries: {$in: [country]}}]
         if (search) {
             listings = await Listing.find(
                 filter,

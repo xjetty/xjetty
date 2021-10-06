@@ -115,6 +115,8 @@ function MyApp({Component, pageProps}) {
     const [eosAccountNameCreatorError, setEosAccountNameCreatorError] = useState(false)
     const [condition, setCondition] = useState('')
     const [conditionError, setConditionError] = useState(false)
+    const [country, setCountry] = useState(null)
+    const [countryError, setCountryError] = useState(false)
 
     React.useEffect(() => {
         const jssStyles = document.querySelector('#jss-server-side');
@@ -124,6 +126,10 @@ function MyApp({Component, pageProps}) {
     return (
         <AppContext.Provider
             value={{
+                country,
+                setCountry,
+                countryError,
+                setCountryError,
                 useEscrow,
                 setUseEscrow,
                 countries,

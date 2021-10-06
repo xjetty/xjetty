@@ -276,10 +276,8 @@ const Listings = () => {
                     </Card>
                 ) : ('')}
             </Grid>) : (
-                <Grid item xs={12}>
-                    <Box style={{ display: 'flex' }}>
-                        <CircularProgress />
-                    </Box>
+                <Grid item xs={12} justify>
+                    <CircularProgress />
                 </Grid>
             )}
             {listings.length > 0 && (<Grid item xs={12} container justifyContent="center">

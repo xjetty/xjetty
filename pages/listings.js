@@ -90,6 +90,7 @@ const Listings = () => {
     const [show, setShow] = React.useState(false)
 
     const getListings = async (applied, search, country, page) => {
+        setShow(false)
         try {
             const res = await axios.post('api/getListings', {
                 applied: applied,
@@ -115,7 +116,6 @@ const Listings = () => {
 
     const submitData = () => {
         setSubmittingData(true)
-        setListings([])
         getListings(true, search, country, page)
     }
 
@@ -158,7 +158,6 @@ const Listings = () => {
     const changePage = (event, value) => {
         if (page !== value) {
             setSubmittingData(true)
-            setListings([])
             setPage(value)
             getListings(false, search, country, value)
         }

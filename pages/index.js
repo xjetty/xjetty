@@ -90,6 +90,9 @@ const Home = () => {
                             <ListItem divider>
                                 <ListItemText primary="eBay" secondary="10%"/>
                             </ListItem>
+                            <ListItem divider>
+                                <ListItemText primary="Coinbase Commerce" secondary="1%"/>
+                            </ListItem>
                             <ListItem>
                                 <ListItemText primary="BlockCommerc" secondary="0%"/>
                             </ListItem>

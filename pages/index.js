@@ -172,6 +172,13 @@ const Home = () => {
                 </Card>
             </Grid>
             <Grid item xs={12}>
+                <Card elevation={6}>
+                    <CardContent>
+                        <Typography variant="h5">Peer-to-peer (P2P) commerce with crypto.</Typography>
+                    </CardContent>
+                </Card>
+            </Grid>
+            <Grid item xs={12}>
                 <Card variant="outlined">
                     <CardContent>
                         <List subheader={<ListSubheader>EOS</ListSubheader>}>

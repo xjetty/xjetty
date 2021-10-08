@@ -116,6 +116,9 @@ const ListingDetailsComponent = (props) => {
                         </Grid>
                         <Grid item xs={12}>
                             <List disablePadding>
+                                <ListItem disableGutters>
+                                    <ListItemText primary={props.listingDetails.quantity} secondary="Quantity"/>
+                                </ListItem>
                                 <ListItem divider disableGutters>
                                     {props.listingDetails.fixedAmount !== 'usd' && (<ListItemAvatar>
                                         <Avatar alt="EOS Logo" imgProps={{style: {objectFit: "initial"}}}

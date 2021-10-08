@@ -101,7 +101,11 @@ const Home = () => {
                 </Card>
             </Grid>
             <Grid item xs={12}>
-                <Typography variant="h6">You get all that you earn on BlockCommerc.</Typography>
+                <Card elevation={6}>
+                    <CardContent>
+                        <Typography variant="h5">You get all that you earn on BlockCommerc.</Typography>
+                    </CardContent>
+                </Card>
             </Grid>
             <Grid item xs={12}>
                 <Card variant="outlined">

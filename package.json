@@ -1,9 +1,9 @@
 {
-  "name": "blockcommercing_git",
+  "name": "xjetty",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3015",
+    "dev": "next dev -p 3020",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

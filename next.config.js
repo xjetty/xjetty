@@ -2,17 +2,9 @@ module.exports = {
     reactStrictMode: true,
     env: {
         MONGO_URI:
-            'mongodb+srv://user:Snapshooter!23@blockcommercapp.bslzk.mongodb.net/BlockCommercApp?retryWrites=true&w=majority',
-        JWT_SIGNATURE: 'fn2HmaJdLr9UKIoSfgYr',
-        RECAPTCHA_SITE_KEY: '6Le-jL0bAAAAALtVFAZwX-GB2KHwl8wUmGP7T_VE',
-        RECAPTCHA_SECRET_KEY: '6Le-jL0bAAAAAJowKEnL-rWbiWaLaY8ibNr260XT',
-        EOS_NODE_SERVER_MAIN: 'https://eos.greymass.com/',
-        EOS_NODE_SERVER_BACKUP: 'https://api.eosn.io/',
-        ESCROW_EOS_ACCOUNT_NAME: 'blockcommerc',
-        ESCROW_ASSOCIATIVE_PRIVATE_KEY:
-            '5KD6WKJ2ctuZKpYedyZjE9TcFAC79HfSzLZR5FBFs671sN5z9hY',
-        ESCROW_MEMO: '',
-        EMAILS: "blockcommerc1@gmail.com, blockcommerc2@gmail.com, blockcommerc3@gmail.com",
-        NEXT_PUBLIC_GOOGLE_ANALYTICS:"G-4SX982D0V0"
+            'mongodb+srv://user1:user1password@xjettyapp.ssb1o.mongodb.net/xjettyapp?retryWrites=true&w=majority',
+        JWT_SIGNATURE: 'xjetty',
+        RECAPTCHA_SITE_KEY: '6LdhzsMcAAAAALDBRZd-USWN60Ca1GoB337wq6fa',
+        RECAPTCHA_SECRET_KEY: '6LdhzsMcAAAAACuuzJY9754-1tGtuJOOis41DXqq',
     }
 }

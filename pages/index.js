@@ -24,12 +24,12 @@ const Home = () => {
                 <Typography variant="h1">Xjetty</Typography>
             </Grid>
             <Grid item xs={12} container justifyContent="center">
-                <Typography variant="h6">Cross-Border E-Commerce With XRP</Typography>
+                <Typography variant="h5" color="textSecondary">Cross-Border E-Commerce With XRP</Typography>
             </Grid>
             <Grid item xs={12} container justifyContent="center">
                 <Box className={classes.buttons}>
-                    <Button size="large" variant="contained" color="primary">Sign up</Button>
-                    <Button size="large" variant="contained" color="secondary">Log in</Button>
+                    <Button size="large" variant="contained" disableElevation color="primary">Sign up</Button>
+                    <Button size="large" variant="contained" disableElevation color="secondary">Log in</Button>
                 </Box>
             </Grid>
             <Grid item xs={12} container justifyContent="center">

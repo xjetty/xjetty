@@ -1,6 +1,6 @@
 import '../styles/globals.css'
 import {createTheme} from '@material-ui/core/styles'
-import {blue, red} from "@material-ui/core/colors";
+import {blue, brown} from "@material-ui/core/colors";
 import {AppContext} from "../contexts/AppContext";
 import React, {useEffect, useState} from "react"
 import {CssBaseline, ThemeProvider} from "@material-ui/core";
@@ -8,7 +8,7 @@ import {CssBaseline, ThemeProvider} from "@material-ui/core";
 const theme = createTheme({
     palette: {
         primary: {main: blue[500]},
-        secondary: {main: red[500]},
+        secondary: {main: brown[500]},
     }
 })
 
